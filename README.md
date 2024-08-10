@@ -46,6 +46,8 @@
 </h3>
 
 
-<h3 align="center"> This is the official repository for STEAMER Academy's website, <a href="https://steameracademy.me//">steameracademy.me</a> . Its currently in developement. Stay tuned for this website to be fully operational.</h3>
+<h3 align="center"> This is the official repository for STEAMER Academy's website, <a href="https://steameracademy.me//">steameracademy.me</a> .</h3>
 
+> [!Note]
+> This website is in developement.
 
