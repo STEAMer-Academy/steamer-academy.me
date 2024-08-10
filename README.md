@@ -3,7 +3,7 @@
 </h6>
 
 
-<h3 align="center">STEAMer Academy</h3>
+<h3 align="center">STEAMER Academy</h3>
 
 <h5 align="center">
   <a href="http://ipa-reader.xyz/?text=%C3%B0i%CB%90%CB%88sti%CB%90.m%C9%99r%C9%99%CB%88k%C3%A6d.%C9%99.mi">/ðiːˈstiː.mərəˈkæd.ə.mi/</a>
