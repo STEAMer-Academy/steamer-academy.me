@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.tsx';
 import { getCollection } from 'astro:content';
 import { useEffect, useState } from 'react';
 import { renderToString } from 'react-dom/server';
+import ContentRenderer from '../components/ContentRenderer';  // Import React Component
 import '../styles/globals.css';
 
 // Define the type for your blog entries
@@ -34,11 +35,6 @@ useEffect(() => {
     });
   }
 }, [entry]);
-
-// React component to render HTML content
-function ContentRenderer({ content }: { content: string }) {
-  return <div dangerouslySetInnerHTML={{ __html: content }} />;
-}
 ---
 
 <Layout>
@@ -47,5 +43,4 @@ function ContentRenderer({ content }: { content: string }) {
     {ReactContent && <ContentRenderer content={ReactContent} />}
   </article>
 </Layout>
-
 
