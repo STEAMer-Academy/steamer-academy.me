@@ -34,14 +34,18 @@ useEffect(() => {
     });
   }
 }, [entry]);
+
+// React component to render HTML content
+function ContentRenderer({ content }: { content: string }) {
+  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+}
 ---
 
 <Layout>
   <article>
     <h1>{entry.data.title}</h1>
-    {ReactContent && (
-      <div dangerouslySetInnerHTML={{ __html: ReactContent }} />
-    )}
+    {ReactContent && <ContentRenderer content={ReactContent} />}
   </article>
 </Layout>
+
 
