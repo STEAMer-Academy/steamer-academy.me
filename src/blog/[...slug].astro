@@ -4,7 +4,6 @@ import { getCollection } from 'astro:content';
 import { useEffect, useState } from 'react';
 import { renderToString } from 'react-dom/server';
 import '../styles/globals.css';
-import React from 'react'
 
 // Define the type for your blog entries
 type BlogEntry = {
@@ -26,10 +25,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
-type HTMLAttributesWithDangerousInnerHtml = React.HTMLAttributes<HTMLDivElement> & {
-  dangerouslySetInnerHTML?: React.DangerouslySetInnerHTMLAttributes;
-};
-
 const [ReactContent, setReactContent] = useState<string | null>(null);
 
 useEffect(() => {
@@ -44,6 +39,7 @@ useEffect(() => {
 <Layout>
   <article>
     <h1>{entry.data.title}</h1>
-     {ReactContent && <div dangerouslySetInnerHTML={ReactContent as React.DangerouslySetInnerHTMLAttributes} />}
+    {ReactContent && <div dangerouslySetInnerHTML={ReactContent} />}
   </article>
 </Layout>
+
