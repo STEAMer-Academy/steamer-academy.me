@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.tsx';
 import { getCollection } from 'astro:content';
+import { useEffect, useState } from 'react';
+import { renderToString } from 'react-dom/server';
 import '../styles/globals.css';
 
 // Define the type for your blog entries
@@ -9,7 +11,7 @@ type BlogEntry = {
   data: {
     title: string;
   };
-  render: () => Promise<{ Content: React.ReactNode }>;
+  render: () => Promise<{ default: React.ReactElement }>;
 };
 
 export async function getStaticPaths() {
@@ -22,14 +24,22 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
 
+const [ReactContent, setReactContent] = useState<string | null>(null);
+
+useEffect(() => {
+  if (entry && typeof entry.render === 'function') {
+    entry.render().then(content => {
+      setReactContent(renderToString(content.default));
+    });
+  }
+}, [entry]);
 ---
 
 <Layout>
   <article>
     <h1>{entry.data.title}</h1>
-    <Content />
+    {ReactContent && <div dangerouslySetInnerHTML={{ __html: ReactContent }} />}
   </article>
 </Layout>
 
