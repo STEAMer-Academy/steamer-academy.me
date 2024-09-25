@@ -44,6 +44,6 @@ useEffect(() => {
 <Layout>
   <article>
     <h1>{entry.data.title}</h1>
-    {ReactContent && <div dangerouslySetInnerHTML={ReactContent} />}
+     {ReactContent && <div dangerouslySetInnerHTML={ReactContent as React.DangerouslySetInnerHTMLAttributes} />}
   </article>
 </Layout>
