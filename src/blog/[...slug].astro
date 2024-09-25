@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.tsx';
+import { getCollection } from 'astro:content';
+import { useEffect, useState } from 'react';
+import { renderToString } from 'react-dom/server';
+import ContentRenderer from '../components/ContentRenderer';  // Import React Component
+import '../styles/globals.css';
+
+// Define the type for your blog entries
+type BlogEntry = {
+  slug: string;
+  data: {
+    title: string;
+  };
+  render: () => Promise<{ default: React.ReactElement }>;
+};
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog') as BlogEntry[];
+  
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const [ReactContent, setReactContent] = useState<string | null>(null);
+
+useEffect(() => {
+  if (entry && typeof entry.render === 'function') {
+    entry.render().then(content => {
+      setReactContent(renderToString(content.default));
+    });
+  }
+}, [entry]);
+---
+
+<Layout>
+  <article>
+    <h1>{entry.data.title}</h1>
+    {ReactContent && <ContentRenderer content={ReactContent} />}
+  </article>
+</Layout>
+
