@@ -7,7 +7,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://MuntasirSZN,github.io/',
+  site: 'https://steameracademy.me/',
   base: 'steamer-academy.github.io',
   integrations: [react(), tailwind({
     applyBaseStyles: false,
