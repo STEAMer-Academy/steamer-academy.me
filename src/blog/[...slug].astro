@@ -39,6 +39,9 @@ useEffect(() => {
 <Layout>
   <article>
     <h1>{entry.data.title}</h1>
-    {ReactContent && <div innerHTML={ReactContent} />}
+    {ReactContent && (
+      <div dangerouslySetInnerHTML={{ __html: ReactContent }} />
+    )}
   </article>
 </Layout>
+
