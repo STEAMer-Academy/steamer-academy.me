@@ -1,17 +1,29 @@
 ---
 import Layout from '../layouts/Layout.tsx';
 import { getCollection } from 'astro:content';
-import '../styles/globals.css'
+import '../styles/globals.css';
+
+// Define the type for your blog entries
+type BlogEntry = {
+  slug: string;
+  data: {
+    title: string;
+  };
+  render: () => Promise<{ Content: React.ReactNode }>;
+};
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+  const blogEntries = await getCollection('blog') as BlogEntry[];
+  
   return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
 ---
 
 <Layout>
@@ -20,3 +32,4 @@ const { Content } = await entry.render();
     <Content />
   </article>
 </Layout>
+
