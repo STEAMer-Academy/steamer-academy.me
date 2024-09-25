@@ -25,6 +25,10 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
+type HTMLAttributesWithDangerousInnerHtml = React.HTMLAttributes<HTMLDivElement> & {
+  dangerouslySetInnerHTML?: React.DangerouslySetInnerHTMLAttributes;
+};
+
 const [ReactContent, setReactContent] = useState<string | null>(null);
 
 useEffect(() => {
@@ -39,7 +43,6 @@ useEffect(() => {
 <Layout>
   <article>
     <h1>{entry.data.title}</h1>
-    {ReactContent && <div dangerouslySetInnerHTML={{ __html: ReactContent }} />}
+    {ReactContent && <div dangerouslySetInnerHTML={ReactContent} />}
   </article>
 </Layout>
-
