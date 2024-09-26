@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.tsx'
 import PageAbout from '../components/About.tsx'
 import '../styles/globals.css'
+import Script from '../components/Themescript.astro'
 ---
 
 <Layout client:idle >
   <PageAbout client:load />
+  <Script/>
 </Layout>

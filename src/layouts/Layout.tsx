@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useStore } from '@nanostores/react'
-import { themeStore } from '../stores/themeStore'
+import { themeStore, setTheme } from '../stores/themeStore'
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Moon, Sun } from "lucide-react"
@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [$theme])
 
   const toggleTheme = () => {
-    themeStore.set($theme === 'light' ? 'dark' : 'light')
+    setTheme($theme === 'light' ? 'dark' : 'light')
   }
 
   return (

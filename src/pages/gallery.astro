@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.tsx'
 import '../styles/globals.css'
 import PageGallery from '../components/Gallery.tsx'
+import Script from '../components/Themescript.astro'
 ---
 
 <Layout client:idle >
   <PageGallery client:load />
+<Script/>
 </Layout>
