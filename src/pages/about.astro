@@ -1,11 +1,14 @@
 ---
-import Layout from '../layouts/Layout.tsx'
+import Layout from '../layouts/Layout.astro'
+import ReactLayout from '../components/Layout.tsx'
 import PageAbout from '../components/About.tsx'
 import '../styles/globals.css'
 import Script from '../components/Themescript.astro'
 ---
 
 <Layout client:idle >
-  <PageAbout client:load />
-  <Script/>
+  <ReactLayout client:load>
+    <PageAbout client:load />
+    <Script/>
+  </ReactLayout>
 </Layout>
