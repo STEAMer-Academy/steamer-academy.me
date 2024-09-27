@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStore } from '@nanostores/react'
 import { themeStore, setTheme } from '../stores/themeStore'
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,7 @@ import '../styles/globals.css'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const $theme = useStore(themeStore)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)  // Track dropdown state
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', $theme === 'dark')
@@ -15,6 +16,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = () => {
     setTheme($theme === 'light' ? 'dark' : 'light')
+  }
+
+  // Function to toggle dropdown state
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen)
   }
 
   return (
@@ -26,7 +32,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a href="/" className="hover:text-blue-600 transition-colors">Home</a>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost">Services</Button>
+                <Button variant="ghost" onClick={toggleDropdown} className="flex items-center space-x-2">
+                  <span>Services</span>
+                  {/* Arrow icon with rotation animation */}
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
