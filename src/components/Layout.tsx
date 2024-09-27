@@ -20,9 +20,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`min-h-screen flex flex-col ${$theme === 'dark' ? 'dark bg-[#1a1b26] text-[#a9b1d6]' : 'bg-white text-gray-900'}`}>
       <header className="border-b">
-        <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+        <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center space-y-2 md:space-y-0">
           <a href="/" className="text-2xl font-bold">STEAMer Academy</a>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap justify-center md:justify-end items-center space-x-4 w-full md:w-auto">
             <a href="/" className="hover:text-blue-600 transition-colors">Home</a>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -74,3 +74,4 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
+
