@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { motion } from 'framer-motion'
-import React from 'react'
-import '../styles/globals.css'
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from 'framer-motion';
+import React from 'react';
+import '../styles/globals.css';
 
 interface BlogPost {
   title: string;
@@ -13,31 +13,33 @@ interface BlogPost {
 }
 
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
-    // In a real application, you would fetch this data from your API
     const fetchedPosts: BlogPost[] = [
       { title: "Welcome to a amazing world of mathematics", date: "2023-08-05", excerpt: "Discover the beauty of numbers and patterns...", category: "Math", slug: "welcome-to-mathematics" },
       { title: "Computers and Programming", date: "2023-08-07", excerpt: "Explore the fascinating world of coding...", category: "Technology", slug: "computers-and-programming" },
       { title: "What is a noun? A Cornerstone of Language", date: "2023-08-10", excerpt: "Understand the building blocks of sentences...", category: "English", slug: "what-is-a-noun" },
       { title: "Dive into Engineering: A Fun Guide for Beginners", date: "2023-08-15", excerpt: "Start your journey into the world of engineering...", category: "Engineering", slug: "dive-into-engineering" },
       { title: "Problem-Solution Text", date: "2023-08-20", excerpt: "Learn how to structure your writing to solve problems...", category: "English", slug: "problem-solution-text" },
-    ]
-    setPosts(fetchedPosts)
-  }, [])
+    ];
+    setPosts(fetchedPosts);
+  }, []);
 
-  const categories = Array.from(new Set(posts.map(post => post.category)))
+  const categories = Array.from(new Set(posts.map(post => post.category)));
 
   const filteredPosts = selectedCategory
     ? posts.filter(post => post.category === selectedCategory)
-    : posts
+    : posts;
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-4xl font-bold mb-8">Blog</h1>
-      <div className="flex space-x-4 mb-8">
+    <div className="container mx-auto px-4 max-w-screen-lg space-y-8">
+      {/* Title Section */}
+      <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
+
+      {/* Category Filter Section */}
+      <div className="flex flex-wrap gap-4 justify-center mb-8">
         <button
           onClick={() => setSelectedCategory(null)}
           className={`px-4 py-2 rounded ${!selectedCategory ? 'bg-primary text-primary-foreground' : 'bg-secondary'}`}
@@ -54,7 +56,9 @@ export default function Blog() {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      {/* Blog Posts Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {filteredPosts.map((post, index) => (
           <motion.div
             key={post.slug}
@@ -63,7 +67,7 @@ export default function Blog() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <a href={`/blog/${post.slug}`}>
-              <Card>
+              <Card className="hover:shadow-lg transition-shadow duration-200">
                 <CardHeader>
                   <CardTitle>{post.title}</CardTitle>
                   <CardDescription>{post.date}</CardDescription>
@@ -77,5 +81,6 @@ export default function Blog() {
         ))}
       </div>
     </div>
-  )
+  );
 }
+
