@@ -18,5 +18,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/astro-app:latest .
-          docker push ghcr.io/${{ github.repository_owner }}/astro-app:latest
+          docker build -t ghcr.io/steamer-academy/astro-app:latest .
+          docker push ghcr.io/steamer-academy/astro-app:latest
