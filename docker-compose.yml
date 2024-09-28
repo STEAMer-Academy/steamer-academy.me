@@ -1,0 +1,16 @@
+---
+
+services:
+  astro-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: astro-app-steamer
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    command: npx serve -s dist --listen 0.0.0.0:3000
+
+volumes:
+  node_modules:
