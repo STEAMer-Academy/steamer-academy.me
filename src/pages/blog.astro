@@ -4,6 +4,8 @@ import ReactLayout from '../components/Layout.tsx'
 import PageBlog from '../components/Blog.tsx'
 import '../styles/globals.css'
 import Script from '../components/Themescript.astro'
+
+export const prerender = true
 ---
 <Layout title="STEAMer Academy | Blogs">
   <ReactLayout client:load>
