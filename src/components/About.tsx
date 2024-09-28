@@ -6,9 +6,9 @@ import React from 'react'
 
 export default function About() {
   const teamMembers = [
-    { name: "H. Mondal", role: "CEO & Founder", image: "/HmondalDiscordpfp.webp?height=200&width=200" },
-    { name: "Muntasir Mahmud", role: "Chief Technology Officer", image: "/MuntasirDiscordpfp.webp?height=200&width=200" },
-    { name: "Ayman", role: "Chief Education Officer", image: "/AymanDiscordpfp.webp?height=200&width=200" },
+    { name: "H. Mondal", role: "CEO & Founder", image: "/HmondalDiscordpfp.webp?height=200&width=200", content: "He sets the strategic goals and ensures STEAMer stays on track with its mission. Besides he does external representation and leadership team management." },
+    { name: "Muntasir Mahmud", role: "Chief Technology Officer", image: "/MuntasirDiscordpfp.webp?height=200&width=200", content: "Manages A-Z of technology related works of our organization and plays one of the most vital roles. He is also a great open source fighter and always helpful to all." },
+    { name: "Ayman", role: "Chief Education Officer", image: "/AymanDiscordpfp.webp?height=200&width=200", content: "Assesses student learning outcomes through evaluations, feedback mechanisms, and competition results. This helps ensure the effectiveness of the STEAMer programs and allows for adjustments if needed." },
   ]
 
   return (
@@ -34,7 +34,7 @@ export default function About() {
 
       <section>
         <h2 className="text-3xl font-bold mb-8">Our Team</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-10">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
@@ -43,13 +43,14 @@ export default function About() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card>
+              <Card className="bg-gray-800 hover:bg-gray-700 p-7 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
                 <CardHeader>
                   <Image src={member.image} alt={member.name} width={200} height={200} className="rounded-full mx-auto" />
                 </CardHeader>
-                <CardContent className="text-center">
-                  <CardTitle>{member.name}</CardTitle>
-                  <CardDescription>{member.role}</CardDescription>
+                <CardContent className="text-center p-12 pb-4">
+                  <CardHeader className="text-xl font-semibold text-white mb-2 p-1">{member.name}</CardHeader>
+                  <CardTitle className="text-lg text-gray-400 mb-4 p-4">{member.role}</CardTitle>
+                  <CardDescription className="font-medium text-gray">{member.content}</CardDescription>
                 </CardContent>
               </Card>
             </motion.div>
