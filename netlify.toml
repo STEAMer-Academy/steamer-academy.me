@@ -1,0 +1,20 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+[plugins.inputs]
+  thresholds = { performance = 90, accessibility = 90, best-practices = 90, seo = 90 }
+
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 3000
+
