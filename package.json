@@ -1,4 +1,4 @@
- {
+{
   "name": "domain-steamer",
   "type": "module",
   "version": "0.0.1",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
+    "@astrojs/netlify": "^5.5.3",
     "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.1",
     "@nanostores/react": "^0.8.0",
