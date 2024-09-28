@@ -20,7 +20,7 @@ export default function Home() {
           >
             <h1 className="text-5xl font-bold mb-4">A world of possibilities</h1>
             <p className="text-xl mb-8">STEAMer Academy is here to guide you on your learning journey</p>
-            <Button size="lg">Get started</Button>
+            <a href="https://discordapp.com"><Button size="lg">Get started</Button></a>
           </motion.div>
         </div>
       </section>

@@ -6,9 +6,9 @@ import React from 'react'
 
 export default function About() {
   const teamMembers = [
-    { name: "H. Mondal", role: "CEO & Founder", image: "/placeholder.svg?height=200&width=200" },
-    { name: "Muntasir Mahmud", role: "Chief Technology Officer", image: "/placeholder.svg?height=200&width=200" },
-    { name: "Ayman", role: "Chief Education Officer", image: "/placeholder.svg?height=200&width=200" },
+    { name: "H. Mondal", role: "CEO & Founder", image: "/HmondalDiscordpfp.webp?height=200&width=200" },
+    { name: "Muntasir Mahmud", role: "Chief Technology Officer", image: "/MuntasirDiscordpfp.webp?height=200&width=200" },
+    { name: "Ayman", role: "Chief Education Officer", image: "/AymanDiscordpfp.webp?height=200&width=200" },
   ]
 
   return (
