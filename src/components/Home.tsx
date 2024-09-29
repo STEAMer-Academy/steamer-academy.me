@@ -74,7 +74,7 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl font-bold mb-8">Create anything</h2>
-          <p className="mb-8">Join us on this exciting journey! Explore our website, contact us today to learn more, and let STEAMer become the launchpad for your child&aposs exploration and innovation!</p>
+          <p className="mb-8">Join us on this exciting journey! Explore our website, contact us today to learn more, and let STEAMer become the launchpad for your child&apos;s exploration and innovation!</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="text-center">
               <h3 className="text-4xl font-bold">150</h3>

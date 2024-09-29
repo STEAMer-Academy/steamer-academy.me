@@ -100,7 +100,7 @@ export default function Services() {
             >
               <Card>
                 <CardContent className="pt-6">
-                  <p className="mb-2">"{review.content}"</p>
+                  <p className="mb-2">&quot;{review.content}&quot;</p>
                   <p className="font-bold">- {review.name}</p>
                 </CardContent>
               </Card>

@@ -32,8 +32,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a href="/" className="hover:text-blue-600 transition-colors">Home</a>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" onClick={toggleDropdown} className="flex items-center space-x-2">
-                  <span>Services</span>
+                <Button variant="ghost" onClick={toggleDropdown} className="flex items-center space-x-2 font:Roboto">
+                  <span className="font-sans font-medium">Services</span>
                   {/* Arrow icon with rotation animation */}
                   <svg
                     className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}

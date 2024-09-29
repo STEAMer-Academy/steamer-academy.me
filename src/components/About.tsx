@@ -20,7 +20,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl font-bold mb-8">About STEAMer Academy</h1>
-          <p className="mb-4">At STEAMer, we&aposre passionate about igniting a love for Science, Technology, Engineering, Arts, and Math (STEAM) in young minds. Our mission is to create a dynamic learning environment that fosters creativity, critical thinking, and innovation.</p>
+          <p className="mb-4">At STEAMer, we&apos;re passionate about igniting a love for Science, Technology, Engineering, Arts, and Math (STEAM) in young minds. Our mission is to create a dynamic learning environment that fosters creativity, critical thinking, and innovation.</p>
           <p className="mb-4">Through our engaging and interactive programs, STEAMer empowers young learners to:</p>
           <ul className="list-disc list-inside mb-4">
             <li>Discover the wonders of STEAM and make science exciting, engaging, and relevant.</li>
