@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/netlify": "^5.5.3",
+    "@astrojs/partytown": "^2.1.2",
     "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.1",
     "@nanostores/react": "^0.8.0",
@@ -25,6 +26,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.6.0",
+    "gtag": "^1.0.1",
     "lucide-react": "^0.446.0",
     "path-to-regexp": "^3.3.0",
     "react": "^18.3.1",
