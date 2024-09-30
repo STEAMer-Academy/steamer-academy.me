@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          export VERSION=$(git describe --tags --abbrev=0 | awk -F '[-.]' '{print $1"."$2"."$3+1}')
+          VERSION=$(git describe --tags --abbrev=0 | awk -F '[-.]' '{print $1"."$2"."$3+1}')
           docker build -t ghcr.io/steamer-academy/astro-app:$VERSION .
           git tag $VERSION
           docker push ghcr.io/steamer-academy/astro-app:$VERSION
