@@ -3,12 +3,12 @@ import { useStore } from '@nanostores/react'
 import { themeStore, setTheme } from '../stores/themeStore'
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, ChevronDown } from "lucide-react"
 import '../styles/globals.css'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const $theme = useStore(themeStore)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)  // Track dropdown state
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', $theme === 'dark')
@@ -18,7 +18,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     setTheme($theme === 'light' ? 'dark' : 'light')
   }
 
-  // Function to toggle dropdown state
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen)
   }
@@ -28,22 +27,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="border-b">
         <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center space-y-2 md:space-y-0">
           <a href="/" className="text-2xl font-bold">STEAMer Academy</a>
-          <div className="flex flex-wrap justify-center md:justify-end items-center space-x-4 w-full md:w-auto">
-            <a href="/" className="hover:text-blue-600 transition-colors">Home</a>
+          <div className="flex flex-wrap justify-center md:justify-end items-center space-x-2 w-full md:w-auto">
+            <Button variant="ghost" asChild className="font-sans font-medium">
+              <a href="/">Home</a>
+            </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" onClick={toggleDropdown} className="flex items-center space-x-2 w-48 h-48">
-                  <span className="font-sans font-medium">Services</span>
-                  {/* Arrow icon with rotation animation */}
-                  <svg
-                    className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
+                <Button variant="ghost" onClick={toggleDropdown} className="flex items-center space-x-1 font-sans font-medium">
+                  <span>Services</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`} />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -55,9 +47,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <a href="/about" className="hover:text-blue-600 transition-colors">About</a>
-            <a href="/gallery" className="hover:text-blue-600 transition-colors">Gallery</a>
-            <a href="/blog" className="hover:text-blue-600 transition-colors">Blog</a>
+            <Button variant="ghost" asChild className="font-sans font-medium">
+              <a href="/about">About</a>
+            </Button>
+            <Button variant="ghost" asChild className="font-sans font-medium">
+              <a href="/gallery">Gallery</a>
+            </Button>
+            <Button variant="ghost" asChild className="font-sans font-medium">
+              <a href="/blog">Blog</a>
+            </Button>
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
               {$theme === 'light' ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />}
             </Button>
@@ -92,4 +90,3 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
-
