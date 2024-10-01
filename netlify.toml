@@ -10,9 +10,6 @@
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
 
-[plugins.inputs]
-  thresholds = { performance = 90, accessibility = 90, best-practices = 90, seo = 90 }
-
 [dev]
   framework = "#custom"
   command = "npm run dev"

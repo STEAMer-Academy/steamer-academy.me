@@ -11,7 +11,9 @@ export default defineConfig({
   site: "https://www.steameracademy.me/",
 
   integrations: [
-    robotsTxt(),
+    robotsTxt({
+       sitemap: false,
+    }),
     react(),
     tailwind({
       applyBaseStyles: false,
