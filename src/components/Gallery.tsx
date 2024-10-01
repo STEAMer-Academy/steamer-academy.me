@@ -4,9 +4,9 @@ import React from 'react'
 
 export default function Gallery() {
   const images = [
-    { src: "/placeholder.svg?height=300&width=400", alt: "STEAM education illustration" },
-    { src: "/placeholder.svg?height=300&width=400", alt: "Globe with face mask" },
-    { src: "/placeholder.svg?height=300&width=400", alt: "Student silhouette in library" },
+    { src: "/placeholder.webp?height=300&width=400", alt: "STEAM education illustration" },
+    { src: "/placeholder.webp?height=300&width=400", alt: "Globe with face mask" },
+    { src: "/placeholder.webp?height=300&width=400", alt: "Student silhouette in library" },
   ]
 
   return (

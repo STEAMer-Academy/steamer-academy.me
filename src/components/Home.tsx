@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="space-y-16">
       <section className="relative h-[600px]">
-        <Image src="/placeholder.png?height=600&width=1200" alt="A world of possibilities" layout="fill" objectFit="cover" />
+        <Image src="/placeholder.webp?height=600&width=1200" alt="A world of possibilities" layout="fill" objectFit="cover" />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ export default function Home() {
                   <CardDescription>Brief description of the course</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Image src="/placeholder.svg?height=200&width=300" alt={`Course ${i}`} width={300} height={200} className="rounded-lg" />
+                  <Image src="/placeholder.webp?height=200&width=300" alt={`Course ${i}`} width={300} height={200} className="rounded-lg" />
                 </CardContent>
                 <CardFooter>
                   <Button>Learn more</Button>
