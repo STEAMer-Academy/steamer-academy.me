@@ -75,7 +75,7 @@ export default function Blog() {
   return (
     <div>
       <Head>
-        <title>Blog - STEAMer Academy</title>
+      <title>Blogs - STEAMer Academy</title>
         <meta
           name="description"
           content="Explore our blog posts on various STEAM topics at STEAMer Academy."
@@ -86,7 +86,7 @@ export default function Blog() {
         className={`container mx-auto px-4 max-w-screen-lg space-y-8 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
       >
         {/* Title Section */}
-        <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Blogs</h1>
 
         {/* Category Filter Section */}
         <div className="flex flex-wrap gap-4 justify-center mb-8">
@@ -116,7 +116,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link href={`/blog/${post.slug}`} passHref>
+              <Link href={`/blogs/${post.slug}`} passHref>
                 <Card
                   className={`hover:shadow-lg transition-shadow duration-200 ${$theme === "dark" ? "bg-gray-800 hover:bg-gray-700" : "bg-white hover:bg-gray-100"}`}
                 >
