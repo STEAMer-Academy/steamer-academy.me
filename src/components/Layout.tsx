@@ -69,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/gallery">Gallery</Link>
             </Button>
             <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/blog">Blog</Link>
+              <Link href="/blogs">Blogs</Link>
             </Button>
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
               {$theme === "light" ? (

@@ -6,7 +6,7 @@ export default function Blog() {
   return (
     <>
       <Head>
-        <title>STEAMer Academy</title>
+        <title>STEAMer Academy | Blogs</title>
         <meta
           name="description"
           content="STEAMer Academy - Igniting passion for Science, Technology, Engineering, Arts, and Math"

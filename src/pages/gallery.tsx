@@ -6,7 +6,7 @@ export default function Gallery() {
   return (
     <>
       <Head>
-        <title>STEAMer Academy</title>
+        <title>STEAMer Academy | Gallery</title>
         <meta
           name="description"
           content="STEAMer Academy - Igniting passion for Science, Technology, Engineering, Arts, and Math"

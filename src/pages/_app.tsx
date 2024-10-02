@@ -2,7 +2,7 @@ import { AppProps } from "next/app"; // Import AppProps from next/app
 
 // pages/_app.js
 import "../styles/globals.css"; // Import global CSS
-import Script from "next/script"; // For scripts like Google Analytics
+import { GoogleAnalytics } from "@next/third-parties/google"; // For scripts like Google Analytics
 import ThemeScript from "../components/ThemeScript";
 import Head from "next/head";
 
@@ -20,18 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ThemeScript />
         </Head>
         {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-DD3FHBDSP0"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-DD3FHBDSP0');
-            `}
-        </Script>
+        <GoogleAnalytics gaId="G-DD3FHBDSP0" />
         <body>
           <Component {...pageProps} />
         </body>
