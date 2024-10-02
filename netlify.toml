@@ -3,7 +3,8 @@
   command = "npm run build"
 
 [[plugins]]
-  package = "@netlify/plugin-lighthouse,netlify-purge-cloudflare-on-deploy"
+  package = "@netlify/plugin-lighthouse"
+  package = "netlify-purge-cloudflare-on-deploy"
 
 [dev]
   framework = "#custom"
