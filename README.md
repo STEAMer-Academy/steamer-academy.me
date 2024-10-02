@@ -50,7 +50,7 @@
     <a href="https://ko-fi.com/R6R212100L"><img src="https://ko-fi.com/img/githubbutton_sm.svg"></a>    
 </h3>
 
-### This is the official website code for STEAMer Academy Domain, [www.steameracademy.me](https://www.steameracademy.me) . This website is proudly build it 3 things, [Astro](https://astro.build/), [React](https://react.dev/) ,[Tailwindcss](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/).
+### This is the official website code for STEAMer Academy Domain, [www.steameracademy.me](https://www.steameracademy.me) . This website is proudly build it 4 things, [Next.js](https://nextjs.org/), [React](https://react.dev/) ,[Tailwindcss](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/).
 
 <p align=center>
     <a href="https://astro.build/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/astro-icon-light-gradient.png" width="10%"/></a>
