@@ -37,6 +37,13 @@ export default function About() {
       content:
         "Assesses student learning outcomes through evaluations, feedback mechanisms, and competition results. This helps ensure the effectiveness of the STEAMer programs and allows for adjustments if needed.",
     },
+    {
+      name: "Saoyad",
+      role: "Chief Management Officer",
+      image: "/SaoyadDiscordpfp.webp",
+      content:
+        "He is responsible for the overall management of the organization, including the development and implementation of policies, procedures, and programs.",
+    },
   ];
 
   return (
