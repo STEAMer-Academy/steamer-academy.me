@@ -18,7 +18,6 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>STEAMer Academy | Home</title>
         <meta
           name="description"
           content="STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics."

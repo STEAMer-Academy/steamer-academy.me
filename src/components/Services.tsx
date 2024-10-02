@@ -58,7 +58,6 @@ export default function Services() {
   return (
     <div>
       <Head>
-        <title>Our Services - STEAMer Academy</title>
         <meta
           name="description"
           content="Explore the services offered by STEAMer Academy, including English Club, Code Club, and 24/7 Assistance."

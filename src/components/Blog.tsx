@@ -75,7 +75,6 @@ export default function Blog() {
   return (
     <div>
       <Head>
-      <title>Blogs - STEAMer Academy</title>
         <meta
           name="description"
           content="Explore our blog posts on various STEAM topics at STEAMer Academy."

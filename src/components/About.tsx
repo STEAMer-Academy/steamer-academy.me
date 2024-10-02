@@ -42,7 +42,6 @@ export default function About() {
   return (
     <div>
       <Head>
-        <title>About STEAMer Academy</title>
         <meta
           name="description"
           content="Learn about STEAMer Academy and our mission to ignite a love for Science, Technology, Engineering, Arts, and Math in young minds."

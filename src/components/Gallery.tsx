@@ -17,7 +17,6 @@ export default function Gallery() {
   return (
     <div>
       <Head>
-        <title>Gallery - STEAMer Academy</title>
         <meta
           name="description"
           content="Explore our gallery showcasing the exciting world of STEAM education at STEAMer Academy."
