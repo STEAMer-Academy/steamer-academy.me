@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: astro-app-steamer
+    container_name: next-app-steamer
     ports:
       - "3000:3000"
     environment:

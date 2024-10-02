@@ -1,17 +1,11 @@
 [build]
-  publish = "dist"
+  publish = ".next"
   command = "npm run build"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 [[plugins]]
-  package = "@netlify/plugin-lighthouse"
+  package = "@netlify/plugin-lighthouse,netlify-purge-cloudflare-on-deploy"
 
 [dev]
   framework = "#custom"
   command = "npm run dev"
   targetPort = 3000
-
