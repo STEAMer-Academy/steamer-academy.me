@@ -11,7 +11,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
   // Render nothing until the component has mounted to prevent hydration mismatch
   if (!isClient) return null;
   return (
@@ -22,6 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           <meta name="description" content="Next.js description" />
           <meta name="viewport" content="width=device-width" />
           <link rel="icon" type="image/png" href="/favicon.png" />
+          <link rel="preconnect" href="https://www.google-analytics.com" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="apple-touch-icon" href="/favicon.png" />
+          <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#1f2335"/>
+          <meta name="theme-color" media="(prefers-color-scheme: light)" content="#c0caf5"/>
           <title>{pageProps.title || "My Next.js App"}</title>
           <ThemeScript />
         </Head>
