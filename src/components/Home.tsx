@@ -69,7 +69,7 @@ export default function Home() {
               approach combines hands-on learning with cutting-edge technology
               to prepare students for the challenges of tomorrow.
             </p>
-            <Link href="https://www.steameracademy.me/services" passHref>
+            <Link href="https://www.steameracademy.me/services" aria-label="Learn More About Steamer Academy, by visiting the services page." passHref>
               <Button variant="outline">Learn more</Button>
             </Link>
           </motion.div>
