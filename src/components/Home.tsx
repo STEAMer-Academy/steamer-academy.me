@@ -49,7 +49,7 @@ export default function Home() {
               <p className="text-xl mb-8">
                 STEAMer Academy is here to guide you on your learning journey
               </p>
-              <Link href="https://discordapp.com" passHref>
+              <Link href="https://discord.gg/Kqpbawj9KU" passHref>
                 <Button size="lg">Get started</Button>
               </Link>
             </motion.div>
