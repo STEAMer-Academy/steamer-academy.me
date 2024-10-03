@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <link rel="apple-touch-icon" href="/favicon.png" />
           <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#1f2335"/>
           <meta name="theme-color" media="(prefers-color-scheme: light)" content="#c0caf5"/>
+          <link rel="manifest" href="/manifest.json"/>
           <title>{pageProps.title || "My Next.js App"}</title>
           <ThemeScript />
         </Head>
