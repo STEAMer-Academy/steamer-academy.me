@@ -70,7 +70,7 @@ export default function Home() {
               approach combines hands-on learning with cutting-edge technology
               to prepare students for the challenges of tomorrow.
             </p>
-            <Link href="/services" aria-label="Go to services page.">
+            <Link href="https://www.steameracademy.me/services" passHref>
               <Button variant="outline">Learn more</Button>
             </Link>
           </motion.div>
