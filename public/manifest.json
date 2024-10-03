@@ -1,0 +1,21 @@
+{
+  "short_name": "STEAMer Academy",
+  "name": "STEAMer Academy | Where Innovation Meets Creativity",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#c0caf5",
+  "theme_color": "#c0caf5",
+  "display": "standalone",
+  "description": ""
+}
