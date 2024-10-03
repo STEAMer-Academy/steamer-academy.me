@@ -29,7 +29,7 @@ export default function Home() {
           <Image
             src="/placeholder.webp"
             alt="A world of possibilities"
-            objectFit= "cover"
+            objectFit="cover"
             loading="eager"
             priority={true}
             width={1920}
@@ -70,7 +70,9 @@ export default function Home() {
               approach combines hands-on learning with cutting-edge technology
               to prepare students for the challenges of tomorrow.
             </p>
-            <Button variant="outline">Learn more</Button>
+            <Link href="/services">
+              <Button variant="outline">Learn more</Button>
+            </Link>
           </motion.div>
         </section>
 

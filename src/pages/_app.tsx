@@ -1,9 +1,9 @@
-import { AppProps } from "next/app"; 
+import { AppProps } from "next/app";
 import "../styles/globals.css"; // Import global CSS
 import { GoogleAnalytics } from "@next/third-parties/google"; // For scripts like Google Analytics
 import ThemeScript from "../components/ThemeScript";
 import Head from "next/head";
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isClient, setIsClient] = useState(false);
@@ -24,9 +24,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           <link rel="preconnect" href="https://www.google-analytics.com" />
           <link rel="preconnect" href="https://www.googletagmanager.com" />
           <link rel="apple-touch-icon" href="/favicon.png" />
-          <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#1f2335"/>
-          <meta name="theme-color" media="(prefers-color-scheme: light)" content="#c0caf5"/>
-          <link rel="manifest" href="/manifest.json"/>
+          <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#1f2335"
+          />
+          <meta
+            name="theme-color"
+            media="(prefers-color-scheme: light)"
+            content="#c0caf5"
+          />
+          <link rel="manifest" href="/manifest.json" />
           <title>{pageProps.title || "My Next.js App"}</title>
           <ThemeScript />
         </Head>

@@ -2,7 +2,6 @@
     <img src="https://raw.githubusercontent.com/STEAMer-Academy/.github/main/profile/20240802_221113_0000.png" alt="Logo" class="logo" width="20%">
 </h6>
 
-
 <h3 align="center">STEAMer Academy Website</h3>
 
 <h5 align="center">

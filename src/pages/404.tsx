@@ -12,7 +12,7 @@ export default function Custom404() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-        <Page404 />
+      <Page404 />
     </>
   );
 }
