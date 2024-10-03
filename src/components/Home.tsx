@@ -29,9 +29,10 @@ export default function Home() {
           <Image
             src="/placeholder.webp"
             alt="A world of possibilities"
-            layout="fill"
             objectFit="cover"
             loading="eager"
+            priority={true}
+            layout="fill"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <motion.div
