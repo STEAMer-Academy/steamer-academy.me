@@ -30,7 +30,6 @@ export default function Home() {
             src="/placeholder.webp"
             alt="A world of possibilities"
             objectFit="cover"
-            loading="eager"
             priority={true}
             width={1920}
             height={1080}
