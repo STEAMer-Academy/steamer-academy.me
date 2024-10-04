@@ -7,7 +7,6 @@
     X-Robots-Tag = "all"
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
-  package = "netlify-purge-cloudflare-on-deploy"
 [dev]
   framework = "#custom"
   command = "npm run dev"
