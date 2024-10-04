@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const dirContents = await dirResponse.json();
     interface DirItem {
       name : string;
-      [key: string]: any;
+      [key: string]: string;
     }
 
     // Find the correct file (case-insensitive)
