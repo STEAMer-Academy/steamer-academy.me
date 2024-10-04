@@ -29,7 +29,7 @@ export default function Home() {
           <Image
             src="/placeholder.webp"
             alt="A world of possibilities"
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             priority={true}
             width={1920}
             height={1080}

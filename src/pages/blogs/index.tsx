@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
-import PageBlog from "../components/Blog";
+import Layout from "@/components/Layout";
+import PageBlog from "@/components/Blog";
 
 export default function Blog() {
   return (
