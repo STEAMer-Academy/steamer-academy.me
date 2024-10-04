@@ -1,7 +1,10 @@
 [build]
   publish = ".next"
   command = "npm run build"
-
+[[headers]]
+  for = "/*"
+    [headers.values]
+    X-Robots-Tag = "all"
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
 [dev]
