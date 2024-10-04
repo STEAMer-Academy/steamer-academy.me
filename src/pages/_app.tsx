@@ -3,16 +3,8 @@ import "../styles/globals.css"; // Import global CSS
 import { GoogleAnalytics } from "@next/third-parties/google"; // For scripts like Google Analytics
 import ThemeScript from "../components/ThemeScript";
 import Head from "next/head";
-import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  // Render nothing until the component has mounted to prevent hydration mismatch
-  if (!isClient) return null;
   return (
     <>
       <html lang="en">
