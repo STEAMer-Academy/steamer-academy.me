@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <html lang="en">
         <Head>
           <meta charSet="UTF-8" />
-          <meta name="robots" content="all" />
           <meta name="description" content="Next.js description" />
           <meta name="viewport" content="width=device-width" />
           <link rel="icon" type="image/png" href="/favicon.png" />
