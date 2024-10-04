@@ -71,7 +71,7 @@ export default function Home() {
               to prepare students for the challenges of tomorrow.
             </p>
             <Link href="https://www.steameracademy.me/services" aria-label="Learn More About Steamer Academy, by visiting the services page." passHref>
-              <Button variant="outline">Learn more</Button>
+              <Button variant="outline">Learn More About Us</Button>
             </Link>
           </motion.div>
         </section>
