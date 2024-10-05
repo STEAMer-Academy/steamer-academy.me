@@ -13,7 +13,7 @@ import {
   Sun01Icon,
   Moon02Icon,
   ArrowDown01Icon,
-  Facebook01Icon,
+  YoutubeIcon,
   Location01Icon,
   HelpCircleIcon,
   Mail01Icon,
@@ -29,6 +29,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", $theme === "dark");
   }, [$theme]);
+
+  const handleClick = () => {
+    setIsDropdownOpen((prevState: boolean) => !prevState); // Toggle the dropdown state
+  };
 
   const toggleTheme = () => {
     setTheme($theme === "light" ? "dark" : "light");
@@ -70,7 +74,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 >
                   <span>Services</span>
                   <ArrowDown01Icon
-                    className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
+                    onClick={handleClick}
+                    rotate={isDropdownOpen ? 180 : 0} // Apply rotation based on state
+                    style={{
+                      width: "1rem",
+                      height: "1rem",
+                      transition: "transform 200ms",
+                    }} 
                   />
                 </Button>
               </DropdownMenuTrigger>
@@ -112,47 +122,60 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </header>
       <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
       <footer className="border-t">
-        <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <h3 className="font-bold">
-              <Location01Icon className="mr-2" />
+        <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+          {/* Location Section */}
+          <div className="flex flex-col items-start md:items-center">
+            <h3 className="font-bold flex items-center space-x-2">
+              <Location01Icon className="w-6 h-6" />
               <span>Location</span>
             </h3>
             <p>Dhaka, Bangladesh</p>
           </div>
-          <div>
-            <h3 className="font-bold">
-              <Clock01Icon className="mr-2" />
+
+          {/* Hours Section */}
+          <div className="flex flex-col items-start md:items-center">
+            <h3 className="font-bold flex items-center space-x-2">
+              <Clock01Icon className="w-6 h-6" />
               <span>Hours</span>
             </h3>
             <p>Friday - Saturday</p>
             <p>8am - 8pm</p>
           </div>
-          <div>
-            <h3 className="font-bold">Social</h3>
+
+          {/* Social Section */}
+          <div className="flex flex-col items-start md:items-center">
+            <h3 className="font-bold flex items-center space-x-2">
+              <YoutubeIcon className="w-6 h-6" />
+              <span>Social</span>
+            </h3>
             <Link href="#" className="hover:text-blue-600 transition-colors">
-              <Facebook01Icon className="mr-2" />
-              <span>Facebook</span>
+              Facebook
             </Link>
           </div>
-          <div>
-            <h3 className="font-bold">
-              <HelpCircleIcon className="mr-2" />
+
+          {/* Contact Section */}
+          <div className="flex flex-col items-start md:items-center">
+            <h3 className="font-bold flex items-center space-x-2">
+              <HelpCircleIcon className="w-6 h-6" />
               <span>Contact</span>
             </h3>
-            <p>
-              <Mail01Icon className="mr-2" />
+            <p className="flex items-center space-x-2">
+              <Mail01Icon className="w-6 h-6" />
               <span>support@steameracademy.me</span>
             </p>
-            <p>
-              <TelephoneIcon className="mr-2" />
+            <p className="flex items-center space-x-2">
+              <TelephoneIcon className="w-6 h-6" />
               <span>+88017 7585 4054</span>
             </p>
           </div>
         </div>
-        <p className="text-center mt-8 text-sm text-gray-500">
-          <CopyrightIcon className="mr-2" />{" "}
-          <span>2024 STEAMer Academy. All rights reserved.</span>
+
+        {/* Footer Copyright */}
+        <p className="text-center mt-8 text-sm text-gray-400">
+          <div className="flex justify-center items-center space-x-2">
+            <CopyrightIcon className="w-5 h-5" />
+            <span>2024 STEAMer Academy. All rights reserved.</span>
+          </div>
         </p>
       </footer>
     </div>

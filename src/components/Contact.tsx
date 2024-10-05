@@ -6,6 +6,8 @@ import {
   MailAtSign01Icon,
   SmartPhone01Icon,
   MapPinIcon,
+  Tick01Icon,
+  MultiplicationSignIcon
 } from "hugeicons-react";
 
 export default function Contact() {
@@ -17,7 +19,7 @@ export default function Contact() {
     message: "",
   });
 
-  const [formStatus, setFormStatus] = useState(""); // To display form submission status
+  const [formStatus, setFormStatus] = useState({ message: "", success: false }); // To display form submission status
 
   useEffect(() => {
     setIsClient(true);
@@ -57,7 +59,7 @@ export default function Contact() {
         body: formDataEncoded,
       });
 
-      setFormStatus("Form successfully submitted");
+      setFormStatus({ message: "Form submitted successfully", success: true });
       setFormData({
         firstName: "",
         lastName: "",
@@ -66,9 +68,15 @@ export default function Contact() {
       });
     } catch (error) {
       if (error instanceof Error) {
-        setFormStatus("Form submission error: " + error.message);
+        setFormStatus({
+          message: "Form submission error: " + error.message,
+          success: false,
+        });
       } else {
-        setFormStatus("Form submission error: " + error);
+        setFormStatus({
+          message: "Form submission error: " + error,
+          success: false,
+        });
       }
     }
   };
@@ -140,7 +148,21 @@ export default function Contact() {
 
           <Button type="submit">Submit</Button>
 
-          {formStatus && <p className="mt-4 text-green-500">{formStatus}</p>}
+          {formStatus.message && (
+            <div className="mt-4 flex items-center">
+              {formStatus.success ? (
+                <>
+                  <Tick01Icon className="text-green-500 hgi-solid hgi-tick-01" />
+                  <p className="ml-2 text-green-500">{formStatus.message}</p>
+                </>
+              ) : (
+                <>
+                  <MultiplicationSignIcon className="hgi-solid hgi-tick-01 text-red-500" />
+                  <p className="ml-2 text-red-500">{formStatus.message}</p>
+                </>
+              )}
+            </div>
+          )}
         </form>
       </div>
     </div>
