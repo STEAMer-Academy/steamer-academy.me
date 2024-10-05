@@ -42,7 +42,7 @@ export default function Contact() {
     const formDataEncoded = new URLSearchParams(formDataRecord).toString();
 
     try {
-      await fetch("/?no-cache=1", {
+      await fetch("/__forms.html?no-cache=1", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formDataEncoded,
@@ -94,8 +94,6 @@ export default function Contact() {
         </div>
 
         <form onSubmit={handleSubmit} name="contact" className="space-y-4">
-          <input type="hidden" name="form-name" value="contact" />
-
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               name="firstName"
