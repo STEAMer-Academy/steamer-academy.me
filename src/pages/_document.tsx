@@ -5,6 +5,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         {/* Include any other meta tags you need here */}
