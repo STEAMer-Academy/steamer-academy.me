@@ -52,9 +52,9 @@
 ### This is the official website code for STEAMer Academy Domain, [www.steameracademy.me](https://www.steameracademy.me) . This website is proudly build it 4 things, [Next.js](https://nextjs.org/), [React](https://react.dev/) ,[Tailwindcss](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/).
 
 <p align=center>
-    <a href="https://astro.build/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/nextjs.png" width="14%"/></a>
-    <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/reactlogo.png" width="15%"/></a>
-    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/tailwindcss.png" width="20%"/></a>
+    <a href="https://astro.build/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/nextjs.svg" width="14%"/></a>
+    <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/411bed333014ecfb7700f1a080a2c72f599adb38/public/logo_dark.svg" width="15%"/></a>
+    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/411bed333014ecfb7700f1a080a2c72f599adb38/public/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg" width="20%"/></a>
     <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/shadcn-ui.png" width="13%"/></a>
 </p>
 

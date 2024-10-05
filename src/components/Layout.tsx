@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Sun01Icon, Moon02Icon, ArrowDown01Icon } from 'hugeicons-react'
+import { Moon, Sun, ChevronDown } from "lucide-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const $theme = useStore(themeStore);
@@ -26,16 +26,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
-  const [isClient, setIsClient] = useState(false)
- 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-  
-  if (!isClient) {
-    return null
-  }
 
   return (
     <div
@@ -58,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   className="flex items-center space-x-1 font-sans font-medium"
                 >
                   <span>Services</span>
-                  <ArrowDown01Icon
+                  <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
                   />
                 </Button>
@@ -81,18 +71,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button variant="ghost" asChild className="font-sans font-medium">
               <Link href="/blogs">Blogs</Link>
             </Button>
-            <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/contact">Contact</Link>
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
               aria-label="Switch themes"
-            />
+            >
               {$theme === "light" ? (
-                <Moon02Icon className="h-[1.2rem] w-[1.2rem]" />
+                <Moon className="h-[1.2rem] w-[1.2rem]" />
               ) : (
-                <Sun01Icon className="h-[1.2rem] w-[1.2rem]" />
+                <Sun className="h-[1.2rem] w-[1.2rem]" />
               )}
             </Button>
           </div>
@@ -103,7 +91,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <h3 className="font-bold">Location</h3>
-            <p>Dhaka, Bangladesh</p>
+            <p>Mirpur-2, Dhaka, Bangladesh</p>
           </div>
           <div>
             <h3 className="font-bold">Hours</h3>
@@ -118,11 +106,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div>
             <h3 className="font-bold">Contact</h3>
-            <p>support@steameracademy.me</p>
+            <p>steamerbangladesh@gmail.com</p>
             <p>+88017 7585 4054</p>
           </div>
         </div>
-         <p className="text-center mt-8 text-sm text-gray-500">© 2024 STEAMer Academy. All rights reserved.</p>
       </footer>
     </div>
   );
