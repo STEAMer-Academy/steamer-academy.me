@@ -75,30 +75,6 @@ export default function CodeClub() {
           </div>
         </section>
       </main>
-
-      <footer className="mt-12 pt-8 border-t">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h4 className="font-semibold mb-2">Location</h4>
-            <p>Mirpur-2, Dhaka, Bangladesh</p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-2">Hours</h4>
-            <p>Friday - Saturday</p>
-            <p>8am - 8pm</p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-2">Social</h4>
-            <Link href="#" className="block hover:underline">Facebook</Link>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-2">Contact</h4>
-            <p>steamerbangladesh@gmail.com</p>
-            <p>+88017 7585 4054</p>
-          </div>
-        </div>
-        <p className="text-center mt-8 text-sm text-gray-500">© 2023 STEAMer Academy. All rights reserved.</p>
-      </footer>
     </div>
   )
 }
