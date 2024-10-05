@@ -81,12 +81,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button variant="ghost" asChild className="font-sans font-medium">
               <Link href="/blogs">Blogs</Link>
             </Button>
+            <Button variant="ghost" asChild className="font-sans font-medium">
+              <Link href="/contact">Contact</Link>
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
               aria-label="Switch themes"
-            >
+            />
               {$theme === "light" ? (
                 <Moon02Icon className="h-[1.2rem] w-[1.2rem]" />
               ) : (
