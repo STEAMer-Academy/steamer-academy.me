@@ -20,7 +20,7 @@
       "separateMajorMinor": true,
       "separateMinorPatch": true,
       "groupName": "security updates",
-      "schedule": ["every day"]
+      "schedule": ["at any time"]
     }
   ]
 }
