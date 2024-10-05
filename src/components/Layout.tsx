@@ -19,7 +19,7 @@ import {
   Mail01Icon,
   TelephoneIcon,
   Clock01Icon,
-  CopyrightIcon
+  CopyrightIcon,
 } from "hugeicons-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -114,28 +114,45 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="border-t">
         <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <h3 className="font-bold"><Location01Icon />Location</h3>
+            <h3 className="font-bold">
+              <Location01Icon className="mr-2" />
+              <span>Location</span>
+            </h3>
             <p>Dhaka, Bangladesh</p>
           </div>
           <div>
-            <h3 className="font-bold"><Clock01Icon/>Hours</h3>
+            <h3 className="font-bold">
+              <Clock01Icon className="mr-2" />
+              <span>Hours</span>
+            </h3>
             <p>Friday - Saturday</p>
             <p>8am - 8pm</p>
           </div>
           <div>
             <h3 className="font-bold">Social</h3>
             <Link href="#" className="hover:text-blue-600 transition-colors">
-              <Facebook01Icon />Facebook
+              <Facebook01Icon className="mr-2" />
+              <span>Facebook</span>
             </Link>
           </div>
           <div>
-            <h3 className="font-bold"><HelpCircleIcon/>Contact</h3>
-            <p><Mail01Icon/>support@steameracademy.me</p>
-            <p><TelephoneIcon/>+88017 7585 4054</p>
+            <h3 className="font-bold">
+              <HelpCircleIcon className="mr-2" />
+              <span>Contact</span>
+            </h3>
+            <p>
+              <Mail01Icon className="mr-2" />
+              <span>support@steameracademy.me</span>
+            </p>
+            <p>
+              <TelephoneIcon className="mr-2" />
+              <span>+88017 7585 4054</span>
+            </p>
           </div>
         </div>
         <p className="text-center mt-8 text-sm text-gray-500">
-          <CopyrightIcon/> 2024 STEAMer Academy. All rights reserved.
+          <CopyrightIcon className="mr-2" />{" "}
+          <span>2024 STEAMer Academy. All rights reserved.</span>
         </p>
       </footer>
     </div>
