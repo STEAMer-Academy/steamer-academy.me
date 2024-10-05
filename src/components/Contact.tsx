@@ -42,7 +42,7 @@ export default function Contact() {
     const formDataEncoded = new URLSearchParams(formDataRecord).toString();
 
     try {
-      await fetch("/__forms.html?no-cache=1", {
+      await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formDataEncoded,
