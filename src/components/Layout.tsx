@@ -81,6 +81,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button variant="ghost" asChild className="font-sans font-medium">
               <Link href="/blogs">Blogs</Link>
             </Button>
+            <Button variant="ghost" asChild className="font-sans font-medium">
+              <Link href="/contact">Contact</Link>
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -120,6 +123,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <p>+88017 7585 4054</p>
           </div>
         </div>
+        <p className="text-center mt-8 text-sm text-gray-500">© 2024 STEAMer Academy. All rights reserved.</p>
       </footer>
     </div>
   );
