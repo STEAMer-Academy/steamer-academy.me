@@ -4,17 +4,9 @@ import "../styles/globals.css"; // Import global CSS
 import { GoogleAnalytics } from "@next/third-parties/google"; // For scripts like Google Analytics
 import ThemeScript from "../components/ThemeScript";
 import Head from "next/head";
-import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const title = pageProps.title || "My Next.js App"; // Ensure consistent title
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true); // Set client-side rendering flag
-  }, []);
-
-  if (!isClient) return null; 
+  const title = pageProps.title || "My Next.js App"; // Ensure consistent title 
   return (
     <>
       <Head>

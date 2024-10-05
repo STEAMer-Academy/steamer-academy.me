@@ -1,6 +1,19 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
 import PageAbout from "../components/About";
+import localFont from "next/font/local";
+
+export const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+
+export const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
 export default function About() {
   return (
@@ -13,9 +26,11 @@ export default function About() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Layout>
-        <PageAbout />
-      </Layout>
+      <div className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Layout>
+          <PageAbout />
+        </Layout>
+      </div>
     </>
   );
 }
