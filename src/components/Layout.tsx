@@ -80,7 +80,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       width: "1rem",
                       height: "1rem",
                       transition: "transform 200ms",
-                    }} 
+                    }}
                   />
                 </Button>
               </DropdownMenuTrigger>
@@ -124,7 +124,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="border-t">
         <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Location Section */}
-          <div className="flex flex-col items-start md:items-center">
+          <div className="flex flex-col items-start md:items-center p-3">
             <h3 className="font-bold flex items-center space-x-2">
               <Location01Icon className="w-6 h-6" />
               <span>Location</span>
@@ -133,7 +133,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Hours Section */}
-          <div className="flex flex-col items-start md:items-center">
+          <div className="flex flex-col items-start md:items-center p-3">
             <h3 className="font-bold flex items-center space-x-2">
               <Clock01Icon className="w-6 h-6" />
               <span>Hours</span>
@@ -143,7 +143,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Social Section */}
-          <div className="flex flex-col items-start md:items-center">
+          <div className="flex flex-col items-start md:items-center p-3">
             <h3 className="font-bold flex items-center space-x-2">
               <YoutubeIcon className="w-6 h-6" />
               <span>Social</span>
@@ -154,7 +154,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Contact Section */}
-          <div className="flex flex-col items-start md:items-center">
+          <div className="flex flex-col items-start md:items-center p-3">
             <h3 className="font-bold flex items-center space-x-2">
               <HelpCircleIcon className="w-6 h-6" />
               <span>Contact</span>
@@ -172,9 +172,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Footer Copyright */}
         <p className="text-center mt-8 text-sm text-gray-400">
-          <div className="flex justify-center items-center space-x-2">
+          <div className="flex justify-center items-center space-x-2 p-6">
             <CopyrightIcon className="w-5 h-5" />
-            <span>2024 STEAMer Academy. All rights reserved.</span>
+            <h3 className="font-bold">
+              <span>2024 STEAMer Academy. All rights reserved.</span>
+            </h3>
           </div>
         </p>
       </footer>
