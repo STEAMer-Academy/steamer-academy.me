@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "managers": ["bun"],
+      "registryUrls": ["https://registry.npmjs.org/"]
+    }
+  ],
+  "automerge": true,
+  "labels": ["dependencies"],
+  "branchPrefix": "renovate/"
+}
+
