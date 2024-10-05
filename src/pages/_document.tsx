@@ -5,6 +5,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         {/* Include any other meta tags you need here */}
@@ -22,11 +24,10 @@ export default function Document() {
           content="#c0caf5"
         />
       </Head>
-      <body className="antialiased"> {/* Optionally set a default theme class here */}
+      <body className="antialiased">
         <Main />
         <NextScript />
       </body>
     </Html>
   );
 }
-
