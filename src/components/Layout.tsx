@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Moon, Sun, ChevronDown } from "lucide-react";
+import { Sun01Icon, Moon02Icon, ArrowDown01Icon } from 'hugeicons-react'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const $theme = useStore(themeStore);
@@ -26,6 +26,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const [isClient, setIsClient] = useState(false)
+ 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  if (!isClient) {
+    return null
+  }
 
   return (
     <div
@@ -48,7 +58,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   className="flex items-center space-x-1 font-sans font-medium"
                 >
                   <span>Services</span>
-                  <ChevronDown
+                  <ArrowDown01Icon
                     className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
                   />
                 </Button>
@@ -78,9 +88,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               aria-label="Switch themes"
             >
               {$theme === "light" ? (
-                <Moon className="h-[1.2rem] w-[1.2rem]" />
+                <Moon02Icon className="h-[1.2rem] w-[1.2rem]" />
               ) : (
-                <Sun className="h-[1.2rem] w-[1.2rem]" />
+                <Sun01Icon className="h-[1.2rem] w-[1.2rem]" />
               )}
             </Button>
           </div>
@@ -91,7 +101,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <h3 className="font-bold">Location</h3>
-            <p>Mirpur-2, Dhaka, Bangladesh</p>
+            <p>Dhaka, Bangladesh</p>
           </div>
           <div>
             <h3 className="font-bold">Hours</h3>
@@ -106,7 +116,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div>
             <h3 className="font-bold">Contact</h3>
-            <p>steamerbangladesh@gmail.com</p>
+            <p>support@steameracademy.me</p>
             <p>+88017 7585 4054</p>
           </div>
         </div>
