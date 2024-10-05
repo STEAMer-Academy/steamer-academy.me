@@ -1,15 +1,27 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
+  "labels": ["dependencies"],
+  "branchPrefix": "renovate/",
   "packageRules": [
     {
       "managers": ["bun"],
       "registryUrls": ["https://registry.npmjs.org/"]
+    },
+    {
+      "updateTypes": ["minor", "patch"],
+      "automerge": true,
+      "commitMessagePrefix": "chore(deps): ",
+      "labels": ["dependencies", "update"]
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "labels": ["security"],
+      "commitMessagePrefix": "fix(security): ",
+      "separateMajorMinor": true,
+      "separateMinorPatch": true,
+      "groupName": "security updates",
+      "schedule": ["every day"]
     }
-  ],
-  "automerge": true,
-  "labels": ["dependencies"],
-  "branchPrefix": "renovate/"
+  ]
 }
 
