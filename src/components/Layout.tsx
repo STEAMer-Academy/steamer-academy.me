@@ -68,7 +68,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Link href="/services/english-club">English Club</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/services/math-club">Math Club</Link>
+                  <Link href="/services/code-club">Code Club</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
