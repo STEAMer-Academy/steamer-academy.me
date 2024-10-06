@@ -3,11 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  MailAtSign01Icon,
-  SmartPhone01Icon,
-  MapPinIcon,
   Tick01Icon,
-  MultiplicationSignIcon
+  MultiplicationSignIcon,
 } from "hugeicons-react";
 
 export default function Contact() {
@@ -53,7 +50,7 @@ export default function Contact() {
     const formDataEncoded = new URLSearchParams(formDataRecord).toString();
 
     try {
-      await fetch("/__forms.html", {
+      await fetch("www.steameracademy.me/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formDataEncoded,
@@ -94,76 +91,61 @@ export default function Contact() {
             limit is the extent of your imagination.
           </p>
 
-          <div className="space-y-4">
-            <div className="flex items-center">
-              <MailAtSign01Icon className="mr-2" />
-              <span>steamerbangladesh@gmail.com</span>
+          <form onSubmit={handleSubmit} name="contact" className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input
+                name="firstName"
+                placeholder="First name"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                name="lastName"
+                placeholder="Last name"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
             </div>
-            <div className="flex items-center">
-              <SmartPhone01Icon className="mr-2" />
-              <span>+88017 7585 4054</span>
-            </div>
-            <div className="flex items-center">
-              <MapPinIcon className="mr-2" />
-              <span>Mirpur-2, Dhaka, Bangladesh</span>
-            </div>
-          </div>
+
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+
+            <Textarea
+              name="message"
+              placeholder="Message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={6}
+            />
+
+            <Button type="submit">Submit</Button>
+
+            {formStatus.message && (
+              <div className="mt-4 flex items-center">
+                {formStatus.success ? (
+                  <>
+                    <Tick01Icon className="text-green-500 hgi-solid hgi-tick-01" />
+                    <p className="ml-2 text-green-500">{formStatus.message}</p>
+                  </>
+                ) : (
+                  <>
+                    <MultiplicationSignIcon className="hgi-solid hgi-tick-01 text-red-500" />
+                    <p className="ml-2 text-red-500">{formStatus.message}</p>
+                  </>
+                )}
+              </div>
+            )}
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} name="contact" className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Input
-              name="firstName"
-              placeholder="First name"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              name="lastName"
-              placeholder="Last name"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <Textarea
-            name="message"
-            placeholder="Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={6}
-          />
-
-          <Button type="submit">Submit</Button>
-
-          {formStatus.message && (
-            <div className="mt-4 flex items-center">
-              {formStatus.success ? (
-                <>
-                  <Tick01Icon className="text-green-500 hgi-solid hgi-tick-01" />
-                  <p className="ml-2 text-green-500">{formStatus.message}</p>
-                </>
-              ) : (
-                <>
-                  <MultiplicationSignIcon className="hgi-solid hgi-tick-01 text-red-500" />
-                  <p className="ml-2 text-red-500">{formStatus.message}</p>
-                </>
-              )}
-            </div>
-          )}
-        </form>
       </div>
     </div>
   );
