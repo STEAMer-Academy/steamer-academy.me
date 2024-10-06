@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import {
   MailAtSign01Icon,
@@ -130,7 +130,7 @@ export default function Contact() {
       value={formData.firstName}
       onChange={handleChange}
       required
-      className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-900 text-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
     />
     <input
       type="text"
@@ -139,7 +139,7 @@ export default function Contact() {
       value={formData.lastName}
       onChange={handleChange}
       required
-      className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-900 text-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
     />
   </div>
 
@@ -150,7 +150,7 @@ export default function Contact() {
     value={formData.email}
     onChange={handleChange}
     required
-    className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-900 text-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+    className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
   />
 
   <textarea
@@ -160,10 +160,10 @@ export default function Contact() {
     onChange={handleChange}
     required
     rows={6}
-    className="w-full rounded-md border border-gray-300 bg-gray-900 text-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
   ></textarea>
 
-  <Button type="submit" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+  <Button type="submit" className="w-full sm:w-auto px-4 py-2 rounded-md">
     Submit
   </Button>
 
