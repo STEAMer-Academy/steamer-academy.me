@@ -23,7 +23,6 @@ interface FormStatus {
 }
 
 export default function Contact() {
-  const [isClient, setIsClient] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -35,15 +34,6 @@ export default function Contact() {
     message: "",
     success: false,
   });
-
-  // Ensure form renders only on the client side
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
 
   // Handle input changes
   const handleChange = (
