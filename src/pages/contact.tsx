@@ -2,6 +2,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import PageContact from "../components/Contact";
 import localFont from "next/font/local";
+import { useState,useEffect } from 'react';
 
 export const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,6 +17,16 @@ export const geistMono = localFont({
 });
 
 export default function About() {
+    const [isClient, setIsClient] = useState(false);
+    // Ensure form renders only on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <>
       <Head>
