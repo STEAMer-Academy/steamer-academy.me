@@ -129,10 +129,9 @@ export default function Contact() {
           data-netlify="true"
           className="space-y-4"
         >
-          {/* Hidden input for Netlify form handling */}
-          <input type="hidden" name="form-name" value="feedback" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="hidden" name="form-name" value="feedback" />
             <input
               type="text"
               name="firstName"
