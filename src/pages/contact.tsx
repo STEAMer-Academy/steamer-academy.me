@@ -19,7 +19,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>STEAMer Academy | About</title>
+        <title>STEAMer Academy | Contact</title>
         <meta
           name="description"
           content="STEAMer Academy - Igniting passion for Science, Technology, Engineering, Arts, and Math"
