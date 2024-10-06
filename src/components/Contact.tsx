@@ -7,6 +7,8 @@ import {
   Tick01Icon,
   MultiplicationSignIcon,
 } from "hugeicons-react";
+import { useStore } from "@nanostores/react";
+import { themeStore } from "../stores/themeStore";
 
 // Define form data structure
 interface FormData {
@@ -29,7 +31,7 @@ export default function Contact() {
     email: "",
     message: "",
   });
-
+  const $theme = useStore(themeStore);
   const [formStatus, setFormStatus] = useState<FormStatus>({
     message: "",
     success: false,
@@ -130,7 +132,7 @@ export default function Contact() {
       value={formData.firstName}
       onChange={handleChange}
       required
-      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
     />
     <input
       type="text"
@@ -139,7 +141,7 @@ export default function Contact() {
       value={formData.lastName}
       onChange={handleChange}
       required
-      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
     />
   </div>
 
@@ -150,7 +152,7 @@ export default function Contact() {
     value={formData.email}
     onChange={handleChange}
     required
-    className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+    className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
   />
 
   <textarea
@@ -160,10 +162,10 @@ export default function Contact() {
     onChange={handleChange}
     required
     rows={6}
-    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+    className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
   ></textarea>
 
-  <Button type="submit" className="w-full sm:w-auto px-4 py-2 rounded-md">
+  <Button type="submit" className={`w-full sm:w-auto px-4 py-2 rounded-md ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}>
     Submit
   </Button>
 
