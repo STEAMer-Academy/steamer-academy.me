@@ -17,7 +17,7 @@ export const geistMono = localFont({
 });
 
 export default function About() {
-    const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = useState(false);
     // Ensure form renders only on the client side
   useEffect(() => {
     setIsClient(true);
