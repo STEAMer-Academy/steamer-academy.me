@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import {
   MailAtSign01Icon,
@@ -8,17 +8,35 @@ import {
   MultiplicationSignIcon,
 } from "hugeicons-react";
 
+// Define form data structure
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+}
+
+// Define form status structure
+interface FormStatus {
+  message: string;
+  success: boolean;
+}
+
 export default function Contact() {
   const [isClient, setIsClient] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
     message: "",
   });
 
-  const [formStatus, setFormStatus] = useState({ message: "", success: false });
+  const [formStatus, setFormStatus] = useState<FormStatus>({
+    message: "",
+    success: false,
+  });
 
+  // Ensure form renders only on the client side
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -27,7 +45,10 @@ export default function Contact() {
     return null;
   }
 
-  const handleChange = (e) => {
+  // Handle input changes
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -35,15 +56,16 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  // Handle form submission
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Prepare form data
     const form = e.currentTarget;
     const data = new FormData(form);
-    const formDataRecord = {};
+    const formDataRecord: Record<string, string> = {};
+
     data.forEach((value, key) => {
-      formDataRecord[key] = value;
+      formDataRecord[key] = value as string;
     });
 
     const formDataEncoded = new URLSearchParams(formDataRecord).toString();
@@ -64,8 +86,9 @@ export default function Contact() {
         message: "",
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       setFormStatus({
-        message: `Form submission error: ${error.message || error}`,
+        message: `Form submission error: ${errorMessage}`,
         success: false,
       });
     }
