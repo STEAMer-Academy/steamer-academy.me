@@ -39,7 +39,7 @@ export default function Contact() {
 
   // Handle input changes
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -116,76 +116,78 @@ export default function Contact() {
         </div>
 
         <form
-  onSubmit={handleSubmit}
-  name="feedback"
-  method="POST"
-  data-netlify="true"
-  className="space-y-6"
->
-  <input type="hidden" name="form-name" value="feedback" />
+          onSubmit={handleSubmit}
+          name="feedback"
+          method="POST"
+          data-netlify="true"
+          className="space-y-6"
+        >
+          <input type="hidden" name="form-name" value="feedback" />
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <input
-      type="text"
-      name="firstName"
-      placeholder="First name"
-      value={formData.firstName}
-      onChange={handleChange}
-      required
-      className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-    />
-    <input
-      type="text"
-      name="lastName"
-      placeholder="Last name"
-      value={formData.lastName}
-      onChange={handleChange}
-      required
-      className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-    />
-  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First name"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+              className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last name"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+              className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
+            />
+          </div>
 
-  <input
-    type="email"
-    name="email"
-    placeholder="Email"
-    value={formData.email}
-    onChange={handleChange}
-    required
-    className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-  />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
+          />
 
-  <textarea
-    name="message"
-    placeholder="Message"
-    value={formData.message}
-    onChange={handleChange}
-    required
-    rows={6}
-    className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-  ></textarea>
+          <textarea
+            name="message"
+            placeholder="Message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            rows={6}
+            className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
+          ></textarea>
 
-  <Button type="submit" className="w-full sm:w-auto px-4 py-2 rounded-md">
-    Submit
-  </Button>
+          <Button
+            type="submit"
+            className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600"
+          >
+            Submit
+          </Button>
 
-  {formStatus.message && (
-    <div className="mt-4 flex items-center">
-      {formStatus.success ? (
-        <>
-          <Tick01Icon className="text-green-500" />
-          <p className="ml-2 text-green-500">{formStatus.message}</p>
-        </>
-      ) : (
-        <>
-          <MultiplicationSignIcon className="text-red-500" />
-          <p className="ml-2 text-red-500">{formStatus.message}</p>
-        </>
-      )}
-    </div>
-  )}
-</form>
-
+          {formStatus.message && (
+            <div className="mt-4 flex items-center">
+              {formStatus.success ? (
+                <>
+                  <Tick01Icon className="text-green-500" />
+                  <p className="ml-2 text-green-500">{formStatus.message}</p>
+                </>
+              ) : (
+                <>
+                  <MultiplicationSignIcon className="text-red-500" />
+                  <p className="ml-2 text-red-500">{formStatus.message}</p>
+                </>
+              )}
+            </div>
+          )}
+        </form>
       </div>
     </div>
   );

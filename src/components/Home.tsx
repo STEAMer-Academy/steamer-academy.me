@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, FormEvent, ChangeEvent } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,9 +12,74 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { themeStore } from "../stores/themeStore";
+import { useStore } from "@nanostores/react";
+import { MultiplicationSignIcon, Tick01Icon } from "hugeicons-react";
+
+interface FormData {
+  email: string;
+}
+
+interface FormStatus {
+  message: string;
+  success: boolean;
+}
 
 export default function Home() {
+  const $theme = useStore(themeStore);
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+  });
+
+  const [formStatus, setFormStatus] = useState<FormStatus>({
+    message: "",
+    success: false,
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const formDataRecord: Record<string, string> = {};
+
+    data.forEach((value, key) => {
+      formDataRecord[key] = value as string;
+    });
+
+    const formDataEncoded = new URLSearchParams(formDataRecord).toString();
+
+    try {
+      await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formDataEncoded,
+      });
+
+      setFormStatus({ message: "Thanks For Subscribing To Our Newsletter", success: true });
+      setFormData({
+        email: "",
+      });
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      setFormStatus({
+        message: `Newsletter submission error: ${errorMessage}`,
+        success: false,
+      });
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -70,7 +135,11 @@ export default function Home() {
               approach combines hands-on learning with cutting-edge technology
               to prepare students for the challenges of tomorrow.
             </p>
-            <Link href="https://www.steameracademy.me/services" aria-label="Learn More About Steamer Academy, by visiting the services page." passHref>
+            <Link
+              href="https://www.steameracademy.me/services"
+              aria-label="Learn More About Steamer Academy, by visiting the services page."
+              passHref
+            >
               <Button variant="outline">Learn More About Us</Button>
             </Link>
           </motion.div>
@@ -152,13 +221,39 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-4">
               Get new content delivered directly to your inbox
             </h2>
-            <form className="flex gap-4">
-              <Input
+            <form
+              className="flex gap-4"
+              onSubmit={handleSubmit}
+              method="POST"
+              data-netlify="true"
+            >
+              <input type="hidden" name="form-name" value="newsletter" />
+              <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-grow"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
               />
-              <Button type="submit">Subscribe</Button>
+              <Button type="submit" className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600">Subscribe</Button>
+              {formStatus.message && (
+                <div className="mt-4 flex items-center">
+                  {formStatus.success ? (
+                    <>
+                      <Tick01Icon className="text-green-500" />
+                      <p className="ml-2 text-green-500">
+                        {formStatus.message}
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <MultiplicationSignIcon className="text-red-500" />
+                      <p className="ml-2 text-red-500">{formStatus.message}</p>
+                    </>
+                  )}
+                </div>
+              )}
             </form>
           </motion.div>
         </section>
