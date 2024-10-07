@@ -5,6 +5,12 @@
   for = "/*"
     [headers.values]
     X-Robots-Tag = "all"
+[[redirects]]
+  from = "/*"
+  to = "https://www.steameracademy.me/:splat"
+  status = 301
+  force = true
+  conditions = { Host = "steamer-academyme.netlify.app" }
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
 [dev]
