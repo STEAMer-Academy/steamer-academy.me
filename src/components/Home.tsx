@@ -66,7 +66,10 @@ export default function Home() {
         body: formDataEncoded,
       });
 
-      setFormStatus({ message: "Thanks For Subscribing To Our Newsletter", success: true });
+      setFormStatus({
+        message: "Thanks For Subscribing To Our Newsletter",
+        success: true,
+      });
       setFormData({
         email: "",
       });
@@ -230,13 +233,19 @@ export default function Home() {
               <input type="hidden" name="form-name" value="newsletter" />
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
                 value={formData.email}
                 onChange={handleChange}
                 required
                 className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
               />
-              <Button type="submit" className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600">Subscribe</Button>
+              <Button
+                type="submit"
+                className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600"
+              >
+                Subscribe
+              </Button>
               {formStatus.message && (
                 <div className="mt-4 flex items-center">
                   {formStatus.success ? (
