@@ -15,6 +15,11 @@ import {
 import { themeStore } from "../stores/themeStore";
 import { useStore } from "@nanostores/react";
 import { MultiplicationSignIcon, Tick01Icon } from "hugeicons-react";
+import dynamic from "next/dynamic";
+
+const CaptchaV2 = dynamic(() => import('../components/Captcha'), {
+  ssr: false,
+});
 
 interface FormData {
   email: string;
@@ -240,7 +245,7 @@ export default function Home() {
                 required
                 className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
               />
-              <div className="g-recaptcha" data-sitekey="6Lc7R1oqAAAAAJuvexCVE_m4Vo5pLlwWj6D7xnPL"></div>
+              <CaptchaV2 />
               <Button
                 type="submit"
                 className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600"

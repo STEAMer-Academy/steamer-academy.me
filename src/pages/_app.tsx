@@ -12,7 +12,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>{title}</title>
         {/* Include any additional meta tags or links here */}
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <meta name="viewport" content="width=device-width" />
       </Head>
       <ThemeScript /> {/* Make sure ThemeScript is here */}
