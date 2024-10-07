@@ -230,6 +230,7 @@ export default function Home() {
               method="POST"
               data-netlify="true"
             >
+            <div className="flex gap-4">
               <input type="hidden" name="form-name" value="newsletter" />
               <input
                 type="email"
@@ -246,6 +247,7 @@ export default function Home() {
               >
                 Subscribe
               </Button>
+
               {formStatus.message && (
                 <div className="mt-4 flex items-center">
                   {formStatus.success ? (
@@ -263,6 +265,7 @@ export default function Home() {
                   )}
                 </div>
               )}
+              </div>
             </form>
           </motion.div>
         </section>
