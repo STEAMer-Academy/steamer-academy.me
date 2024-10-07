@@ -225,11 +225,12 @@ export default function Home() {
               Get new content delivered directly to your inbox
             </h2>
             <form
-              className="gap-4 space-y-6"
+              className="flex gap-4 space-y-6"
               onSubmit={handleSubmit}
               method="POST"
               data-netlify="true"
             >
+            <div className="flex gap-4">
               <input type="hidden" name="form-name" value="newsletter" />
               <input
                 type="email"
@@ -264,6 +265,7 @@ export default function Home() {
                   )}
                 </div>
               )}
+              </div>
             </form>
           </motion.div>
         </section>
