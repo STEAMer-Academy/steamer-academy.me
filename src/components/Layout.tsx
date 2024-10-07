@@ -171,7 +171,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Footer Copyright */}
-        <p className="text-center mt-8 text-sm text-gray-400">
+        <p className="text-center mt-8 text-sm text-[#B0B0B0]">
           <div className="flex justify-center items-center space-x-2 p-6">
             <CopyrightIcon className="w-5 h-5" />
             <h3 className="font-bold">

@@ -15,11 +15,6 @@ import {
 import { themeStore } from "../stores/themeStore";
 import { useStore } from "@nanostores/react";
 import { MultiplicationSignIcon, Tick01Icon } from "hugeicons-react";
-import dynamic from "next/dynamic";
-
-const CaptchaV2 = dynamic(() => import('../components/Captcha'), {
-  ssr: false,
-});
 
 interface FormData {
   email: string;
@@ -34,24 +29,14 @@ export default function Home() {
   const $theme = useStore(themeStore);
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [formStatus, setFormStatus] = useState<FormStatus>({ message: "", success: false });
-  const [captchaResponse, setCaptchaResponse] = useState<string | null>(null); // State to hold the CAPTCHA response
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleCaptchaResponse = (response: string | null) => {
-    setCaptchaResponse(response);
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!captchaResponse) {
-      setFormStatus({ message: "Please complete the CAPTCHA", success: false });
-      return;
-    }
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -60,9 +45,6 @@ export default function Home() {
     data.forEach((value, key) => {
       formDataRecord[key] = value as string;
     });
-
-    // Append CAPTCHA response to form data
-    formDataRecord['g-recaptcha-response'] = captchaResponse;
 
     const formDataEncoded = new URLSearchParams(formDataRecord).toString();
 
@@ -78,7 +60,6 @@ export default function Home() {
         success: true,
       });
       setFormData({ email: "" });
-      setCaptchaResponse(null); // Reset CAPTCHA response after successful submission
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
       setFormStatus({
@@ -234,6 +215,7 @@ export default function Home() {
               onSubmit={handleSubmit}
               method="POST"
               data-netlify="true"
+              data-netlify-recaptcha="true"
             >
               <input type="hidden" name="form-name" value="newsletter" />
               <input
@@ -245,7 +227,9 @@ export default function Home() {
                 required
                 className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
               />
-              <CaptchaV2 onVerify={handleCaptchaResponse}/>
+
+              <div data-netlify-recaptcha="true"></div>
+
               <Button
                 type="submit"
                 className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600"

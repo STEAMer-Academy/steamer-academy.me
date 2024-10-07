@@ -9,11 +9,7 @@ import {
 } from "hugeicons-react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "../stores/themeStore";
-import dynamic from "next/dynamic";
 
-const CaptchaV2 = dynamic(() => import("../components/Captcha"), {
-  ssr: false,
-});
 
 // Define form data structure
 interface FormData {
@@ -30,10 +26,6 @@ interface FormStatus {
 }
 
 export default function Contact() {
-  const [captchaResponse, setCaptchaResponse] = useState<string | null>(null); // State to hold the CAPTCHA response
-  const handleCaptchaResponse = (response: string | null) => {
-    setCaptchaResponse(response);
-  };
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -45,11 +37,6 @@ export default function Contact() {
     message: "",
     success: false,
   });
-
-  if (!captchaResponse) {
-    setFormStatus({ message: "Please complete the CAPTCHA", success: false });
-    return;
-  }
 
   // Handle input changes
   const handleChange = (
@@ -73,7 +60,6 @@ export default function Contact() {
     data.forEach((value, key) => {
       formDataRecord[key] = value as string;
     });
-    formDataRecord['g-recaptcha-response'] = captchaResponse;
     const formDataEncoded = new URLSearchParams(formDataRecord).toString();
 
     // Send AJAX request to the hidden form
@@ -134,6 +120,7 @@ export default function Contact() {
           name="feedback"
           method="POST"
           data-netlify="true"
+          data-netlify-recaptcha="true"
           className="space-y-6"
         >
           <input type="hidden" name="form-name" value="feedback" />
@@ -178,7 +165,9 @@ export default function Contact() {
             rows={6}
             className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
           ></textarea>
-          <CaptchaV2 onVerify={handleCaptchaResponse}/>
+
+          <div data-netlify-recaptcha="true"></div>
+
           <Button
             type="submit"
             className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600"
