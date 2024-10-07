@@ -28,14 +28,9 @@ interface FormStatus {
 export default function Home() {
   const $theme = useStore(themeStore);
   const [formData, setFormData] = useState<FormData>({ email: "" });
-  const [formStatus, setFormStatus] = useState<FormStatus>({
-    message: "",
-    success: false,
-  });
+  const [formStatus, setFormStatus] = useState<FormStatus>({ message: "", success: false });
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
@@ -66,8 +61,7 @@ export default function Home() {
       });
       setFormData({ email: "" });
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
       setFormStatus({
         message: `Newsletter submission error: ${errorMessage}`,
         success: false,

@@ -6,7 +6,7 @@ import ThemeScript from "../components/ThemeScript";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const title = pageProps.title || "My Next.js App"; // Ensure consistent title
+  const title = pageProps.title || "My Next.js App"; // Ensure consistent title 
   return (
     <>
       <Head>

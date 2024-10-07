@@ -6,10 +6,7 @@ const ThemeScript = () => {
     const applyTheme = () => {
       // Check for saved theme in localStorage
       const savedTheme = localStorage.getItem("theme");
-      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
       // Determine the theme to use
       const currentTheme = savedTheme || preferredTheme;
@@ -54,3 +51,4 @@ const ThemeScript = () => {
 };
 
 export default ThemeScript;
+
