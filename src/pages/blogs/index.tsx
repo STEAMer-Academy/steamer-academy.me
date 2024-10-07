@@ -30,7 +30,9 @@ export default function Blog({ initialPosts }: Props) {
   const $theme = useStore(themeStore);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categories = Array.from(new Set(initialPosts.map((post) => post.category)));
+  const categories = Array.from(
+    new Set(initialPosts.map((post) => post.category)),
+  );
   const filteredPosts = selectedCategory
     ? initialPosts.filter((post) => post.category === selectedCategory)
     : initialPosts;
@@ -46,16 +48,22 @@ export default function Blog({ initialPosts }: Props) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Layout>
-        <div className={`container mx-auto px-4 max-w-screen-lg space-y-8 ${
-          $theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"
-        }`}>
+        <div
+          className={`container mx-auto px-4 max-w-screen-lg space-y-8 ${
+            $theme === "dark"
+              ? "bg-[#1a1b26] text-[#a9b1d6]"
+              : "bg-white text-gray-900"
+          }`}
+        >
           <h1 className="text-4xl font-bold mb-8 text-center">Blogs</h1>
 
           <div className="flex flex-wrap gap-4 justify-center mb-8">
             <button
               onClick={() => setSelectedCategory(null)}
               className={`px-4 py-2 rounded ${
-                !selectedCategory ? "bg-primary text-primary-foreground" : "bg-secondary"
+                !selectedCategory
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary"
               }`}
             >
               All
@@ -65,7 +73,9 @@ export default function Blog({ initialPosts }: Props) {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded ${
-                  selectedCategory === category ? "bg-primary text-primary-foreground" : "bg-secondary"
+                  selectedCategory === category
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary"
                 }`}
               >
                 {category}
@@ -84,24 +94,32 @@ export default function Blog({ initialPosts }: Props) {
                 <Link href={`/blogs/${post.slug}`} passHref>
                   <Card
                     className={`hover:shadow-lg transition-shadow duration-200 ${
-                      $theme === "dark" ? "bg-gray-800 hover:bg-gray-700" : "bg-white hover:bg-gray-100"
+                      $theme === "dark"
+                        ? "bg-gray-800 hover:bg-gray-700"
+                        : "bg-white hover:bg-gray-100"
                     }`}
                   >
                     <CardHeader>
                       <CardTitle
-                        className={$theme === "dark" ? "text-white" : "text-gray-900"}
+                        className={
+                          $theme === "dark" ? "text-white" : "text-gray-900"
+                        }
                       >
                         {post.title}
                       </CardTitle>
                       <CardDescription
-                        className={$theme === "dark" ? "text-gray-400" : "text-gray-600"}
+                        className={
+                          $theme === "dark" ? "text-gray-400" : "text-gray-600"
+                        }
                       >
                         {post.category}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <p
-                        className={$theme === "dark" ? "text-gray-300" : "text-gray-700"}
+                        className={
+                          $theme === "dark" ? "text-gray-300" : "text-gray-700"
+                        }
                       >
                         Click to read more...
                       </p>
@@ -119,21 +137,26 @@ export default function Blog({ initialPosts }: Props) {
 
 // Fetching blog posts using getStaticProps
 export async function getStaticProps() {
-  const contentDirectory = path.join(process.cwd(), 'src/pages/blogs/content');
+  const contentDirectory = path.join(process.cwd(), "src/pages/blogs/content");
   const fileNames = fs.readdirSync(contentDirectory);
 
   const blogPosts: BlogPost[] = fileNames
-    .filter((fileName) => fileName.endsWith('.md') && !fileName.includes('README.md') && !fileName.includes('LICENSE'))
+    .filter(
+      (fileName) =>
+        fileName.endsWith(".md") &&
+        !fileName.includes("README.md") &&
+        !fileName.includes("LICENSE"),
+    )
     .map((fileName) => {
-      const title = fileName.replace('.md', ''); // Get the title by removing .md
-      const category = 'your-category'; // Replace with actual logic to determine the category
-      const slug = title.replace(/ /g, '-').toLowerCase(); // Convert spaces to hyphens
+      const title = fileName.replace(".md", ""); // Get the title by removing .md
+      const category = "your-category"; // Replace with actual logic to determine the category
+      const slug = title.replace(/ /g, "-").toLowerCase(); // Convert spaces to hyphens
 
       return {
         title,
         category,
         slug,
-        path: path.join('src/pages/blogs/content', fileName), // Store the original path if needed
+        path: path.join("src/pages/blogs/content", fileName), // Store the original path if needed
       };
     });
 
@@ -143,4 +166,3 @@ export async function getStaticProps() {
     },
   };
 }
-

@@ -10,7 +10,6 @@ import {
 import { useStore } from "@nanostores/react";
 import { themeStore } from "../stores/themeStore";
 
-
 // Define form data structure
 interface FormData {
   firstName: string;
