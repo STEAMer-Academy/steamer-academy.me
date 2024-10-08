@@ -95,7 +95,7 @@ export default function Home() {
         />
       </Head>
       <div className="space-y-16">
-        <section className="relative h-[600px] overflow-hidden">
+        <section className="relative overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -113,16 +113,10 @@ export default function Home() {
                   pathLengthFourth,
                   pathLengthFifth,
                 ]}
+                buttonName="Get started"
+                buttonLink="https://discord.gg/Kqpbawj9KU"
+                buttonClassName="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
               />
-
-              <Link href="https://discord.gg/Kqpbawj9KU" passHref>
-                <Button
-                  size="lg"
-                  className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-                >
-                  Get started
-                </Button>
-              </Link>
             </motion.div>
           </div>
         </section>
