@@ -95,7 +95,7 @@ export default function Home() {
         />
       </Head>
       <div className="space-y-16">
-        <section className="relative overflow-hidden">
+        <section>
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
