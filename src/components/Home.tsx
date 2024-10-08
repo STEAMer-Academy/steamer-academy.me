@@ -1,8 +1,8 @@
-import React, { useState,FormEvent, ChangeEvent } from "react";
+import React, { useState, FormEvent, ChangeEvent } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { motion,useTransform, useScroll } from "framer-motion";
+import { motion, useTransform, useScroll } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -29,19 +29,24 @@ interface FormStatus {
 export default function Home() {
   const $theme = useStore(themeStore);
   const [formData, setFormData] = useState<FormData>({ email: "" });
-  const [formStatus, setFormStatus] = useState<FormStatus>({ message: "", success: false });
-  
+  const [formStatus, setFormStatus] = useState<FormStatus>({
+    message: "",
+    success: false,
+  });
+
   const { scrollYProgress } = useScroll({
     offset: ["start start", "end start"],
   });
-  
+
   const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
   const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
   const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
   const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
@@ -72,7 +77,8 @@ export default function Home() {
       });
       setFormData({ email: "" });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       setFormStatus({
         message: `Newsletter submission error: ${errorMessage}`,
         success: false,
@@ -88,17 +94,6 @@ export default function Home() {
           content="STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics."
         />
       </Head>
-      <GoogleGeminiEffect 
-      title="A world of possibilities"
-      description="STEAMer Academy is here to guide you on your learning journey"
-      pathLengths={[
-        pathLengthFirst,
-        pathLengthSecond,
-        pathLengthThird,
-        pathLengthFourth,
-        pathLengthFifth,
-      ]}
-      />
       <div className="space-y-16">
         <section className="relative h-[600px] overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -107,9 +102,26 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center text-white"
-            > 
+            >
+              <GoogleGeminiEffect
+                title="A world of possibilities"
+                description="STEAMer Academy is here to guide you on your learning journey"
+                pathLengths={[
+                  pathLengthFirst,
+                  pathLengthSecond,
+                  pathLengthThird,
+                  pathLengthFourth,
+                  pathLengthFifth,
+                ]}
+              />
+
               <Link href="https://discord.gg/Kqpbawj9KU" passHref>
-                <Button size="lg" className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">Get started</Button>
+                <Button
+                  size="lg"
+                  className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                >
+                  Get started
+                </Button>
               </Link>
             </motion.div>
           </div>
