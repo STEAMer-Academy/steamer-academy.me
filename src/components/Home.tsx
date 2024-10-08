@@ -1,8 +1,8 @@
-import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import React, { useState,FormEvent, ChangeEvent } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useAnimation, useMotionValue } from "framer-motion";
+import { motion,useTransform, useScroll } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,35 +31,15 @@ export default function Home() {
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [formStatus, setFormStatus] = useState<FormStatus>({ message: "", success: false });
   
-  const animationControls = useAnimation();
-
-  // Create MotionValues for path lengths
-  const pathLengthFirst = useMotionValue(100);
-  const pathLengthSecond =  useMotionValue(100);
-  const pathLengthThird =  useMotionValue(100);
-  const pathLengthFourth =  useMotionValue(100);
-  const pathLengthFifth =  useMotionValue(100);
-
-  // Start the animation loop in both forward and backward directions
-  useEffect(() => {
-    const animateLoop = async () => {
-      while (true) {
-        // Forward animation
-        await animationControls.start({
-          strokeDashoffset: 100,
-          transition:{ duration: 5, ease: "linear" },
-        });
-
-        // Reverse animation
-        await animationControls.start({
-          transition: { duration: 5, ease: "linear" },
-          strokeDashoffset: 0,
-        });
-      }
-    };
-
-    animateLoop();
-  }, [animationControls]);
+  const { scrollYProgress } = useScroll({
+    offset: ["start start", "end start"],
+  });
+  
+  const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
+  const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
+  const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
+  const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
+  const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
