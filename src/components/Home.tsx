@@ -93,9 +93,9 @@ export default function Home() {
           content="STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics."
         />
       </Head>
-      <div className="space-y-16">
+      <div className="space-y-6">
         <section>
-          <div className="relative h-[90vh]"> {/* Reduced height to remove space at the top */}
+          <div className="relative h-[30vh] mb-[40vh]"> {/* Reduced height to remove space at the top */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -116,7 +116,7 @@ export default function Home() {
                   buttonName="Get started"
                   buttonLink="https://discord.gg/Kqpbawj9KU"
                   buttonClassName="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-                  className="scale-150"
+                  className="scale-180"
                 />
               </motion.div>
             </div>
