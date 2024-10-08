@@ -1,6 +1,6 @@
 [build]
   publish = ".next"
-  command = "bun run build"
+  command = "pnpm run build"
 [[headers]]
   for = "/*"
     [headers.values]
@@ -15,5 +15,5 @@
   package = "@netlify/plugin-lighthouse"
 [dev]
   framework = "#custom"
-  command = "npm run dev"
+  command = "pnpm run dev"
   targetPort = 3000
