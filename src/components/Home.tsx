@@ -152,7 +152,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Image
-                    src="/placeholder.svg?height=200&width=300"
+                    src="/placeholder.webp?height=200&width=300"
                     alt={`Course ${i}`}
                     width={300}
                     height={200}
