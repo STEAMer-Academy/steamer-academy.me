@@ -1,8 +1,8 @@
-import React, { useState, FormEvent, ChangeEvent } from "react";
+import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,6 +15,7 @@ import {
 import { themeStore } from "../stores/themeStore";
 import { useStore } from "@nanostores/react";
 import { MultiplicationSignIcon, Tick01Icon } from "hugeicons-react";
+import { GoogleGeminiEffect } from "../components/ui/google-gemini-effect";
 
 interface FormData {
   email: string;
@@ -29,6 +30,36 @@ export default function Home() {
   const $theme = useStore(themeStore);
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [formStatus, setFormStatus] = useState<FormStatus>({ message: "", success: false });
+  
+  const animationControls = useAnimation();
+
+  // Create MotionValues for path lengths
+  const pathLengthFirst = useMotionValue(100);
+  const pathLengthSecond =  useMotionValue(100);
+  const pathLengthThird =  useMotionValue(100);
+  const pathLengthFourth =  useMotionValue(100);
+  const pathLengthFifth =  useMotionValue(100);
+
+  // Start the animation loop in both forward and backward directions
+  useEffect(() => {
+    const animateLoop = async () => {
+      while (true) {
+        // Forward animation
+        await animationControls.start({
+          strokeDashoffset: 100,
+          transition:{ duration: 5, ease: "linear" },
+        });
+
+        // Reverse animation
+        await animationControls.start({
+          transition: { duration: 5, ease: "linear" },
+          strokeDashoffset: 0,
+        });
+      }
+    };
+
+    animateLoop();
+  }, [animationControls]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -77,32 +108,26 @@ export default function Home() {
           content="STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics."
         />
       </Head>
-
+      <GoogleGeminiEffect 
+      title="A world of possibilities"
+      description="STEAMer Academy is here to guide you on your learning journey"
+      pathLengths={[
+        pathLengthFirst,
+        pathLengthSecond,
+        pathLengthThird,
+        pathLengthFourth,
+        pathLengthFifth,
+      ]}
+      />
       <div className="space-y-16">
         <section className="relative h-[600px] overflow-hidden">
-          <Image
-            src="/placeholder.webp"
-            alt="A world of possibilities"
-            style={{ objectFit: "cover" }}
-            priority={true}
-            width={1920}
-            height={1080}
-            sizes="100vw"
-            loading="eager"
-          />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center text-white"
-            >
-              <h1 className="text-5xl font-bold mb-4">
-                A world of possibilities
-              </h1>
-              <p className="text-xl mb-8">
-                STEAMer Academy is here to guide you on your learning journey
-              </p>
+            > 
               <Link href="https://discord.gg/Kqpbawj9KU" passHref>
                 <Button size="lg" className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">Get started</Button>
               </Link>
