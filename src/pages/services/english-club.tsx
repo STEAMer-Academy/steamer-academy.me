@@ -13,9 +13,9 @@ export default function About() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-        <Layout>
-          <PageEnglishClub />
-        </Layout>
+      <Layout>
+        <PageEnglishClub />
+      </Layout>
     </>
   );
 }

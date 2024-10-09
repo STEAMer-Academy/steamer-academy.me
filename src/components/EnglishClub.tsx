@@ -17,12 +17,12 @@ export default function EnglishClub() {
       </Head>
 
       <main>
-        <h1 className="text-3xl font-bold mb-8">Our services</h1>
-        <h2 className="text-4xl font-bold mb-12">English Club</h2>
+        <h1 className="mb-8 text-3xl font-bold">Our services</h1>
+        <h2 className="mb-12 text-4xl font-bold">English Club</h2>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Introduction</h3>
-          <h4 className="text-lg font-medium mb-2">
+          <h3 className="mb-4 text-xl font-semibold">Introduction</h3>
+          <h4 className="mb-2 text-lg font-medium">
             Calling all Word Wizards and Grammar Gurus!
           </h4>
           <p>
@@ -34,8 +34,8 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Management</h3>
-          <h4 className="text-lg font-medium mb-2">
+          <h3 className="mb-4 text-xl font-semibold">Management</h3>
+          <h4 className="mb-2 text-lg font-medium">
             Keeping it Fun and Functional: How We Manage the English Club
           </h4>
           <p>
@@ -48,11 +48,11 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Target</h3>
-          <h4 className="text-lg font-medium mb-2">
+          <h3 className="mb-4 text-xl font-semibold">Target</h3>
+          <h4 className="mb-2 text-lg font-medium">
             Goals of the English Club
           </h4>
-          <ul className="list-disc list-inside">
+          <ul className="list-inside list-disc">
             <li>
               To create a supportive and inclusive environment where members can
               develop their confidence and skills in using the English language.
@@ -73,8 +73,8 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Support</h3>
-          <h4 className="text-lg font-medium mb-2">
+          <h3 className="mb-4 text-xl font-semibold">Support</h3>
+          <h4 className="mb-2 text-lg font-medium">
             Unleash Your Inner Wordsmith: How the English Club Supports You
           </h4>
           <p>
@@ -87,8 +87,8 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Our Partner</h3>
-          <h4 className="text-lg font-medium mb-2">
+          <h3 className="mb-4 text-xl font-semibold">Our Partner</h3>
+          <h4 className="mb-2 text-lg font-medium">
             Thanks to our Ass. Headmaster for supervision
           </h4>
           <p>
@@ -102,7 +102,7 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Join Club</h3>
+          <h3 className="mb-4 text-xl font-semibold">Join Club</h3>
           <p className="mb-4">
             Welcome to a world of endless possibilities, where the journey to
             mastering the English language begins! By joining our English Club,
@@ -110,7 +110,7 @@ export default function EnglishClub() {
             a vibrant community dedicated to the love of language and the
             pursuit of knowledge.
           </p>
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <span className="font-bold">3 DAYS</span>
             <span className="font-bold">12 HOURS</span>
             <span className="font-bold">30 MINUTES</span>
@@ -123,7 +123,7 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-4">Deadline</h3>
+          <h3 className="mb-4 text-xl font-semibold">Deadline</h3>
           <p className="mb-4">
             You can also join us indirectly through Duolingo for School. This
             button will allow you to join our Duolingo Classroom.
@@ -132,8 +132,8 @@ export default function EnglishClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-xl font-semibold mb-8">Reviews</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h3 className="mb-8 text-xl font-semibold">Reviews</h3>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <Card>
               <CardContent className="p-6">
                 <p className="mb-4">
@@ -147,7 +147,7 @@ export default function EnglishClub() {
                     alt="Sarah J."
                     width={40}
                     height={40}
-                    className="rounded-full mr-4"
+                    className="mr-4 rounded-full"
                   />
                   <span className="font-semibold">Sarah J.</span>
                 </div>
@@ -166,7 +166,7 @@ export default function EnglishClub() {
                     alt="Mike L."
                     width={40}
                     height={40}
-                    className="rounded-full mr-4"
+                    className="mr-4 rounded-full"
                   />
                   <span className="font-semibold">Mike L.</span>
                 </div>

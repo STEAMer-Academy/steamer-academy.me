@@ -54,14 +54,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className={`min-h-screen flex flex-col ${$theme === "dark" ? "dark bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
+      className={`flex min-h-screen flex-col ${$theme === "dark" ? "dark bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
     >
       <header className="border-b">
-        <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center space-y-2 md:space-y-0">
+        <nav className="container mx-auto flex flex-wrap items-center justify-between space-y-2 px-4 py-4 md:space-y-0">
           <Link href="/" className="text-2xl font-bold">
             STEAMer Academy
           </Link>
-          <div className="flex flex-wrap justify-center md:justify-end items-center space-x-2 w-full md:w-auto">
+          <div className="flex w-full flex-wrap items-center justify-center space-x-2 md:w-auto md:justify-end">
             <Button variant="ghost" asChild className="font-sans font-medium">
               <Link href="/">Home</Link>
             </Button>
@@ -120,22 +120,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </nav>
       </header>
-      <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
+      <main className="container mx-auto flex-grow px-4 py-8">{children}</main>
       <footer className="border-t">
-        <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="container mx-auto grid grid-cols-1 gap-6 px-4 py-6 md:grid-cols-4">
           {/* Location Section */}
-          <div className="flex flex-col items-start md:items-center p-3">
-            <h3 className="font-bold flex items-center space-x-2">
-              <Location01Icon className="w-6 h-6" />
+          <div className="flex flex-col items-start p-3 md:items-center">
+            <h3 className="flex items-center space-x-2 font-bold">
+              <Location01Icon className="h-6 w-6" />
               <span>Location</span>
             </h3>
             <p>Dhaka, Bangladesh</p>
           </div>
 
           {/* Hours Section */}
-          <div className="flex flex-col items-start md:items-center p-3">
-            <h3 className="font-bold flex items-center space-x-2">
-              <Clock01Icon className="w-6 h-6" />
+          <div className="flex flex-col items-start p-3 md:items-center">
+            <h3 className="flex items-center space-x-2 font-bold">
+              <Clock01Icon className="h-6 w-6" />
               <span>Hours</span>
             </h3>
             <p>Friday - Saturday</p>
@@ -143,37 +143,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Social Section */}
-          <div className="flex flex-col items-start md:items-center p-3">
-            <h3 className="font-bold flex items-center space-x-2">
-              <YoutubeIcon className="w-6 h-6" />
+          <div className="flex flex-col items-start p-3 md:items-center">
+            <h3 className="flex items-center space-x-2 font-bold">
+              <YoutubeIcon className="h-6 w-6" />
               <span>Social</span>
             </h3>
-            <Link href="#" className="hover:text-blue-600 transition-colors">
+            <Link href="#" className="transition-colors hover:text-blue-600">
               Facebook
             </Link>
           </div>
 
           {/* Contact Section */}
-          <div className="flex flex-col items-start md:items-center p-3">
-            <h3 className="font-bold flex items-center space-x-2">
-              <HelpCircleIcon className="w-6 h-6" />
+          <div className="flex flex-col items-start p-3 md:items-center">
+            <h3 className="flex items-center space-x-2 font-bold">
+              <HelpCircleIcon className="h-6 w-6" />
               <span>Contact</span>
             </h3>
             <p className="flex items-center space-x-2">
-              <Mail01Icon className="w-6 h-6" />
+              <Mail01Icon className="h-6 w-6" />
               <span>support@steameracademy.me</span>
             </p>
             <p className="flex items-center space-x-2">
-              <TelephoneIcon className="w-6 h-6" />
+              <TelephoneIcon className="h-6 w-6" />
               <span>+88017 7585 4054</span>
             </p>
           </div>
         </div>
 
         {/* Footer Copyright */}
-        <p className="text-center mt-8 text-sm text-[#B0B0B0]">
-          <div className="flex justify-center items-center space-x-2 p-6">
-            <CopyrightIcon className="w-5 h-5" />
+        <p className="mt-8 text-center text-sm text-[#B0B0B0]">
+          <div className="flex items-center justify-center space-x-2 p-6">
+            <CopyrightIcon className="h-5 w-5" />
             <h3 className="font-bold">
               <span>2024 STEAMer Academy. All rights reserved.</span>
             </h3>

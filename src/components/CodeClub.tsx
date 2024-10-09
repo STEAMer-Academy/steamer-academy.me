@@ -16,7 +16,7 @@ export default function CodeClub() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="flex justify-between items-center mb-12">
+      <header className="mb-12 flex items-center justify-between">
         <h1 className="text-2xl font-bold">STEAMer Academy</h1>
         <nav>
           <ul className="flex space-x-4">
@@ -45,11 +45,11 @@ export default function CodeClub() {
       </header>
 
       <main>
-        <h2 className="text-3xl font-bold mb-8">Our services</h2>
-        <h1 className="text-5xl font-bold mb-12">CODE club</h1>
+        <h2 className="mb-8 text-3xl font-bold">Our services</h2>
+        <h1 className="mb-12 text-5xl font-bold">CODE club</h1>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-semibold mb-4">What is Code Club?</h3>
+          <h3 className="mb-4 text-2xl font-semibold">What is Code Club?</h3>
           <p>
             At Code Club, we aim to cultivate children&apos;s love and curiosity
             for coding. Our clubs offer a fun and engaging environment for
@@ -61,7 +61,7 @@ export default function CodeClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-semibold mb-4">
+          <h3 className="mb-4 text-2xl font-semibold">
             What happens at a club?
           </h3>
           <p>
@@ -75,7 +75,7 @@ export default function CodeClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-semibold mb-4">What is coding?</h3>
+          <h3 className="mb-4 text-2xl font-semibold">What is coding?</h3>
           <p>
             Coding, also known as computer programming, is the process of
             creating instructions that tell a computer what to do. It&apos;s
@@ -88,7 +88,7 @@ export default function CodeClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-semibold mb-4">Support</h3>
+          <h3 className="mb-4 text-2xl font-semibold">Support</h3>
           <p>
             Code Club is supported by the Raspberry Pi Foundation, a registered
             UK charity. Together, we are part of a global movement to put the
@@ -99,7 +99,7 @@ export default function CodeClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-semibold mb-4">Join Now</h3>
+          <h3 className="mb-4 text-2xl font-semibold">Join Now</h3>
           <p className="mb-4">
             Ready to start your coding adventure? Join our Code Club and unlock
             a world of creativity and innovation!
@@ -108,15 +108,15 @@ export default function CodeClub() {
         </section>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-semibold mb-8">Reviews</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h3 className="mb-8 text-2xl font-semibold">Reviews</h3>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="flex items-start">
               <Image
                 src="/placeholder-avatar.png"
                 alt="John D."
                 width={50}
                 height={50}
-                className="rounded-full mr-4"
+                className="mr-4 rounded-full"
               />
               <div>
                 <p className="mb-2">
@@ -133,7 +133,7 @@ export default function CodeClub() {
                 alt="Sarah M."
                 width={50}
                 height={50}
-                className="rounded-full mr-4"
+                className="mr-4 rounded-full"
               />
               <div>
                 <p className="mb-2">

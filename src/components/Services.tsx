@@ -69,8 +69,8 @@ export default function Services() {
         className={`space-y-16 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
       >
         <section>
-          <h1 className="text-4xl font-bold mb-8">Our Services</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h1 className="mb-8 text-4xl font-bold">Our Services</h1>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -117,8 +117,8 @@ export default function Services() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-bold mb-8">Reviews</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="mb-8 text-3xl font-bold">Reviews</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {reviews.map((review, index) => (
               <motion.div
                 key={index}

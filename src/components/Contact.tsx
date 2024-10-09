@@ -10,7 +10,6 @@ import {
 import { useStore } from "@nanostores/react";
 import { themeStore } from "../stores/themeStore";
 
-
 // Define form data structure
 interface FormData {
   firstName: string;
@@ -89,11 +88,11 @@ export default function Contact() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6">Contact</h1>
+      <h1 className="mb-6 text-4xl font-bold">Contact</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
-          <p className="text-lg mb-6">
+          <p className="mb-6 text-lg">
             Welcome to a world of limitless possibilities, where the journey is
             as exhilarating as the destination, and where every moment is an
             opportunity to make your mark on the canvas of existence.
@@ -125,7 +124,7 @@ export default function Contact() {
         >
           <input type="hidden" name="form-name" value="feedback" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <input
               type="text"
               name="firstName"
@@ -170,7 +169,7 @@ export default function Contact() {
 
           <Button
             type="submit"
-            className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-500 text-white on-hover:bg-blue-600"
+            className="on-hover:bg-blue-600 w-full rounded-md bg-blue-500 px-4 py-2 text-white sm:w-auto"
           >
             Submit
           </Button>

@@ -26,13 +26,13 @@ export default function Gallery() {
       <div
         className={`space-y-8 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
       >
-        <h1 className="text-4xl font-bold mb-8">Gallery</h1>
+        <h1 className="mb-8 text-4xl font-bold">Gallery</h1>
         <p className="mb-8">
           Welcome to our gallery, where we showcase the exciting world of STEAM
           education at STEAMer Academy. These images capture the essence of our
           innovative learning environment and the enthusiasm of our students.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {images.map((image, index) => (
             <motion.div
               key={index}

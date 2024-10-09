@@ -64,7 +64,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl font-bold mb-8">About STEAMer Academy</h1>
+            <h1 className="mb-8 text-4xl font-bold">About STEAMer Academy</h1>
             <p className="mb-4">
               At STEAMer, we&apos;re passionate about igniting a love for
               Science, Technology, Engineering, Arts, and Math (STEAM) in young
@@ -75,7 +75,7 @@ export default function About() {
               Through our engaging and interactive programs, STEAMer empowers
               young learners to:
             </p>
-            <ul className="list-disc list-inside mb-4">
+            <ul className="mb-4 list-inside list-disc">
               <li>
                 Discover the wonders of STEAM and make science exciting,
                 engaging, and relevant.
@@ -101,8 +101,8 @@ export default function About() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-bold mb-8">Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-10">
+          <h2 className="mb-8 text-3xl font-bold">Our Team</h2>
+          <div className="grid grid-cols-1 gap-8 p-10 sm:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
@@ -112,7 +112,7 @@ export default function About() {
                 viewport={{ once: true }}
               >
                 <Card
-                  className={`${$theme === "dark" ? "bg-gray-800 hover:bg-gray-700" : "bg-white hover:bg-gray-100"} p-7 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl`}
+                  className={`${$theme === "dark" ? "bg-gray-800 hover:bg-gray-700" : "bg-white hover:bg-gray-100"} transform rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}
                 >
                   <CardHeader>
                     <Image
@@ -120,10 +120,10 @@ export default function About() {
                       alt={member.name}
                       width={200}
                       height={200}
-                      className="rounded-full mx-auto"
+                      className="mx-auto rounded-full"
                     />
                   </CardHeader>
-                  <CardContent className="text-center p-12 pb-4">
+                  <CardContent className="p-12 pb-4 text-center">
                     <CardHeader
                       className={`text-xl font-semibold ${$theme === "dark" ? "text-white" : "text-gray-900"} mb-2 p-1`}
                     >
