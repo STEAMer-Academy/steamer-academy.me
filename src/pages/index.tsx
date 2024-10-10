@@ -2,12 +2,9 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import localFont from "next/font/local";
 import Loading from "../components/Loading";
-import dynamic from "next/dynamic";
+import { Suspense, lazy } from "react";
 
-const PageHome = dynamic(() => import("../components/Home"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
+const PageHome = lazy(() => import("../components/Home"));
 
 export const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,7 +31,9 @@ export default function Home() {
       </Head>
       <div className={`${geistSans.variable} ${geistMono.variable}`}>
         <Layout>
-          <PageHome />
+          <Suspense fallback={<Loading />}>
+            <PageHome />
+          </Suspense>
         </Layout>
       </div>
     </>
