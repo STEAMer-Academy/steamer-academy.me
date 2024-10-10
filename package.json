@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.10.2",
     "@fullhuman/postcss-purgecss": "^6.0.0",
     "@nanostores/react": "^0.8.0",
     "@next/third-parties": "^14.2.14",

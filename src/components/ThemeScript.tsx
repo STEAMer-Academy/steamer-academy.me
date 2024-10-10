@@ -43,7 +43,7 @@ const ThemeScript = () => {
       }
     };
 
-    mediaQuery.addEventListener("change", handleChange);
+    mediaQuery.addEventListener("change", handleChange, { passive: true });
 
     return () => {
       mediaQuery.removeEventListener("change", handleChange); // Clean up listener on unmount
