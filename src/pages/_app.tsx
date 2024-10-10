@@ -4,7 +4,6 @@ import "../styles/globals.css"; // Import global CSS
 import { GoogleAnalytics } from "@next/third-parties/google"; // For scripts like Google Analytics
 import ThemeScript from "../components/ThemeScript";
 import Head from "next/head";
-import Loading from "@/components/Loading";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const title = pageProps.title || "My Next.js App"; // Ensure consistent title
@@ -15,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* Include any additional meta tags or links here */}
         <meta name="viewport" content="width=device-width" />
       </Head>
-      <Loading />
       <ThemeScript />
       <Component {...pageProps} />
       {/* Google Analytics */}

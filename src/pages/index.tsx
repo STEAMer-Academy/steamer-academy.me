@@ -2,6 +2,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import PageHome from "../components/Home";
 import localFont from "next/font/local";
+import Loading from "../components/Loading";
 
 export const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
+      <Loading />
       <div className={`${geistSans.variable} ${geistMono.variable}`}>
         <Layout>
           <PageHome />
