@@ -36,6 +36,8 @@ jobs:
         run: bun install
       - name: Build with Next.js
         run: bun run build
+        env:
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
