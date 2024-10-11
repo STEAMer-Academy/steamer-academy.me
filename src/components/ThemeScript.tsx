@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+// components/ThemeScript.tsx
+"use client";
 
+import { useEffect } from "react";
 const ThemeScript = () => {
   useEffect(() => {
     // Function to apply the theme based on saved preferences or defaults
@@ -43,7 +45,7 @@ const ThemeScript = () => {
       }
     };
 
-    mediaQuery.addEventListener("change", handleChange, { passive: true });
+    mediaQuery.addEventListener("change", handleChange);
 
     return () => {
       mediaQuery.removeEventListener("change", handleChange); // Clean up listener on unmount

@@ -1,4 +1,7 @@
+"use client";
+
 import { atom } from "nanostores";
+import "@/app/globals.css";
 
 const getInitialTheme = (): "light" | "dark" => {
   if (typeof window !== "undefined") {

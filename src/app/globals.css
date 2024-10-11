@@ -1,0 +1,71 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  /* Catppuccin Latte Theme for Light Mode */
+  :root {
+    --background: 30 27% 94%; /* Latte base */
+    --foreground: 24 20% 10%; /* Latte text */
+    --card: 30 27% 94%;
+    --card-foreground: 24 20% 10%;
+    --popover: 30 27% 94%;
+    --popover-foreground: 24 20% 10%;
+    --primary: 24 20% 10%; /* Latte title */
+    --primary-foreground: 30 27% 94%; /* Latte surface0 */
+    --secondary: 30 15% 80%; /* Latte overlay0 */
+    --secondary-foreground: 24 20% 10%;
+    --muted: 30 15% 80%; /* Latte overlay0 */
+    --muted-foreground: 24 13% 30%; /* Latte subtext1 */
+    --accent: 30 15% 80%; /* Latte overlay0 */
+    --accent-foreground: 24 20% 10%;
+    --destructive: 0 84.2% 60.2%; /* Latte red */
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 80%; /* Latte surface2 */
+    --input: 30 15% 80%;
+    --ring: 24 20% 10%;
+    --chart-1: 12 76% 61%; /* Latte yellow */
+    --chart-2: 173 58% 39%; /* Latte green */
+    --chart-3: 197 37% 24%; /* Latte blue */
+    --chart-4: 43 74% 66%; /* Latte red */
+    --chart-5: 27 87% 67%; /* Latte peach */
+    --radius: 0.5rem;
+  }
+
+  /* Tokyo Night Theme for Dark Mode */
+  .dark {
+    --background: 235 19% 13%; /* TokyoNight background */
+    --foreground: 222 14% 82%; /* TokyoNight foreground */
+    --card: 223 47% 11%; /* TokyoNight background */
+    --card-foreground: 222 14% 82%; /* TokyoNight foreground */
+    --popover: 223 47% 11%; /* TokyoNight background */
+    --popover-foreground: 222 14% 82%; /* TokyoNight foreground */
+    --primary: 222 14% 82%; /* TokyoNight foreground */
+    --primary-foreground: 223 47% 11%; /* TokyoNight background */
+    --secondary: 221 16% 34%; /* TokyoNight dark blue */
+    --secondary-foreground: 222 14% 82%;
+    --muted: 221 16% 34%; /* TokyoNight dark blue */
+    --muted-foreground: 220 12% 55%; /* TokyoNight gray */
+    --accent: 221 16% 34%; /* TokyoNight dark blue */
+    --accent-foreground: 222 14% 82%;
+    --destructive: 0 62.8% 30.6%; /* TokyoNight red */
+    --destructive-foreground: 222 14% 82%;
+    --border: 221 16% 34%; /* TokyoNight dark blue */
+    --input: 221 16% 34%;
+    --ring: 220 15% 66%; /* TokyoNight ring */
+    --chart-1: 220 70% 50%; /* TokyoNight blue */
+    --chart-2: 160 60% 45%; /* TokyoNight green */
+    --chart-3: 30 80% 55%; /* TokyoNight orange */
+    --chart-4: 280 65% 60%; /* TokyoNight purple */
+    --chart-5: 340 75% 55%; /* TokyoNight pink */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
