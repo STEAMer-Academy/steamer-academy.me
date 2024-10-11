@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import GalleryGrid from "./GalleryGrid";
 import Layout from "@/components/Layout";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | Gallery",

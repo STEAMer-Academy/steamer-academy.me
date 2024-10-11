@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import NotFoundContent from "@/components/NotFoundContent";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | 404 Page Not Found",

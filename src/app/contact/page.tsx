@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
 import Layout from "@/components/Layout";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | Contact",

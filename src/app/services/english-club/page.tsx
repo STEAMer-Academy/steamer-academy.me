@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import CountdownTimer from "./CountdownTimer";
 import ReviewCard from "./ReviewCard";
 import Layout from "@/components/Layout";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | English Club",

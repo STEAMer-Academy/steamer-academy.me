@@ -5,7 +5,6 @@ import { useStore } from "@nanostores/react";
 import { themeStore, setTheme } from "../stores/themeStore";
 import { Button } from "./ui/button";
 import { Sun01Icon, Moon02Icon } from "hugeicons-react";
-import "@/app/globals.css";
 
 export default function ThemeToggle() {
   const $theme = useStore(themeStore);

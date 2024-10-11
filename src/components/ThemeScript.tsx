@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect } from "react";
-import "@/app/globals.css";
 const ThemeScript = () => {
   useEffect(() => {
     // Function to apply the theme based on saved preferences or defaults

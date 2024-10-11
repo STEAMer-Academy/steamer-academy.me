@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import Script from "next/script";

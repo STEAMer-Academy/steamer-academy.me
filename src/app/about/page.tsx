@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import AboutContent from "./AboutContent";
 import TeamMembers from "./TeamMembers";
 import Layout from "@/components/Layout";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | About",
