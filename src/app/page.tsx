@@ -10,7 +10,6 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Globe } from "@/components/Globe";
-import { NewsletterForm } from "@/components/NewsletterForm";
 import { Metadata } from "next";
 import Layout from "../components/Layout";
 
@@ -124,7 +123,6 @@ export default function Home() {
 					<h2 className="mb-4 text-3xl font-bold">
 						Get new content delivered directly to your inbox
 					</h2>
-					<NewsletterForm />
 				</section>
 			</div>
 		</Layout>

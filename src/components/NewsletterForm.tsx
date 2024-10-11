@@ -2,7 +2,8 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { MultiplicationSignIcon, Tick01Icon } from "hugeicons-react";
+import { Input } from "@/components/ui/input";
+import { AlertCircleIcon, CheckmarkCircle02Icon } from "hugeicons-react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 
@@ -49,7 +50,7 @@ export function NewsletterForm() {
       });
 
       setFormStatus({
-        message: "Thanks For Subscribing To Our Newsletter",
+        message: "Thanks for subscribing!",
         success: true,
       });
       setFormData({ email: "" });
@@ -57,32 +58,32 @@ export function NewsletterForm() {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
       setFormStatus({
-        message: `Newsletter submission error: ${errorMessage}`,
+        message: `Subscription error: ${errorMessage}`,
         success: false,
       });
     }
   };
 
   return (
-    <>
+    <div>
       <form
-        className="flex flex-col gap-4 sm:flex-row"
+        className="space-y-2"
         onSubmit={handleSubmit}
         method="POST"
         data-netlify="true"
         data-netlify-recaptcha="true"
       >
         <input type="hidden" name="form-name" value="newsletter" />
-        <input
+        <Input
           type="email"
           name="email"
           placeholder="Enter your email"
           value={formData.email}
           onChange={handleChange}
           required
-          className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+          className={`w-full ${
             $theme === "dark"
-              ? "bg-[#1a1b26] text-[#a9b1d6]"
+              ? "bg-gray-800 text-gray-200"
               : "bg-white text-gray-900"
           }`}
         />
@@ -91,27 +92,22 @@ export function NewsletterForm() {
 
         <Button
           type="submit"
-          className="w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 sm:w-auto"
+          className="w-full bg-blue-500 text-white hover:bg-blue-600"
         >
           Subscribe
         </Button>
       </form>
 
       {formStatus.message && (
-        <div className="mt-4 flex items-center">
+        <div className={`mt-2 flex items-center ${formStatus.success ? 'text-green-500' : 'text-red-500'}`}>
           {formStatus.success ? (
-            <>
-              <Tick01Icon className="text-green-500" />
-              <p className="ml-2 text-green-500">{formStatus.message}</p>
-            </>
+            <CheckmarkCircle02Icon className="mr-2 h-4 w-4" />
           ) : (
-            <>
-              <MultiplicationSignIcon className="text-red-500" />
-              <p className="ml-2 text-red-500">{formStatus.message}</p>
-            </>
+            <AlertCircleIcon className="mr-2 h-4 w-4" />
           )}
+          <p className="text-sm">{formStatus.message}</p>
         </div>
       )}
-    </>
+    </div>
   );
 }
