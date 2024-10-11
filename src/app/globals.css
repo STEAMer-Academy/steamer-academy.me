@@ -34,7 +34,7 @@
 
   /* Tokyo Night Theme for Dark Mode */
   .dark {
-    --background: 223 47% 11%; /* TokyoNight background */
+    --background: 235 19% 13%; /* TokyoNight background */
     --foreground: 222 14% 82%; /* TokyoNight foreground */
     --card: 223 47% 11%; /* TokyoNight background */
     --card-foreground: 222 14% 82%; /* TokyoNight foreground */

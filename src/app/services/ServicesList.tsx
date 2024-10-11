@@ -33,7 +33,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
-          <Card className={$theme === "dark" ? "bg-gray-800" : "bg-white"}>
+          <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
             <CardHeader>
               <Image
                 src={service.image}

@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <Layout>
-    <Suspense fallback={<Loading />}>
       <div className="space-y-6">
+      <Suspense fallback={<Loading />}>
         <section className="relative flex h-screen w-full flex-row items-center justify-center py-20 md:h-auto">
           <div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
             <div>
@@ -51,6 +51,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </Suspense>
 
         <section className="container mx-auto px-4">
           <h2 className="mb-8 text-3xl font-bold">Learn with STEAMer</h2>
@@ -127,7 +128,6 @@ export default function Home() {
           <NewsletterForm />
         </section>
       </div>
-      </Suspense>
     </Layout>
   );
 }

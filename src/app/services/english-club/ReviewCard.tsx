@@ -19,7 +19,7 @@ export default function ReviewCard({
   const $theme = useStore(themeStore);
 
   return (
-    <Card className={$theme === "dark" ? "bg-gray-800" : "bg-white"}>
+    <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
       <CardContent className="p-6">
         <p
           className={`mb-4 ${$theme === "dark" ? "text-gray-300" : "text-gray-600"}`}

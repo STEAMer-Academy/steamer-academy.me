@@ -23,7 +23,7 @@ export default function ReviewsList({ reviews }: { reviews: Review[] }) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
-          <Card className={$theme === "dark" ? "bg-gray-800" : "bg-white"}>
+          <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
             <CardContent className="pt-6">
               <p
                 className={`mb-2 ${$theme === "dark" ? "text-gray-300" : "text-gray-600"}`}

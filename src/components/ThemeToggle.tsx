@@ -29,7 +29,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Switch themes"
     >
-      {$theme === "light" ? (
+      {$theme === "dark" ? (
         <Moon02Icon className="h-[1.2rem] w-[1.2rem]" />
       ) : (
         <Sun01Icon className="h-[1.2rem] w-[1.2rem]" />
