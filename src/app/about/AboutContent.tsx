@@ -3,18 +3,29 @@
 import { motion } from "framer-motion";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 export default function AboutContent() {
   const $theme = useStore(themeStore);
 
   return (
-    <section className={`${$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"} text-center content-center`}>
+    <section
+      className={`${$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"}`}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="mb-8 text-4xl font-bold">About STEAMer Academy</h1>
+        <h1 className="mb-8 text-4xl font-bold">
+          <TypewriterEffect
+            words={[
+              { text: "About" },
+              { text: "STEAMer" },
+              { text: "Academy" },
+            ]}
+          />
+        </h1>
         <p className="mb-4">
           At STEAMer, we&apos;re passionate about igniting a love for Science,
           Technology, Engineering, Arts, and Math (STEAM) in young minds. Our
