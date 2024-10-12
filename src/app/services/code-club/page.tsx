@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
@@ -103,14 +102,7 @@ export default function CodeClub() {
 					<section className="mb-12">
 						<h3 className="mb-8 text-2xl font-semibold">Reviews</h3>
 						<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-							<div className="flex items-start">
-								<Image
-									src="/placeholder-avatar.png"
-									alt="John D."
-									width={50}
-									height={50}
-									className="mr-4 rounded-full"
-								/>
+							<div className="flex items-start">	
 								<div>
 									<p className="mb-2">
 										&quot;&Starting my role as a WordPress administrator has
@@ -122,13 +114,6 @@ export default function CodeClub() {
 								</div>
 							</div>
 							<div className="flex items-start">
-								<Image
-									src="/placeholder-avatar.png"
-									alt="Sarah M."
-									width={50}
-									height={50}
-									className="mr-4 rounded-full"
-								/>
 								<div>
 									<p className="mb-2">
 										&quot;The mentors are fantastic and make coding fun and
