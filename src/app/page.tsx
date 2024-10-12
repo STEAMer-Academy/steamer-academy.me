@@ -81,6 +81,7 @@ export default function Home() {
 									text: "STEAMer",
 								},
 							]}
+              className="mt-5"
 						/>
 					</h2>
 					<p className="mb-8">
