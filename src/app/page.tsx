@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<Layout>
-			<div className="space-y-6 content-center text-center">
+			<div className="space-y-6">
 					<section className="relative flex h-screen w-full flex-row items-center justify-center py-20 md:h-auto">
 						<div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
 							<div>

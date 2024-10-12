@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function CodeClub() {
   return (
     <Layout>
-      <div className="text-center content-center container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
         <main>
           <h2 className="mb-8 text-3xl font-bold">Our services</h2>
           <h1 className="mb-12 text-5xl font-bold">CODE club</h1>

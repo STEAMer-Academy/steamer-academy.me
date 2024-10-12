@@ -6,6 +6,7 @@ import { Tick01Icon, MultiplicationSignIcon } from "hugeicons-react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
   firstName: string;
@@ -120,7 +121,7 @@ export default function ContactForm() {
         className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
       />
 
-      <textarea
+      <Textarea
         name="message"
         placeholder="Message"
         value={formData.message}
@@ -128,7 +129,7 @@ export default function ContactForm() {
         required
         rows={6}
         className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-      ></textarea>
+      ></Textarea>
 
       <Button
         type="submit"

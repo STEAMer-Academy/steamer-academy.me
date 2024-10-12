@@ -23,7 +23,7 @@ export default function Loading() {
   }, []);
 
   return (
-    <div className="content-center fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
       <svg className="h-24 w-24 animate-spin text-white" viewBox="0 0 24 24">
         <circle
           className="opacity-25"
