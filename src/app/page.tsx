@@ -63,7 +63,9 @@ export default function Home() {
 						</div>
 						<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none from-transparent" />
 						<div className="-bottom-20 z-10 h-[30vh] w-full md:h-full">
+            <script type="text/partytown">
 							<Globe />
+            </script>
 						</div>
 					</div>
 				</section>
