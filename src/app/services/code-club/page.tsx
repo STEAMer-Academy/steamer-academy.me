@@ -113,11 +113,12 @@ export default function CodeClub() {
 								/>
 								<div>
 									<p className="mb-2">
-										&quot;Code Club has been an amazing experience for my
-										daughter. She&apos;s learned so much and really enjoys the
-										projects!&quot;
+										&quot;&Starting my role as a WordPress administrator has
+										been a joy, thanks to its intuitive interface, media
+										management, security, and plugin integration, making website
+										management a breeze.&quot;
 									</p>
-									<p className="font-semibold">John D.</p>
+									<p className="font-semibold">Tom S.</p>
 								</div>
 							</div>
 							<div className="flex items-start">
