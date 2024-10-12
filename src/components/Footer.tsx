@@ -10,7 +10,8 @@ import {
   Facebook01Icon,
   TwitterIcon,
   DiscordIcon,
-  WhatsappIcon
+  WhatsappIcon,
+  Github01Icon
 } from "hugeicons-react";
 import { NewsletterForm } from "./NewsletterForm";
 
@@ -37,6 +38,9 @@ export default function Footer() {
               </Link>
               <Link href="https://whatsapp.com/channel/0029VaM5E3V1NCrcgLXjKN43" className="text-gray-400 hover:text-green-500" aria-label="WhatsApp Channel Link">
                 <WhatsappIcon className="h-6 w-6" />
+              </Link>
+              <Link href="https://github.com/STEAMer-Academy" className="text-gray-400 hover:text-gray-800" aria-label="GitHub Repository Link">
+                <Github01Icon className="h-6 w-6" />
               </Link>
             </div>
           </div>
