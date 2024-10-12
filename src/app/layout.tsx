@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   manifest: "/manifest.json",
+  metadataBase: new URL("https://www.steameracademy.me"),
+  openGraph: {
+    images: '/og-image.png',
+  },
 };
 
 export const viewport: Viewport = {
