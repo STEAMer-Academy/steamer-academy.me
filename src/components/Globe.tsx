@@ -403,5 +403,5 @@ export function Globe() {
     },
   ];
 
-  return <World data={sampleArcs} globeConfig={globeConfig} />;
+  return <script type="text/partytown"><World data={sampleArcs} globeConfig={globeConfig} /></script>;
 }
