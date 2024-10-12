@@ -108,23 +108,7 @@ export default function EnglishClubPage() {
 							regular speaking practice sessions, writing workshops, and access
 							to a variety of English language materials.
 						</p>
-					</section>
-
-					<section className="mb-12">
-						<h3 className="mb-4 text-xl font-semibold">Our Partner</h3>
-						<h4 className="mb-2 text-lg font-medium">
-							Thanks to our Ass. Headmaster for supervision
-						</h4>
-						<p>
-							Establishing an English Club was not possible for us without the
-							help of our Assistant Headmaster, MD. Masud Karim. Without his
-							supportance it was just impossible to do. When he first came to
-							know about our idea, he encouraged us and played the most
-							important role in management sector. He is the only person to be
-							by our side in every step of the club. In few word it can be said
-							that this club is more of our teacher than STEAMer.
-						</p>
-					</section>
+					</section>	
 
 					<section className="mb-12">
 						<h3 className="mb-4 text-xl font-semibold">Join Club</h3>
@@ -158,11 +142,6 @@ export default function EnglishClubPage() {
 								review="Starting my role as a STEAMer CEO has been a joy, thanks to its all members for being with me and my organization and we hope a better future for everyone."
 								name="H. Mondal"
 								imageSrc="/HmondalDiscordpfp.webp"
-							/>
-							<ReviewCard
-								review="Starting my role as a EC administrator has been a joy, thanks to every students and members of the English Club. And wish good luck for everyone."
-								name="Md. Masud Karim"
-								imageSrc="/MasudKarimpfp.webp"
 							/>
 						</div>
 					</section>
