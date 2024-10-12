@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import AboutContent from "./AboutContent";
 import TeamMembers from "./TeamMembers";
 import Layout from "@/components/Layout";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | About",
@@ -48,7 +48,7 @@ export default function AboutPage() {
 				<AboutContent />
 				<section>
 					<h2 className="mb-8 text-3xl font-bold">
-						<TypewriterEffect words={[{ text: "Our" }, { text: "Team" }]} />
+						<TypewriterEffectSmooth words={[{ text: "Our" }, { text: "Team" }]} />
 					</h2>
 					<TeamMembers members={teamMembers} />
 				</section>

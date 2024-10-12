@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
 import Layout from "@/components/Layout";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Contact",
@@ -15,7 +15,7 @@ export default function ContactPage() {
 		<Layout>
 			<div className="container mx-auto px-4 py-8">
 				<h1 className="mb-6 text-4xl font-bold">
-					<TypewriterEffect words={[{ text: "Contact" }]} />
+					<TypewriterEffectSmooth words={[{ text: "Contact" }]} />
 				</h1>
 
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2">

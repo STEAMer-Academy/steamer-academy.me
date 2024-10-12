@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import CountdownTimer from "./CountdownTimer";
 import ReviewCard from "./ReviewCard";
 import Layout from "@/components/Layout";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | English Club",
@@ -16,7 +16,7 @@ export default function EnglishClubPage() {
 			<div className="container mx-auto px-4 py-8">
 				<main>
 					<h1 className="mb-8 text-center text-3xl font-bold">
-						<TypewriterEffect
+						<TypewriterEffectSmooth
 							words={[
 								{
 									text: "Our",
@@ -28,7 +28,7 @@ export default function EnglishClubPage() {
 						/>
 					</h1>
 					<h2 className="mb-12 text-center text-4xl font-bold">
-						<TypewriterEffect
+						<TypewriterEffectSmooth
 							words={[
 								{
 									text: "English",

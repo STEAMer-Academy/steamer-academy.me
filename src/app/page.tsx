@@ -12,7 +12,7 @@ import {
 import { Globe } from "@/components/Globe";
 import { Metadata } from "next";
 import Layout from "../components/Layout";
-import { TypewriterEffect } from "../components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Home",
@@ -28,7 +28,7 @@ export default function Home() {
 					<div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
 						<div>
 							<h2 className="text-center text-xl font-bold text-black dark:text-white md:text-4xl">
-								<TypewriterEffect
+								<TypewriterEffectSmooth
 									words={[
 										{
 											text: "A",
@@ -63,15 +63,13 @@ export default function Home() {
 						</div>
 						<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none from-transparent" />
 						<div className="-bottom-20 z-10 h-[30vh] w-full md:h-full">
-            <script type="text/partytown">
 							<Globe />
-            </script>
 						</div>
 					</div>
 				</section>
 				<section className="container mx-auto px-4">
 					<h2 className="mb-8 text-center text-3xl font-bold">
-						<TypewriterEffect
+						<TypewriterEffectSmooth
 							words={[
 								{
 									text: "Learn",
@@ -134,7 +132,7 @@ export default function Home() {
 
 				<section className="container mx-auto px-4">
 					<h2 className="mb-8 text-center text-3xl font-bold">
-						<TypewriterEffect
+						<TypewriterEffectSmooth
 							words={[
 								{
 									text: "Create",

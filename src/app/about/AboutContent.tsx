@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export default function AboutContent() {
   const $theme = useStore(themeStore);
@@ -18,7 +18,7 @@ export default function AboutContent() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="mb-8 text-4xl font-bold">
-          <TypewriterEffect
+          <TypewriterEffectSmooth
             words={[
               { text: "About" },
               { text: "STEAMer" },

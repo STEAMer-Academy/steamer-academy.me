@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import GalleryGrid from "./GalleryGrid";
 import Layout from "@/components/Layout";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Gallery",
@@ -20,7 +20,7 @@ export default function GalleryPage() {
 		<Layout>
 			<div className="space-y-8">
 				<h1 className="mb-8 text-4xl font-bold">
-					<TypewriterEffect words={[{ text: "Gallery" }]} />
+					<TypewriterEffectSmooth words={[{ text: "Gallery" }]} />
 				</h1>
 				<p className="mb-8">
 					Welcome to our gallery, where we showcase the exciting world of STEAM

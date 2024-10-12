@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy",
@@ -15,7 +15,7 @@ export default function CodeClub() {
 			<div className="container mx-auto px-4 py-8">
 				<main>
 					<h2 className="mb-8 text-3xl font-bold">
-						<TypewriterEffect
+						<TypewriterEffectSmooth
 							words={[
 								{
 									text: "Our",
@@ -27,7 +27,7 @@ export default function CodeClub() {
 						/>
 					</h2>
 					<h1 className="mb-12 text-5xl font-bold">
-						<TypewriterEffect
+						<TypewriterEffectSmooth
 							words={[
 								{
 									text: "Code",
