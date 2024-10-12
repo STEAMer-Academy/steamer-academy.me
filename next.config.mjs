@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    removeConsole: true,
+    removeConsole: process.env.NODE_ENV === "production",
   },
 
   async redirects() {
