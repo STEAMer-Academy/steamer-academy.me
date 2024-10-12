@@ -89,15 +89,17 @@ export default function Home() {
 						approach combines hands-on learning with cutting-edge technology to
 						prepare students for the challenges of tomorrow.
 					</p>
+          <div className="content-center text-center">
 					<Link
 						href="/services"
 						aria-label="Learn More About Steamer Academy, by visiting the services page."
 						passHref
 					>
-						<Button variant="outline" className="content-center">
+						<Button variant="outline">
 							Learn More About Us
 						</Button>
 					</Link>
+          </div>
 				</section>
 
 				<section className="container mx-auto px-4">
