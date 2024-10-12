@@ -105,7 +105,7 @@ export default function CodeClub() {
 							<div className="flex items-start">	
 								<div>
 									<p className="mb-2">
-										&quot;&Starting my role as a WordPress administrator has
+										&quot;Starting my role as a WordPress administrator has
 										been a joy, thanks to its intuitive interface, media
 										management, security, and plugin integration, making website
 										management a breeze.&quot;
