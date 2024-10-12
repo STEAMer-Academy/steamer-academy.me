@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import localFont from "next/font/local";
+import './globals.css'
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
