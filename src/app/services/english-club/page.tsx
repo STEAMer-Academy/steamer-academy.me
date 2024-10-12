@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 export default function EnglishClubPage() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 text-center">
         <main>
-          <h1 className="mb-8 text-3xl font-bold">Our services</h1>
-          <h2 className="mb-12 text-4xl font-bold">English Club</h2>
+          <h1 className="mb-8 text-3xl font-bold text-center">Our services</h1>
+          <h2 className="mb-12 text-4xl font-bold text-center">English Club</h2>
 
           <section className="mb-12">
-            <h3 className="mb-4 text-xl font-semibold">Introduction</h3>
-            <h4 className="mb-2 text-lg font-medium">
+            <h3 className="mb-4 text-xl font-semibold text-center">Introduction</h3>
+            <h4 className="mb-2 text-lg font-medium text-center">
               Calling all Word Wizards and Grammar Gurus!
             </h4>
             <p>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  YoutubeIcon,
   Location01Icon,
   Mail01Icon,
   TelephoneIcon,
@@ -10,7 +9,8 @@ import {
   CopyrightIcon,
   Facebook01Icon,
   TwitterIcon,
-  InstagramIcon,
+  DiscordIcon,
+  WhatsappIcon
 } from "hugeicons-react";
 import { NewsletterForm } from "./NewsletterForm";
 
@@ -32,11 +32,11 @@ export default function Footer() {
               <Link href="#" className="text-gray-400 hover:text-blue-400">
                 <TwitterIcon className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-pink-500">
-                <InstagramIcon className="h-6 w-6" />
+              <Link href="https://discord.gg/Kqpbawj9KU" className="text-gray-400 hover:text-blue-600" aria-label="Discord Server Link">
+                <DiscordIcon className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-red-500">
-                <YoutubeIcon className="h-6 w-6" />
+              <Link href="https://whatsapp.com/channel/0029VaM5E3V1NCrcgLXjKN43" className="text-gray-400 hover:text-green-500" aria-label="WhatsApp Channel Link">
+                <WhatsappIcon className="h-6 w-6" />
               </Link>
             </div>
           </div>

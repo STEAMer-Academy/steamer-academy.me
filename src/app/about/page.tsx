@@ -43,7 +43,7 @@ const teamMembers = [
 export default function AboutPage() {
   return (
     <Layout>
-      <div className="space-y-16">
+      <div className="space-y-16 content-center text-center">
         <AboutContent />
         <section>
           <h2 className="mb-8 text-3xl font-bold">Our Team</h2>

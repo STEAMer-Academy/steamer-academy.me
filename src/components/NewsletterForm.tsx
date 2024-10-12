@@ -71,7 +71,7 @@ export function NewsletterForm() {
         onSubmit={handleSubmit}
         method="POST"
         data-netlify="true"
-        data-netlify-recaptcha="true"
+        name="newsletter"
       >
         <input type="hidden" name="form-name" value="newsletter" />
         <Input
@@ -87,8 +87,6 @@ export function NewsletterForm() {
               : "bg-white text-gray-900"
           }`}
         />
-
-        <div data-netlify-recaptcha="true"></div>
 
         <Button
           type="submit"

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<Layout>
-			<div className="space-y-6">
+			<div className="space-y-6 content-center text-center">
 					<section className="relative flex h-screen w-full flex-row items-center justify-center py-20 md:h-auto">
 						<div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
 							<div>
@@ -52,7 +52,7 @@ export default function Home() {
 						</div>
 					</section>
 				<section className="container mx-auto px-4">
-					<h2 className="mb-8 text-3xl font-bold">Learn with STEAMer</h2>
+					<h2 className="mb-8 text-3xl font-bold text-center">Learn with STEAMer</h2>
 					<p className="mb-8">
 						STEAMer Academy offers comprehensive education in Science,
 						Technology, Engineering, Arts, and Mathematics. Our innovative
@@ -64,7 +64,7 @@ export default function Home() {
 						aria-label="Learn More About Steamer Academy, by visiting the services page."
 						passHref
 					>
-						<Button variant="outline">Learn More About Us</Button>
+						<Button variant="outline" className="content-center">Learn More About Us</Button>
 					</Link>
 				</section>
 
@@ -89,7 +89,7 @@ export default function Home() {
 									/>
 								</CardContent>
 								<CardFooter>
-									<Button>Learn more</Button>
+									<Button className="content-center">Learn more</Button>
 								</CardFooter>
 							</Card>
 						))}
@@ -97,7 +97,7 @@ export default function Home() {
 				</section>
 
 				<section className="container mx-auto px-4">
-					<h2 className="mb-8 text-3xl font-bold">Create anything</h2>
+					<h2 className="mb-8 text-3xl font-bold text-center">Create anything</h2>
 					<p className="mb-8">
 						Join us on this exciting journey! Explore our website, contact us
 						today to learn more, and let STEAMer become the launchpad for your
@@ -117,12 +117,6 @@ export default function Home() {
 							<p>Expert teachers</p>
 						</div>
 					</div>
-				</section>
-
-				<section className="container mx-auto px-4">
-					<h2 className="mb-4 text-3xl font-bold">
-						Get new content delivered directly to your inbox
-					</h2>
 				</section>
 			</div>
 		</Layout>

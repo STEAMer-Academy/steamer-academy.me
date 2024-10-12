@@ -49,7 +49,7 @@ const reviews = [
 export default function ServicesPage() {
   return (
     <Layout>
-      <div className="space-y-16">
+      <div className="space-y-16 content-center text-center">
         <section>
           <h1 className="mb-8 text-4xl font-bold">Our Services</h1>
           <ServicesList services={services} />

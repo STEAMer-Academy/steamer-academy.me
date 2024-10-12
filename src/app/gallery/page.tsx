@@ -17,7 +17,7 @@ const images = [
 export default function GalleryPage() {
   return (
     <Layout>
-      <div className="space-y-8">
+      <div className="space-y-8 content-center text-center">
         <h1 className="mb-8 text-4xl font-bold">Gallery</h1>
         <p className="mb-8">
           Welcome to our gallery, where we showcase the exciting world of STEAM

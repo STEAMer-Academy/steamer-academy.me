@@ -8,7 +8,7 @@ export default function AboutContent() {
   const $theme = useStore(themeStore);
 
   return (
-    <section className={$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"}>
+    <section className={`${$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"} text-center content-center`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
