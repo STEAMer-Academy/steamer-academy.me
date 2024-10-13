@@ -18,6 +18,27 @@ export const metadata: Metadata = {
 		apple: "/favicon.png",
 	},
 	manifest: "/manifest.json",
+  generator: "Next.js",
+  applicationName: "STEAMer Academy Next. js App",
+  referrer: "origin-when-cross-origin",
+  keywords: ['Next.js', 'React', 'JavaScript','Tailwindcss', 'TypeScript', 'Shadcn UI', 'Aceternity UI', 'Bun'],
+  authors: [{ name: 'Muntasir', url: 'https://muntasirmahmud.me' }],
+  creator: 'Muntasir Mahmud',
+  publisher: 'Muntasir Mahmud',
+  formatDetection: {
+    email: true,
+    address: false,
+    telephone: true,
+  },
+  metadataBase: new URL('https://www.steameracademy.me'),
+  robots: {
+    index: true,
+    follow: true,
+  },
+  appleWebApp: {
+    statusBarStyle: "black-translucent",
+    title: "STEAMer Academy",
+  },
 };
 
 export const viewport: Viewport = {
@@ -43,8 +64,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<head>
-				<link rel="preconnect" href="https://www.google-analytics.com" />
-				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<Partytown debug={true} forward={["dataLayer.push"]} />
 				<GoogleAnalytics />
 				<Script id="next-pwa">
