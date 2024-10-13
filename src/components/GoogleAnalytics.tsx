@@ -20,14 +20,14 @@ const GoogleAnalytics = (): React.ReactElement => {
     <>
       <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-DD3FHBDSP0`}
         type="text/partytown"
       />
       <Script id="google-analytics" type="text/partytown">
       {`window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
+          gtag('config', 'G-DD3FHBDSP0');
       `}
       </Script>
     </>
