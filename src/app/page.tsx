@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/card";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Globe } from "@/components/Globe";
 
 const TypewriterEffectSmooth = dynamic(
   () => import("../components/ui/typewriter-effect").then((mod) => mod.TypewriterEffectSmooth)
 );
 const Layout = dynamic(() => import("../components/Layout").then((mod) => mod.default));
-const Globe = dynamic(() => import("../components/Globe").then((mod) => mod.Globe));
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Home",
