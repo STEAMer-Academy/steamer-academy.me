@@ -25,12 +25,12 @@ export default function Header() {
     <div>
       <header className="border-b">
         <nav className="container mx-auto flex flex-wrap items-center justify-between space-y-2 px-4 py-4 md:space-y-0">
-          <Link href="/" className="text-2xl font-bold">
+          <Link href="/" className="text-2xl font-bold" prefetch={true}>
             STEAMer Academy
           </Link>
           <div className="flex w-full flex-wrap items-center justify-center space-x-2 md:w-auto md:justify-end">
             <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/">Home</Link>
+              <Link href="/" prefetch={true}>Home</Link>
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -52,24 +52,24 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
-                  <Link href="/services/english-club">English Club</Link>
+                  <Link href="/services/english-club" prefetch={true}>English Club</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/services/code-club">Code Club</Link>
+                  <Link href="/services/code-club" prefetch={true}>Code Club</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/about">About</Link>
+              <Link href="/about" prefetch={true}>About</Link>
             </Button>
             <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/gallery">Gallery</Link>
+              <Link href="/gallery" prefetch={true}>Gallery</Link>
             </Button>
             <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/blogs">Blogs</Link>
+              <Link href="/blogs" prefetch={true}>Blogs</Link>
             </Button>
             <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact" prefetch={true}>Contact</Link>
             </Button>
             <ThemeToggle />
           </div>
