@@ -3,7 +3,7 @@ import withPWA from "next-pwa";
 
 const pwaConfig= {
     dest: 'public',  // Location of service worker and cache files
-    disable: process.env.NODE_ENV === 'development',  // Disable PWA in development
+    disable: process.env.NODE_ENV === 'development',
     register: true,
     skipWaiting: true,
   }
