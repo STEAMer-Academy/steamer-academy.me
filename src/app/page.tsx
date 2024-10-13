@@ -67,7 +67,7 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
-				<section className="container mx-auto px-4">
+				<section className="container mx-auto px-4 mt-5">
 					<h2 className="mb-8 text-center text-3xl font-bold">
 						<TypewriterEffectSmooth
 							words={[
