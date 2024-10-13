@@ -8,7 +8,7 @@ import {
   Clock01Icon,
   CopyrightIcon,
   Facebook01Icon,
-  TwitterIcon,
+  NewTwitterIcon,
   DiscordIcon,
   WhatsappIcon,
   Github01Icon
@@ -33,7 +33,7 @@ export default function Footer() {
                 <Facebook01Icon className="h-6 w-6" />
               </Link>
               <Link href="#" className="text-gray-400 hover:text-blue-400">
-                <TwitterIcon className="h-6 w-6" />
+                <NewTwitterIcon className="h-6 w-6" />
               </Link>
               <Link href="https://discord.gg/Kqpbawj9KU" className="text-gray-400 hover:text-blue-600" aria-label="Discord Server Link">
                 <DiscordIcon className="h-6 w-6" />
