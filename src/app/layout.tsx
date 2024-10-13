@@ -3,6 +3,9 @@ import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import localFont from "next/font/local";
 import './globals.css'
+import dynamic from "next/dynamic";
+
+const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"),{ ssr: false });
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -40,6 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <Partytown debug={true} forward={["dataLayer.push"]} />
+        <GoogleAnalytics />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-center`}>{children}</body>
     </html>

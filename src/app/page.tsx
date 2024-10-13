@@ -9,10 +9,14 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Globe } from "@/components/Globe";
 import { Metadata } from "next";
-import Layout from "../components/Layout";
-import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import dynamic from "next/dynamic";
+
+const TypewriterEffectSmooth = dynamic(
+  () => import("../components/ui/typewriter-effect").then((mod) => mod.TypewriterEffectSmooth)
+);
+const Layout = dynamic(() => import("../components/Layout").then((mod) => mod.default));
+const Globe = dynamic(() => import("../components/Globe").then((mod) => mod.Globe));
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Home",

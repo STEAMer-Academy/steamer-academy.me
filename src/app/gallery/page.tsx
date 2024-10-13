@@ -1,7 +1,11 @@
 import { Metadata } from "next";
-import GalleryGrid from "./GalleryGrid";
-import Layout from "@/components/Layout";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import dynamic from "next/dynamic";
+
+const TypewriterEffectSmooth = dynamic(
+  () => import("@/components/ui/typewriter-effect").then((mod) => mod.TypewriterEffectSmooth)
+);
+const Layout = dynamic(() => import("@/components/Layout").then((mod) => mod.default));
+const GalleryGrid = dynamic(() => import("./GalleryGrid").then((mod) => mod.default));
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Gallery",

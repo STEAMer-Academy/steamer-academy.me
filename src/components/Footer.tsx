@@ -13,11 +13,13 @@ import {
   WhatsappIcon,
   Github01Icon
 } from "hugeicons-react";
-import { NewsletterForm } from "./NewsletterForm";
+import dynamic from "next/dynamic";
+
+const NewsletterForm = dynamic(() => import("./NewsletterForm").then(mod => mod.NewsletterForm));
 
 export default function Footer() {
   return (
-    <footer className="border-t">
+    <footer className="border-t text-left content-left">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Company Info */}

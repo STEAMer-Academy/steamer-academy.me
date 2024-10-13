@@ -10,7 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { ArrowDown01Icon } from "hugeicons-react";
-import ThemeToggle from "./ThemeToggle";
+import dynamic from "next/dynamic";
+
+const ThemeToggle = dynamic(() => import("./ThemeToggle").then((mod) => mod.default));
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

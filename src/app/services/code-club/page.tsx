@@ -1,9 +1,12 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
-import Layout from "@/components/Layout";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import dynamic from "next/dynamic";
 
+const TypewriterEffectSmooth = dynamic(
+  () => import("@/components/ui/typewriter-effect").then((mod) => mod.TypewriterEffectSmooth)
+);
+const Layout = dynamic(() => import("@/components/Layout").then((mod) => mod.default));
 export const metadata: Metadata = {
 	title: "STEAMer Academy",
 	description: "Join our Code Club and learn programming skills",

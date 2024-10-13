@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Header from "./Header";
-import Footer from "./Footer";
-import { ThemeProvider } from "./ThemeProvider";
+import dynamic from "next/dynamic";
+
+const Header = dynamic(() => import("./Header").then((mod) => mod.default));
+const Footer = dynamic(() => import("./Footer").then((mod) => mod.default));
+const ThemeProvider = dynamic(() => import("./ThemeProvider").then((mod) => mod.ThemeProvider));
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
