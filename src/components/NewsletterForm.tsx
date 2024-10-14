@@ -81,7 +81,7 @@ export function NewsletterForm() {
 					value={formData.email}
 					onChange={handleChange}
 					required
-					className={`w-full ${
+					className={`w-full mb-6 ${
 						$theme === "dark"
 							? "bg-gray-800 text-gray-200"
 							: "bg-white text-gray-900"
