@@ -91,7 +91,7 @@ export default function Home() {
 									text: "STEAMer",
 								},
 							]}
-							className="mt-5 pt-8"
+							className="mt-7 pt-10"
 						/>
 					</h2>
 					<p className="mb-8">
