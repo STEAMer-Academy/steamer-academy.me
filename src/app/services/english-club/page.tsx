@@ -69,7 +69,7 @@ export default function EnglishClubPage() {
 						</p>
 					</section>
 
-					<section className="mb-12">
+					<section className="mb-12 text-left">
 						<h3 className="mb-4 text-xl font-semibold">Target</h3>
 						<h4 className="mb-2 text-lg font-medium">
 							Goals of the English Club
