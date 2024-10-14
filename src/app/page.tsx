@@ -61,7 +61,7 @@ export default function Home() {
 									]}
 								/>
 							</h2>
-							<p className="mx-auto mt-2 max-w-md text-center text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg">
+							<p className="mx-auto mt-2 max-w-md text-center text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg mb-8">
 								STEAMer Academy Is Here To Guide You On Your Learning Journey
 							</p>
 							<div className="text-center">
