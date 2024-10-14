@@ -26,7 +26,6 @@ import {
 	ArrowDown01Icon,
 	LanguageSkillIcon,
 	CodeIcon,
-	MultiplicationSignIcon,
 } from "hugeicons-react";
 import Image from "next/image";
 
@@ -75,7 +74,7 @@ export default function Header() {
 			className={cn(
 				"fixed left-0 right-0 top-0 z-50 transition-all duration-300",
 				isScrolled
-					? "bg-background/80 shadow-md backdrop-blur-md"
+					? "bg-background/60 shadow-xl backdrop-blur-xl"
 					: "bg-background",
 				isVisible ? "translate-y-0" : "-translate-y-full",
 			)}
@@ -169,16 +168,6 @@ export default function Header() {
 								value={searchValue}
 								onChange={(e) => setSearchValue(e.target.value)}
 							/>
-							{searchValue && (
-								<Button
-									variant="ghost"
-									size="icon"
-									className="absolute right-2 top-1/2 -translate-y-1/2 transform"
-									onClick={() => setSearchValue("")}
-								>
-									<MultiplicationSignIcon className="align-left h-4 w-4" />
-								</Button>
-							)}
 						</div>
 						<ThemeToggle />
 					</div>
@@ -201,16 +190,6 @@ export default function Header() {
 											value={searchValue}
 											onChange={(e) => setSearchValue(e.target.value)}
 										/>
-										{searchValue && (
-											<Button
-												variant="ghost"
-												size="icon"
-												className="absolute right-2 top-1/2 h-8 w-8 -translate-y-1/2 transform p-0"
-												onClick={() => setSearchValue("")}
-											>
-												<MultiplicationSignIcon className="align-left h-4 w-4" />
-											</Button>
-										)}
 									</div>{" "}
 									{navItems.map((item) => (
 										<SheetClose asChild key={item.href}>
