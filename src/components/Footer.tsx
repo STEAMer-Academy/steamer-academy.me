@@ -6,8 +6,8 @@ import {
   Mail01Icon,
   Clock01Icon,
   CopyrightIcon,
-  Facebook01Icon,
-  NewTwitterIcon,
+  // Facebook01Icon,
+  // NewTwitterIcon,
   DiscordIcon,
   WhatsappIcon,
   Github01Icon
@@ -28,12 +28,12 @@ export default function Footer() {
               Follow us on social media for the latest updates and offers. We are active on Facebook, Twitter, Discord, WhatsApp, and GitHub.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-blue-500">
-                <Facebook01Icon className="h-6 w-6" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-gray-700">
-                <NewTwitterIcon className="h-6 w-6" />
-              </Link>
+              {/* <Link href="#" className="text-gray-400 hover:text-blue-500"> */}
+              {/*   <Facebook01Icon className="h-6 w-6" /> */}
+              {/* </Link> */}
+              {/* <Link href="#" className="text-gray-400 hover:text-gray-700"> */}
+              {/*   <NewTwitterIcon className="h-6 w-6" /> */}
+              {/* </Link> */}
               <Link href="https://discord.gg/Kqpbawj9KU" className="text-gray-400 hover:text-blue-600" aria-label="Discord Server Link">
                 <DiscordIcon className="h-6 w-6" />
               </Link>

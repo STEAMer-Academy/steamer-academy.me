@@ -4,6 +4,7 @@ import CountdownTimer from "./CountdownTimer";
 import ReviewCard from "./ReviewCard";
 import Layout from "@/components/Layout";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | English Club",
@@ -70,8 +71,8 @@ export default function EnglishClubPage() {
 					</section>
 
 					<section className="mb-12">
-						<h3 className="mb-4 text-xl font-semibold text-center">Target</h3>
-						<h4 className="mb-2 text-lg font-medium text-center">
+						<h3 className="mb-4 text-center text-xl font-semibold">Target</h3>
+						<h4 className="mb-2 text-center text-lg font-medium">
 							Goals of the English Club
 						</h4>
 						<ul className="list-inside list-disc text-left">
@@ -108,7 +109,7 @@ export default function EnglishClubPage() {
 							regular speaking practice sessions, writing workshops, and access
 							to a variety of English language materials.
 						</p>
-					</section>	
+					</section>
 
 					<section className="mb-12">
 						<h3 className="mb-4 text-xl font-semibold">Join Club</h3>
@@ -120,9 +121,13 @@ export default function EnglishClubPage() {
 							the pursuit of knowledge.
 						</p>
 						<CountdownTimer />
-						<div className="flex gap-2 align-center content-center justify-center">
-							<Button variant="default">Join Now</Button>
-							<Button variant="outline">Learn More</Button>
+						<div className="align-center flex content-center justify-center gap-2">
+            <Link href="https://chat.whatsapp.com/L5v0bIwXSmLFby2nld79qU">
+							<Button variant="default">Join On Whatsapp</Button>
+            </Link>
+            <Link href="https://broadleaf-wish-3e3.notion.site/English-Club-d19333082ca24f91a6e4716e52d27224">
+							<Button variant="default">Join On Notion</Button>
+            </Link>
 						</div>
 					</section>
 
@@ -132,7 +137,12 @@ export default function EnglishClubPage() {
 							You can also join us indirectly through Duolingo for School. This
 							button will allow you to join our Duolingo Classroom.
 						</p>
-						<Button variant="default">Join Duolingo Classroom</Button>
+						<Link href="http://www.google.com/url?q=http%3A%2F%2Fwww.duolingo.com%2Fclassroom%2Fpcjnkq&sa=D&sntz=1&usg=AOvVaw35f-JqwCiYS9LBNEEMdu5W">
+							<Button variant="default">Join Duolingo Classroom</Button>
+						</Link>
+            <Link href="https://schools.duolingo.com/classroom/6757271/invitation_printout/">
+              <Button variant="outline">Learn More</Button>
+            </Link>
 					</section>
 
 					<section className="mb-12">

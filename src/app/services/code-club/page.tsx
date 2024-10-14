@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Link } from "lucide-react";
 
 const TypewriterEffectSmooth = dynamic(() =>
 	import("@/components/ui/typewriter-effect").then(
@@ -107,7 +108,9 @@ export default function CodeClub() {
 							Ready to start your coding adventure? Join our Code Club and
 							unlock a world of creativity and innovation!
 						</p>
-						<Button variant="default">Sign Up</Button>
+						<Link href="https://codeclub.org/en/clubs/b3185ec9-1257-4a73-8353-dcb7f80bca5b">
+							<Button variant="default">Join Now</Button>
+						</Link>
 					</section>
 
 					<section className="mb-12">
