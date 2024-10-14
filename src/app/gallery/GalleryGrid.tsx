@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
 interface GalleryImage {
   src: string;
   alt: string;
 }
 
-export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
+export default function GalleryGrid({ images, className }: { images: GalleryImage[], className?: string }) {
   return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -25,7 +27,7 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
               alt={image.alt}
               layout="fill"
               objectFit="cover"
-              className="rounded-lg"
+              className={cn("rounded-lg", className)}
               loading="lazy"
             />
           </motion.div>
