@@ -106,10 +106,10 @@ export default function Home() {
 				<section className="container mx-auto px-4">
 					<h2 className="mb-8 text-3xl font-bold">New arrivals</h2>
           <p>STEAMER Academy goes beyond traditional language learning. We strive to ignite students’ curiosity, fostering a love for learning, critical thinking skills, and creativity. Our classes equip them with the communication skills they need to thrive in an increasingly interconnected world.</p>
-					<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-					  <Image src="/RootImage1.webp" alt="New Arrival 1" className="p-6 pt-0"/>
-            <Image src="/RootImage2.webp" alt="New Arrival 2" className="p-6 pt-0"/>
-            <Image src="/RootImage3.webp" alt="New Arrival 3" className="p-6 pt-0"/>
+					<div className="grid grid-cols-1 gap-8 md:grid-cols-3 rounded-lg border bg-card text-card-foreground shadow-sm p-6 pt-0">
+					  <Image src="/RootImage1.webp" alt="New Arrival 1" />
+            <Image src="/RootImage2.webp" alt="New Arrival 2" />
+            <Image src="/RootImage3.webp" alt="New Arrival 3" />
 					</div>
 				</section>
 
