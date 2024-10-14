@@ -10,7 +10,7 @@ export default function AboutContent() {
 
   return (
     <section
-      className={`${$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"}`}
+      className={`${$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"} text-left`}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -24,6 +24,7 @@ export default function AboutContent() {
               { text: "STEAMer" },
               { text: "Academy" },
             ]}
+            className="mt-6 pt-6"
           />
         </h1>
         <p className="mb-4">
