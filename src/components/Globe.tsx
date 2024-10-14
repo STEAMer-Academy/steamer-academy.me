@@ -403,5 +403,5 @@ export function Globe() {
     },
   ];
 
-  return <World data={sampleArcs} globeConfig={globeConfig} className="mb-2"/>;
+  return <World data={sampleArcs} globeConfig={globeConfig} className="mb-8"/>;
 }
