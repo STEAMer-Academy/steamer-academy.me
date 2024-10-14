@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Globe } from "@/components/Globe";
 import Loader from "@/components/loading";
-
+import GalleryGrid from "./gallery/GalleryGrid";
 const TypewriterEffectSmooth = dynamic(() =>
 	import("../components/ui/typewriter-effect").then(
 		(mod) => mod.TypewriterEffectSmooth,
@@ -14,6 +13,21 @@ const TypewriterEffectSmooth = dynamic(() =>
 const Layout = dynamic(() =>
 	import("../components/Layout").then((mod) => mod.default),
 );
+
+const images = [
+  {
+    src: "/RootImage1.webp",
+    alt: "New Arrival 1",
+  },
+  {
+    src: "/RootImage2.webp",
+    alt: "New Arrival 2",
+  },
+  {
+    src: "/RootImage3.webp",
+    alt: "New Arrival 3",
+  },
+];
 
 export const metadata: Metadata = {
 	title: "STEAMer Academy | Home",
@@ -106,11 +120,7 @@ export default function Home() {
 				<section className="container mx-auto px-4">
 					<h2 className="mb-8 text-3xl font-bold">New arrivals</h2>
           <p>STEAMER Academy goes beyond traditional language learning. We strive to ignite students’ curiosity, fostering a love for learning, critical thinking skills, and creativity. Our classes equip them with the communication skills they need to thrive in an increasingly interconnected world.</p>
-					<div className="grid grid-cols-1 gap-8 md:grid-cols-3 rounded-lg border bg-card text-card-foreground shadow-sm p-6 pt-0">
-					  <Image src="/RootImage1.webp" alt="New Arrival 1" />
-            <Image src="/RootImage2.webp" alt="New Arrival 2" />
-            <Image src="/RootImage3.webp" alt="New Arrival 3" />
-					</div>
+          <GalleryGrid images={images} />
 				</section>
 
 				<section className="container mx-auto px-4">
