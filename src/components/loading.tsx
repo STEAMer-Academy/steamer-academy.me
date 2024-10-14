@@ -18,7 +18,7 @@ export default function Loading() {
       const timer = setTimeout(() => {
         setIsVisible(false);
         localStorage.setItem("hasVisitedRoot", "true"); // Mark root as visited
-      }, 4000);
+      }, 5000);
 
       return () => clearTimeout(timer); // Cleanup timer
     }
