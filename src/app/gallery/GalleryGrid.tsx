@@ -26,6 +26,7 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
               layout="fill"
               objectFit="cover"
               className="rounded-lg"
+              loading="lazy"
             />
           </motion.div>
         ))}
