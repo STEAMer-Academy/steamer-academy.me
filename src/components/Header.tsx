@@ -28,6 +28,7 @@ import {
 	CodeIcon,
 	MultiplicationSignIcon,
 } from "hugeicons-react";
+import Image from "next/image";
 
 const ThemeToggle = dynamic(() =>
 	import("./ThemeToggle").then((mod) => mod.default),
@@ -81,10 +82,20 @@ export default function Header() {
 		>
 			<nav className="container mx-auto px-4 py-4">
 				<div className="flex items-center justify-between">
-					<Link href="/" className="text-2xl font-bold" prefetch={true}>
-						STEAMer Academy
+					<Link
+						href="/"
+						className="flex items-center space-x-2"
+						prefetch={true}
+					>
+						<Image
+							src="/favicon.png"
+							alt="STEAMer Academy Logo"
+							width={40}
+							height={40}
+							className="rounded-full"
+						/>
+						<span className="text-2xl font-bold">STEAMer Academy</span>
 					</Link>
-
 					<div className="hidden items-center space-x-1 lg:flex">
 						{navItems.slice(0, 2).map((item) => (
 							<Button
@@ -197,7 +208,7 @@ export default function Header() {
 												className="absolute right-2 top-1/2 h-8 w-8 -translate-y-1/2 transform p-0"
 												onClick={() => setSearchValue("")}
 											>
-												<MultiplicationSignIcon className="h-4 w-4 align-left" />
+												<MultiplicationSignIcon className="align-left h-4 w-4" />
 											</Button>
 										)}
 									</div>{" "}
