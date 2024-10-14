@@ -117,8 +117,6 @@ export default function CodeClub() {
 								review="This is the best coding club I have ever been to! The mentor's are amazing and I have learned so much. I can't wait for the next session!"
 								name="Tom S."
 							/>
-						</div>
-						<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 							<ReviewCard
 								review='"The mentors are fantastic and make coding fun and accessible. My son looks forward to every session!"'
 								name="Sarah M."

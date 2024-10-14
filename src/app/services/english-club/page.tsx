@@ -69,12 +69,12 @@ export default function EnglishClubPage() {
 						</p>
 					</section>
 
-					<section className="mb-12 text-left">
-						<h3 className="mb-4 text-xl font-semibold">Target</h3>
-						<h4 className="mb-2 text-lg font-medium">
+					<section className="mb-12">
+						<h3 className="mb-4 text-xl font-semibold text-center">Target</h3>
+						<h4 className="mb-2 text-lg font-medium text-center">
 							Goals of the English Club
 						</h4>
-						<ul className="list-inside list-disc">
+						<ul className="list-inside list-disc text-left">
 							<li>
 								To create a supportive and inclusive environment where members
 								can develop their confidence and skills in using the English
