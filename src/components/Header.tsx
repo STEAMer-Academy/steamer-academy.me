@@ -1,80 +1,259 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { ArrowDown01Icon } from "hugeicons-react";
+import { Input } from "./ui/input";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
+import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import {
+	Search01Icon,
+	Menu01Icon,
+	Home07Icon,
+	BookEditIcon,
+	InformationCircleIcon,
+	Image01Icon,
+	File01Icon,
+	CallIcon,
+	ArrowDown01Icon,
+	LanguageSkillIcon,
+	CodeIcon,
+	MultiplicationSignIcon,
+} from "hugeicons-react";
 
-const ThemeToggle = dynamic(() => import("./ThemeToggle").then((mod) => mod.default));
+const ThemeToggle = dynamic(() =>
+	import("./ThemeToggle").then((mod) => mod.default),
+);
 
 export default function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false);
+	const [lastScrollY, setLastScrollY] = useState(0);
+	const [isVisible, setIsVisible] = useState(true);
+	const [searchValue, setSearchValue] = useState("");
+	const pathname = usePathname();
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+			setIsScrolled(currentScrollY > 0);
+			setIsVisible(currentScrollY < lastScrollY || currentScrollY < 10);
+			setLastScrollY(currentScrollY);
+		};
 
-  return (
-    <div>
-      <header className="border-b">
-        <nav className="container mx-auto flex flex-wrap items-center justify-between space-y-2 px-4 py-4 md:space-y-0">
-          <Link href="/" className="text-2xl font-bold" prefetch={true}>
-            STEAMer Academy
-          </Link>
-          <div className="flex w-full flex-wrap items-center justify-center space-x-2 md:w-auto md:justify-end">
-            <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/" prefetch={true}>Home</Link>
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  onClick={toggleDropdown}
-                  className="flex items-center space-x-1 font-sans font-medium"
-                >
-                  <span>Services</span>
-                  <ArrowDown01Icon
-                    rotate={isDropdownOpen ? 180 : 0}
-                    style={{
-                      width: "1rem",
-                      height: "1rem",
-                      transition: "transform 200ms",
-                    }}
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>
-                  <Link href="/services/english-club" prefetch={true}>English Club</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/services/code-club" prefetch={true}>Code Club</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/about" prefetch={true}>About</Link>
-            </Button>
-            <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/gallery" prefetch={true}>Gallery</Link>
-            </Button>
-            <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/blogs" prefetch={true}>Blogs</Link>
-            </Button>
-            <Button variant="ghost" asChild className="font-sans font-medium">
-              <Link href="/contact" prefetch={true}>Contact</Link>
-            </Button>
-            <ThemeToggle />
-          </div>
-        </nav>
-      </header>
-    </div>
-  );
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [lastScrollY]);
+
+	const navItems = [
+		{ href: "/", label: "Home", icon: Home07Icon },
+		{ href: "/about", label: "About", icon: InformationCircleIcon },
+		{ href: "/gallery", label: "Gallery", icon: Image01Icon },
+		{ href: "/blogs", label: "Blogs", icon: File01Icon },
+		{ href: "/contact", label: "Contact", icon: CallIcon },
+	];
+
+	const services = [
+		{
+			href: "/services/english-club",
+			label: "English Club",
+			icon: LanguageSkillIcon,
+		},
+		{ href: "/services/code-club", label: "Code Club", icon: CodeIcon },
+	];
+
+	return (
+		<header
+			className={cn(
+				"fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+				isScrolled
+					? "bg-background/80 shadow-md backdrop-blur-md"
+					: "bg-background",
+				isVisible ? "translate-y-0" : "-translate-y-full",
+			)}
+		>
+			<nav className="container mx-auto px-4 py-4">
+				<div className="flex items-center justify-between">
+					<Link href="/" className="text-2xl font-bold" prefetch={true}>
+						STEAMer Academy
+					</Link>
+
+					<div className="hidden items-center space-x-1 lg:flex">
+						{navItems.slice(0, 2).map((item) => (
+							<Button
+								key={item.href}
+								variant={pathname === item.href ? "secondary" : "ghost"}
+								asChild
+								className="font-sans font-medium"
+							>
+								<Link
+									href={item.href}
+									prefetch={true}
+									className="flex items-center"
+								>
+									<item.icon className="mr-2 h-4 w-4" />
+									{item.label}
+								</Link>
+							</Button>
+						))}
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button
+									variant="ghost"
+									className="flex items-center space-x-1 font-sans font-medium"
+								>
+									<BookEditIcon className="h-4 w-4" />
+									<span>Services</span>
+									<ArrowDown01Icon className="ml-1 h-4 w-4" />
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent>
+								{services.map((service) => (
+									<DropdownMenuItem key={service.href}>
+										<Link
+											href={service.href}
+											prefetch={true}
+											className="flex w-full items-center"
+										>
+											<service.icon className="mr-2 h-4 w-4" />
+											{service.label}
+										</Link>
+									</DropdownMenuItem>
+								))}
+							</DropdownMenuContent>
+						</DropdownMenu>
+						{navItems.slice(2).map((item) => (
+							<Button
+								key={item.href}
+								variant={pathname === item.href ? "secondary" : "ghost"}
+								asChild
+								className="font-sans font-medium"
+							>
+								<Link
+									href={item.href}
+									prefetch={true}
+									className="flex items-center"
+								>
+									<item.icon className="mr-2 h-4 w-4" />
+									{item.label}
+								</Link>
+							</Button>
+						))}
+					</div>
+
+					<div className="hidden items-center space-x-4 lg:flex">
+						<div className="relative">
+							<Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+							<Input
+								type="search"
+								placeholder="Search..."
+								className="w-64 pl-10"
+								value={searchValue}
+								onChange={(e) => setSearchValue(e.target.value)}
+							/>
+							{searchValue && (
+								<Button
+									variant="ghost"
+									size="icon"
+									className="absolute right-2 top-1/2 -translate-y-1/2 transform"
+									onClick={() => setSearchValue("")}
+								>
+									<MultiplicationSignIcon className="align-left h-4 w-4" />
+								</Button>
+							)}
+						</div>
+						<ThemeToggle />
+					</div>
+
+					<div className="lg:hidden">
+						<Sheet>
+							<SheetTrigger asChild>
+								<Button variant="ghost" size="icon">
+									<Menu01Icon className="h-6 w-6" />
+								</Button>
+							</SheetTrigger>
+							<SheetContent side="right">
+								<nav className="flex flex-col space-y-4">
+									<div className="relative mb-4">
+										<Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+										<Input
+											type="search"
+											placeholder="Search..."
+											className="pl-10 pr-6"
+											value={searchValue}
+											onChange={(e) => setSearchValue(e.target.value)}
+										/>
+										{searchValue && (
+											<Button
+												variant="ghost"
+												size="icon"
+												className="absolute right-2 top-1/2 h-8 w-8 -translate-y-1/2 transform p-0"
+												onClick={() => setSearchValue("")}
+											>
+												<MultiplicationSignIcon className="h-4 w-4 align-left" />
+											</Button>
+										)}
+									</div>{" "}
+									{navItems.map((item) => (
+										<SheetClose asChild key={item.href}>
+											<Button
+												variant={pathname === item.href ? "secondary" : "ghost"}
+												asChild
+												className="justify-start font-sans font-medium"
+											>
+												<Link
+													href={item.href}
+													prefetch={true}
+													className="flex items-center"
+												>
+													<item.icon className="mr-2 h-4 w-4" />
+													{item.label}
+												</Link>
+											</Button>
+										</SheetClose>
+									))}
+									<DropdownMenu>
+										<DropdownMenuTrigger asChild>
+											<Button
+												variant="ghost"
+												className="justify-start font-sans font-medium"
+											>
+												<BookEditIcon className="mr-2 h-4 w-4" />
+												<span>Services</span>
+												<ArrowDown01Icon className="ml-1 h-4 w-4" />
+											</Button>
+										</DropdownMenuTrigger>
+										<DropdownMenuContent>
+											{services.map((service) => (
+												<DropdownMenuItem key={service.href}>
+													<SheetClose asChild>
+														<Link
+															href={service.href}
+															prefetch={true}
+															className="flex w-full items-center"
+														>
+															<service.icon className="mr-2 h-4 w-4" />
+															{service.label}
+														</Link>
+													</SheetClose>
+												</DropdownMenuItem>
+											))}
+										</DropdownMenuContent>
+									</DropdownMenu>
+									<ThemeToggle />
+								</nav>
+							</SheetContent>
+						</Sheet>
+					</div>
+				</div>
+			</nav>
+		</header>
+	);
 }

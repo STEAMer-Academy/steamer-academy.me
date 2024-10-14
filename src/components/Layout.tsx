@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const Header = dynamic(() => import("./Header").then((mod) => mod.default));
+const Header = dynamic(() => import("./Header").then((mod) => mod.default),{
+  ssr: false,
+});
 const Footer = dynamic(() => import("./Footer").then((mod) => mod.default));
 const ThemeProvider = dynamic(() => import("./ThemeProvider").then((mod) => mod.ThemeProvider));
 
@@ -16,8 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+      <div>
         <ThemeProvider>
           <div className="flex min-h-screen flex-col">
             <Header />
@@ -27,7 +28,6 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-      </body>
-    </html>
+      </div>
   );
 }

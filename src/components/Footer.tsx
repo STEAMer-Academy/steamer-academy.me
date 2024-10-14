@@ -24,15 +24,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Company Info */}
           <div className="col-span-1 lg:col-span-2">
-            <h3 className="mb-4 text-lg font-bold">STEAMer Academy</h3>
+            <h3 className="mb-4 text-lg font-bold">Our Socials</h3>
             <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-              Igniting young minds through Science, Technology, Engineering, Arts, and Math education.
+              Follow us on social media for the latest updates and offers. We are active on Facebook, Twitter, Discord, WhatsApp, and GitHub.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-blue-500">
                 <Facebook01Icon className="h-6 w-6" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-blue-400">
+              <Link href="#" className="text-gray-400 hover:text-gray-700">
                 <NewTwitterIcon className="h-6 w-6" />
               </Link>
               <Link href="https://discord.gg/Kqpbawj9KU" className="text-gray-400 hover:text-blue-600" aria-label="Discord Server Link">
