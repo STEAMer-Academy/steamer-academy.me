@@ -176,7 +176,7 @@ export default function Header() {
 						<Sheet>
 							<SheetTrigger asChild>
 								<Button variant="ghost" size="icon">
-									<Menu01Icon className="h-6 w-6" />
+									<Menu01Icon className="h-6 w-6" aria-label="Menu Icon For Smaller Devices"/>
 								</Button>
 							</SheetTrigger>
 							<SheetContent side="right">
