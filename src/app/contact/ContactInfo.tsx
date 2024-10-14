@@ -13,7 +13,7 @@ export default function ContactInfo() {
 
   return (
     <div className={$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"}>
-      <p className="mb-6 text-lg">
+      <p className="mb-6 text-lg text-left">
         Welcome to a world of limitless possibilities, where the journey is as
         exhilarating as the destination, and where every moment is an
         opportunity to make your mark on the canvas of existence.

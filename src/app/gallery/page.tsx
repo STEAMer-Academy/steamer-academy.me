@@ -24,7 +24,7 @@ export default function GalleryPage() {
 		<Layout>
 			<div className="space-y-8">
 				<h1 className="mb-8 text-4xl font-bold">
-					<TypewriterEffectSmooth words={[{ text: "Gallery" }]} />
+					<TypewriterEffectSmooth words={[{ text: "Gallery" }]} className="mt-6 pt-6"/>
 				</h1>
 				<p className="mb-8">
 					Welcome to our gallery, where we showcase the exciting world of STEAM
