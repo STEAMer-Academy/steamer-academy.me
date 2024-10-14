@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import Script from "next/script";
+import Loader from "@/components/loading";
 
 const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
 	ssr: false,
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
 			>
+      <Loader />
 				{children}
 			</body>
 		</html>
