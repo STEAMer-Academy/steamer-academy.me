@@ -10,6 +10,10 @@
 # testing
 /coverage
 
+# Next PWA
+public/sw.js
+public/workbox-*.js
+
 # next.js
 /.next/
 /out/
