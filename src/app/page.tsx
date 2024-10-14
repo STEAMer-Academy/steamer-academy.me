@@ -1,14 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Globe } from "@/components/Globe";
@@ -113,29 +105,11 @@ export default function Home() {
 
 				<section className="container mx-auto px-4">
 					<h2 className="mb-8 text-3xl font-bold">New arrivals</h2>
+          <p>STEAMER Academy goes beyond traditional language learning. We strive to ignite students’ curiosity, fostering a love for learning, critical thinking skills, and creativity. Our classes equip them with the communication skills they need to thrive in an increasingly interconnected world.</p>
 					<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-						{[1, 2, 3].map((i) => (
-							<Card key={i}>
-								<CardHeader>
-									<CardTitle>Course Title {i}</CardTitle>
-									<CardDescription>
-										Brief description of the course
-									</CardDescription>
-								</CardHeader>
-								<CardContent>
-									<Image
-										src="/placeholder.webp?height=200&width=300"
-										alt={`Course ${i}`}
-										width={300}
-										height={200}
-										className="rounded-lg"
-									/>
-								</CardContent>
-								<CardFooter>
-									<Button className="content-center">Learn more</Button>
-								</CardFooter>
-							</Card>
-						))}
+					  <Image src="/RootImage1.webp" alt="New Arrival 1" className="p-6 pt-0"/>
+            <Image src="/RootImage2.webp" alt="New Arrival 2" className="p-6 pt-0"/>
+            <Image src="/RootImage3.webp" alt="New Arrival 3" className="p-6 pt-0"/>
 					</div>
 				</section>
 
