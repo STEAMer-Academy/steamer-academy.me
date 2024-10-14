@@ -2,7 +2,6 @@
 
 import {
   MailAtSign01Icon,
-  SmartPhone01Icon,
   MapPinIcon,
 } from "hugeicons-react";
 import { useStore } from "@nanostores/react";
@@ -23,10 +22,6 @@ export default function ContactInfo() {
         <div className="flex items-center">
           <MailAtSign01Icon className="mr-2" />
           <span>support@steameracademy.me</span>
-        </div>
-        <div className="flex items-center">
-          <SmartPhone01Icon className="mr-2" />
-          <span>+880 1308-208580</span>
         </div>
         <div className="flex items-center">
           <MapPinIcon className="mr-2" />
