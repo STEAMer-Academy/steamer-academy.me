@@ -72,7 +72,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-2">
                 <TelephoneIcon className="h-5 w-5 text-gray-400" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">+88017 7585 4054</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">+880 1308-208580</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Clock01Icon className="h-5 w-5 text-gray-400" />

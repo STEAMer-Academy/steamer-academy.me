@@ -26,7 +26,7 @@ export default function ContactInfo() {
         </div>
         <div className="flex items-center">
           <SmartPhone01Icon className="mr-2" />
-          <span>+88017 7585 4054</span>
+          <span>+880 1308-208580</span>
         </div>
         <div className="flex items-center">
           <MapPinIcon className="mr-2" />
