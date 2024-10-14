@@ -1,18 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useStore } from "@nanostores/react";
-import { themeStore } from "@/stores/themeStore";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export default function NotFoundContent() {
-  const $theme = useStore(themeStore);
   const router = useRouter();
 
   return (
     <div
-      className={`flex min-h-screen items-center justify-center ${$theme === "dark" ? "bg-[#1a1b26] text-[#c0caf5]" : "bg-white text-gray-900"}`}
+      className="flex min-h-screen items-center justify-center bg-[#1a1b26] text-[#c0caf5]"
     >
       <div className="text-center">
         <motion.h1
