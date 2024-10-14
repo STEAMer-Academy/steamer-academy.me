@@ -43,11 +43,11 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <div className="mb-4 flex items-center gap-4 align-center text-center">
-      <span className="font-bold">{timeLeft.days} DAYS</span>
-      <span className="font-bold">{timeLeft.hours} HOURS</span>
-      <span className="font-bold">{timeLeft.minutes} MINUTES</span>
-      <span className="font-bold">{timeLeft.seconds} SECONDS LEFT</span>
+    <div className="mb-4 flex items-center gap-4 align-center text-center justify-center">
+      <span className="font-bold">{timeLeft.days} Days</span>
+      <span className="font-bold">{timeLeft.hours} Hours</span>
+      <span className="font-bold">{timeLeft.minutes} Minutes</span>
+      <span className="font-bold">{timeLeft.seconds} Seconds Left</span>
     </div>
   );
 }

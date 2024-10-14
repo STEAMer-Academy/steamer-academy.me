@@ -120,7 +120,7 @@ export default function EnglishClubPage() {
 							the pursuit of knowledge.
 						</p>
 						<CountdownTimer />
-						<div className="flex gap-2">
+						<div className="flex gap-2 align-center content-center justify-center">
 							<Button variant="default">Join Now</Button>
 							<Button variant="outline">Learn More</Button>
 						</div>
