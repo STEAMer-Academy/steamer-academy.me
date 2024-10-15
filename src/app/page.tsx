@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Globe } from "@/components/Globe";
-import Loader from "@/components/loading";
 import GalleryGrid from "./gallery/GalleryGrid";
 const TypewriterEffectSmooth = dynamic(() =>
 	import("../components/ui/typewriter-effect").then(
@@ -38,7 +37,6 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<Layout>
-			<Loader />
 			<div className="space-y-6">
 				<section className="relative flex h-screen w-full flex-row items-center justify-center py-20 md:h-auto">
 					<div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
@@ -66,7 +64,7 @@ export default function Home() {
 							</p>
 							<div className="text-center">
 								<Link href="https://discord.gg/Kqpbawj9KU" passHref>
-									<div className="space-y-6">
+									<div className="space-y-3">
 										<Button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
 											<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
 											<span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
@@ -83,7 +81,7 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
-				<section className="container mx-auto mt-5 px-4">
+				<section className="container mx-auto mt-5 px-4 pt-8">
 					<h2 className="mb-8 text-center text-3xl font-bold">
 						<TypewriterEffectSmooth
 							words={[
