@@ -1,54 +1,54 @@
-import { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from "next";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://www.steaameracademy.me',
+      url: "https://www.steaameracademy.me",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: 'https://www.steamacademy.me/about',
+      url: "https://www.steamacademy.me/about",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: 'https://www.steameracademy.me/blogs',
+      url: "https://www.steameracademy.me/blogs",
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 0.5,
     },
     {
-      url: 'https://www.steameracademy.me/contact',
+      url: "https://www.steameracademy.me/contact",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: 'https://www.steameracademy.me/gallery',
+      url: "https://www.steameracademy.me/gallery",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: 'https://www.steameracademy.me/services',
+      url: "https://www.steameracademy.me/services",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: 'https://www.steameracademy.me/services/english-club',
+      url: "https://www.steameracademy.me/services/english-club",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: 'https://www.steameracademy.me/services/code-club',
+      url: "https://www.steameracademy.me/services/code-club",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.3,
     },
-  ]
+  ];
 }

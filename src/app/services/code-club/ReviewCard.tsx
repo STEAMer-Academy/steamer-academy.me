@@ -9,10 +9,7 @@ interface ReviewCardProps {
   name: string;
 }
 
-export default function ReviewCard({
-  review,
-  name,
-}: ReviewCardProps) {
+export default function ReviewCard({ review, name }: ReviewCardProps) {
   const $theme = useStore(themeStore);
 
   return (

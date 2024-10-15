@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  MailAtSign01Icon,
-  MapPinIcon,
-} from "hugeicons-react";
+import { MailAtSign01Icon, MapPinIcon } from "hugeicons-react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 
@@ -12,7 +9,7 @@ export default function ContactInfo() {
 
   return (
     <div className={$theme === "dark" ? "text-[#a9b1d6]" : "text-gray-900"}>
-      <p className="mb-6 text-lg text-left">
+      <p className="mb-6 text-left text-lg">
         Welcome to a world of limitless possibilities, where the journey is as
         exhilarating as the destination, and where every moment is an
         opportunity to make your mark on the canvas of existence.

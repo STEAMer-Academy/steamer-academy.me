@@ -67,13 +67,16 @@ interface WorldProps {
 let numbersOfRings = [0];
 
 export function Globe({ globeConfig, data }: WorldProps) {
-  const [globeData, setGlobeData] = useState<{
-    size: number;
-    order: number;
-    color: (t: number) => string;
-    lat: number;
-    lng: number;
-  }[] | null>(null);
+  const [globeData, setGlobeData] = useState<
+    | {
+        size: number;
+        order: number;
+        color: (t: number) => string;
+        lat: number;
+        lng: number;
+      }[]
+    | null
+  >(null);
 
   const globeRef = useRef<ThreeGlobe | null>(null);
 
@@ -140,7 +143,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
     const filteredPoints = points.filter(
       (v, i, a) =>
-        a.findIndex((v2) => v2.lat === v.lat && v2.lng === v.lng) === i
+        a.findIndex((v2) => v2.lat === v.lat && v2.lng === v.lng) === i,
     );
 
     setGlobeData(filteredPoints);
@@ -168,7 +171,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       // @ts-ignore
       .arcStartLat((d) => d.startLat)
       // @ts-ignore
-      .arcStartLng((d) => d.startLng) 
+      .arcStartLng((d) => d.startLng)
       // @ts-ignore
       .arcEndLat((d) => d.endLat)
       // @ts-ignore
@@ -200,7 +203,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings
+        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
       );
   };
 
@@ -212,11 +215,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
       numbersOfRings = genRandomNumbers(
         0,
         data.length,
-        Math.floor((data.length * 4) / 5)
+        Math.floor((data.length * 4) / 5),
       );
 
       globeRef.current.ringsData(
-        globeData.filter((d, i) => numbersOfRings.includes(i))
+        globeData.filter((d, i) => numbersOfRings.includes(i)),
       );
     }, 2000);
 

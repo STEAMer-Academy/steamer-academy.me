@@ -403,5 +403,11 @@ export function Globe() {
     },
   ];
 
-  return <World data={sampleArcs} globeConfig={globeConfig} className="mb-30 pb-30"/>;
+  return (
+    <World
+      data={sampleArcs}
+      globeConfig={globeConfig}
+      className="mb-30 pb-30"
+    />
+  );
 }

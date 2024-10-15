@@ -1,18 +1,18 @@
 /** @type {import('next').NextConfig} */
 import withPWA from "next-pwa";
 
-const pwaConfig= {
-    dest: 'public',  // Location of service worker and cache files
-    disable: process.env.NODE_ENV === 'development',
-    register: true,
-    skipWaiting: true,
-  }
+const pwaConfig = {
+  dest: "public", // Location of service worker and cache files
+  disable: process.env.NODE_ENV === "development",
+  register: true,
+  skipWaiting: true,
+};
 
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
     removeConsole: true,
-  }, 
+  },
 
   async redirects() {
     return [
