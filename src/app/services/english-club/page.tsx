@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import CountdownTimer from "./CountdownTimer";
 import ReviewCard from "./ReviewCard";
 import Layout from "@/components/Layout";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | English Club",
@@ -14,11 +16,35 @@ export default function EnglishClubPage() {
     <Layout>
       <div className="container mx-auto px-4 py-8">
         <main>
-          <h1 className="mb-8 text-3xl font-bold">Our services</h1>
-          <h2 className="mb-12 text-4xl font-bold">English Club</h2>
+          <h1 className="mb-8 text-center text-3xl font-bold">
+            <TypewriterEffectSmooth
+              words={[
+                {
+                  text: "Our",
+                },
+                {
+                  text: "services",
+                },
+              ]}
+            />
+          </h1>
+          <h2 className="mb-12 text-center text-4xl font-bold">
+            <TypewriterEffectSmooth
+              words={[
+                {
+                  text: "English",
+                },
+                {
+                  text: "Club",
+                },
+              ]}
+            />
+          </h2>
 
           <section className="mb-12">
-            <h3 className="mb-4 text-xl font-semibold">Introduction</h3>
+            <h3 className="mb-4 text-center text-xl font-semibold">
+              Introduction
+            </h3>
             <h4 className="mb-2 text-lg font-medium">
               Calling all Word Wizards and Grammar Gurus!
             </h4>
@@ -45,11 +71,11 @@ export default function EnglishClubPage() {
           </section>
 
           <section className="mb-12">
-            <h3 className="mb-4 text-xl font-semibold">Target</h3>
-            <h4 className="mb-2 text-lg font-medium">
+            <h3 className="mb-4 text-center text-xl font-semibold">Target</h3>
+            <h4 className="mb-2 text-center text-lg font-medium">
               Goals of the English Club
             </h4>
-            <ul className="list-inside list-disc">
+            <ul className="list-inside list-disc text-left">
               <li>
                 To create a supportive and inclusive environment where members
                 can develop their confidence and skills in using the English
@@ -86,21 +112,6 @@ export default function EnglishClubPage() {
           </section>
 
           <section className="mb-12">
-            <h3 className="mb-4 text-xl font-semibold">Our Partner</h3>
-            <h4 className="mb-2 text-lg font-medium">
-              Thanks to our Ass. Headmaster for supervision
-            </h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
-            </p>
-          </section>
-
-          <section className="mb-12">
             <h3 className="mb-4 text-xl font-semibold">Join Club</h3>
             <p className="mb-4">
               Welcome to a world of endless possibilities, where the journey to
@@ -110,9 +121,13 @@ export default function EnglishClubPage() {
               the pursuit of knowledge.
             </p>
             <CountdownTimer />
-            <div className="flex gap-2">
-              <Button variant="default">Join Now</Button>
-              <Button variant="outline">Learn More</Button>
+            <div className="align-center flex content-center justify-center gap-2">
+              <Link href="https://chat.whatsapp.com/L5v0bIwXSmLFby2nld79qU">
+                <Button variant="default">Join On Whatsapp</Button>
+              </Link>
+              <Link href="https://broadleaf-wish-3e3.notion.site/English-Club-d19333082ca24f91a6e4716e52d27224">
+                <Button variant="default">Join On Notion</Button>
+              </Link>
             </div>
           </section>
 
@@ -122,21 +137,23 @@ export default function EnglishClubPage() {
               You can also join us indirectly through Duolingo for School. This
               button will allow you to join our Duolingo Classroom.
             </p>
-            <Button variant="default">Join Duolingo Classroom</Button>
+            <div className="align-center flex content-center justify-center gap-2">
+              <Link href="http://www.google.com/url?q=http%3A%2F%2Fwww.duolingo.com%2Fclassroom%2Fpcjnkq&sa=D&sntz=1&usg=AOvVaw35f-JqwCiYS9LBNEEMdu5W">
+                <Button variant="default">Join Duolingo Classroom</Button>
+              </Link>
+              <Link href="https://schools.duolingo.com/classroom/6757271/invitation_printout/">
+                <Button variant="outline">Learn More</Button>
+              </Link>
+            </div>
           </section>
 
           <section className="mb-12">
             <h3 className="mb-8 text-xl font-semibold">Reviews</h3>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <ReviewCard
-                review="The English Club has been a game-changer for my language skills! The supportive environment and engaging activities have boosted my confidence in speaking and writing."
-                name="Sarah J."
-                imageSrc="/placeholder-avatar.png"
-              />
-              <ReviewCard
-                review="I've made great friends and improved my English at the same time. The club's events are always fun and educational. Highly recommend joining!"
-                name="Mike L."
-                imageSrc="/placeholder-avatar.png"
+                review="Starting my role as a STEAMer CEO has been a joy, thanks to its all members for being with me and my organization and we hope a better future for everyone."
+                name="H. Mondal"
+                imageSrc="/HmondalDiscordpfp.webp"
               />
             </div>
           </section>

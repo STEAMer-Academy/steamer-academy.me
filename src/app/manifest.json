@@ -15,8 +15,9 @@
     }
   ],
   "start_url": "/",
+  "scope": "/",
   "background_color": "#c0caf5",
   "theme_color": "#c0caf5",
   "display": "standalone",
-  "description": ""
+  "description": "Where Innovation Meets Creativity"
 }

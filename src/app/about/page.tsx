@@ -1,7 +1,20 @@
 import { Metadata } from "next";
-import AboutContent from "./AboutContent";
-import TeamMembers from "./TeamMembers";
-import Layout from "@/components/Layout";
+import dynamic from "next/dynamic";
+
+const TypewriterEffectSmooth = dynamic(() =>
+  import("@/components/ui/typewriter-effect").then(
+    (mod) => mod.TypewriterEffectSmooth,
+  ),
+);
+const Layout = dynamic(() =>
+  import("@/components/Layout").then((mod) => mod.default),
+);
+const AboutContent = dynamic(() =>
+  import("./AboutContent").then((mod) => mod.default),
+);
+const TeamMembers = dynamic(() =>
+  import("./TeamMembers").then((mod) => mod.default),
+);
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | About",
@@ -46,7 +59,11 @@ export default function AboutPage() {
       <div className="space-y-16">
         <AboutContent />
         <section>
-          <h2 className="mb-8 text-3xl font-bold">Our Team</h2>
+          <h2 className="mb-8 text-3xl font-bold">
+            <TypewriterEffectSmooth
+              words={[{ text: "Our" }, { text: "Team" }]}
+            />
+          </h2>
           <TeamMembers members={teamMembers} />
         </section>
       </div>

@@ -1,8 +1,20 @@
 import React from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
-import Layout from "@/components/Layout";
+import dynamic from "next/dynamic";
+import { Link } from "lucide-react";
+
+const TypewriterEffectSmooth = dynamic(() =>
+  import("@/components/ui/typewriter-effect").then(
+    (mod) => mod.TypewriterEffectSmooth,
+  ),
+);
+const Layout = dynamic(() =>
+  import("@/components/Layout").then((mod) => mod.default),
+);
+const ReviewCard = dynamic(() =>
+  import("./ReviewCard").then((mod) => mod.default),
+);
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -14,8 +26,30 @@ export default function CodeClub() {
     <Layout>
       <div className="container mx-auto px-4 py-8">
         <main>
-          <h2 className="mb-8 text-3xl font-bold">Our services</h2>
-          <h1 className="mb-12 text-5xl font-bold">CODE club</h1>
+          <h2 className="mb-8 text-3xl font-bold">
+            <TypewriterEffectSmooth
+              words={[
+                {
+                  text: "Our",
+                },
+                {
+                  text: "services",
+                },
+              ]}
+            />
+          </h2>
+          <h1 className="mb-12 text-5xl font-bold">
+            <TypewriterEffectSmooth
+              words={[
+                {
+                  text: "Code",
+                },
+                {
+                  text: "club",
+                },
+              ]}
+            />
+          </h1>
 
           <section className="mb-12">
             <h3 className="mb-4 text-2xl font-semibold">What is Code Club?</h3>
@@ -74,45 +108,22 @@ export default function CodeClub() {
               Ready to start your coding adventure? Join our Code Club and
               unlock a world of creativity and innovation!
             </p>
-            <Button variant="default">Sign Up</Button>
+            <Link href="https://codeclub.org/en/clubs/b3185ec9-1257-4a73-8353-dcb7f80bca5b">
+              <Button variant="default">Join Now</Button>
+            </Link>
           </section>
 
           <section className="mb-12">
             <h3 className="mb-8 text-2xl font-semibold">Reviews</h3>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <div className="flex items-start">
-                <Image
-                  src="/placeholder-avatar.png"
-                  alt="John D."
-                  width={50}
-                  height={50}
-                  className="mr-4 rounded-full"
-                />
-                <div>
-                  <p className="mb-2">
-                    &quot;Code Club has been an amazing experience for my
-                    daughter. She&apos;s learned so much and really enjoys the
-                    projects!&quot;
-                  </p>
-                  <p className="font-semibold">John D.</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Image
-                  src="/placeholder-avatar.png"
-                  alt="Sarah M."
-                  width={50}
-                  height={50}
-                  className="mr-4 rounded-full"
-                />
-                <div>
-                  <p className="mb-2">
-                    &quot;The mentors are fantastic and make coding fun and
-                    accessible. My son looks forward to every session!&quot;
-                  </p>
-                  <p className="font-semibold">Sarah M.</p>
-                </div>
-              </div>
+              <ReviewCard
+                review="This is the best coding club I have ever been to! The mentor's are amazing and I have learned so much. I can't wait for the next session!"
+                name="Tom S."
+              />
+              <ReviewCard
+                review='"The mentors are fantastic and make coding fun and accessible. My son looks forward to every session!"'
+                name="Sarah M."
+              />
             </div>
           </section>
         </main>

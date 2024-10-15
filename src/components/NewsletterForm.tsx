@@ -71,7 +71,7 @@ export function NewsletterForm() {
         onSubmit={handleSubmit}
         method="POST"
         data-netlify="true"
-        data-netlify-recaptcha="true"
+        name="newsletter"
       >
         <input type="hidden" name="form-name" value="newsletter" />
         <Input
@@ -88,18 +88,18 @@ export function NewsletterForm() {
           }`}
         />
 
-        <div data-netlify-recaptcha="true"></div>
-
-        <Button
-          type="submit"
-          className="w-full bg-blue-500 text-white hover:bg-blue-600"
-        >
-          Subscribe
+        <Button type="submit" className="relative p-[3px]">
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
+          <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
+            Subscribe
+          </div>
         </Button>
       </form>
 
       {formStatus.message && (
-        <div className={`mt-2 flex items-center ${formStatus.success ? 'text-green-500' : 'text-red-500'}`}>
+        <div
+          className={`mt-2 flex items-center ${formStatus.success ? "text-green-500" : "text-red-500"}`}
+        >
           {formStatus.success ? (
             <CheckmarkCircle02Icon className="mr-2 h-4 w-4" />
           ) : (

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Tick01Icon, MultiplicationSignIcon } from "hugeicons-react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
   firstName: string;
@@ -86,10 +88,10 @@ export default function ContactForm() {
       data-netlify-recaptcha="true"
       className="space-y-6"
     >
-      <input type="hidden" name="form-name" value="feedback" />
+      <Input type="hidden" name="form-name" value="feedback" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <input
+        <Input
           type="text"
           name="firstName"
           placeholder="First name"
@@ -98,7 +100,7 @@ export default function ContactForm() {
           required
           className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
         />
-        <input
+        <Input
           type="text"
           name="lastName"
           placeholder="Last name"
@@ -109,7 +111,7 @@ export default function ContactForm() {
         />
       </div>
 
-      <input
+      <Input
         type="email"
         name="email"
         placeholder="Email"
@@ -119,7 +121,7 @@ export default function ContactForm() {
         className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
       />
 
-      <textarea
+      <Textarea
         name="message"
         placeholder="Message"
         value={formData.message}
@@ -127,15 +129,13 @@ export default function ContactForm() {
         required
         rows={6}
         className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-      ></textarea>
+      ></Textarea>
 
-      <div data-netlify-recaptcha="true"></div>
-
-      <Button
-        type="submit"
-        className="on-hover:bg-blue-600 w-full rounded-md bg-blue-500 px-4 py-2 text-white sm:w-auto"
-      >
-        Submit
+      <Button type="submit" className="relative p-[3px]">
+        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
+        <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
+          Submit
+        </div>
       </Button>
 
       {formStatus.message && (

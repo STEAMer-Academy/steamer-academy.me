@@ -1,8 +1,15 @@
 import { Metadata } from "next";
-import ServicesList from "./ServicesList";
-import ReviewsList from "./ReviewsList";
-import Layout from "@/components/Layout";
+import dynamic from "next/dynamic";
 
+const ServicesList = dynamic(() =>
+  import("./ServicesList").then((mod) => mod.default),
+);
+const ReviewsList = dynamic(() =>
+  import("./ReviewsList").then((mod) => mod.default),
+);
+const Layout = dynamic(() =>
+  import("@/components/Layout").then((mod) => mod.default),
+);
 export const metadata: Metadata = {
   title: "STEAMer Academy | Services",
   description:
@@ -20,13 +27,13 @@ const services = [
     title: "Code Club",
     description:
       "Dive into the world of coding with our Code Club! Whether you're a beginner or have some experience, our club offers a fun and collaborative environment to learn and grow your programming skills.",
-    image: "/placeholder.webp",
+    image: "/CodeClub.webp",
   },
   {
     title: "24/7 Assistance",
     description:
       "We're always here to help! Our 24/7 assistance ensures that you have support whenever you need it. Whether it's a question about a lesson or technical support, we've got you covered.",
-    image: "/placeholder.webp",
+    image: "/Help.webp",
   },
 ];
 
