@@ -108,9 +108,11 @@ export default function CodeClub() {
               Ready to start your coding adventure? Join our Code Club and
               unlock a world of creativity and innovation!
             </p>
-            <Link href="https://codeclub.org/en/clubs/b3185ec9-1257-4a73-8353-dcb7f80bca5b">
-              <Button variant="default">Join Now</Button>
-            </Link>
+            <div className="align-center justify-center">
+              <Link href="https://codeclub.org/en/clubs/b3185ec9-1257-4a73-8353-dcb7f80bca5b">
+                <Button variant="default">Join Now</Button>
+              </Link>
+            </div>
           </section>
 
           <section className="mb-12">
