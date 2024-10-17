@@ -24,7 +24,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
   const $theme = useStore(themeStore);
 
   return (
-    <div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Responsive grid layout */}
       {services.map((service, index) => (
         <motion.div
           key={index}
@@ -40,7 +40,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
                 alt={service.title}
                 width={300}
                 height={200}
-                className="rounded-lg"
+                className="rounded-lg w-full h-auto object-cover" // Adjusted to fit the card properly
               />
             </CardHeader>
             <CardContent>
@@ -50,9 +50,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
                 {service.title}
               </CardTitle>
               <CardDescription
-                className={
-                  $theme === "dark" ? "text-gray-300" : "text-gray-600"
-                }
+                className={$theme === "dark" ? "text-gray-300" : "text-gray-600"}
               >
                 {service.description}
               </CardDescription>
