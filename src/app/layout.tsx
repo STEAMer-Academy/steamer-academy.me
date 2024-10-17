@@ -48,6 +48,18 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
     title: "STEAMer Academy",
   },
+  openGraph: {
+    title: "STEAMer Academy",
+    description:
+      "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
+  },
+  twitter: {
+    site: "https://www.steameracademy.me",
+    creator: "Muntasir Mahmud",
+    title: "STEAMer Academy",
+    description:
+      "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
+  },
 };
 
 export const viewport: Viewport = {
