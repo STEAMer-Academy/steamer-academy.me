@@ -21,7 +21,7 @@ const services = [
     title: "English Club",
     description:
       "Are you passionate about the English language? Do you dream of expressing yourself with confidence in English? Then look no further! Our English Club at STEAMer Academy is the perfect place for you.",
-    image: "/placeholder.webp",
+    image: "/EnglishClub.webp",
   },
   {
     title: "Code Club",

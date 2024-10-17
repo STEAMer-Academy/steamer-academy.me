@@ -33,19 +33,21 @@ export default function ServicesList({ services }: { services: Service[] }) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
-          <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
-            <CardHeader>
-              <Image
-                src={service.image}
-                alt={service.title}
-                width={300}
-                height={200}
-                className="rounded-lg"
-              />
+          <Card className={`${$theme === "dark" ? "bg-gradient-to-br from-gray-800 to-gray-900" : "bg-gradient-to-br from-white to-gray-100"} hover:shadow-lg transition-shadow duration-300 h-full flex flex-col`}>
+            <CardHeader className="p-6">
+              <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+              </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6 flex-grow">
               <CardTitle
-                className={$theme === "dark" ? "text-white" : "text-gray-900"}
+                className={`${$theme === "dark" ? "text-white" : "text-gray-900"} text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500`}
               >
                 {service.title}
               </CardTitle>
@@ -57,8 +59,8 @@ export default function ServicesList({ services }: { services: Service[] }) {
                 {service.description}
               </CardDescription>
             </CardContent>
-            <CardFooter>
-              <Button>Learn More</Button>
+            <CardFooter className="p-6 mt-auto">
+              <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-none">Learn More</Button>
             </CardFooter>
           </Card>
         </motion.div>
