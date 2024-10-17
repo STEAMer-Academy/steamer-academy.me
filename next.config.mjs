@@ -1,12 +1,4 @@
 /** @type {import('next').NextConfig} */
-import withPWA from "next-pwa";
-
-const pwaConfig = {
-  dest: "public", // Location of service worker and cache files
-  disable: process.env.NODE_ENV === "development",
-  register: true,
-  skipWaiting: true,
-};
 
 const nextConfig = {
   reactStrictMode: true,
@@ -45,4 +37,4 @@ const nextConfig = {
   },
 };
 
-export default withPWA(pwaConfig)(nextConfig);
+export default nextConfig;
