@@ -1,6 +1,7 @@
 {
   "short_name": "STEAMer Academy",
   "name": "STEAMer Academy | Where Innovation Meets Creativity",
+  "id": "/",
   "icons": [
     {
       "src": "/favicon-192.png",
