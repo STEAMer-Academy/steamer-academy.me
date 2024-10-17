@@ -89,12 +89,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
         <GoogleAnalytics />
-        <Script id="next-pwa">
-          {` 
-          if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js')
-          else console.warning("Ups, your navigator doesn't support service worker, offline feature wont work, update your browser or chose other modern browser")
-        `}
-        </Script>
+
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
