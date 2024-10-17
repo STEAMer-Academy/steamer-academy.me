@@ -24,7 +24,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
   const $theme = useStore(themeStore);
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+    <div>
       {services.map((service, index) => (
         <motion.div
           key={index}
