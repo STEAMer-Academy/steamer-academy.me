@@ -23,10 +23,10 @@ export default function ReviewsList({ reviews }: { reviews: Review[] }) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
-          <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
+          <Card className={`${$theme === "dark" ? "bg-gradient-to-br from-gray-800 to-gray-900" : "bg-gradient-to-br from-white to-gray-100"} hover:shadow-lg transition-shadow duration-300`}>
             <CardContent className="pt-6">
               <p
-                className={`mb-2 ${$theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                className={`mb-2 ${$theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
               >
                 &quot;{review.content}&quot;
               </p>
