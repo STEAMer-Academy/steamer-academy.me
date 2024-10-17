@@ -1,4 +1,3 @@
-import { link } from "fs";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
@@ -65,7 +64,6 @@ export default function ServicesPage() {
           <h1 className="mb-8 text-4xl font-bold">Our Services</h1>
           <ServicesList services={services} />
         </section>
-
         <section>
           <h2 className="mb-8 text-3xl font-bold">Reviews</h2>
           <ReviewsList reviews={reviews} />
