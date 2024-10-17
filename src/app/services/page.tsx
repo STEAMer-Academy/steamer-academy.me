@@ -1,3 +1,4 @@
+import { link } from "fs";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
@@ -22,18 +23,21 @@ const services = [
     description:
       "Are you passionate about the English language? Do you dream of expressing yourself with confidence in English? Then look no further! Our English Club at STEAMer Academy is the perfect place for you.",
     image: "/EnglishClub.webp",
+    link: "/english-club",
   },
   {
     title: "Code Club",
     description:
       "Dive into the world of coding with our Code Club! Whether you're a beginner or have some experience, our club offers a fun and collaborative environment to learn and grow your programming skills.",
     image: "/CodeClub.webp",
+    link: "/code-club",
   },
   {
     title: "24/7 Assistance",
     description:
       "We're always here to help! Our 24/7 assistance ensures that you have support whenever you need it. Whether it's a question about a lesson or technical support, we've got you covered.",
     image: "/Help.webp",
+    link: "/about"
   },
 ];
 

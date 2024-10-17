@@ -13,18 +13,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "lucide-react";
 
 interface Service {
   title: string;
   description: string;
   image: string;
+  link: string;
 }
 
 export default function ServicesList({ services }: { services: Service[] }) {
   const $theme = useStore(themeStore);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Responsive grid layout */}
+    <div className="grid grid-cols-1 gap-8 p-10 sm:grid-cols-2 lg:grid-cols-3"> {/* Responsive grid layout */}
       {services.map((service, index) => (
         <motion.div
           key={index}
@@ -33,30 +35,32 @@ export default function ServicesList({ services }: { services: Service[] }) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
-          <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
-            <CardHeader>
+          <Card className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} transform rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}>
+            <CardHeader className={`text-xl font-semibold ${$theme === "dark" ? "text-white" : "text-gray-900"} mb-2 p-1`}>
               <Image
                 src={service.image}
                 alt={service.title}
                 width={300}
                 height={200}
-                className="rounded-lg w-full h-auto object-cover" // Adjusted to fit the card properly
+                className="mx-auto rounded-full" // Adjusted to fit the card properly
               />
             </CardHeader>
             <CardContent>
               <CardTitle
-                className={$theme === "dark" ? "text-white" : "text-gray-900"}
+                className={`text-lg ${$theme === "dark" ? "text-gray-400" : "text-gray-600"} mb-4 p-4`}
               >
                 {service.title}
               </CardTitle>
               <CardDescription
-                className={$theme === "dark" ? "text-gray-300" : "text-gray-600"}
+                className={`font-medium ${$theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
               >
                 {service.description}
               </CardDescription>
             </CardContent>
             <CardFooter>
+            <Link href={service.link}>
               <Button>Learn More</Button>
+            </Link>
             </CardFooter>
           </Card>
         </motion.div>
