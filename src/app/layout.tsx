@@ -4,7 +4,6 @@ import { Partytown } from "@builder.io/partytown/react";
 import localFont from "next/font/local";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Script from "next/script";
 
 const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
   ssr: false,
@@ -89,7 +88,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
         <GoogleAnalytics />
-
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
