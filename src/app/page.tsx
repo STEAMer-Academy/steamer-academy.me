@@ -122,7 +122,7 @@ export default function Home() {
           <h2 className="mb-8 text-3xl font-bold pt-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">New arrivals</h2>
           <p className="mb-8 text-gray-700 dark:text-gray-300">
             STEAMER Academy goes beyond traditional language learning. We strive
-            to ignite students' curiosity, fostering a love for learning,
+            to ignite students curiosity, fostering a love for learning,
             critical thinking skills, and creativity. Our classes equip them
             with the communication skills they need to thrive in an increasingly
             interconnected world.
