@@ -35,15 +35,24 @@ export default function ServicesList({ services }: { services: Service[] }) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
-          <Card className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} transform rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}>
-            <CardHeader className={`text-xl font-semibold ${$theme === "dark" ? "text-white" : "text-gray-900"} mb-2 p-1`}>
-              <Image
-                src={service.image}
-                alt={service.title}
-                width={300}
-                height={200}
-                className="mx-auto rounded-full" // Adjusted to fit the card properly
-              />
+          <Card 
+            className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} 
+            transform rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`} 
+            style={{ width: '350px', height: '450px' }}  // Set fixed width and height
+          >
+            <CardHeader 
+              className={`text-xl font-semibold ${$theme === "dark" ? "text-white" : "text-gray-900"} mb-2 p-1`}
+              style={{ height: '200px' }}  // Ensure a fixed height for the image area
+            >
+              <div className="flex justify-center items-center h-full"> {/* Flexbox to center image */}
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={180}
+                  height={180}
+                  className="rounded-full object-cover"
+                />
+              </div>
             </CardHeader>
             <CardContent>
               <CardTitle
@@ -53,14 +62,15 @@ export default function ServicesList({ services }: { services: Service[] }) {
               </CardTitle>
               <CardDescription
                 className={`font-medium ${$theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
+                style={{ minHeight: '80px' }}  // Ensure a consistent content height
               >
                 {service.description}
               </CardDescription>
             </CardContent>
-            <CardFooter>
-            <Link href={service.link}>
-              <Button>Learn More</Button>
-            </Link>
+            <CardFooter className="flex justify-center">
+              <Link href={service.link}>
+                <Button>Learn More</Button>
+              </Link>
             </CardFooter>
           </Card>
         </motion.div>
