@@ -5,9 +5,8 @@ import Script from "next/script";
 import "dotenv/config";
 
 const GoogleAnalytics = (): React.ReactElement => {
-
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
-  
+
   return (
     <>
       <Script

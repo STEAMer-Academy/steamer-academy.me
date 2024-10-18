@@ -7,7 +7,9 @@
     "build": "bun run partytown && next build",
     "start": "next start",
     "lint": "next lint",
-    "partytown": "partytown copylib public/~partytown"
+    "partytown": "partytown copylib public/~partytown",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check ."
   },
   "dependencies": {
     "@builder.io/partytown": "^0.10.2",

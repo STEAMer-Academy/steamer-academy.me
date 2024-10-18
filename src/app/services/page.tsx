@@ -36,7 +36,7 @@ const services = [
     description:
       "We're always here to help! Our 24/7 assistance ensures that you have support whenever you need it. Whether it's a question about a lesson or technical support, we've got you covered.",
     image: "/Help.webp",
-    link: "/about"
+    link: "/about",
   },
 ];
 
