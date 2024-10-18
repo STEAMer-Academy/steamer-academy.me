@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import localFont from "next/font/local";
+import { Providers } from "./providers";
 import "./globals.css";
 import dynamic from "next/dynamic";
 
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
     title: "STEAMer Academy",
     description:
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
-      url: "https://www.steameracademy.me/",
-      type: "website",
+    url: "https://www.steameracademy.me/",
+    type: "website",
   },
   twitter: {
     site: "https://www.steameracademy.me/",
@@ -92,7 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
