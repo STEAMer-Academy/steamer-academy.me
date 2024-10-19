@@ -68,27 +68,62 @@
     @apply bg-background text-foreground;
   }
 
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .prose {
+    @apply mx-auto max-w-none;
+  }
+
   .prose img {
-    @apply container rounded-lg shadow-md;
+    @apply mx-auto mb-4 max-w-full rounded-lg shadow-md;
   }
 
   .prose h1 {
-    @apply text-center mb-4 text-4xl font-bold leading-normal;
+    @apply mb-6 text-center text-4xl font-extrabold leading-snug tracking-wide;
   }
 
   .prose h2 {
-    @apply text-left mb-3 text-3xl font-semibold leading-normal;
+    @apply mb-4 text-left text-3xl font-semibold leading-snug tracking-wide;
   }
 
   .prose h3 {
-    @apply text-left mb-2 text-2xl font-semibold leading-relaxed;
+    @apply mb-3 text-left text-2xl font-semibold leading-relaxed;
   }
 
   .prose p {
-    @apply mb-4 text-left leading-loose;
+    @apply mb-4 text-left text-lg leading-loose text-gray-300;
   }
 
   .prose a {
-    @apply text-blue-600 hover:underline;
+    @apply font-medium text-blue-500 hover:text-blue-400 hover:underline;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-4 ml-6 list-outside list-disc;
+  }
+
+  .prose ul li,
+  .prose ol li {
+    @apply mb-2 text-lg text-gray-300;
+  }
+
+  .prose blockquote {
+    @apply mb-4 border-l-4 border-blue-500 pl-4 italic text-gray-400;
+  }
+
+  .prose code {
+    @apply rounded-md bg-gray-800 px-2 py-1 text-blue-300;
+  }
+
+  .prose pre {
+    @apply mb-4 overflow-x-auto rounded-md bg-gray-900 p-4 text-white;
+  }
+
+  /* Optional: Tweak spacing between sections */
+  .prose > *:not(:first-child) {
+    @apply mt-6;
   }
 }
