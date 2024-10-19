@@ -67,4 +67,28 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .prose img {
+    @apply container rounded-lg shadow-md;
+  }
+
+  .prose h1 {
+    @apply align-center mb-4 text-4xl font-bold leading-normal;
+  }
+
+  .prose h2 {
+    @apply align-left mb-3 text-3xl font-semibold leading-normal;
+  }
+
+  .prose h3 {
+    @apply align-left mb-2 text-2xl font-semibold leading-relaxed;
+  }
+
+  .prose p {
+    @apply mb-4 text-left leading-loose;
+  }
+
+  .prose a {
+    @apply text-blue-600 hover:underline;
+  }
 }
