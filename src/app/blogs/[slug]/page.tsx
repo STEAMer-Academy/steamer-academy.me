@@ -56,7 +56,7 @@ export default async function BlogPost({
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <article className="prose lg:prose-xl text-left">
+        <article>
           <MDXRemote source={content} />
         </article>
       </div>
