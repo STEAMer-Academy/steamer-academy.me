@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { redis, cache } from '@/lib/redis'
 
 export async function GET() {
-  const categories = ['engineeringMds', 'englishMds', 'mathMds', 'scienceMds', 'techMds']
+  const categories = ['engineeringMds', 'englishMds', 'mathMds', 'scienceMds', 'technologyMds']
   const blogs: Record<string, unknown> = {}
 
   for (const category of categories) {

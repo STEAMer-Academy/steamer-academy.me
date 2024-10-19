@@ -17,7 +17,7 @@ async function getBlogContent(slug: string) {
     "englishMds",
     "mathMds",
     "scienceMds",
-    "techMds",
+    "technologyMds",
   ];
 
   for (const category of categories) {
