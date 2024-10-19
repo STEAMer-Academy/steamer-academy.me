@@ -6,7 +6,7 @@ import {
   Mail01Icon,
   Clock01Icon,
   CopyrightIcon,
-  // Facebook01Icon,
+  Facebook01Icon,
   // NewTwitterIcon,
   DiscordIcon,
   WhatsappIcon,
@@ -31,9 +31,12 @@ export default function Footer() {
               are active on Facebook, Twitter, Discord, WhatsApp, and GitHub.
             </p>
             <div className="flex space-x-4">
-              {/* <Link href="#" className="text-gray-400 hover:text-blue-500"> */}
-              {/*   <Facebook01Icon className="h-6 w-6" /> */}
-              {/* </Link> */}
+              <Link
+                href="https://www.facebook.com/profile.php?id=61567677111933"
+                className="text-gray-400 hover:text-blue-500"
+              >
+                <Facebook01Icon className="h-6 w-6" />
+              </Link>
               {/* <Link href="#" className="text-gray-400 hover:text-gray-700"> */}
               {/*   <NewTwitterIcon className="h-6 w-6" /> */}
               {/* </Link> */}
