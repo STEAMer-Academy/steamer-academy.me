@@ -43,3 +43,5 @@ public/~partytown/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/.unlighthouse

@@ -69,23 +69,23 @@
   }
 
   .prose img {
-    @apply rounded-lg shadow-md;
+    @apply rounded-lg shadow-md align-center container hover:shadow-md ;
   }
 
   .prose h1 {
-    @apply mb-4 text-4xl font-bold;
+    @apply mb-4 text-4xl font-bold align-center leading-normal;
   }
 
   .prose h2 {
-    @apply mb-3 text-3xl font-semibold;
+    @apply mb-3 text-3xl font-semibold leading-normal;
   }
 
   .prose h3 {
-    @apply mb-2 text-2xl font-semibold;
+    @apply mb-2 text-2xl font-semibold leading-relaxed;
   }
 
   .prose p {
-    @apply mb-4;
+    @apply mb-4 align-left leading-loose;
   }
 
   .prose a {
