@@ -63,7 +63,32 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .prose img {
+    @apply rounded-lg shadow-md;
+  }
+
+  .prose h1 {
+    @apply mb-4 text-4xl font-bold;
+  }
+
+  .prose h2 {
+    @apply mb-3 text-3xl font-semibold;
+  }
+
+  .prose h3 {
+    @apply mb-2 text-2xl font-semibold;
+  }
+
+  .prose p {
+    @apply mb-4;
+  }
+
+  .prose a {
+    @apply text-blue-600 hover:underline;
   }
 }
