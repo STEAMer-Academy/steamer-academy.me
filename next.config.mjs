@@ -7,10 +7,7 @@ const mdxConfig = {
 
 const nextConfig = {
   reactStrictMode: true,
-  compiler: {
-    removeConsole: true,
-  },
- 
+
   async redirects() {
     return [
       {
