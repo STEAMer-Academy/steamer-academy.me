@@ -182,7 +182,7 @@ export default function Header() {
                   />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right">
+              <SheetContent side="right" aria-describedby="Search Box">
                 <nav className="flex flex-col space-y-4">
                   <div className="relative mb-4">
                     <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
