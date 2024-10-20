@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
@@ -102,24 +103,16 @@ SheetFooter.displayName = "SheetFooter";
 
 const SheetTitle = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title> & { visuallyHidden?: boolean }
->(({ className, visuallyHidden = false, ...props }, ref) => {
-  if (!props.children) {
-    return null;
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title> & {
+    visuallyHidden?: boolean;
   }
-
-  return (
-    <SheetPrimitive.Title
-      ref={ref}
-      className={cn(
-        "text-lg font-semibold text-foreground",
-        visuallyHidden ? "sr-only" : "", // Apply 'sr-only' if visually hidden
-        className
-      )}
-      {...props}
-    />
-  );
-});
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Title
+    ref={ref}
+    className={cn("text-lg font-semibold text-foreground", className)}
+    {...props}
+  />
+));
 
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
@@ -127,11 +120,16 @@ const SheetDescription = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <SheetPrimitive.Description
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
+  <>
+    <VisuallyHidden>
+      <SheetPrimitive.Title>Something</SheetPrimitive.Title>
+    </VisuallyHidden>
+    <SheetPrimitive.Description
+      ref={ref}
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    />
+  </>
 ));
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
