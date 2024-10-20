@@ -121,7 +121,7 @@ const SheetDescription = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <>
-    <VisuallyHidden>
+    <VisuallyHidden asChild>
       <SheetPrimitive.Title>Something</SheetPrimitive.Title>
     </VisuallyHidden>
     <SheetPrimitive.Description
