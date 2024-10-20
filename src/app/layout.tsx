@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import { Providers } from "./providers";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import WebVitals from "@/components/web-vitals";
 
 const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
   ssr: false,
@@ -93,7 +94,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <WebVitals />
+          {children}
+        </Providers>
       </body>
     </html>
   );

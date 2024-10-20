@@ -19,7 +19,7 @@ const GoogleAnalytics = (): React.ReactElement => {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${gaId}');
-      `}
+        `}
       </Script>
     </>
   );
