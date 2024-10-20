@@ -1,21 +1,28 @@
 import { NextResponse } from 'next/server'
-import { redis, cache } from '@/lib/redis'
+import { redis, cache, BlogData, BlogCategory } from '@/lib/redis'
 
-export async function GET() {
-  const categories = ['engineeringMds', 'englishMds', 'mathMds', 'scienceMds', 'technologyMds']
-  const blogs: Record<string, unknown> = {}
+export async function GET(): Promise<NextResponse<BlogData>> {
+  const categories: BlogCategory[] = ['engineeringMds', 'englishMds', 'mathMds', 'scienceMds', 'technologyMds']
+  const blogs: Partial<BlogData> = {}
 
-  for (const category of categories) {
-    if (cache.has(category)) {
-      blogs[category] = cache.get(category)
-    } else {
-      const data = await redis.get(category)
-      if (data) {
-        blogs[category] = data
-        cache.set(category, data)
-      }
+  if (cache.has('allBlogs')) {
+    const cachedBlogs = cache.get('allBlogs')
+    if (cachedBlogs && typeof cachedBlogs !== 'string') {
+      return NextResponse.json(cachedBlogs)
     }
   }
 
-  return NextResponse.json(blogs)
+  for (const category of categories) {
+    const data = await redis.get<BlogData[BlogCategory]>(category)
+    if (data) {
+      blogs[category] = data
+    }
+  }
+
+  const typedBlogs = blogs as BlogData
+  cache.set('allBlogs', typedBlogs)
+
+  return NextResponse.json(typedBlogs)
 }
+
+export const revalidate = 7200 

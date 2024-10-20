@@ -1,65 +1,29 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { redis, cache } from "@/lib/redis";
-import dynamic from "next/dynamic";
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import { fetchBlogContent } from '@/lib/redis'
+import Layout from '@/components/Layout'
 
-const Layout = dynamic(() => import("@/components/Layout"));
+export const revalidate = 7200 // Revalidate every 2 hours
 
-export const revalidate = 3600; // Revalidate every hour
-
-type Blog = {
-  name: string;
-  rawUrl: string;
-};
-
-async function getBlogContent(slug: string) {
-  const categories = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-
-  for (const category of categories) {
-    if (cache.has(category)) {
-      const blogs = cache.get(category) as Blog[];
-      const blog = blogs.find((b) => b.name === slug);
-      if (blog) {
-        return fetch(blog.rawUrl).then((res) => res.text());
-      }
-    } else {
-      const data = (await redis.get(category)) as Blog[];
-      if (data) {
-        cache.set(category, data);
-        const blog = data.find((b) => b.name === slug);
-        if (blog) {
-          return fetch(blog.rawUrl).then((res) => res.text());
-        }
-      }
-    }
-  }
-
-  return null;
+interface BlogPostProps {
+  params: {
+    slug: string;
+  };
 }
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const content = await getBlogContent(decodeURIComponent(params.slug));
+export default async function BlogPost({ params }: BlogPostProps) {
+  const content = await fetchBlogContent(decodeURIComponent(params.slug))
 
   if (!content) {
-    return <div>Blog post not found</div>;
+    return <div>Blog post not found</div>
   }
 
   return (
     <Layout>
-      <div className="mx-auto px-4 py-8">
-        <article className="prose">
+      <div className="container mx-auto px-4 py-8">
+        <article className="prose lg:prose-xl">
           <MDXRemote source={content} />
         </article>
       </div>
     </Layout>
-  );
+  )
 }
