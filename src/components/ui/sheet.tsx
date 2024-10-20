@@ -102,14 +102,25 @@ SheetFooter.displayName = "SheetFooter";
 
 const SheetTitle = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <SheetPrimitive.Title
-    ref={ref}
-    className={cn("text-lg font-semibold text-foreground", className)}
-    {...props}
-  />
-));
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title> & { visuallyHidden?: boolean }
+>(({ className, visuallyHidden = false, ...props }, ref) => {
+  if (!props.children) {
+    return null;
+  }
+
+  return (
+    <SheetPrimitive.Title
+      ref={ref}
+      className={cn(
+        "text-lg font-semibold text-foreground",
+        visuallyHidden ? "sr-only" : "", // Apply 'sr-only' if visually hidden
+        className
+      )}
+      {...props}
+    />
+  );
+});
+
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
 const SheetDescription = React.forwardRef<
