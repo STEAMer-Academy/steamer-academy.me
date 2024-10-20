@@ -93,7 +93,7 @@
   }
 
   .prose p {
-    @apply mb-4 text-left text-lg leading-loose text-gray-300;
+    @apply mb-4 text-left text-lg leading-loose;
   }
 
   .prose a {
@@ -107,11 +107,11 @@
 
   .prose ul li,
   .prose ol li {
-    @apply mb-2 text-lg text-gray-300;
+    @apply mb-2 text-lg;
   }
 
   .prose blockquote {
-    @apply mb-4 border-l-4 border-blue-500 pl-4 italic text-gray-400;
+    @apply mb-4 border-l-4 border-blue-500 pl-4 italic;
   }
 
   .prose code {
@@ -119,7 +119,7 @@
   }
 
   .prose pre {
-    @apply mb-4 overflow-x-auto rounded-md bg-gray-900 p-4 text-white;
+    @apply mb-4 overflow-x-auto rounded-md bg-gray-900 p-4;
   }
 
   /* Optional: Tweak spacing between sections */
