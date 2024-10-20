@@ -20,7 +20,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <article className="prose lg:prose-xl">
+        <article className="prose lg:prose-xl pt-5">
           <MDXRemote source={content} />
         </article>
       </div>
