@@ -15,7 +15,7 @@ const nextConfig = {
         has: [
           {
             type: "host",
-            value: "steamer-academyme.netlify.app",
+            value: "steamer-academy-netlify.netlify.app",
           },
         ],
         destination: "https://www.steameracademy.me/:path*",
