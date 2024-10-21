@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Explore the services offered by STEAMer Academy, including English Club, Code Club, and 24/7 Assistance.",
 };
 
+export const runtime = 'edge';
+
 const services = [
   {
     title: "English Club",

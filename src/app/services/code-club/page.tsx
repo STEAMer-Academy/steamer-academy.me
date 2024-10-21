@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+export const runtime = 'edge';
+
 const TypewriterEffectSmooth = dynamic(() =>
   import("@/components/ui/typewriter-effect").then(
     (mod) => mod.TypewriterEffectSmooth,

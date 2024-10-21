@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bun run partytown && next build && rm -rf .next/cache",
+    "build": "bun run partytown && bunx @cloudflare/next-on-pages && rm -rf .next/cache",
     "start": "next start",
     "lint": "next lint",
     "partytown": "partytown copylib public/~partytown",

@@ -13,6 +13,8 @@ const Layout = dynamic(() =>
   import("../components/Layout").then((mod) => mod.default),
 );
 
+export const runtime = 'edge';
+
 const images = [
   {
     src: "/RootImage1.webp",
