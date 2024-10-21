@@ -11,6 +11,8 @@ const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
   ssr: false,
 });
 
+const CookieConsent = dynamic(() => import("@/components/CookieConsent"))
+
 export const metadata: Metadata = {
   title: "STEAMer Academy",
   description: "STEAMer Academy Main Home Page",
@@ -94,6 +96,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
       >
+      <CookieConsent />
         <Providers>
           <WebVitals />
           {children}
