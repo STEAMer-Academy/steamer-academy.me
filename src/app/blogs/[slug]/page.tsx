@@ -10,8 +10,6 @@ interface BlogPostProps {
   };
 }
 
-export const runtime = 'edge';
-
 export default async function BlogPost({ params }: BlogPostProps) {
   const content = await fetchBlogContent(decodeURIComponent(params.slug))
 

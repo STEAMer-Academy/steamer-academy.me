@@ -5,8 +5,6 @@ import Layout from "@/components/Layout";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Loading from "@/app/loading";
 
-export const runtime = 'edge';
-
 export const revalidate = 7200; // Revalidate every 2 hours
 
 export default async function BlogsPage() {

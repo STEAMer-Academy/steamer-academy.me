@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
-import withMDX from "@next/mdx";
-import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
+import withMDX from "@next/mdx"
 
 const mdxConfig = {
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-};
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+}
 
 const nextConfig = {
   reactStrictMode: true,
@@ -39,9 +38,5 @@ const nextConfig = {
     ];
   },
 };
-
-if (process.env.NODE_ENV === "development") {
-  await setupDevPlatform();
-}
 
 export default withMDX(mdxConfig)(nextConfig);

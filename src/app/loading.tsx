@@ -1,7 +1,4 @@
 import { Spinner } from "@nextui-org/spinner";
-
-export const runtime = 'edge';
-
 export default function Loading() {
   return (
     <div className="fixed inset-0 z-50 flex content-center items-center justify-center bg-background">

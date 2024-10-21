@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-export const runtime = 'edge';
-
 const TypewriterEffectSmooth = dynamic(() =>
   import("@/components/ui/typewriter-effect").then(
     (mod) => mod.TypewriterEffectSmooth,

@@ -11,8 +11,6 @@ export const metadata: Metadata = {
   description: "Join our English Club and improve your language skills",
 };
 
-export const runtime = 'edge';
-
 export default function EnglishClubPage() {
   return (
     <Layout>
