@@ -110,7 +110,7 @@ export default function Home() {
               aria-label="Learn More About Steamer Academy, by visiting the services page."
               passHref
             >
-              <Button variant="outline">Learn More About Us</Button>
+              <Button variant="outline">Learn More</Button>
             </Link>
           </div>
         </section>

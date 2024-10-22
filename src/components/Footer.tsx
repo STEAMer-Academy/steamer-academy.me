@@ -34,6 +34,7 @@ export default function Footer() {
               <Link
                 href="https://www.facebook.com/profile.php?id=61567677111933"
                 className="text-gray-400 hover:text-blue-500"
+                aria-label="Facebook Page Link"
               >
                 <Facebook01Icon className="h-6 w-6" />
               </Link>

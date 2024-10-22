@@ -22,7 +22,7 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Select a category" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent aria-label="Mobile View Dropdown For Tabs">
             {categories.map((category) => (
               <SelectItem key={category} value={category}>
                 {capitalizeFirstLetter(category.replace('Mds', ''))}
