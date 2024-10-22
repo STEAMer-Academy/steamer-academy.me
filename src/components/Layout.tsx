@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const Header = dynamic(() => import("./Header").then((mod) => mod.default));
+const Header = dynamic(() => import("./Header").then((mod) => mod.default), {
+  ssr: false,
+});
 const Footer = dynamic(() => import("./Footer").then((mod) => mod.default));
 const ThemeProvider = dynamic(() =>
   import("./ThemeProvider").then((mod) => mod.ThemeProvider),

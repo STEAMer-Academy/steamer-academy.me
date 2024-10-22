@@ -7,7 +7,9 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import WebVitals from "@/components/web-vitals";
 
-const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"));
+const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
+  ssr: false,
+});
 
 const CookieConsent = dynamic(() => import("@/components/CookieConsent"))
 
