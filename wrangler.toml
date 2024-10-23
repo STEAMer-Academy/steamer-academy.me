@@ -1,5 +1,5 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "little-block-d0c7"
+name = "steamer-academy-me"
 compatibility_date = "2024-10-18"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
