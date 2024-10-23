@@ -24,7 +24,7 @@
   to = "https://www.steameracademy.me/:splat"
   status = 301
   force = true
-  conditions = { Host = "steamer-academy-netlify.netlify.app" }
+  conditions = { Host = "steamer-academy.netlify.app" }
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
 [dev]
