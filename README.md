@@ -1,70 +1,68 @@
-<h6 align="center">
-    <img src="https://raw.githubusercontent.com/STEAMer-Academy/.github/main/profile/20240802_221113_0000.png" alt="Logo" class="logo" width="20%">
-</h6>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`c3`](https://developers.cloudflare.com/pages/get-started/c3).
 
-<h3 align="center">STEAMer Academy Website</h3>
+## Getting Started
 
-<h5 align="center">
-  <a href="http://ipa-reader.xyz/?text=%C3%B0i%CB%90%CB%88sti%CB%90.m%C9%99r%C9%99%CB%88k%C3%A6d.%C9%99.mi">/ðiːˈstiː.mərəˈkæd.ə.mi/</a>
-</h5>
+First, run the development server:
 
-<h6>
-    <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png">
-</h6>
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-<p align="center">
-    <img src="https://img.shields.io/github/stars/steamer-academy?colorA=363a4f&colorB=b7bdf8&style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZD0iTTIzNS4yNCw4NC4zOGwtMjguMDYsMjMuNjgsOC41NiwzNS4zOWExMy4zNCwxMy4zNCwwLDAsMS01LjA5LDEzLjkxLDEzLjU0LDEzLjU0LDAsMCwxLTE1LC42OUwxNjQsMTM5bC0zMS42NSwxOS4wNmExMy41MSwxMy41MSwwLDAsMS0xNS0uNjksMTMuMzIsMTMuMzIsMCwwLDEtNS4xLTEzLjkxbDguNTYtMzUuMzlMOTIuNzYsODQuMzhhMTMuMzksMTMuMzksMCwwLDEsNy42Ni0yMy41OGwzNi45NC0yLjkyLDE0LjIxLTMzLjY2YTEzLjUxLDEzLjUxLDAsMCwxLDI0Ljg2LDBsMTQuMjEsMzMuNjYsMzYuOTQsMi45MmExMy4zOSwxMy4zOSwwLDAsMSw3LjY2LDIzLjU4Wk04OC4xMSwxMTEuODlhOCw4LDAsMCwwLTExLjMyLDBMMTguMzQsMTcwLjM0YTgsOCwwLDAsMCwxMS4zMiwxMS4zMmw1OC40NS01OC40NUE4LDgsMCwwLDAsODguMTEsMTExLjg5Wm0tLjUsNjEuMTlMMzQuMzQsMjI2LjM0YTgsOCwwLDAsMCwxMS4zMiwxMS4zMmw1My4yNi01My4yN2E4LDgsMCwwLDAtMTEuMzEtMTEuMzFabTczLTEtNTQuMjksNTQuMjhhOCw4LDAsMCwwLDExLjMyLDExLjMybDU0LjI4LTU0LjI4YTgsOCwwLDAsMC0xMS4zMS0xMS4zMloiIHN0eWxlPSJmaWxsOiAjQ0FEM0Y1OyIvPgo8L3N2Zz4=">
-    <img src="https://img.shields.io/discord/1225805405578596352?style=for-the-badge&color=c6a0f6&labelColor=363a4f&logo=discord&logoColor=cad3f5">
-    <!-- <a href="https://github.com/steamer-academy/steamer-blogs/issues"><img src="https://img.shields.io/github/issues/steamer-academy/steamer-blogs?colorA=363a4f&colorB=f5a97f&style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij4KPHBhdGggZD0iTTIxNiwzMlYxOTJhOCw4LDAsMCwxLTgsOEg3MmExNiwxNiwwLDAsMC0xNiwxNkgxOTJhOCw4LDAsMCwxLDAsMTZINDhhOCw4LDAsMCwxLTgtOFY1NkEzMiwzMiwwLDAsMSw3MiwyNEgyMDhBOCw4LDAsMCwxLDIxNiwzMloiIHN0eWxlPSJmaWxsOiAjQ0FEM0Y1OyIvPgo8L3N2Zz4="></a> -->
-    <a href="https://app.netlify.com/sites/steamer-academy-netlify/deploys"><img src="https://api.netlify.com/api/v1/badges/1a59e053-29b4-4c97-b721-967e00ccb034/deploy-status" /></a>
-</p>
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-<p align="center"> Where Creativity Meets Innovation </p>
-<p align="center">
-    STEAMer Academy is a dynamic organization dedicated to igniting a passion for learning in Science, Technology, Engineering, Arts, and Math (STEAM). We believe that every child has the potential to become a creative problem-solver, a skilled inventor, and a curious explorer of the world around them.
-</p>
+## Cloudflare integration
 
-<p align="center">
-    <a href="https://discord.gg/HNhjQAfq9U">
-    <picture>
-      <source srcset="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/social/macchiato_discord.svg" width="64" height="64" alt="Discord Logo" media="(prefers-color-scheme: dark)"/>
-      <source srcset="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/social/latte_discord.svg" width="64" height="64" alt="Discord Logo" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"/>
-      <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/social/latte_discord.svg" width="64" height="64" alt="Discord Logo"/>
-    </picture>
-    </a>
-    <a href="https://github.com/steamer-academy">
-    <picture>
-      <source srcset="https://raw.githubusercontent.com/catppuccin/catppuccin/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/social/macchiato_github.svg" width="64" height="64" alt="Github Logo" media="(prefers-color-scheme: dark)"/>
-      <source srcset="https://raw.githubusercontent.com/catppuccin/catppuccin/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/social/latte_github.svg" width="64" height="64" alt="Github Logo" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"/>
-      <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/social/latte_github.svg" width="64" height="64" alt="Github Logo"/>
-    </picture>
-  </a>
-</p>
+Besides the `dev` script mentioned above `c3` has added a few extra scripts that allow you to integrate the application with the [Cloudflare Pages](https://pages.cloudflare.com/) environment, these are:
+  - `pages:build` to build the application for Pages using the [`@cloudflare/next-on-pages`](https://github.com/cloudflare/next-on-pages) CLI
+  - `preview` to locally preview your Pages application using the [Wrangler](https://developers.cloudflare.com/workers/wrangler/) CLI
+  - `deploy` to deploy your Pages application using the [Wrangler](https://developers.cloudflare.com/workers/wrangler/) CLI
 
-<h3 align="center">
-    Join Our Community ! Donations are always great ! 
-</h3>
+> __Note:__ while the `dev` script is optimal for local development you should preview your Pages application as well (periodically or before deployments) in order to make sure that it can properly work in the Pages environment (for more details see the [`@cloudflare/next-on-pages` recommended workflow](https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md#recommended-development-workflow))
 
-<h3 align="center">
-    <a href="https://ko-fi.com/R6R212100L"><img src="https://ko-fi.com/img/githubbutton_sm.svg"></a>    
-</h3>
+### Bindings
 
-### This is the official website code for STEAMer Academy Domain, [www.steameracademy.me](https://www.steameracademy.me) . This website is proudly build it 4 things, [Next.js](https://nextjs.org/), [React](https://react.dev/) ,[Tailwindcss](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/).
+Cloudflare [Bindings](https://developers.cloudflare.com/pages/functions/bindings/) are what allows you to interact with resources available in the Cloudflare Platform.
 
-<p align=center>
-    <a href="https://astro.build/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/nextjs.png" width="14%"/></a>
-    <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/reactlogo.png" width="15%"/></a>
-    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/tailwindcss.png" width="20%"/></a>
-    <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.github.io/refs/heads/main/public/shadcn-ui.png" width="13%"/></a>
-</p>
+You can use bindings during development, when previewing locally your application and of course in the deployed application:
 
-<h3 align="center">
-    You are allowed to use this code as reference and use in your website. 
-</h3>
+- To use bindings in dev mode you need to define them in the `next.config.js` file under `setupDevBindings`, this mode uses the `next-dev` `@cloudflare/next-on-pages` submodule. For more details see its [documentation](https://github.com/cloudflare/next-on-pages/blob/05b6256/internal-packages/next-dev/README.md).
 
-<h1 align="center">
-    You can contribute as much as you like. Do pull requests, etc. We are happy for your contribution! 
-</h1>
+- To use bindings in the preview mode you need to add them to the `pages:preview` script accordingly to the `wrangler pages dev` command. For more details see its [documentation](https://developers.cloudflare.com/workers/wrangler/commands/#dev-1) or the [Pages Bindings documentation](https://developers.cloudflare.com/pages/functions/bindings/).
 
-> [!IMPORTANT]
-> This website is still in developement.
+- To use bindings in the deployed application you will need to configure them in the Cloudflare [dashboard](https://dash.cloudflare.com/). For more details see the  [Pages Bindings documentation](https://developers.cloudflare.com/pages/functions/bindings/).
+
+#### KV Example
+
+`c3` has added for you an example showing how you can use a KV binding.
+
+In order to enable the example:
+- Search for javascript/typescript lines containing the following comment:
+  ```ts
+  // KV Example:
+  ```
+  and uncomment the commented lines below it.
+- Do the same in the `wrangler.toml` file, where
+  the comment is:
+  ```
+  # KV Example:
+  ```
+- If you're using TypeScript run the `cf-typegen` script to update the `env.d.ts` file:
+  ```bash
+  npm run cf-typegen
+  # or
+  yarn cf-typegen
+  # or
+  pnpm cf-typegen
+  # or
+  bun cf-typegen
+  ```
+
+After doing this you can run the `dev` or `preview` script and visit the `/api/hello` route to see the example in action.
+
+Finally, if you also want to see the example work in the deployed application make sure to add a `MY_KV_NAMESPACE` binding to your Pages application in its [dashboard kv bindings settings section](https://dash.cloudflare.com/?to=/:account/pages/view/:pages-project/settings/functions#kv_namespace_bindings_section). After having configured it make sure to re-deploy your application.

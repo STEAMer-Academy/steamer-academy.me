@@ -6,6 +6,7 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Loading from "@/app/loading";
 
 export const revalidate = 7200; // Revalidate every 2 hours
+export const runtime = "edge";
 
 export default async function BlogsPage() {
   const blogs: BlogData = await fetchAllBlogs();
