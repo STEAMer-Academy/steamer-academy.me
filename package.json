@@ -8,19 +8,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "bunx @cloudflare/next-on-pages",
-    "preview": "bun pages:build && wrangler pages dev",
-    "deploy": "bun pages:build && wrangler pages deploy",
+    "partytown": "partytown copylib public/~partytown",
+    "build:worker": "bun run partytown && cloudflare",
+    "dev:worker": "wrangler dev --port 8771",
+    "preview:worker": "bun run partytown && bun run build:worker && bun run dev:worker",
+    "deploy:worker": "bun run build:worker && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^0.2.1",
     "next": "^14.2.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@builder.io/partytown": "^0.10.2",
-    "@cloudflare/next-on-pages": "1",
     "@cloudflare/workers-types": "^4.20241018.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
