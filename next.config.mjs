@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/** @type {import('next').NextConfig} */
-||||||| parent of 9ff250b (Cloudflare YAY)
 /** @type {import('next').NextConfig} */
 import withMDX from "@next/mdx"
 
@@ -8,7 +5,6 @@ const mdxConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 }
 
-=======
 import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 
 // Here we use the @cloudflare/next-on-pages next-dev module to allow us to use bindings during local development
@@ -18,8 +14,6 @@ if (process.env.NODE_ENV === 'development') {
   await setupDevPlatform();
 }
 
-/** @type {import('next').NextConfig} */
->>>>>>> 9ff250b (Cloudflare YAY)
 const nextConfig = {
   reactStrictMode: true,
 
@@ -54,4 +48,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMDX(mdxConfig)(nextConfig);
