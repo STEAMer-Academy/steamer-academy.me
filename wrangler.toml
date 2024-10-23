@@ -85,3 +85,4 @@ pages_build_output_dir = ".vercel/output/static"
 # [[env.production.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PRODUCTION_NAMESPACE_ID>"
+
