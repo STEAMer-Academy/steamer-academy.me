@@ -4,8 +4,6 @@ import Layout from '@/components/Layout'
 
 export const revalidate = 7200 // Revalidate every 2 hours
 
-export const runtime = "edge";
-
 interface BlogPostProps {
   params: {
     slug: string;

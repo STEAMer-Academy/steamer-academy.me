@@ -9,8 +9,6 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, '1 d'),
 })
 
-export const runtime = "edge";
-
 export async function GET(): Promise<NextResponse<BlogData | { error: string }>> {
   const ip = headers().get('x-forwarded-for') ?? '127.0.0.1'
   const { success } = await ratelimit.limit(ip)
