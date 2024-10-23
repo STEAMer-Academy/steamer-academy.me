@@ -5,9 +5,14 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/package-lock.json
 
 # testing
 /coverage
+
+# Next PWA
+/public/sw.js
+/public/workbox-*.js
 
 # next.js
 /.next/
@@ -25,6 +30,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Partytown
+public/~partytown/
+
 # local env files
 .env*.local
 .env
@@ -36,6 +44,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# wrangler files
-.wrangler
-.dev.vars
+/.unlighthouse

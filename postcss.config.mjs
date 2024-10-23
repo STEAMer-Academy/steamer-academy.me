@@ -1,4 +1,4 @@
-/** @type {import('postcss-load-config').Config} */
+/** @type {import('postcss').ProcessOptions} */
 const config = {
   plugins: {
     "postcss-flexbugs-fixes": {},
