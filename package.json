@@ -12,7 +12,7 @@
     "build:worker": "bun run partytown && cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "preview:worker": "bun run partytown && bun run build:worker && bun run dev:worker",
-    "deploy:worker": "bun run build:worker && wrangler deploy",
+    "deploy:worker": "bun run build:worker && wrangler pages deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
