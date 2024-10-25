@@ -5,6 +5,7 @@ export interface Blog {
   name: string;
   description: string;
   rawUrl: string;
+  image: string;
 }
 
 export type BlogCategory = 'engineeringMds' | 'englishMds' | 'mathMds' | 'scienceMds' | 'technologyMds';

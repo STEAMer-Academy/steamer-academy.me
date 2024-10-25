@@ -4,6 +4,12 @@ import BlogTabs from "./BlogTabs";
 import Layout from "@/components/Layout";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Loading from "@/app/loading";
+import { Metadata } from "next"
+
+export const metadata : Metadata = {
+  title: "STEAMer Academy | Blogs",
+  description: "The Home For All Blogs Made By Our People."
+}
 
 export const revalidate = 7200; // Revalidate every 2 hours
 

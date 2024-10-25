@@ -27,6 +27,7 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "@react-three/drei": "^9.114.4",
     "@react-three/fiber": "^8.17.10",
+    "@tabler/icons-react": "^3.20.0",
     "@types/mdx": "^2.0.13",
     "@types/three": "^0.169.0",
     "@upstash/ratelimit": "^2.0.4",
@@ -69,5 +70,6 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.14"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -4,46 +4,81 @@ import { useState } from "react";
 import Link from "next/link";
 import { Blog, BlogCategory } from "@/lib/redis";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import {
+  IconClipboardCopy,
+  IconFileBroken,
+  IconSignature,
+  IconTableColumn,
+  IconArrowWaveRightUp,
+} from "@tabler/icons-react";
 
 interface BlogListProps {
   blogs: Blog[];
   category: BlogCategory;
 }
 
-<button className="relative rounded-full border border-slate-600 bg-slate-700 px-8 py-2 text-sm text-white transition duration-200 hover:shadow-2xl hover:shadow-white/[0.1]">
-  <div className="absolute inset-x-0 -top-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-teal-500 to-transparent shadow-2xl" />
-  <span className="relative z-20">Top gradient</span>
-</button>;
+const icons = [
+  IconClipboardCopy,
+  IconFileBroken,
+  IconSignature,
+  IconTableColumn,
+  IconArrowWaveRightUp,
+];
 
 export default function BlogList({ blogs }: BlogListProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 8;
+  const blogsPerPage = 6;
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
   const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
   return (
-    <div>
-      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {currentBlogs.map((blog: Blog) => (
-          <Card key={blog.name}>
-            <CardHeader>
-              <CardTitle className="text-lg">{blog.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-4 text-sm text-gray-600">{blog.description}</p>
-              <Link href={`/blogs/${encodeURIComponent(blog.name)}`}>
-                <Button className="relative rounded-full border border-slate-600 bg-slate-700 px-8 py-2 text-sm text-white transition duration-200 hover:shadow-2xl hover:shadow-white/[0.1]">
-                  <div className="absolute inset-x-0 -top-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-teal-500 to-transparent shadow-2xl" />
-                  <span className="relative z-20">Read more</span>
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+    <div className="space-y-8">
+      <BentoGrid className="max-w-7xl mx-auto">
+        {currentBlogs.map((blog: Blog, i) => {
+          const Icon = icons[i % icons.length];
+          return (
+            <BentoGridItem
+              key={blog.name}
+              title={blog.name}
+              description={
+                <div>
+                  <p className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
+                    {blog.description}
+                  </p>
+                  <Link
+                    href={`/blogs/${encodeURIComponent(blog.name)}`}
+                    className="mt-2 inline-block"
+                  >
+                    <Button className="w-full bg-slate-900 text-white hover:bg-slate-800">
+                      Read more
+                    </Button>
+                  </Link>
+                </div>
+              }
+              header={
+                <div className="relative w-full h-40 mb-4">
+                  <Image
+                    src={blog.image || "/placeholder.svg"}
+                    alt={blog.name}
+                    fill
+                    className="object-cover rounded-lg"
+                  />
+                </div>
+              }
+              icon={<Icon className="h-4 w-4 text-neutral-500" />}
+              className={cn(
+                i === 3 || i === 4 ? "md:col-span-2" : "",
+                "group cursor-pointer"
+              )}
+            />
+          );
+        })}
+      </BentoGrid>
       <div className="flex items-center justify-between">
         <Button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -64,7 +99,7 @@ export default function BlogList({ blogs }: BlogListProps) {
         </Button>
       </div>
       {blogs.length > blogsPerPage && (
-        <div className="mt-4 text-center">
+        <div className="text-center">
           <Button variant="outline" onClick={() => setCurrentPage(totalPages)}>
             Show all {blogs.length} blogs
           </Button>
