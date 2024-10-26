@@ -101,6 +101,14 @@ export default function Footer() {
                   Gallery
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="https://status.steameracademy.me"
+                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                >
+                  Status
+                </Link>
+              </li>
             </ul>
           </div>
 

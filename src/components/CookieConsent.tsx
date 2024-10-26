@@ -11,6 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CookieIcon } from "lucide-react";
+import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
 
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,23 +44,23 @@ export default function CookieConsent() {
           transition={{ duration: 0.3 }}
           className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-96"
         >
-          <Card className="bg-primary text-primary-foreground shadow-lg">
+          <Card className="shadow-lg">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">
-                  Cookie Consent
+                <CardTitle className="whitespace-nowrap text-lg font-semibold">
+                  <CookieIcon size={24} className="h-5 w-5" />
+                  <span>We Use Cookies</span>
                 </CardTitle>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsVisible(false)}
-                  className="text-primary-foreground hover:text-primary-foreground/80"
                 >
                   <X size={18} />
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="text-sm">
+            <CardContent className="text-left text-sm">
               <p>
                 We use cookies to enhance your browsing experience, serve
                 personalized ads or content, and analyze our traffic. By
@@ -67,11 +69,23 @@ export default function CookieConsent() {
               </p>
             </CardContent>
             <CardFooter className="flex justify-end space-x-2">
-              <Button variant="secondary" size="sm" onClick={handleDecline}>
-                Decline
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleDecline}
+                className="bg-red-500 text-black dark:bg-red-400"
+              >
+                <UnavailableIcon size={24} className="mr-2" />
+                <span>Decline</span>
               </Button>
-              <Button variant="default" size="sm" onClick={handleAccept}>
-                Accept All
+              <Button
+                className="bg-green-500 text-black dark:bg-green-400"
+                size="sm"
+                onClick={handleAccept}
+                variant="secondary"
+              >
+                <CheckmarkCircle01Icon size={24} className="mr-2" />
+                <span>Accept</span>
               </Button>
             </CardFooter>
           </Card>

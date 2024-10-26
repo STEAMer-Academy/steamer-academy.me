@@ -11,7 +11,9 @@ interface BlogPostProps {
   };
 }
 
-export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPostProps): Promise<Metadata> {
   const metadata = await fetchBlogMetadata(decodeURIComponent(params.slug));
 
   if (!metadata) {

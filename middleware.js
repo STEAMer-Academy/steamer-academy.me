@@ -109,7 +109,7 @@ export async function middleware(request) {
         new Request(newURL, {
           headers: newHeaders,
           redirect: "manual",
-        })
+        }),
       );
 
       const responseHeaders = new Headers(res.headers);
