@@ -2,11 +2,15 @@
 
 import React from "react";
 import Script from "next/script";
-import "dotenv/config";
 
-const GoogleAnalytics = (): React.ReactElement => {
+const GoogleAnalytics = ({
+  consentGiven,
+}: {
+  consentGiven: boolean;
+}): React.ReactElement | null => {
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
+  if (!consentGiven) return null;
   return (
     <>
       <Script
@@ -15,7 +19,8 @@ const GoogleAnalytics = (): React.ReactElement => {
         type="text/partytown"
       />
       <Script id="google-analytics" type="text/partytown">
-        {`window.dataLayer = window.dataLayer || [];
+        {`
+          window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${gaId}');

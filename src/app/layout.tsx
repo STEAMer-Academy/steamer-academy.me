@@ -7,10 +7,6 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import WebVitals from "@/components/web-vitals";
 
-const GoogleAnalytics = dynamic(() => import("@/components/GoogleAnalytics"), {
-  ssr: false,
-});
-
 const CookieConsent = dynamic(() => import("@/components/CookieConsent"));
 
 export const metadata: Metadata = {
@@ -91,12 +87,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
-        <GoogleAnalytics />
+        <CookieConsent />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
       >
-        <CookieConsent />
         <Providers>
           <WebVitals />
           {children}
