@@ -14,6 +14,15 @@ import {
 import { CookieIcon } from "lucide-react";
 import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
 
+// Function To Clear All Cookies 
+const clearAllCookies = () => {
+  const cookies = document.cookie.split("; ");
+  cookies.forEach(cookie => {
+    const [name] = cookie.split("=");
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  });
+};
+
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,6 +39,7 @@ export default function CookieConsent() {
   };
 
   const handleDecline = () => {
+    clearAllCookies();
     localStorage.setItem("cookieConsent", "false");
     setIsVisible(false);
   };
@@ -64,7 +74,7 @@ export default function CookieConsent() {
               <p>
                 We use cookies to enhance your browsing experience, serve
                 personalized ads or content, and analyze our traffic. By
-                clicking &quot;Accept All&quot;, you consent to our use of
+                clicking &quot;Accept&quot;, you consent to our use of
                 cookies.
               </p>
             </CardContent>
@@ -94,3 +104,4 @@ export default function CookieConsent() {
     </AnimatePresence>
   );
 }
+
