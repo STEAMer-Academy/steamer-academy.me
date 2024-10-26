@@ -37,7 +37,7 @@ export const TypewriterEffect = ({
           duration: 0.3,
           delay: stagger(0.1),
           ease: "easeInOut",
-        }
+        },
       );
     }
   }, [isInView, animate]);
@@ -54,7 +54,7 @@ export const TypewriterEffect = ({
                   key={`char-${index}`}
                   className={cn(
                     `hidden text-black opacity-0 dark:text-white`,
-                    word.className
+                    word.className,
                   )}
                 >
                   {char}
@@ -72,7 +72,7 @@ export const TypewriterEffect = ({
       className={cn(
         "text-3xl font-bold",
         "flex items-center justify-center",
-        className
+        className,
       )}
     >
       <div className="relative max-w-full overflow-hidden">
@@ -91,7 +91,7 @@ export const TypewriterEffect = ({
           }}
           className={cn(
             "absolute right-0 top-0 inline-block h-8 w-[4px] rounded-sm bg-blue-500",
-            cursorClassName
+            cursorClassName,
           )}
         ></motion.span>
       </div>
@@ -144,7 +144,7 @@ export const TypewriterEffectSmooth = ({
       className={cn(
         "text-3xl font-bold",
         "flex items-center justify-center",
-        className
+        className,
       )}
     >
       <div className="relative max-w-full overflow-hidden">
@@ -162,9 +162,7 @@ export const TypewriterEffectSmooth = ({
             delay: 1,
           }}
         >
-          <div className="whitespace-nowrap">
-            {renderWords()}{" "}
-          </div>{" "}
+          <div className="whitespace-nowrap">{renderWords()} </div>{" "}
         </motion.div>
         <motion.span
           initial={{
@@ -180,7 +178,7 @@ export const TypewriterEffectSmooth = ({
           }}
           className={cn(
             "absolute right-0 top-0 inline-block h-8 w-[4px] rounded-sm bg-blue-500",
-            cursorClassName
+            cursorClassName,
           )}
         ></motion.span>
       </div>

@@ -24,18 +24,26 @@ export default function BlogList({ blogs }: BlogListProps) {
     <div>
       <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {currentBlogs.map((blog: Blog) => (
-          <Card key={blog.name} className="shadow-lg hover:scale-105 transition transform duration-200 ease-in-out">
-            <Link href={`/blogs/${encodeURIComponent(blog.name)}`} className="block">
-                <Image
-                  src={blog.image}
-                  alt={`Image for ${blog.name}`}
-                  width={400}
-                  height={250}
-                  className="rounded-t-lg object-cover h-40 w-full"
-                />
+          <Card
+            key={blog.name}
+            className="transform shadow-lg transition duration-200 ease-in-out hover:scale-105"
+          >
+            <Link
+              href={`/blogs/${encodeURIComponent(blog.name)}`}
+              className="block"
+            >
+              <Image
+                src={blog.image}
+                alt={`Image for ${blog.name}`}
+                width={400}
+                height={250}
+                className="h-40 w-full rounded-t-lg object-cover"
+              />
             </Link>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">{blog.name}</CardTitle>
+              <CardTitle className="text-lg font-semibold">
+                {blog.name}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-sm">{blog.description}</p>
@@ -49,7 +57,7 @@ export default function BlogList({ blogs }: BlogListProps) {
           </Card>
         ))}
       </div>
-      <div className="flex items-center justify-between mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <Button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
@@ -60,7 +68,9 @@ export default function BlogList({ blogs }: BlogListProps) {
           Page {currentPage} of {totalPages}
         </span>
         <Button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
           disabled={currentPage === totalPages}
         >
           Next
@@ -76,4 +86,3 @@ export default function BlogList({ blogs }: BlogListProps) {
     </div>
   );
 }
-

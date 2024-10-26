@@ -1,8 +1,8 @@
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import { fetchBlogContent } from '@/lib/redis'
-import Layout from '@/components/Layout'
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { fetchBlogContent } from "@/lib/redis";
+import Layout from "@/components/Layout";
 
-export const revalidate = 7200 // Revalidate every 2 hours
+export const revalidate = 7200; // Revalidate every 2 hours
 
 interface BlogPostProps {
   params: {
@@ -11,10 +11,10 @@ interface BlogPostProps {
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  const content = await fetchBlogContent(decodeURIComponent(params.slug))
+  const content = await fetchBlogContent(decodeURIComponent(params.slug));
 
   if (!content) {
-    return <div>Blog post not found</div>
+    return <div>Blog post not found</div>;
   }
 
   return (
@@ -25,5 +25,5 @@ export default async function BlogPost({ params }: BlogPostProps) {
         </article>
       </div>
     </Layout>
-  )
+  );
 }
