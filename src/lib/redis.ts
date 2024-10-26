@@ -54,6 +54,30 @@ export async function fetchAllBlogs(): Promise<BlogData> {
   return typedBlogs;
 }
 
+export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
+  const categories: BlogCategory[] = [
+    "engineeringMds",
+    "englishMds",
+    "mathMds",
+    "scienceMds",
+    "technologyMds",
+  ];
+
+  const allBlogs = await fetchAllBlogs();
+
+  for (const category of categories) {
+    const blogs = allBlogs[category];
+    if (blogs) {
+      const blog = blogs.find((b) => b.name === slug);
+      if (blog) {
+        return blog;
+      }
+    }
+  }
+
+  return null;
+}
+
 export async function fetchBlogContent(slug: string): Promise<string | null> {
   const categories: BlogCategory[] = [
     "engineeringMds",
