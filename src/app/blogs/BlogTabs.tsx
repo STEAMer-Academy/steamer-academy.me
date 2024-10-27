@@ -1,16 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BlogData, BlogCategory } from "@/lib/redis";
 import BlogList from "./BlogList";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -27,53 +21,70 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory>(
     categories[0],
   );
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <div>
-      {/* Mobile view: Dropdown */}
-      <div className="mb-6 md:hidden">
-        <Select
-          onValueChange={(value: string) =>
-            setSelectedCategory(value as BlogCategory)
-          }
-          defaultValue={selectedCategory}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select a category" />
-          </SelectTrigger>
-          <SelectContent aria-label="Mobile View Dropdown For Tabs">
+    <div className="space-y-8">
+      <div className="relative">
+        {isMobile ? (
+          <select
+            value={selectedCategory}
+            onChange={(e) =>
+              setSelectedCategory(e.target.value as BlogCategory)
+            }
+            className="w-full rounded-lg border border-gray-700 bg-gray-800 p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Select blog category"
+          >
             {categories.map((category) => (
-              <SelectItem key={category} value={category}>
+              <option key={category} value={category}>
                 {capitalizeFirstLetter(category.replace("Mds", ""))}
-              </SelectItem>
+              </option>
             ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Desktop view: Tabs */}
-      <div className="hidden md:block">
-        <Tabs
-          value={selectedCategory}
-          onValueChange={(value) => setSelectedCategory(value as BlogCategory)}
-        >
-          <TabsList className="grid w-full grid-cols-5">
+          </select>
+        ) : (
+          <nav
+            className="flex space-x-1 rounded-lg bg-gray-800 p-1"
+            role="tablist"
+          >
             {categories.map((category) => (
-              <TabsTrigger
+              <button
                 key={category}
-                value={category}
-                className="capitalize"
+                onClick={() => setSelectedCategory(category)}
+                className={cn(
+                  "flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500",
+                  selectedCategory === category
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-400 hover:text-white",
+                )}
+                role="tab"
+                aria-selected={selectedCategory === category}
+                aria-controls={`tabpanel-${category}`}
               >
-                {category.replace("Mds", "")}
-              </TabsTrigger>
+                {capitalizeFirstLetter(category.replace("Mds", ""))}
+              </button>
             ))}
-          </TabsList>
-        </Tabs>
+          </nav>
+        )}
       </div>
 
-      <div className="mt-6">
+      <motion.div
+        key={selectedCategory}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        id={`tabpanel-${selectedCategory}`}
+        role="tabpanel"
+        aria-labelledby={`tab-${selectedCategory}`}
+      >
         <BlogList blogs={blogs[selectedCategory]} category={selectedCategory} />
-      </div>
+      </motion.div>
     </div>
   );
 }
