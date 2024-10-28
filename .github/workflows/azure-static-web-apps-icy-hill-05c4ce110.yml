@@ -34,7 +34,9 @@ jobs:
 
       # Install dependencies with Bun
       - name: Install Dependencies
-        run: bun install
+        run: |
+          bun install
+          export PATH="$HOME/.bun/bin:$PATH"
 
       # Custom Build and Deploy
       - name: Build and Deploy
@@ -46,7 +48,7 @@ jobs:
           action: "upload"
           app_location: "/"  # App source code path
           app_build_command: "bun run partytown && next build"  # Custom command for building with Bun
-          output_location: ".next"  # Directory where Next.js outputs the build
+          output_location: ""  # Directory where Next.js outputs the build
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
