@@ -7,7 +7,13 @@ const mdxConfig = {
 
 const nextConfig = {
   reactStrictMode: true,
-
+  env: {
+    DB_USER: process.env.DB_USER,
+    DB_PASSWORD: process.env.DB_PASSWORD,
+    DB_SERVER: process.env.DB_SERVER,
+    DB_NAME: process.env.DB_NAME,
+    DATABASE_CONNECTION_STRING: process.env.DATABASE_CONNECTION_STRING,
+  },
   images: {
     remotePatterns: [
       {

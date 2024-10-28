@@ -46,21 +46,16 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const formDataRecord: Record<string, string> = {};
-
-    data.forEach((value, key) => {
-      formDataRecord[key] = value as string;
-    });
-    const formDataEncoded = new URLSearchParams(formDataRecord).toString();
-
     try {
-      await fetch("/__forms.html", {
+      const response = await fetch("/api/submit-form", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formDataEncoded,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, formType: "contact" }),
       });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
 
       setFormStatus({ message: "Form submitted successfully", success: true });
       setFormData({
@@ -80,16 +75,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      name="feedback"
-      method="POST"
-      data-netlify="true"
-      data-netlify-recaptcha="true"
-      className="space-y-6"
-    >
-      <Input type="hidden" name="form-name" value="feedback" />
-
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Input
           type="text"

@@ -32,22 +32,16 @@ export function NewsletterForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const formDataRecord: Record<string, string> = {};
-
-    data.forEach((value, key) => {
-      formDataRecord[key] = value as string;
-    });
-
-    const formDataEncoded = new URLSearchParams(formDataRecord).toString();
-
     try {
-      await fetch("/__forms.html", {
+      const response = await fetch("/api/submit-form", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formDataEncoded,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, formType: "newsletter" }),
       });
+
+      if (!response.ok) {
+        throw new Error("Newsletter subscription failed");
+      }
 
       setFormStatus({
         message: "Thanks for subscribing!",
@@ -66,14 +60,7 @@ export function NewsletterForm() {
 
   return (
     <div>
-      <form
-        className="space-y-2"
-        onSubmit={handleSubmit}
-        method="POST"
-        data-netlify="true"
-        name="newsletter"
-      >
-        <input type="hidden" name="form-name" value="newsletter" />
+      <form className="space-y-2" onSubmit={handleSubmit}>
         <Input
           type="email"
           name="email"
