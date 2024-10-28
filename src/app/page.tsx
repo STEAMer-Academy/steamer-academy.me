@@ -32,6 +32,23 @@ export const metadata: Metadata = {
   title: "STEAMer Academy | Home",
   description:
     "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
+  openGraph: {
+    title: "STEAMer Academy",
+    description:
+      "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
+    url: "https://www.steameracademy.me/",
+    type: "website",
+    images: 'https://www.steameracademy.me/link-preview-images/home.png',
+  },
+  twitter: {
+    site: "https://www.steameracademy.me/",
+    creator: "Muntasir Mahmud",
+    title: "STEAMer Academy",
+    description:
+      "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
+    card: "summary_large_image",
+    images: 'https://www.steameracademy.me/link-preview-images/home.png',
+  },
 };
 
 export default function Home() {
