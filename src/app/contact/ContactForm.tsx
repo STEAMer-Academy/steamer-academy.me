@@ -47,7 +47,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/data-api/rest/ContactSubmissions", {
+      const response = await fetch("/data-api/api/ContactSubmissions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

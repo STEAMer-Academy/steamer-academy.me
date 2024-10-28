@@ -20,7 +20,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["http://localhost:4280"],
+        "origins": ["http://localhost:3000","https://www.steameracademy.me"],
         "allow-credentials": false
       },
       "authentication": {
