@@ -20,7 +20,7 @@
 
 <h3 align="center">Website Status</h3>
  
-<p>
+<p align="center">
     <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge" >
     <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge" >
     <img src="https://status.steameracademy.me/api/badge/1/ping?style=for-the-badge" >
