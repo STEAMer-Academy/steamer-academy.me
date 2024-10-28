@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bun run partytown && next build",
+    "build": "npm run partytown && next build",
     "start": "next start",
     "lint": "next lint",
     "partytown": "partytown copylib public/~partytown",
