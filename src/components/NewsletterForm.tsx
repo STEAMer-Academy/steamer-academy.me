@@ -8,7 +8,7 @@ import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 
 interface FormData {
-  email: string;
+  Email: string;
 }
 
 interface FormStatus {
@@ -18,7 +18,7 @@ interface FormStatus {
 
 export function NewsletterForm() {
   const $theme = useStore(themeStore);
-  const [formData, setFormData] = useState<FormData>({ email: "" });
+  const [formData, setFormData] = useState<FormData>({ Email: "" });
   const [formStatus, setFormStatus] = useState<FormStatus>({
     message: "",
     success: false,
@@ -47,7 +47,7 @@ export function NewsletterForm() {
         message: "Thanks for subscribing!",
         success: true,
       });
-      setFormData({ email: "" });
+      setFormData({ Email: "" });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
@@ -65,7 +65,7 @@ export function NewsletterForm() {
           type="email"
           name="email"
           placeholder="Enter your email"
-          value={formData.email}
+          value={formData.Email}
           onChange={handleChange}
           required
           className={`w-full ${

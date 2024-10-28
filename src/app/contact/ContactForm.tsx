@@ -9,10 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  message: string;
+  FirstName: string;
+  LastName: string;
+  Email: string;
+  Message: string;
 }
 
 interface FormStatus {
@@ -22,10 +22,10 @@ interface FormStatus {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: "",
+    FirstName: "",
+    LastName: "",
+    Email: "",
+    Message: "",
   });
   const $theme = useStore(themeStore);
   const [formStatus, setFormStatus] = useState<FormStatus>({
@@ -59,10 +59,10 @@ export default function ContactForm() {
 
       setFormStatus({ message: "Form submitted successfully", success: true });
       setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        message: "",
+        FirstName: "",
+        LastName: "",
+        Email: "",
+        Message: "",
       });
     } catch (error) {
       const errorMessage =
@@ -81,7 +81,7 @@ export default function ContactForm() {
           type="text"
           name="firstName"
           placeholder="First name"
-          value={formData.firstName}
+          value={formData.FirstName}
           onChange={handleChange}
           required
           className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
@@ -90,7 +90,7 @@ export default function ContactForm() {
           type="text"
           name="lastName"
           placeholder="Last name"
-          value={formData.lastName}
+          value={formData.LastName}
           onChange={handleChange}
           required
           className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
@@ -101,7 +101,7 @@ export default function ContactForm() {
         type="email"
         name="email"
         placeholder="Email"
-        value={formData.email}
+        value={formData.Email}
         onChange={handleChange}
         required
         className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
@@ -110,7 +110,7 @@ export default function ContactForm() {
       <Textarea
         name="message"
         placeholder="Message"
-        value={formData.message}
+        value={formData.Message}
         onChange={handleChange}
         required
         rows={6}
