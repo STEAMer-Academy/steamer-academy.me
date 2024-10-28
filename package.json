@@ -5,8 +5,10 @@
   "engines": {
     "node": "20"
   },
-  "apiRuntime": {
-    "node": "20"
+  "platform":{
+    "apiRuntime": {
+      "node": "node:20"
+    }
   },
   "scripts": {
     "dev": "next dev",
