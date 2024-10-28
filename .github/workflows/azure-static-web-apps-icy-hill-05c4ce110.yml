@@ -19,23 +19,38 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      # Setup Node version 20 to match dependency requirements
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Setup Bun environment
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest # Ensure we’re getting the latest Bun version
+
+      # Ensure Bun's path is accessible for later steps
+      - name: Add Bun to PATH
+        run: echo "$(bun env --bun-path)" >> $GITHUB_PATH
+
+      # Install Dependencies with Bun
       - name: Install Dependencies
         run: bun install
-      - name: Build And Deploy
+
+      # Build and Deploy with Bun and Azure
+      - name: Build and Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ICY_HILL_05C4CE110 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
