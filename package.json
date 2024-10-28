@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-   "node": "20"
+    "node": "20"
   },
   "scripts": {
     "dev": "next dev",
@@ -47,7 +47,6 @@
     "lucide-react": "^0.453.0",
     "mssql": "^11.0.1",
     "nanostores": "^0.11.3",
-    "netlify-purge-cloudflare-on-deploy": "^1.2.0",
     "next": "^14.2.15",
     "next-mdx-remote": "^5.0.0",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -56,7 +55,6 @@
     "react-dom": "^18.3.1",
     "react-element-to-jsx-string": "^15.0.0",
     "react-markdown": "^9.0.1",
-    "remark-gfm": "^4.0.0",
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
