@@ -9,10 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Message: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
 }
 
 interface FormStatus {
@@ -22,10 +22,10 @@ interface FormStatus {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    FirstName: "",
-    LastName: "",
-    Email: "",
-    Message: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
   });
   const $theme = useStore(themeStore);
   const [formStatus, setFormStatus] = useState<FormStatus>({
@@ -50,7 +50,12 @@ export default function ContactForm() {
       const response = await fetch("/data-api/rest/ContactSubmissions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, formType: "contact" }),
+        body: JSON.stringify({
+          FirstName: formData.firstName,
+          LastName: formData.lastName,
+          Email: formData.email,
+          Message: formData.message,
+        }),
       });
 
       if (!response.ok) {
@@ -59,10 +64,10 @@ export default function ContactForm() {
 
       setFormStatus({ message: "Form submitted successfully", success: true });
       setFormData({
-        FirstName: "",
-        LastName: "",
-        Email: "",
-        Message: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        message: "",
       });
     } catch (error) {
       const errorMessage =
@@ -81,7 +86,7 @@ export default function ContactForm() {
           type="text"
           name="firstName"
           placeholder="First name"
-          value={formData.FirstName}
+          value={formData.firstName}
           onChange={handleChange}
           required
           className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
@@ -90,7 +95,7 @@ export default function ContactForm() {
           type="text"
           name="lastName"
           placeholder="Last name"
-          value={formData.LastName}
+          value={formData.lastName}
           onChange={handleChange}
           required
           className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
@@ -101,7 +106,7 @@ export default function ContactForm() {
         type="email"
         name="email"
         placeholder="Email"
-        value={formData.Email}
+        value={formData.email}
         onChange={handleChange}
         required
         className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
@@ -110,7 +115,7 @@ export default function ContactForm() {
       <Textarea
         name="message"
         placeholder="Message"
-        value={formData.Message}
+        value={formData.message}
         onChange={handleChange}
         required
         rows={6}
