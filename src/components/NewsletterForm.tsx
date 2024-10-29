@@ -33,21 +33,30 @@ export function NewsletterForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/data-api/api/NewsletterSubscriptions", {
+      const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ Email: formData.email }),
       });
 
-      if (!response.ok) {
-        throw new Error("Newsletter subscription failed");
-      }
+      const data = await response.json();
 
-      setFormStatus({
-        message: "Thanks for subscribing!",
-        success: true,
-      });
-      setFormData({ email: "" });
+      if (!response.ok) {
+        if (response.status === 409) {
+          setFormStatus({
+            message: data.message,
+            success: true, // Consider this a "success" as the email is already subscribed
+          });
+        } else {
+          throw new Error(data.message || "Newsletter subscription failed");
+        }
+      } else {
+        setFormStatus({
+          message: data.message || "Thanks for subscribing!",
+          success: true,
+        });
+        setFormData({ email: "" });
+      }
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);

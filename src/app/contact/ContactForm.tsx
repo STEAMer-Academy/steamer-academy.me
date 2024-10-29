@@ -47,7 +47,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/data-api/api/ContactSubmissions", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -59,10 +59,12 @@ export default function ContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Form submission failed");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Form submission failed");
       }
 
-      setFormStatus({ message: "Form submitted successfully", success: true });
+      const data = await response.json();
+      setFormStatus({ message: data.message || "Form submitted successfully", success: true });
       setFormData({
         firstName: "",
         lastName: "",
