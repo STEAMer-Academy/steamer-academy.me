@@ -5,9 +5,6 @@
   "engines": {
     "node": "20"
   },
-  "platform": {
-    "apiRuntime": "node:20"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "npm run partytown && next build",
