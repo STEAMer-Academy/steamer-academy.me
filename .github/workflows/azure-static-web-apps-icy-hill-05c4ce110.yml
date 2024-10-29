@@ -24,7 +24,8 @@ jobs:
           echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID= ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}" >> .env
           echo "REDIS_URL= ${{ secrets.REDIS_URL }}" >> .env
           echo "REDIS_TOKEN = ${{ secrets.REDIS_TOKEN }}" >> .env
-          echo "DATABASE_CONNECTION_STRING = ${{ secrets.DATABASE_CONNECTION_STRING }}" >> .env
+          echo "TURSO_AUTH_TOKEN = ${{ secrets.TURSO_AUTH_TOKEN }}" >> .env
+          echo "TURSO_DATABASE_URL = ${{ secrets.TURSO_DATABASE_URL }}" >> .env
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
       - name : Run Build And Install Dependencies
