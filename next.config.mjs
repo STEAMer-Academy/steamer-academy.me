@@ -7,7 +7,7 @@ const mdxConfig = {
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: isDev ? undefined : 'https://cdn.steameracademy.me',
+  assetPrefix: 'https://cdn.steameracademy.me',
   images: {
     remotePatterns: [
       {
