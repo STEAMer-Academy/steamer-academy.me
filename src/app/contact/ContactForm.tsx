@@ -64,7 +64,10 @@ export default function ContactForm() {
       }
 
       const data = await response.json();
-      setFormStatus({ message: data.message || "Form submitted successfully", success: true });
+      setFormStatus({
+        message: data.message || "Form submitted successfully",
+        success: true,
+      });
       setFormData({
         firstName: "",
         lastName: "",

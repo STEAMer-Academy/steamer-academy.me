@@ -18,7 +18,7 @@ export const prefetchImages = (blogs: Blog[]) => {
     const img = new window.Image();
     img.src = blog.image;
   });
-}
+};
 
 export default function BlogList({ blogs }: BlogListProps) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -80,11 +80,11 @@ export default function BlogList({ blogs }: BlogListProps) {
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
             variant="outline"
-            className="dark:text-white text-black"
+            className="text-black dark:text-white"
           >
             Previous
           </Button>
-          <span className="dark:text-white text-black">
+          <span className="text-black dark:text-white">
             Page {currentPage} of {totalPages}
           </span>
           <Button
@@ -93,7 +93,7 @@ export default function BlogList({ blogs }: BlogListProps) {
             }
             disabled={currentPage === totalPages}
             variant="outline"
-            className="dark:text-white text-black"
+            className="text-black dark:text-white"
           >
             Next
           </Button>
@@ -103,7 +103,7 @@ export default function BlogList({ blogs }: BlogListProps) {
             <Button
               variant="outline"
               onClick={() => setCurrentPage(totalPages)}
-              className="dark:text-white text-black"
+              className="text-black dark:text-white"
             >
               Show all {blogs.length} blogs
             </Button>

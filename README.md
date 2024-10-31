@@ -68,8 +68,7 @@ This is the official code for the STEAMer Academy website at [www.steameracademy
 - [TailwindCSS](https://tailwindcss.com/) for styling
 - [shadcn/ui](https://ui.shadcn.com/) for a robust UI component library
 
-
-> [!Note] 
+> [!Note]
 > The website is still under development. Currently, the search bar feature has not been implemented but is planned for a future release.
 
 <p align="center">
@@ -86,4 +85,3 @@ STEAMer Academy values contributions! Feel free to fork this repo, make updates,
 <h1 align="center">
     Contribute as much as you like – we welcome your help!
 </h1>
-

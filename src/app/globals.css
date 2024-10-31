@@ -68,7 +68,7 @@
     @apply bg-background text-foreground;
   }
   .prose {
-    @apply dark:text-gray-300 text-black;
+    @apply text-black dark:text-gray-300;
   }
 
   .prose img {
@@ -76,15 +76,15 @@
   }
 
   .prose h1 {
-    @apply mb-8 text-center text-4xl font-extrabold leading-tight tracking-wide dark:text-white text-black;
+    @apply mb-8 text-center text-4xl font-extrabold leading-tight tracking-wide text-black dark:text-white;
   }
 
   .prose h2 {
-    @apply mb-6 text-left text-3xl font-semibold leading-snug tracking-wide dark:text-white text-black;
+    @apply mb-6 text-left text-3xl font-semibold leading-snug tracking-wide text-black dark:text-white;
   }
 
   .prose h3 {
-    @apply mb-4 text-left text-2xl font-semibold leading-relaxed dark:text-white text-black;
+    @apply mb-4 text-left text-2xl font-semibold leading-relaxed text-black dark:text-white;
   }
 
   .prose p {
