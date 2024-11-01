@@ -2,9 +2,7 @@
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { Tick01Icon, MultiplicationSignIcon } from "hugeicons-react";
-import { useStore } from "@nanostores/react";
-import { themeStore } from "@/stores/themeStore";
+import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -17,7 +15,7 @@ interface FormData {
 
 interface FormStatus {
   message: string;
-  success: boolean;
+  type: "success" | "error" | "info" | "loading";
 }
 
 export default function ContactForm() {
@@ -27,11 +25,7 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
-  const $theme = useStore(themeStore);
-  const [formStatus, setFormStatus] = useState<FormStatus>({
-    message: "",
-    success: false,
-  });
+  const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -45,6 +39,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setFormStatus({ message: "Submitting...", type: "loading" });
 
     try {
       const response = await fetch("/api/contact", {
@@ -66,20 +61,15 @@ export default function ContactForm() {
       const data = await response.json();
       setFormStatus({
         message: data.message || "Form submitted successfully",
-        success: true,
+        type: "success",
       });
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        message: "",
-      });
+      setFormData({ firstName: "", lastName: "", email: "", message: "" });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
       setFormStatus({
         message: `Form submission error: ${errorMessage}`,
-        success: false,
+        type: "error",
       });
     }
   };
@@ -94,7 +84,6 @@ export default function ContactForm() {
           value={formData.firstName}
           onChange={handleChange}
           required
-          className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
         />
         <Input
           type="text"
@@ -103,7 +92,6 @@ export default function ContactForm() {
           value={formData.lastName}
           onChange={handleChange}
           required
-          className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
         />
       </div>
 
@@ -114,7 +102,6 @@ export default function ContactForm() {
         value={formData.email}
         onChange={handleChange}
         required
-        className={`flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
       />
 
       <Textarea
@@ -124,29 +111,48 @@ export default function ContactForm() {
         onChange={handleChange}
         required
         rows={6}
-        className={`w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${$theme === "dark" ? "bg-[#1a1b26] text-[#a9b1d6]" : "bg-white text-gray-900"}`}
-      ></Textarea>
+      />
 
-      <Button type="submit" className="relative p-[3px]">
+      <Button
+        type="submit"
+        disabled={formStatus?.type === "loading"}
+        className="relative p-[3px]"
+      >
         <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
         <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
-          Submit
+          {formStatus?.type === "loading" ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            "Submit"
+          )}
         </div>
       </Button>
 
-      {formStatus.message && (
+      {formStatus && (
         <div className="mt-4 flex items-center">
-          {formStatus.success ? (
-            <>
-              <Tick01Icon className="text-green-500" />
-              <p className="ml-2 text-green-500">{formStatus.message}</p>
-            </>
-          ) : (
-            <>
-              <MultiplicationSignIcon className="text-red-500" />
-              <p className="ml-2 text-red-500">{formStatus.message}</p>
-            </>
+          {formStatus.type === "success" && (
+            <CheckCircle className="mr-2 h-5 w-5 text-green-500" />
           )}
+          {formStatus.type === "error" && (
+            <XCircle className="mr-2 h-5 w-5 text-red-500" />
+          )}
+          {formStatus.type === "info" && (
+            <AlertCircle className="mr-2 h-5 w-5 text-blue-500" />
+          )}
+          <p
+            className={`text-sm ${
+              formStatus.type === "success"
+                ? "text-green-500"
+                : formStatus.type === "error"
+                  ? "text-red-500"
+                  : "text-blue-500"
+            }`}
+          >
+            {formStatus.message}
+          </p>
         </div>
       )}
     </form>

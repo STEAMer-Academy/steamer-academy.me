@@ -15,7 +15,6 @@ export async function POST(request: Request) {
       args: [FirstName, LastName, Email, Message],
     });
 
-    // Convert BigInt to a string to avoid serialization issues
     const insertId = result.lastInsertRowid
       ? result.lastInsertRowid.toString()
       : null;
@@ -26,8 +25,19 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Error submitting contact form:", error);
+
+    if (
+      error instanceof Error &&
+      error.message.includes("UNIQUE constraint failed")
+    ) {
+      return NextResponse.json(
+        { message: "This email has already submitted a contact form." },
+        { status: 409 },
+      );
+    }
+
     return NextResponse.json(
-      { message: "Error submitting form" },
+      { message: "Error submitting form. Please try again later." },
       { status: 500 },
     );
   }

@@ -3,9 +3,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AlertCircleIcon, CheckmarkCircle02Icon } from "hugeicons-react";
-import { useStore } from "@nanostores/react";
-import { themeStore } from "@/stores/themeStore";
+import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 
 interface FormData {
   email: string;
@@ -13,16 +11,12 @@ interface FormData {
 
 interface FormStatus {
   message: string;
-  success: boolean;
+  type: "success" | "error" | "info" | "loading";
 }
 
 export function NewsletterForm() {
-  const $theme = useStore(themeStore);
   const [formData, setFormData] = useState<FormData>({ email: "" });
-  const [formStatus, setFormStatus] = useState<FormStatus>({
-    message: "",
-    success: false,
-  });
+  const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,6 +25,7 @@ export function NewsletterForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setFormStatus({ message: "Subscribing...", type: "loading" });
 
     try {
       const response = await fetch("/api/newsletter", {
@@ -45,7 +40,7 @@ export function NewsletterForm() {
         if (response.status === 409) {
           setFormStatus({
             message: data.message,
-            success: true, // Consider this a "success" as the email is already subscribed
+            type: "info",
           });
         } else {
           throw new Error(data.message || "Newsletter subscription failed");
@@ -53,7 +48,7 @@ export function NewsletterForm() {
       } else {
         setFormStatus({
           message: data.message || "Thanks for subscribing!",
-          success: true,
+          type: "success",
         });
         setFormData({ email: "" });
       }
@@ -62,7 +57,7 @@ export function NewsletterForm() {
         error instanceof Error ? error.message : String(error);
       setFormStatus({
         message: `Subscription error: ${errorMessage}`,
-        success: false,
+        type: "error",
       });
     }
   };
@@ -77,31 +72,49 @@ export function NewsletterForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          className={`w-full ${
-            $theme === "dark"
-              ? "bg-gray-800 text-gray-200"
-              : "bg-white text-gray-900"
-          }`}
         />
 
-        <Button type="submit" className="relative p-[3px]">
+        <Button
+          type="submit"
+          disabled={formStatus?.type === "loading"}
+          className="relative p-[3px]"
+        >
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
-            Subscribe
+            {formStatus?.type === "loading" ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Subscribing...
+              </>
+            ) : (
+              "Subscribe"
+            )}
           </div>
         </Button>
       </form>
 
-      {formStatus.message && (
-        <div
-          className={`mt-2 flex items-center ${formStatus.success ? "text-green-500" : "text-red-500"}`}
-        >
-          {formStatus.success ? (
-            <CheckmarkCircle02Icon className="mr-2 h-4 w-4" />
-          ) : (
-            <AlertCircleIcon className="mr-2 h-4 w-4" />
+      {formStatus && (
+        <div className="mt-2 flex items-center">
+          {formStatus.type === "success" && (
+            <CheckCircle className="mr-2 h-5 w-5 text-green-500" />
           )}
-          <p className="text-sm">{formStatus.message}</p>
+          {formStatus.type === "error" && (
+            <XCircle className="mr-2 h-5 w-5 text-red-500" />
+          )}
+          {formStatus.type === "info" && (
+            <AlertCircle className="mr-2 h-5 w-5 text-blue-500" />
+          )}
+          <p
+            className={`text-sm ${
+              formStatus.type === "success"
+                ? "text-green-500"
+                : formStatus.type === "error"
+                  ? "text-red-500"
+                  : "text-blue-500"
+            }`}
+          >
+            {formStatus.message}
+          </p>
         </div>
       )}
     </div>
