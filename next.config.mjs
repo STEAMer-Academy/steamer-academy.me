@@ -27,22 +27,6 @@ const nextConfigFunction = (phase) => {
       minimumCacheTTL: 3600,
     },
 
-    async redirects() {
-      return [
-        {
-          source: "/:path*",
-          has: [
-            {
-              type: "host",
-              value: "steamer-academy.netlify.app",
-            },
-          ],
-          destination: "https://www.steameracademy.me/:path*",
-          permanent: true,
-        },
-      ];
-    },
-
     async headers() {
       return [
         {
