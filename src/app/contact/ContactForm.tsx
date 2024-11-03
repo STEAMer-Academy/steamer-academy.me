@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
   firstName: string;
@@ -26,6 +27,7 @@ export default function ContactForm() {
     message: "",
   });
   const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -39,6 +41,13 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!recaptchaToken) {
+      setFormStatus({
+        message: "Please complete the reCAPTCHA",
+        type: "error",
+      });
+      return;
+    }
     setFormStatus({ message: "Submitting...", type: "loading" });
 
     try {
@@ -46,10 +55,8 @@ export default function ContactForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          FirstName: formData.firstName,
-          LastName: formData.lastName,
-          Email: formData.email,
-          Message: formData.message,
+          ...formData,
+          recaptchaToken,
         }),
       });
 
@@ -64,6 +71,7 @@ export default function ContactForm() {
         type: "success",
       });
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
+      setRecaptchaToken(null);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
@@ -113,9 +121,14 @@ export default function ContactForm() {
         rows={6}
       />
 
+      <ReCAPTCHA
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+        onChange={(token: string | null) => setRecaptchaToken(token)}
+      />
+
       <Button
         type="submit"
-        disabled={formStatus?.type === "loading"}
+        disabled={formStatus?.type === "loading" || !recaptchaToken}
         className="relative p-[3px]"
       >
         <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />

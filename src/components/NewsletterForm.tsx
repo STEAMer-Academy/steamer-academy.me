@@ -4,6 +4,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
   email: string;
@@ -17,6 +18,7 @@ interface FormStatus {
 export function NewsletterForm() {
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,13 +27,23 @@ export function NewsletterForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!recaptchaToken) {
+      setFormStatus({
+        message: "Please complete the reCAPTCHA",
+        type: "error",
+      });
+      return;
+    }
     setFormStatus({ message: "Subscribing...", type: "loading" });
 
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ Email: formData.email }),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
       });
 
       const data = await response.json();
@@ -52,6 +64,7 @@ export function NewsletterForm() {
         });
         setFormData({ email: "" });
       }
+      setRecaptchaToken(null);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
@@ -74,9 +87,14 @@ export function NewsletterForm() {
           required
         />
 
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+          onChange={(token: string | null) => setRecaptchaToken(token)}
+        />
+
         <Button
           type="submit"
-          disabled={formStatus?.type === "loading"}
+          disabled={formStatus?.type === "loading" || !recaptchaToken}
           className="relative p-[3px]"
         >
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
