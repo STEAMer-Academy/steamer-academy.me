@@ -26,6 +26,8 @@ jobs:
           echo "REDIS_TOKEN = ${{ secrets.REDIS_TOKEN }}" >> .env
           echo "TURSO_AUTH_TOKEN = ${{ secrets.TURSO_AUTH_TOKEN }}" >> .env
           echo "TURSO_DATABASE_URL = ${{ secrets.TURSO_DATABASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY = ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
+          echo "RECAPTCHA_SECRET_KEY = ${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
       - name: Run Build And Install Dependencies
