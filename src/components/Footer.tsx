@@ -28,7 +28,7 @@ export default function Footer() {
             <h3 className="mb-4 text-lg font-bold">Our Socials</h3>
             <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
               Follow us on social media for the latest updates and offers. We
-              are active on Facebook, Twitter, Discord, WhatsApp, and GitHub.
+              are active on Facebook, Discord, WhatsApp, and GitHub.
             </p>
             <div className="flex space-x-4">
               <Link
@@ -107,6 +107,14 @@ export default function Footer() {
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
                   Status
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                >
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
