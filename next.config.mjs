@@ -30,11 +30,24 @@ const nextConfigFunction = (phase) => {
     async headers() {
       return [
         {
-          source: "/(.*)", // This applies to all routes
+          source: "/(.*)",
           headers: [
             {
               key: "x-robots-tag",
-              value: "all", // Allow all bots to index and follow links
+              value: "all",
+            },
+            {
+              key: "Cache-Control",
+              value: "public, max-age=31536000, immutable",
+            },
+          ],
+        },
+        {
+          source: "/api/(.*)",
+          headers: [
+            {
+              key: "Cache-Control",
+              value: "no-store, max-age=0",
             },
           ],
         },
