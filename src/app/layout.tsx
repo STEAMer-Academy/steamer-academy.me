@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Partytown debug={true} forward={["dataLayer.push"]} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} text-center antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
           <CookieConsent />
