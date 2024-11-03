@@ -46,8 +46,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
-        <article className="prose prose-invert lg:prose-xl max-w-none">
+      <div className="container mx-auto mt-8 px-4 py-8">
+        <article className="prose prose-invert lg:prose-xl mt-8 max-w-none">
           <MDXRemote source={content} />
         </article>
       </div>

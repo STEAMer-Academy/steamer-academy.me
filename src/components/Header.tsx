@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -33,12 +33,22 @@ const ThemeToggle = dynamic(() =>
   import("./ThemeToggle").then((mod) => mod.default),
 );
 
+interface SearchItem {
+  id: string;
+  title: string;
+  content: string;
+  url: string;
+}
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +61,35 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  useEffect(() => {
+    const performSearch = async () => {
+      if (searchValue.length > 1) {
+        const response = await fetch("/searchData.json");
+        const data: SearchItem[] = await response.json();
+        const results = data.filter(
+          (item) =>
+            item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+            item.content.toLowerCase().includes(searchValue.toLowerCase()),
+        );
+        setSearchResults(results);
+        setShowDropdown(true);
+      } else {
+        setSearchResults([]);
+        setShowDropdown(false);
+      }
+    };
+
+    performSearch();
+  }, [searchValue]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchValue.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchValue.trim())}`);
+      setShowDropdown(false);
+    }
+  };
 
   const navItems = [
     { href: "/", label: "Home", icon: Home07Icon },
@@ -160,14 +199,33 @@ export default function Header() {
 
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
-              <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-64 pl-10"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-              />
+              <form onSubmit={handleSearch} className="relative">
+                <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+                <Input
+                  type="search"
+                  placeholder="Search..."
+                  className="w-64 pl-10"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </form>
+              {showDropdown && searchResults.length > 0 && (
+                <div className="absolute z-10 mt-1 w-full rounded-md shadow-lg">
+                  <ul className="max-h-60 overflow-auto py-1 text-base">
+                    {searchResults.map((result) => (
+                      <li key={result.id}>
+                        <Link
+                          href={result.url}
+                          className="block px-4 py-2 hover:bg-red-100"
+                          onClick={() => setShowDropdown(false)}
+                        >
+                          {result.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
             <ThemeToggle />
           </div>
@@ -184,16 +242,37 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" aria-describedby="Search Box">
                 <nav className="flex flex-col space-y-4">
-                  <div className="relative mb-4">
-                    <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
-                    <Input
-                      type="search"
-                      placeholder="Search..."
-                      className="pl-10 pr-6"
-                      value={searchValue}
-                      onChange={(e) => setSearchValue(e.target.value)}
-                    />
-                  </div>{" "}
+                  <div className="relative">
+                    <form onSubmit={handleSearch} className="relative mb-4">
+                      <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+                      <Input
+                        type="search"
+                        placeholder="Search..."
+                        className="pl-10 pr-6"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                      />
+                    </form>
+                    {showDropdown && searchResults.length > 0 && (
+                      <div className="absolute z-10 mt-1 w-full rounded-md shadow-lg">
+                        <ul className="max-h-60 overflow-auto py-1 text-base">
+                          {searchResults.map((result) => (
+                            <li key={result.id}>
+                              <SheetClose asChild>
+                                <Link
+                                  href={result.url}
+                                  className="block px-4 py-2 hover:bg-red-100"
+                                  onClick={() => setShowDropdown(false)}
+                                >
+                                  {result.title}
+                                </Link>
+                              </SheetClose>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                   {navItems.map((item) => (
                     <SheetClose asChild key={item.href}>
                       <Button
