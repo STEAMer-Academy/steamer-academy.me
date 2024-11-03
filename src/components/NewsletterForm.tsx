@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
@@ -18,7 +18,7 @@ interface FormStatus {
 export function NewsletterForm() {
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,13 +27,17 @@ export function NewsletterForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!recaptchaToken) {
+    setFormStatus({ message: "Verifying...", type: "loading" });
+
+    const recaptchaValue = recaptchaRef.current?.getValue();
+    if (!recaptchaValue) {
       setFormStatus({
         message: "Please complete the reCAPTCHA",
         type: "error",
       });
       return;
     }
+
     setFormStatus({ message: "Subscribing...", type: "loading" });
 
     try {
@@ -41,35 +45,30 @@ export function NewsletterForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...formData,
-          recaptchaToken,
+          email: formData.email,
+          recaptchaToken: recaptchaValue,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        if (response.status === 409) {
-          setFormStatus({
-            message: data.message,
-            type: "info",
-          });
-        } else {
-          throw new Error(data.message || "Newsletter subscription failed");
-        }
-      } else {
-        setFormStatus({
-          message: data.message || "Thanks for subscribing!",
-          type: "success",
-        });
-        setFormData({ email: "" });
+        throw new Error(data.message || "An error occurred while subscribing");
       }
-      setRecaptchaToken(null);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
+
       setFormStatus({
-        message: `Subscription error: ${errorMessage}`,
+        message: data.message || "Thanks for subscribing!",
+        type: "success",
+      });
+      setFormData({ email: "" });
+      recaptchaRef.current?.reset();
+    } catch (error) {
+      console.error("Subscription error:", error);
+      setFormStatus({
+        message:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred",
         type: "error",
       });
     }
@@ -88,13 +87,13 @@ export function NewsletterForm() {
         />
 
         <ReCAPTCHA
+          ref={recaptchaRef}
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-          onChange={(token: string | null) => setRecaptchaToken(token)}
         />
 
         <Button
           type="submit"
-          disabled={formStatus?.type === "loading" || !recaptchaToken}
+          disabled={formStatus?.type === "loading"}
           className="relative p-[3px]"
         >
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
@@ -102,7 +101,7 @@ export function NewsletterForm() {
             {formStatus?.type === "loading" ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Subscribing...
+                {formStatus.message}
               </>
             ) : (
               "Subscribe"
@@ -111,7 +110,7 @@ export function NewsletterForm() {
         </Button>
       </form>
 
-      {formStatus && (
+      {formStatus && formStatus.type !== "loading" && (
         <div className="mt-2 flex items-center">
           {formStatus.type === "success" && (
             <CheckCircle className="mr-2 h-5 w-5 text-green-500" />

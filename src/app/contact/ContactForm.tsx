@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -27,7 +27,7 @@ export default function ContactForm() {
     message: "",
   });
   const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -41,13 +41,17 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!recaptchaToken) {
+    setFormStatus({ message: "Verifying...", type: "loading" });
+
+    const recaptchaValue = recaptchaRef.current?.getValue();
+    if (!recaptchaValue) {
       setFormStatus({
         message: "Please complete the reCAPTCHA",
         type: "error",
       });
       return;
     }
+
     setFormStatus({ message: "Submitting...", type: "loading" });
 
     try {
@@ -56,7 +60,7 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken,
+          recaptchaToken: recaptchaValue,
         }),
       });
 
@@ -70,8 +74,13 @@ export default function ContactForm() {
         message: data.message || "Form submitted successfully",
         type: "success",
       });
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
-      setRecaptchaToken(null);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        message: "",
+      });
+      recaptchaRef.current?.reset();
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
@@ -122,13 +131,13 @@ export default function ContactForm() {
       />
 
       <ReCAPTCHA
+        ref={recaptchaRef}
         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-        onChange={(token: string | null) => setRecaptchaToken(token)}
       />
 
       <Button
         type="submit"
-        disabled={formStatus?.type === "loading" || !recaptchaToken}
+        disabled={formStatus?.type === "loading"}
         className="relative p-[3px]"
       >
         <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
@@ -136,7 +145,7 @@ export default function ContactForm() {
           {formStatus?.type === "loading" ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
+              {formStatus.message}
             </>
           ) : (
             "Submit"
@@ -144,7 +153,7 @@ export default function ContactForm() {
         </div>
       </Button>
 
-      {formStatus && (
+      {formStatus && formStatus.type !== "loading" && (
         <div className="mt-4 flex items-center">
           {formStatus.type === "success" && (
             <CheckCircle className="mr-2 h-5 w-5 text-green-500" />

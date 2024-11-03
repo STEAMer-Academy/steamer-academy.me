@@ -8,21 +8,23 @@ const client = createClient({
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+  const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
 
-  try {
-    const response = await fetch(verificationURL, { method: "POST" });
-    const data = await response.json();
-    return data.success;
-  } catch (error) {
-    console.error("reCAPTCHA verification failed:", error);
-    return false;
-  }
+  const response = await fetch(verificationUrl, { method: "POST" });
+  const data = await response.json();
+  return data.success;
 }
 
 export async function POST(request: Request) {
   try {
-    const { Email, recaptchaToken } = await request.json();
+    const { email, recaptchaToken } = await request.json();
+
+    if (!email || typeof email !== "string") {
+      return NextResponse.json(
+        { message: "Invalid email address." },
+        { status: 400 },
+      );
+    }
 
     // Verify reCAPTCHA
     const isHuman = await verifyRecaptcha(recaptchaToken);
@@ -35,7 +37,7 @@ export async function POST(request: Request) {
 
     const result = await client.execute({
       sql: "INSERT INTO NewsletterSubscriptions (email) VALUES (?)",
-      args: [Email],
+      args: [email],
     });
 
     const insertId = result.lastInsertRowid

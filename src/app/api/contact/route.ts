@@ -8,21 +8,16 @@ const client = createClient({
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+  const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
 
-  try {
-    const response = await fetch(verificationURL, { method: "POST" });
-    const data = await response.json();
-    return data.success;
-  } catch (error) {
-    console.error("reCAPTCHA verification failed:", error);
-    return false;
-  }
+  const response = await fetch(verificationUrl, { method: "POST" });
+  const data = await response.json();
+  return data.success;
 }
 
 export async function POST(request: Request) {
   try {
-    const { FirstName, LastName, Email, Message, recaptchaToken } =
+    const { firstName, lastName, email, message, recaptchaToken } =
       await request.json();
 
     // Verify reCAPTCHA
@@ -36,7 +31,7 @@ export async function POST(request: Request) {
 
     const result = await client.execute({
       sql: "INSERT INTO ContactSubmissions (firstName, lastName, email, message) VALUES (?, ?, ?, ?)",
-      args: [FirstName, LastName, Email, Message],
+      args: [firstName, lastName, email, message],
     });
 
     const insertId = result.lastInsertRowid
