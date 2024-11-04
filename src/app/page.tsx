@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Globe from "@/components/Globe";
 import GalleryGrid from "./gallery/GalleryGrid";
+
 const TypewriterEffectSmooth = dynamic(() =>
   import("../components/ui/typewriter-effect").then(
     (mod) => mod.TypewriterEffectSmooth,
