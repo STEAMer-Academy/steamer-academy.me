@@ -44,8 +44,6 @@ export const TypewriterEffect = ({
 
   const renderWords = () => {
     return (
-      /* eslint-disable-next-line */
-      /* @ts-ignore */
       <motion.div ref={scope} className="inline">
         {wordsArray.map((word, idx) => {
           return (
@@ -54,8 +52,6 @@ export const TypewriterEffect = ({
                 <motion.span
                   initial={{}}
                   key={`char-${index}`}
-                  /* eslint-disable-next-line */
-                  /* @ts-ignore */
                   className={cn(
                     `hidden text-black opacity-0 dark:text-white`,
                     word.className,
@@ -93,8 +89,6 @@ export const TypewriterEffect = ({
             repeat: Infinity,
             repeatType: "reverse",
           }}
-          /* eslint-disable-next-line */
-          // @ts-ignore
           className={cn(
             "absolute right-0 top-0 inline-block h-8 w-[4px] rounded-sm bg-blue-500",
             cursorClassName,
@@ -155,8 +149,6 @@ export const TypewriterEffectSmooth = ({
     >
       <div className="relative max-w-full overflow-hidden">
         <motion.div
-          /* eslint-disable-next-line */
-          // @ts-ignore
           className="inline-block"
           initial={{
             width: "0%",
@@ -184,8 +176,6 @@ export const TypewriterEffectSmooth = ({
             repeat: Infinity,
             repeatType: "reverse",
           }}
-          /* eslint-disable-next-line */
-          // @ts-ignore
           className={cn(
             "absolute right-0 top-0 inline-block h-8 w-[4px] rounded-sm bg-blue-500",
             cursorClassName,

@@ -36,7 +36,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )
       `,
         }}
-        /* @ts-ignore */
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}

@@ -12,7 +12,7 @@ const ratelimit = new Ratelimit({
 export async function GET(): Promise<
   NextResponse<BlogData | { error: string }>
 > {
-  const ip = (await headers()).get("x-forwarded-for") ?? "127.0.0.1";
+  const ip = headers().get("x-forwarded-for") ?? "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
 
   if (!success) {

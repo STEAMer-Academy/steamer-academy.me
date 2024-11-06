@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { useEffect, useRef, useState } from "react";
-import { Color, Scene, Fog, PerspectiveCamera, Vector3, AmbientLight, DirectionalLight, PointLight } from "three";
+import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -13,13 +13,10 @@ import countries from "@/data/globe.json";
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
-    ambientLight: Object3DNode<AmbientLight, typeof AmbientLight>;
-    directionalLight: Object3DNode<DirectionalLight, typeof DirectionalLight>;
-    pointLight: Object3DNode<PointLight, typeof PointLight>;
   }
 }
 
-extend({ ThreeGlobe, AmbientLight, DirectionalLight, PointLight });
+extend({ ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
 const aspect = 1.2;
@@ -233,7 +230,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   return (
     <>
-      {/* @ts-ignore */}
       <threeGlobe ref={globeRef} />
     </>
   );
@@ -258,19 +254,15 @@ export function World(props: WorldProps) {
   return (
     <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       <WebGLRendererConfig />
-      {/* @ts-ignore */}
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
-      {/* @ts-ignore */}
       <directionalLight
         color={globeConfig.directionalLeftLight}
         position={new Vector3(-400, 100, 400)}
       />
-      {/* @ts-ignore */}
       <directionalLight
         color={globeConfig.directionalTopLight}
         position={new Vector3(-200, 500, 200)}
       />
-      {/* @ts-ignore */}
       <pointLight
         color={globeConfig.pointLight}
         position={new Vector3(-200, 500, 200)}

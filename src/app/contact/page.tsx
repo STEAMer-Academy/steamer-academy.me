@@ -1,10 +1,20 @@
 import { Metadata } from "next";
-import {
-  Layout,
-  TypewriterEffectSmooth,
-  ContactForm,
-  ContactInfo,
-} from "@/components/wrapper";
+import dynamic from "next/dynamic";
+
+const TypewriterEffectSmooth = dynamic(() =>
+  import("@/components/ui/typewriter-effect").then(
+    (mod) => mod.TypewriterEffectSmooth,
+  ),
+);
+const Layout = dynamic(() =>
+  import("@/components/Layout").then((mod) => mod.default),
+);
+const ContactInfo = dynamic(() =>
+  import("./ContactInfo").then((mod) => mod.default),
+);
+const ContactForm = dynamic(() =>
+  import("./ContactForm").then((mod) => mod.default),
+);
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | Contact",

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent, useRef } from "react";
-import { Button, Input } from "@/components/wrapper";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 

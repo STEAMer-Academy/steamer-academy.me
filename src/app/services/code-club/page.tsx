@@ -1,12 +1,20 @@
 import React from "react";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  ReviewCardCode,
-  Layout,
-  TypewriterEffectSmooth,
-} from "@/components/wrapper";
+
+const TypewriterEffectSmooth = dynamic(() =>
+  import("@/components/ui/typewriter-effect").then(
+    (mod) => mod.TypewriterEffectSmooth,
+  ),
+);
+const Layout = dynamic(() =>
+  import("@/components/Layout").then((mod) => mod.default),
+);
+const ReviewCard = dynamic(() =>
+  import("./ReviewCard").then((mod) => mod.default),
+);
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -110,11 +118,11 @@ export default function CodeClub() {
           <section className="mb-12">
             <h3 className="mb-8 text-2xl font-semibold">Reviews</h3>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <ReviewCardCode
+              <ReviewCard
                 review="This is the best coding club I have ever been to! The mentor's are amazing and I have learned so much. I can't wait for the next session!"
                 name="Tom S."
               />
-              <ReviewCardCode
+              <ReviewCard
                 review='"The mentors are fantastic and make coding fun and accessible. My son looks forward to every session!"'
                 name="Sarah M."
               />

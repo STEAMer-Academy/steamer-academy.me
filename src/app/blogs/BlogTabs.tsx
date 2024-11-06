@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { BlogData, BlogCategory } from "@/lib/redis";
-import { BlogList } from "@/components/wrapper";
+import BlogList from "./BlogList";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -79,8 +79,6 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        /* eslint-disable-next-line */
-        // @ts-ignore
         id={`tabpanel-${selectedCategory}`}
         role="tabpanel"
         aria-labelledby={`tab-${selectedCategory}`}

@@ -1,20 +1,19 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { fetchBlogContent, fetchBlogMetadata } from "@/lib/redis";
-import { Layout } from "@/components/wrapper";
+import Layout from "@/components/Layout";
 import { Metadata } from "next";
 
 export const revalidate = 7200; // Revalidate every 2 hours
 
 interface BlogPostProps {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
-export async function generateMetadata(
-  props: BlogPostProps,
-): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata({
+  params,
+}: BlogPostProps): Promise<Metadata> {
   const metadata = await fetchBlogMetadata(decodeURIComponent(params.slug));
 
   if (!metadata) {
@@ -38,8 +37,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function BlogPost(props: BlogPostProps) {
-  const params = await props.params;
+export default async function BlogPost({ params }: BlogPostProps) {
   const content = await fetchBlogContent(decodeURIComponent(params.slug));
 
   if (!content) {

@@ -1,6 +1,15 @@
 import { Metadata } from "next";
-import { ServicesList, ReviewsList, Layout } from "@/components/wrapper";
+import dynamic from "next/dynamic";
 
+const ServicesList = dynamic(() =>
+  import("./ServicesList").then((mod) => mod.default),
+);
+const ReviewsList = dynamic(() =>
+  import("./ReviewsList").then((mod) => mod.default),
+);
+const Layout = dynamic(() =>
+  import("@/components/Layout").then((mod) => mod.default),
+);
 export const metadata: Metadata = {
   title: "STEAMer Academy | Services",
   description:

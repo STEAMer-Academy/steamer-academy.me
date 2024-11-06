@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { fetchAllBlogs, BlogData } from "@/lib/redis";
-import { BlogTabs, Layout, TypewriterEffectSmooth } from "@/components/wrapper";
+import BlogTabs from "./BlogTabs";
+import Layout from "@/components/Layout";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Loading from "@/app/loading";
 import { Metadata } from "next";
 
