@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+  Button,
+} from "@/components/wrapper";
 import { CookieIcon } from "lucide-react";
 import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -50,6 +50,8 @@ export default function CookieConsent() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.3 }}
+            /* eslint-disable-next-line */
+            // @ts-ignore
             className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-96"
           >
             <Card className="shadow-lg">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Blog, BlogCategory } from "@/lib/redis";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/wrapper";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -37,6 +37,8 @@ export default function BlogList({ blogs }: BlogListProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
+            /* eslint-disable-next-line */
+            // @ts-ignore
             className="overflow-hidden rounded-lg bg-gray-800 shadow-lg transition-all duration-300 hover:shadow-2xl"
           >
             <Link

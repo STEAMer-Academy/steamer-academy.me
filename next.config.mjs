@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
 import withMDX from "@next/mdx";
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+// import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
 const mdxConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
-const nextConfigFunction = (phase) => {
-  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+const nextConfigFunction = () => {
+  // const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
   const nextConfig = {
     reactStrictMode: true,
-    assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
+    // assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
     images: {
       remotePatterns: [
         {

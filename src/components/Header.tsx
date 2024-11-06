@@ -9,11 +9,13 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Input } from "./ui/input";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+  Input,
+} from "./wrapper";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import {
   Search01Icon,
   Menu01Icon,
@@ -28,10 +30,7 @@ import {
   CodeIcon,
 } from "hugeicons-react";
 import Image from "next/image";
-
-const ThemeToggle = dynamic(() =>
-  import("./ThemeToggle").then((mod) => mod.default),
-);
+import ThemeToggle from "./ThemeToggle";
 
 interface SearchItem {
   id: string;

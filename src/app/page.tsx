@@ -1,18 +1,12 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
-import Globe from "@/components/Globe";
-import GalleryGrid from "./gallery/GalleryGrid";
-
-const TypewriterEffectSmooth = dynamic(() =>
-  import("../components/ui/typewriter-effect").then(
-    (mod) => mod.TypewriterEffectSmooth,
-  ),
-);
-const Layout = dynamic(() =>
-  import("../components/Layout").then((mod) => mod.default),
-);
+import {
+  TypewriterEffectSmooth,
+  Layout,
+  Globe,
+  GalleryGrid,
+  Button,
+} from "@/components/wrapper";
 
 const images = [
   {

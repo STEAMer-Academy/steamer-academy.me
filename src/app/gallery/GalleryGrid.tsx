@@ -26,6 +26,8 @@ export default function GalleryGrid({
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
+            /* eslint-disable-next-line */
+            // @ts-ignore
             className="relative aspect-square"
           >
             <Image
