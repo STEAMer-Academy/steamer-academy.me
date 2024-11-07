@@ -3,17 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Input } from "./ui/input";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+  Input,
+  Button,
+} from "@/components/wrapper";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import {
   Search01Icon,
   Menu01Icon,
@@ -28,10 +30,7 @@ import {
   CodeIcon,
 } from "hugeicons-react";
 import Image from "next/image";
-
-const ThemeToggle = dynamic(() =>
-  import("./ThemeToggle").then((mod) => mod.default),
-);
+import ThemeToggle from "./ThemeToggle";
 
 interface SearchItem {
   id: string;
@@ -126,6 +125,7 @@ export default function Header() {
             prefetch={true}
           >
             <Image
+              loading="eager"
               src="/favicon.png"
               alt="STEAMer Academy Logo"
               width={40}
@@ -216,6 +216,7 @@ export default function Header() {
                       <li key={result.id}>
                         <Link
                           href={result.url}
+                          prefetch={true}
                           className="block px-4 py-2 hover:bg-red-100"
                           onClick={() => setShowDropdown(false)}
                         >
@@ -261,6 +262,7 @@ export default function Header() {
                               <SheetClose asChild>
                                 <Link
                                   href={result.url}
+                                  prefetch={true}
                                   className="block px-4 py-2 hover:bg-red-100"
                                   onClick={() => setShowDropdown(false)}
                                 >

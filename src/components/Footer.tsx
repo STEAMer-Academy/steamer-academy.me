@@ -12,11 +12,7 @@ import {
   WhatsappIcon,
   Github01Icon,
 } from "hugeicons-react";
-import dynamic from "next/dynamic";
-
-const NewsletterForm = dynamic(() =>
-  import("./NewsletterForm").then((mod) => mod.NewsletterForm),
-);
+import { NewsletterForm } from "@/components/wrapper";
 
 export default function Footer() {
   return (
@@ -72,6 +68,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
+                  prefetch={true}
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
                   About Us
@@ -79,6 +76,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  prefetch={true}
                   href="/services"
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
@@ -87,6 +85,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  prefetch={true}
                   href="/contact"
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
@@ -95,6 +94,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  prefetch={true}
                   href="/gallery"
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
@@ -103,6 +103,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  prefetch={true}
                   href="https://status.steameracademy.me"
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
@@ -111,6 +112,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  prefetch={true}
                   href="/privacy-policy"
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
