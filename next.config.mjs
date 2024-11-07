@@ -1,17 +1,20 @@
 /** @type {import('next').NextConfig} */
-import withMDX from "@next/mdx";
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
-
-const mdxConfig = {
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-};
+import { withPWA } from "next-pwa";
 
 const nextConfigFunction = (phase) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
+  const PWAconfig = {
+    dest: "public/next-pwa",
+    disable: process.env.NODE_ENV === "development",
+  };
+
   const nextConfig = {
     reactStrictMode: true,
     assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
+    basePath: "/",
+
     images: {
       remotePatterns: [
         {
@@ -55,7 +58,7 @@ const nextConfigFunction = (phase) => {
     },
   };
 
-  return withMDX(mdxConfig)(nextConfig);
+  return withPWA(PWAconfig)(nextConfig);
 };
 
 export default nextConfigFunction;

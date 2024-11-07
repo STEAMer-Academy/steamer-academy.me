@@ -11,8 +11,7 @@
 /coverage
 
 # Next PWA
-/public/sw.js
-/public/workbox-*.js
+/public/next-pwa/*
 
 # next.js
 /.next/
