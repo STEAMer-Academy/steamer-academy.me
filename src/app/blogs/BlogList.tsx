@@ -53,13 +53,13 @@ export default function BlogList({ blogs }: BlogListProps) {
             >
               {i}
             </PaginationLink>
-          </PaginationItem>
+          </PaginationItem>,
         );
       } else if (i === currentPage - 2 || i === currentPage + 2) {
         items.push(
           <PaginationItem key={i}>
             <PaginationEllipsis />
-          </PaginationItem>
+          </PaginationItem>,
         );
       }
     }

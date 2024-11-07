@@ -4,8 +4,14 @@ import { useState, useEffect } from "react";
 import { BlogData, BlogCategory } from "@/lib/redis";
 import { BlogList } from "@/components/wrapper";
 import { motion } from "framer-motion";
-import { Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,7 +25,9 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
     "scienceMds",
     "technologyMds",
   ];
-  const [selectedCategory, setSelectedCategory] = useState<BlogCategory>(categories[0]);
+  const [selectedCategory, setSelectedCategory] = useState<BlogCategory>(
+    categories[0],
+  );
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -33,7 +41,12 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
     <div className="space-y-8">
       <div className="relative">
         {isMobile ? (
-          <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as BlogCategory)}>
+          <Select
+            value={selectedCategory}
+            onValueChange={(value) =>
+              setSelectedCategory(value as BlogCategory)
+            }
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
@@ -46,7 +59,12 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
             </SelectContent>
           </Select>
         ) : (
-          <Tabs value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as BlogCategory)}>
+          <Tabs
+            value={selectedCategory}
+            onValueChange={(value) =>
+              setSelectedCategory(value as BlogCategory)
+            }
+          >
             <TabsList className="grid w-full grid-cols-5">
               {categories.map((category) => (
                 <TabsTrigger key={category} value={category}>

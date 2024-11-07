@@ -53,9 +53,7 @@ export function NewsletterForm() {
     } catch (error) {
       console.error("Subscription error:", error);
       toast.error(
-        error instanceof Error
-          ? error.message
-          : "An unexpected error occurred"
+        error instanceof Error ? error.message : "An unexpected error occurred",
       );
     } finally {
       setIsLoading(false);
@@ -79,11 +77,7 @@ export function NewsletterForm() {
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
         />
 
-        <Button
-          type="submit"
-          disabled={isLoading}
-          className="relative p-[3px]"
-        >
+        <Button type="submit" disabled={isLoading} className="relative p-[3px]">
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
             {isLoading ? (
