@@ -3,7 +3,7 @@ import { fetchBlogContent, fetchBlogMetadata } from "@/lib/redis";
 import { Layout } from "@/components/wrapper";
 import { Metadata } from "next";
 
-export const revalidate = 7200; // Revalidate every 2 hours
+export const revalidate = 7200;
 
 interface BlogPostProps {
   params: {

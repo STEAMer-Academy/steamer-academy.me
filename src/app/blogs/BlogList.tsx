@@ -6,6 +6,15 @@ import { Blog, BlogCategory } from "@/lib/redis";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 interface BlogListProps {
   blogs: Blog[];
@@ -27,6 +36,35 @@ export default function BlogList({ blogs }: BlogListProps) {
       img.src = blog.image;
     });
   }, [currentBlogs]);
+
+  const renderPaginationItems = () => {
+    const items = [];
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= currentPage - 1 && i <= currentPage + 1)
+      ) {
+        items.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              onClick={() => setCurrentPage(i)}
+              isActive={currentPage === i}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>
+        );
+      } else if (i === currentPage - 2 || i === currentPage + 2) {
+        items.push(
+          <PaginationItem key={i}>
+            <PaginationEllipsis />
+          </PaginationItem>
+        );
+      }
+    }
+    return items;
+  };
 
   return (
     <div className="space-y-8">
@@ -71,40 +109,27 @@ export default function BlogList({ blogs }: BlogListProps) {
           </motion.div>
         ))}
       </div>
-      <div className="flex items-center justify-between">
-        <Button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          variant="outline"
-          className="text-black dark:text-white"
-        >
-          Previous
-        </Button>
-        <span className="text-black dark:text-white">
-          Page {currentPage} of {totalPages}
-        </span>
-        <Button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-          variant="outline"
-          className="text-black dark:text-white"
-        >
-          Next
-        </Button>
-      </div>
-      {blogs.length > blogsPerPage && (
-        <div className="text-center">
-          <Button
-            variant="outline"
-            onClick={() => setCurrentPage(totalPages)}
-            className="text-black dark:text-white"
-          >
-            Show all {blogs.length} blogs
-          </Button>
-        </div>
-      )}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              // @ts-ignore
+              disabled={currentPage === 1}
+            />
+          </PaginationItem>
+          {renderPaginationItems()}
+          <PaginationItem>
+            <PaginationNext
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              // @ts-ignore
+              disabled={currentPage === totalPages}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

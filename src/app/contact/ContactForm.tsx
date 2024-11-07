@@ -1,20 +1,16 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
-import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Textarea, Input, Button } from "@/components/wrapper";
 import ReCAPTCHA from "react-google-recaptcha";
+import { toast } from "sonner";
 
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
   message: string;
-}
-
-interface FormStatus {
-  message: string;
-  type: "success" | "error" | "info" | "loading";
 }
 
 export default function ContactForm() {
@@ -24,7 +20,7 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
-  const [formStatus, setFormStatus] = useState<FormStatus | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (
@@ -39,18 +35,14 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormStatus({ message: "Verifying...", type: "loading" });
+    setIsLoading(true);
 
     const recaptchaValue = recaptchaRef.current?.getValue();
     if (!recaptchaValue) {
-      setFormStatus({
-        message: "Please complete the reCAPTCHA",
-        type: "error",
-      });
+      toast.error("Please complete the reCAPTCHA");
+      setIsLoading(false);
       return;
     }
-
-    setFormStatus({ message: "Submitting...", type: "loading" });
 
     try {
       const response = await fetch("/api/contact", {
@@ -68,10 +60,7 @@ export default function ContactForm() {
       }
 
       const data = await response.json();
-      setFormStatus({
-        message: data.message || "Form submitted successfully",
-        type: "success",
-      });
+      toast.success(data.message || "Form submitted successfully");
       setFormData({
         firstName: "",
         lastName: "",
@@ -82,10 +71,9 @@ export default function ContactForm() {
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
-      setFormStatus({
-        message: `Form submission error: ${errorMessage}`,
-        type: "error",
-      });
+      toast.error(`Form submission error: ${errorMessage}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -135,46 +123,21 @@ export default function ContactForm() {
 
       <Button
         type="submit"
-        disabled={formStatus?.type === "loading"}
+        disabled={isLoading}
         className="relative p-[3px]"
       >
         <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
         <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
-          {formStatus?.type === "loading" ? (
+          {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {formStatus.message}
+              Submitting...
             </>
           ) : (
             "Submit"
           )}
         </div>
       </Button>
-
-      {formStatus && formStatus.type !== "loading" && (
-        <div className="mt-4 flex items-center">
-          {formStatus.type === "success" && (
-            <CheckCircle className="mr-2 h-5 w-5 text-green-500" />
-          )}
-          {formStatus.type === "error" && (
-            <XCircle className="mr-2 h-5 w-5 text-red-500" />
-          )}
-          {formStatus.type === "info" && (
-            <AlertCircle className="mr-2 h-5 w-5 text-blue-500" />
-          )}
-          <p
-            className={`text-sm ${
-              formStatus.type === "success"
-                ? "text-green-500"
-                : formStatus.type === "error"
-                  ? "text-red-500"
-                  : "text-blue-500"
-            }`}
-          >
-            {formStatus.message}
-          </p>
-        </div>
-      )}
     </form>
   );
 }

@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import "./globals.css";
 import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <CookieConsent />
           <WebVitals />
+          <Toaster />
           {children}
         </Providers>
       </body>
