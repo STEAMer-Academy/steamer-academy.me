@@ -11,8 +11,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+  Button,
+} from "@/components/wrapper";
 import Link from "next/link";
 
 interface Service {
@@ -48,7 +48,8 @@ export default function ServicesList({ services }: { services: Service[] }) {
                 alt={service.title}
                 width={300}
                 height={200}
-                className="mx-auto" // Adjusted to fit the card properly
+                className="mx-auto"
+                loading="eager"
               />
             </CardHeader>
             <CardContent>
@@ -64,7 +65,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
               </CardDescription>
             </CardContent>
             <CardFooter>
-              <Link href={service.link}>
+              <Link href={service.link} prefetch={true}>
                 <Button>Learn More</Button>
               </Link>
             </CardFooter>

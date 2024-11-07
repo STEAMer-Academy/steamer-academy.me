@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/wrapper";
 
 interface Review {
   name: string;

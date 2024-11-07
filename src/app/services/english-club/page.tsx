@@ -1,9 +1,11 @@
 import { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import CountdownTimer from "./CountdownTimer";
-import ReviewCard from "./ReviewCard";
-import Layout from "@/components/Layout";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import {
+  TypewriterEffectSmooth,
+  Layout,
+  CountdownTimer,
+  Button,
+  ReviewCardEnglish,
+} from "@/components/wrapper";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -150,7 +152,7 @@ export default function EnglishClubPage() {
           <section className="mb-12">
             <h3 className="mb-8 text-xl font-semibold">Reviews</h3>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <ReviewCard
+              <ReviewCardEnglish
                 review="Starting my role as a STEAMer CEO has been a joy, thanks to its all members for being with me and my organization and we hope a better future for everyone."
                 name="H. Mondal"
                 imageSrc="/HmondalDiscordpfp.webp"

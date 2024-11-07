@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { BlogData, BlogCategory } from "@/lib/redis";
-import BlogList from "./BlogList";
+import { BlogList } from "@/components/wrapper";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 

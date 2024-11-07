@@ -4,10 +4,8 @@ import { Partytown } from "@builder.io/partytown/react";
 import localFont from "next/font/local";
 import { Providers } from "./providers";
 import "./globals.css";
-import dynamic from "next/dynamic";
 import WebVitals from "@/components/web-vitals";
-
-const CookieConsent = dynamic(() => import("@/components/CookieConsent"));
+import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",

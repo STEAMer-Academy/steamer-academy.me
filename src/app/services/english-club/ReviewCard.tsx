@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/wrapper";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 
@@ -32,6 +32,7 @@ export default function ReviewCard({
             alt={name}
             width={40}
             height={40}
+            loading="eager"
             className="mr-4 rounded-full"
           />
           <span

@@ -34,7 +34,7 @@ export default function GalleryGrid({
               layout="fill"
               objectFit="cover"
               className={cn("rounded-lg", className)}
-              loading="lazy"
+              loading="eager"
             />
           </motion.div>
         ))}

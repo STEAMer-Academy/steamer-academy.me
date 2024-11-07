@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { themeStore, setTheme } from "../stores/themeStore";
-import { Button } from "./ui/button";
+import { Button } from "@/components/wrapper";
 import { Sun01Icon, Moon02Icon } from "hugeicons-react";
 
 export default function ThemeToggle() {

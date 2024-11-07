@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import Layout from "@/components/Layout";
+import { Layout } from "@/components/wrapper";
 
 interface SearchItem {
   id: string;
@@ -56,6 +56,7 @@ export default function SearchPage() {
               <li key={result.id} className="border-b border-gray-200 pb-4">
                 <Link
                   href={result.url}
+                  prefetch={true}
                   className="block rounded p-4 hover:bg-gray-100"
                 >
                   <h2 className="mb-2 text-xl font-semibold">{result.title}</h2>

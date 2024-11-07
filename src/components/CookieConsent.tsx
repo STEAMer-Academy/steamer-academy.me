@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+  Button,
+} from "@/components/wrapper";
 import { CookieIcon } from "lucide-react";
 import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";

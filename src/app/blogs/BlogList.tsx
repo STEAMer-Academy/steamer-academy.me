@@ -42,6 +42,7 @@ export default function BlogList({ blogs }: BlogListProps) {
             <Link
               href={`/blogs/${encodeURIComponent(blog.name)}`}
               className="block"
+              prefetch={true}
             >
               <div className="relative h-48 w-full">
                 <Image
@@ -50,7 +51,8 @@ export default function BlogList({ blogs }: BlogListProps) {
                   layout="fill"
                   objectFit="cover"
                   className="transition-transform duration-300 hover:scale-105"
-                  priority={index < 3} // Prioritize loading for the first 3 images
+                  priority={index < 3}
+                  loading={index < 3 ? "eager" : "lazy"}
                 />
               </div>
               <div className="p-6">

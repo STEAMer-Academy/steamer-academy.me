@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { fetchBlogContent, fetchBlogMetadata } from "@/lib/redis";
-import Layout from "@/components/Layout";
+import { Layout } from "@/components/wrapper";
 import { Metadata } from "next";
 
 export const revalidate = 7200; // Revalidate every 2 hours

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/wrapper";
 
 export default function AboutContent() {
   const $theme = useStore(themeStore);

@@ -1,18 +1,12 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import {
+  Button,
+  TypewriterEffectSmooth,
+  Layout,
+  Globe,
+  GalleryGrid,
+} from "@/components/wrapper";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
-import Globe from "@/components/Globe";
-import GalleryGrid from "./gallery/GalleryGrid";
-
-const TypewriterEffectSmooth = dynamic(() =>
-  import("../components/ui/typewriter-effect").then(
-    (mod) => mod.TypewriterEffectSmooth,
-  ),
-);
-const Layout = dynamic(() =>
-  import("../components/Layout").then((mod) => mod.default),
-);
 
 const images = [
   {
@@ -126,6 +120,7 @@ export default function Home() {
             <Link
               href="/services"
               aria-label="Learn More About Steamer Academy, by visiting the services page."
+              prefetch={true}
               passHref
             >
               <Button variant="outline">Learn More</Button>
