@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
 const nextConfigFunction = (phase) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+
+  const withBundleAnalyzer = bundleAnalyzer({
+    enabled: process.env.ANALYZE === "true",
+  });
 
   const nextConfig = {
     reactStrictMode: true,
@@ -51,7 +56,7 @@ const nextConfigFunction = (phase) => {
     },
   };
 
-  return nextConfig;
+  return withBundleAnalyzer(nextConfig);
 };
 
 export default nextConfigFunction;
