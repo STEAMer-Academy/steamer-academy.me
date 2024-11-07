@@ -1,14 +1,8 @@
 /** @type {import('next').NextConfig} */
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
-import withPWA from "next-pwa";
 
 const nextConfigFunction = (phase) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
-
-  const PWAconfig = {
-    dest: "public",
-    disable: process.env.NODE_ENV === "development",
-  };
 
   const nextConfig = {
     reactStrictMode: true,
@@ -57,7 +51,7 @@ const nextConfigFunction = (phase) => {
     },
   };
 
-  return withPWA(PWAconfig)(nextConfig);
+  return nextConfig;
 };
 
 export default nextConfigFunction;
