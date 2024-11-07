@@ -114,6 +114,7 @@ export default function BlogList({ blogs }: BlogListProps) {
           <PaginationItem>
             <PaginationPrevious
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              /* eslint-disable-next-line */
               // @ts-ignore
               disabled={currentPage === 1}
             />
@@ -124,6 +125,7 @@ export default function BlogList({ blogs }: BlogListProps) {
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
+              /* eslint-disable-next-line */
               // @ts-ignore
               disabled={currentPage === totalPages}
             />
