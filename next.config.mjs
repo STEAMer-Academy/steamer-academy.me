@@ -6,7 +6,7 @@ const nextConfigFunction = (phase) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
   const PWAconfig = {
-    dest: "public/next-pwa",
+    dest: "public",
     disable: process.env.NODE_ENV === "development",
   };
 
