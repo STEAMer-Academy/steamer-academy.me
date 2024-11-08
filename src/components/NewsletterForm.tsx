@@ -1,10 +1,18 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent, useRef } from "react";
-import { Button, Input } from "@/components/wrapper";
+import { Button, Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 interface FormData {
   email: string;
@@ -13,6 +21,7 @@ interface FormData {
 export function NewsletterForm() {
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +31,12 @@ export function NewsletterForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsModalOpen(true);
+  };
+
+  const handleRecaptchaSubmit = async () => {
     setIsLoading(true);
+    setIsModalOpen(false);
 
     const recaptchaValue = recaptchaRef.current?.getValue();
     if (!recaptchaValue) {
@@ -61,7 +75,7 @@ export function NewsletterForm() {
   };
 
   return (
-    <div>
+    <>
       <form className="space-y-2" onSubmit={handleSubmit}>
         <Input
           type="email"
@@ -70,11 +84,6 @@ export function NewsletterForm() {
           value={formData.email}
           onChange={handleChange}
           required
-        />
-
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
         />
 
         <Button type="submit" disabled={isLoading} className="relative p-[3px]">
@@ -91,6 +100,36 @@ export function NewsletterForm() {
           </div>
         </Button>
       </form>
-    </div>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Verify you're human</DialogTitle>
+            <DialogDescription>
+              Please complete the reCAPTCHA below to subscribe to our
+              newsletter.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+            />
+          </div>
+          <DialogFooter>
+            <Button onClick={handleRecaptchaSubmit} disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Subscribing...
+                </>
+              ) : (
+                "Subscribe"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
