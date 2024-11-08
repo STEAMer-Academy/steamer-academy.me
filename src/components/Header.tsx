@@ -165,7 +165,7 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 {services.map((service) => (
-                  <DropdownMenuItem key={service.href}>
+                  <DropdownMenuItem key={service.href} asChild>
                     <Link
                       href={service.href}
                       prefetch={true}
@@ -210,14 +210,14 @@ export default function Header() {
                 />
               </form>
               {showDropdown && searchResults.length > 0 && (
-                <div className="absolute z-10 mt-1 w-full rounded-md shadow-lg">
-                  <ul className="max-h-60 overflow-auto py-1 text-base">
+                <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
+                  <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
                     {searchResults.map((result) => (
                       <li key={result.id}>
                         <Link
                           href={result.url}
                           prefetch={true}
-                          className="block px-4 py-2 hover:bg-red-100"
+                          className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground"
                           onClick={() => setShowDropdown(false)}
                         >
                           {result.title}
@@ -255,15 +255,15 @@ export default function Header() {
                       />
                     </form>
                     {showDropdown && searchResults.length > 0 && (
-                      <div className="absolute z-10 mt-1 w-full rounded-md shadow-lg">
-                        <ul className="max-h-60 overflow-auto py-1 text-base">
+                      <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
+                        <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
                           {searchResults.map((result) => (
                             <li key={result.id}>
                               <SheetClose asChild>
                                 <Link
                                   href={result.url}
                                   prefetch={true}
-                                  className="block px-4 py-2 hover:bg-red-100"
+                                  className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground"
                                   onClick={() => setShowDropdown(false)}
                                 >
                                   {result.title}
@@ -306,7 +306,7 @@ export default function Header() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       {services.map((service) => (
-                        <DropdownMenuItem key={service.href}>
+                        <DropdownMenuItem key={service.href} asChild>
                           <SheetClose asChild>
                             <Link
                               href={service.href}
