@@ -14,6 +14,10 @@
 /public/sw.js
 /public/workbox-*.js
 
+# Anooed By Bun, Always Adding Yarn
+/.yarn
+/yarn.lock
+
 # next.js
 /.next/
 /out/
