@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { themeStore, setTheme } from "../stores/themeStore";
 import { Button } from "@/components/wrapper";
-import { Sun01Icon, Moon02Icon } from "hugeicons-react";
+import { Moon02Icon } from "hugeicons-react";
+import { Sun } from "lucide-react";
 
 export default function ThemeToggle() {
   const $theme = useStore(themeStore);
@@ -31,7 +32,7 @@ export default function ThemeToggle() {
       {$theme === "dark" ? (
         <Moon02Icon className="h-[1.2rem] w-[1.2rem]" />
       ) : (
-        <Sun01Icon className="h-[1.2rem] w-[1.2rem]" />
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
       )}
     </Button>
   );
