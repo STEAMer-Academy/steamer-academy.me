@@ -8,6 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
 import {
   Sheet,
@@ -306,22 +307,24 @@ export default function Header() {
                         <ArrowDown01Icon className="ml-1 h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      {services.map((service) => (
-                        <DropdownMenuItem key={service.href} asChild>
-                          <SheetClose asChild>
-                            <Link
-                              href={service.href}
-                              prefetch={true}
-                              className="flex w-full items-center"
-                            >
-                              <service.icon className="mr-2 h-4 w-4" />
-                              {service.label}
-                            </Link>
-                          </SheetClose>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
+                    <DropdownMenuPortal>
+                      <DropdownMenuContent>
+                        {services.map((service) => (
+                          <DropdownMenuItem key={service.href} asChild>
+                            <SheetClose asChild>
+                              <Link
+                                href={service.href}
+                                prefetch={true}
+                                className="flex w-full items-center"
+                              >
+                                <service.icon className="mr-2 h-4 w-4" />
+                                {service.label}
+                              </Link>
+                            </SheetClose>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenuPortal>
                   </DropdownMenu>
                   <ThemeToggle />
                 </nav>
