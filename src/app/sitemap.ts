@@ -33,13 +33,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.1,
     },
     {
-      url: "https://www.steameracademy.me/english-club",
+      url: "https://www.steameracademy.me/services/english-club",
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.1,
     },
     {
-      url: "https://www.steameracademy.me/code-club",
+      url: "https://www.steameracademy.me/services/code-club",
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.1,
