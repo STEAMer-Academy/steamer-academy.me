@@ -8,7 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu.tsx";
+} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
@@ -16,7 +16,7 @@ import {
   SheetClose,
   Input,
   Button,
-} from "@/components/ui/wrapper";
+} from "@/components/wrapper";
 import { cn } from "@/lib/utils";
 import {
   Search01Icon,
