@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent, useRef } from "react";
-import { Button, Input } from "@/components/ui/input";
+import { Button, Input } from "@/components/wrapper";
 import { Loader2 } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog";
+} from "@/components/wrapper";
 
 interface FormData {
   email: string;
@@ -104,7 +104,7 @@ export function NewsletterForm() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Verify you're human</DialogTitle>
+            <DialogTitle>Verify you&quot;re human</DialogTitle>
             <DialogDescription>
               Please complete the reCAPTCHA below to subscribe to our
               newsletter.

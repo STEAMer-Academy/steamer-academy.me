@@ -172,3 +172,28 @@ export const Toaster = dynamic(
   () => import("@/components/ui/sonner").then((mod) => mod.Toaster),
   { ssr: false },
 );
+
+/* === Shadcn Dialog Component === */
+export const Dialog = dynamic(() =>
+  import("@/components/ui/dialog").then((mod) => mod.Dialog),
+);
+
+export const DialogContent = dynamic(() =>
+  import("@/components/ui/dialog").then((mod) => mod.DialogContent),
+);
+
+export const DialogHeader = dynamic(() =>
+  import("@/components/ui/dialog").then((mod) => mod.DialogHeader),
+);
+
+export const DialogTitle = dynamic(() =>
+  import("@/components/ui/dialog").then((mod) => mod.DialogTitle),
+);
+
+export const DialogDescription = dynamic(() =>
+  import("@/components/ui/dialog").then((mod) => mod.DialogDescription),
+);
+
+export const DialogFooter = dynamic(() =>
+  import("@/components/ui/dialog").then((mod) => mod.DialogFooter),
+);

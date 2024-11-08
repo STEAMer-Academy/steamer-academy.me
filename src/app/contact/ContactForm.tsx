@@ -2,7 +2,7 @@
 
 import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Loader2 } from "lucide-react";
-import { Textarea, Input, Button } from "@/components/ui/input";
+import { Textarea, Input, Button } from "@/components/wrapper";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
 import {
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog";
+} from "@/components/wrapper";
 
 interface FormData {
   firstName: string;
@@ -149,7 +149,7 @@ export default function ContactForm() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Verify you're human</DialogTitle>
+            <DialogTitle>Verify you&quot;re human</DialogTitle>
             <DialogDescription>
               Please complete the reCAPTCHA below to submit your message.
             </DialogDescription>
