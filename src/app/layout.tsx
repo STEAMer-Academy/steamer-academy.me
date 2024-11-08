@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import "./globals.css";
 import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/wrapper";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
