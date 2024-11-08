@@ -166,20 +166,22 @@ export default function Header() {
                   <ArrowDown01Icon className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {services.map((service) => (
-                  <DropdownMenuItem key={service.href} asChild>
-                    <Link
-                      href={service.href}
-                      prefetch={true}
-                      className="flex w-full items-center"
-                    >
-                      <service.icon className="mr-2 h-4 w-4" />
-                      {service.label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
+              <DropdownMenuPortal>
+                <DropdownMenuContent>
+                  {services.map((service) => (
+                    <DropdownMenuItem key={service.href} asChild>
+                      <Link
+                        href={service.href}
+                        prefetch={true}
+                        className="flex w-full items-center"
+                      >
+                        <service.icon className="mr-2 h-4 w-4" />
+                        {service.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenuPortal>
             </DropdownMenu>
             {navItems.slice(2).map((item) => (
               <Button
