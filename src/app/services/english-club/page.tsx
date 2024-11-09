@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function EnglishClubPage() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8">
         <main>
           <h1 className="mb-8 text-center text-3xl font-bold">
             <TypewriterEffectSmooth
