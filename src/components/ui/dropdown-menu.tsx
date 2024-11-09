@@ -21,17 +21,15 @@ export interface DropdownProps {
 }
 
 export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
-  (
-    {
-      trigger,
-      items,
-      align = "start",
-      className,
-      triggerClassName,
-      menuClassName,
-      itemClassName,
-    },
-  ) => {
+  ({
+    trigger,
+    items,
+    align = "start",
+    className,
+    triggerClassName,
+    menuClassName,
+    itemClassName,
+  }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
 
