@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import arcjet, { shield }from "@arcjet/next";
+import arcjet, { shield } from "@arcjet/next";
 
 // Initialize Arcjet with your API key
 const aj = new arcjet(process.env.ARCJET_API_KEY);
