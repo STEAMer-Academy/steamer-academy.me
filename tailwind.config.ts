@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
-import { nextui } from "@nextui-org/react";
 
 // @ts-nocheck
 /* eslint-disable */
@@ -93,7 +92,7 @@ const config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate, addVariablesForColors, nextui()],
+  plugins: [tailwindcssAnimate, addVariablesForColors],
 } satisfies Config;
 
 function addVariablesForColors({ addBase, theme }: any) {
