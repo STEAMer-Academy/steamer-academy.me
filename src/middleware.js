@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { Arcjet, Shield } from "@arcjet/next";
+import arcjet, { shield }from "@arcjet/next";
 
 // Initialize Arcjet with your API key
-const aj = new Arcjet(process.env.ARCJET_API_KEY);
+const aj = new arcjet(process.env.ARCJET_API_KEY);
 
 // Define rules for Arcjet
 const rules = {
@@ -16,7 +16,7 @@ const rules = {
   // Protect against common web attacks
   webAttackBlock: true,
   // Enable Shield for advanced bot detection and protection
-  shield: Shield.enable({
+  shield: shield.enable({
     // Customize Shield options as needed
     mode: "LIVE",
   }),
