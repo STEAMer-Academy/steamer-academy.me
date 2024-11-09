@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import localFont from "next/font/local";
-import { Providers } from "./providers";
 import "./globals.css";
 import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
@@ -90,12 +89,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
-          <CookieConsent />
-          <WebVitals />
-          <Toaster />
-          {children}
-        </Providers>
+        <CookieConsent />
+        <WebVitals />
+        <Toaster />
+        {children}
       </body>
     </html>
   );
