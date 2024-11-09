@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Input, Button, DropdownMenu } from "@/components/wrapper";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import {
   Search01Icon,
@@ -283,7 +288,11 @@ export default function Header() {
                       icon: <service.icon className="h-4 w-4" />,
                       onClick: () => {
                         router.push(service.href);
-                        (document.querySelector('[data-radix-collection-item]') as HTMLElement)?.click();
+                        (
+                          document.querySelector(
+                            "[data-radix-collection-item]",
+                          ) as HTMLElement
+                        )?.click();
                       },
                     }))}
                     align="start"

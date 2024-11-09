@@ -21,19 +21,34 @@ export interface DropdownProps {
 }
 
 export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
-  ({ trigger, items, align = "start", className, triggerClassName, menuClassName, itemClassName }, ref) => {
+  (
+    {
+      trigger,
+      items,
+      align = "start",
+      className,
+      triggerClassName,
+      menuClassName,
+      itemClassName,
+    },
+    ref,
+  ) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node)
+        ) {
           setIsOpen(false);
         }
       };
 
       document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     const menuPosition = {
@@ -48,15 +63,18 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
             "inline-flex items-center justify-between gap-2 px-4 py-2 text-sm font-medium transition-colors",
-            "bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700",
-            "border border-gray-200 dark:border-gray-700 rounded-md shadow-sm",
+            "bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700",
+            "rounded-md border border-gray-200 shadow-sm dark:border-gray-700",
             "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
-            triggerClassName
+            triggerClassName,
           )}
         >
           {trigger}
           <ChevronDown
-            className={cn("h-4 w-4 transition-transform duration-200", isOpen && "rotate-180")}
+            className={cn(
+              "h-4 w-4 transition-transform duration-200",
+              isOpen && "rotate-180",
+            )}
           />
         </button>
 
@@ -65,10 +83,10 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
             className={cn(
               "absolute z-50 mt-2 min-w-[12rem] overflow-hidden",
               "rounded-md border border-gray-200 dark:border-gray-700",
-              "bg-white dark:bg-gray-800 shadow-lg",
+              "bg-white shadow-lg dark:bg-gray-800",
               "animate-in fade-in-0 zoom-in-95",
               menuPosition[align],
-              menuClassName
+              menuClassName,
             )}
           >
             <div className="py-1">
@@ -83,10 +101,12 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
                   className={cn(
                     "flex w-full items-center px-4 py-2 text-sm",
                     "transition-colors duration-150",
-                    item.disabled && "opacity-50 cursor-not-allowed",
-                    !item.disabled && "hover:bg-gray-100 dark:hover:bg-gray-700",
-                    item.variant === "destructive" && "text-red-600 dark:text-red-400",
-                    itemClassName
+                    item.disabled && "cursor-not-allowed opacity-50",
+                    !item.disabled &&
+                      "hover:bg-gray-100 dark:hover:bg-gray-700",
+                    item.variant === "destructive" &&
+                      "text-red-600 dark:text-red-400",
+                    itemClassName,
                   )}
                 >
                   {item.icon && (
@@ -100,7 +120,7 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 DropdownMenu.displayName = "DropdownMenu";
