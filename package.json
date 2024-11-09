@@ -14,7 +14,6 @@
     "fmt": "prettier --check --write ."
   },
   "dependencies": {
-    "@arcjet/next": "^1.0.0-alpha.28",
     "@builder.io/partytown": "^0.10.2",
     "@libsql/client": "^0.14.0",
     "@nanostores/react": "^0.8.0",
@@ -31,6 +30,7 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/three": "^0.169.0",
     "@upstash/redis": "^1.34.3",
+    "@vercel/speed-insights": "^1.1.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
