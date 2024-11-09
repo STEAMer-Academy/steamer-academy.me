@@ -3,21 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuPortal,
-} from "@/components/ui/dropdown-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-  Input,
-  Button,
-} from "@/components/wrapper";
+import { Input, Button, DropdownMenu } from "@/components/wrapper";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import {
   Search01Icon,
@@ -28,7 +15,6 @@ import {
   Image01Icon,
   File01Icon,
   CallIcon,
-  ArrowDown01Icon,
   LanguageSkillIcon,
   CodeIcon,
 } from "hugeicons-react";
@@ -155,34 +141,21 @@ export default function Header() {
                 </Link>
               </Button>
             ))}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="flex items-center space-x-1 font-sans font-medium"
-                >
-                  <BookEditIcon className="h-4 w-4" />
-                  <span>Services</span>
-                  <ArrowDown01Icon className="ml-1 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuContent>
-                  {services.map((service) => (
-                    <DropdownMenuItem key={service.href} asChild>
-                      <Link
-                        href={service.href}
-                        prefetch={true}
-                        className="flex w-full items-center"
-                      >
-                        <service.icon className="mr-2 h-4 w-4" />
-                        {service.label}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenuPortal>
-            </DropdownMenu>
+            <DropdownMenu
+              trigger={
+                <span className="flex items-center">
+                  <BookEditIcon className="mr-2 h-4 w-4" />
+                  Services
+                </span>
+              }
+              items={services.map((service) => ({
+                label: service.label,
+                icon: <service.icon className="h-4 w-4" />,
+                onClick: () => router.push(service.href),
+              }))}
+              align="start"
+              className="font-sans font-medium"
+            />
             {navItems.slice(2).map((item) => (
               <Button
                 key={item.href}
@@ -298,36 +271,24 @@ export default function Header() {
                       </Button>
                     </SheetClose>
                   ))}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="justify-start font-sans font-medium"
-                      >
+                  <DropdownMenu
+                    trigger={
+                      <span className="flex items-center">
                         <BookEditIcon className="mr-2 h-4 w-4" />
-                        <span>Services</span>
-                        <ArrowDown01Icon className="ml-1 h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuPortal>
-                      <DropdownMenuContent>
-                        {services.map((service) => (
-                          <DropdownMenuItem key={service.href} asChild>
-                            <SheetClose asChild>
-                              <Link
-                                href={service.href}
-                                prefetch={true}
-                                className="flex w-full items-center"
-                              >
-                                <service.icon className="mr-2 h-4 w-4" />
-                                {service.label}
-                              </Link>
-                            </SheetClose>
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenuPortal>
-                  </DropdownMenu>
+                        Services
+                      </span>
+                    }
+                    items={services.map((service) => ({
+                      label: service.label,
+                      icon: <service.icon className="h-4 w-4" />,
+                      onClick: () => {
+                        router.push(service.href);
+                        (document.querySelector('[data-radix-collection-item]') as HTMLElement)?.click();
+                      },
+                    }))}
+                    align="start"
+                    className="font-sans font-medium"
+                  />
                   <ThemeToggle />
                 </nav>
               </SheetContent>

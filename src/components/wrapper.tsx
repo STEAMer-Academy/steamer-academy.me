@@ -73,22 +73,6 @@ export const DropdownMenu = dynamic(() =>
   import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu),
 );
 
-export const DropdownMenuContent = dynamic(() =>
-  import("@/components/ui/dropdown-menu").then(
-    (mod) => mod.DropdownMenuContent,
-  ),
-);
-
-export const DropdownMenuTrigger = dynamic(() =>
-  import("@/components/ui/dropdown-menu").then(
-    (mod) => mod.DropdownMenuTrigger,
-  ),
-);
-
-export const DropdownMenuItem = dynamic(() =>
-  import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenuItem),
-);
-
 /* === Card Component === */
 export const Card = dynamic(() =>
   import("@/components/ui/card").then((mod) => mod.Card),
