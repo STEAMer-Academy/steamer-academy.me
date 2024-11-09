@@ -31,7 +31,6 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
       menuClassName,
       itemClassName,
     },
-    ref,
   ) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
