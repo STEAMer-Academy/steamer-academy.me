@@ -43,18 +43,22 @@ All community leaders are obligated to respect the privacy and security of the r
 Community leaders will follow these guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
 
 ### 1. Correction
+
 **Impact**: Minor inappropriate behavior.
 **Action**: A private, written warning to the individual, clarifying the behavior's inappropriateness.
 
 ### 2. Warning
+
 **Impact**: A repeat violation or more severe inappropriate behavior.
 **Action**: A warning with consequences if the behavior continues. No interaction with the involved parties for a specified time, including avoiding unwanted discussions.
 
 ### 3. Temporary Ban
+
 **Impact**: Serious or repeated violations.
 **Action**: A temporary ban from the community spaces, determined by community leaders.
 
 ### 4. Permanent Ban
+
 **Impact**: Severe violations, including continued harassment or threats to others.
 **Action**: A permanent ban from all community spaces.
 

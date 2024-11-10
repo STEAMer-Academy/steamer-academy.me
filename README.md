@@ -57,7 +57,6 @@
     </a>
 </h4>
 
-
 ## 🚀 About the Project
 
 This is the official repository for [STEAMer Academy](https://www.steameracademy.me), built with modern technologies to deliver a seamless and dynamic user experience.
@@ -104,15 +103,15 @@ To set up the project locally:
    git clone https://github.com/STEAMer-Academy/steamer-academy.me.git
    cd steamer-academy.me
    ```
-2. Install dependencies using Bun:
+1. Install dependencies using Bun:
    ```bash
    bun install
    ```
-3. Start the development server:
+1. Start the development server:
    ```bash
    bun run dev
    ```
-4. Build the application for production:
+1. Build the application for production:
    ```bash
    bun run build
    ```
@@ -122,19 +121,19 @@ To set up the project locally:
 We welcome contributions from everyone. Feel free to fork the repository and submit a pull request.
 
 1. **Fork the project**
-2. **Create your feature branch**:
+1. **Create your feature branch**:
    ```bash
    git checkout -b feature/your-feature
    ```
-3. **Commit your changes**:
+1. **Commit your changes**:
    ```bash
    git commit -m 'Add new feature'
    ```
-4. **Push to the branch**:
+1. **Push to the branch**:
    ```bash
    git push origin feature/your-feature
    ```
-5. **Open a pull request**
+1. **Open a pull request**
 
 ## 🔒 Security
 
