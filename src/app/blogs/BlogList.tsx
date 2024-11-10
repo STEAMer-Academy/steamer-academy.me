@@ -91,7 +91,6 @@ export default function BlogList({ blogs }: BlogListProps) {
                   className="transition-transform duration-300 hover:scale-105"
                   priority={index < 3}
                   loading={index < 3 ? "eager" : "lazy"}
-                  unoptimized={true}
                 />
               </div>
               <div className="p-6">
