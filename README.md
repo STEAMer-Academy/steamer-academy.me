@@ -10,8 +10,9 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/stars/steamer-academy?colorA=363a4f&colorB=b7bdf8&style=for-the-badge">
-    <img src="https://img.shields.io/discord/1225805405578596352?style=for-the-badge&color=c6a0f6&labelColor=363a4f&logo=discord&logoColor=cad3f5">
+    <a href="https://discord.gg/HNhjQAfq9U"><img src="https://img.shields.io/discord/1225805405578596352?style=for-the-badge&color=c6a0f6&labelColor=363a4f&logo=discord&logoColor=cad3f5"></a>
     <a href="https://github.com/steamer-academy/steamer-blogs/issues"><img src="https://img.shields.io/github/issues/steamer-academy/steamer-blogs?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+    <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8">
 </p>
 
 <h3 align="center">Website Status</h3>
@@ -146,12 +147,6 @@ We are committed to fostering a welcoming and respectful community. Please take 
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
-## 📞 Contact
-
-- **Website**: [www.steameracademy.me](https://www.steameracademy.me)
-- **Discord**: [Join our Discord](https://discord.gg/HNhjQAfq9U)
-- **GitHub**: [STEAMer Academy](https://github.com/steamer-academy)
 
 <h3 align="center">💖 We appreciate your support!</h3>
 <p align="center">
