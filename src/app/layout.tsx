@@ -86,6 +86,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
+	<script defer src="https://cdn.overtracking.com/t/t1OvzwAAAxD1d6Sgu/"></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
