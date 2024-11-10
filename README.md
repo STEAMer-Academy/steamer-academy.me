@@ -68,18 +68,18 @@ This is the official repository for [STEAMer Academy](https://www.steameracademy
 - **Tailwind CSS** - Utility-first CSS framework
 - **shadcn/ui** - Robust UI component library
 - **Aceternity UI** - Enhanced UI components for modern design aesthetics
-- **Redis** - For faster speeds, and to use as a KV store.
-- **Turso** - The SQL database provider.
+- **Redis** - For faster speeds, and to use as a KV store. Provided by [Upstash](https://upstash.com/)
+- **SQLite** - The SQL database tech used. Provided by [Turso](https://turso.tech)
 - **Arcjet** - For security.
 
 <p align="center">
     <a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/nextjs.png" width="10%"/></a>
     <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/reactlogo.png" width="10%"/></a>
-    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/tailwindcss.png" width="10%"/></a>
+    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/tailwindcss.png" width="15%"/></a>
     <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/shadcn-ui.png" width="10%"/></a>
     <a href="https://ui.aceternity.com"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/aceternity.webp" width="10%"/></a>
-    <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/irfA9eUEad.png?raw=true" width="17%"/></a>
-    <a href="https://turso.tech"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/turso.png?raw=true" width="8%"/></a>
+    <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/redis-icon.png?raw=true" width="10%"/></a>
+    <a href="https://www.sqlite.org/"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/Sqlite-square-icon.svg.png?raw=true" width="10%"/></a>
     <a href="https://arcjet.com"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/arcjet.png?raw=true" width="10%"/></a>
 </p>
 
