@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: 🟢 Azure Static Web Apps CI/CD
 
 on:
   push:
@@ -13,29 +13,35 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: ⚙️ Build and Deploy Job
+
     steps:
-      - uses: actions/checkout@v3
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-      - name: Setting Envs
+
+      - name: 🔧 Setting Environment Variables
         run: |
-          echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID= ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}" >> .env
-          echo "REDIS_URL= ${{ secrets.REDIS_URL }}" >> .env
-          echo "REDIS_TOKEN = ${{ secrets.REDIS_TOKEN }}" >> .env
-          echo "TURSO_AUTH_TOKEN = ${{ secrets.TURSO_AUTH_TOKEN }}" >> .env
-          echo "TURSO_DATABASE_URL = ${{ secrets.TURSO_DATABASE_URL }}" >> .env
-          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY = ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
-          echo "RECAPTCHA_SECRET_KEY = ${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
-          echo "ARCJET_KEY = ${{ secrets.ARCJET_KEY }}" >> .env
-      - name: Setup Bun
+          echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}" >> .env
+          echo "REDIS_URL=${{ secrets.REDIS_URL }}" >> .env
+          echo "REDIS_TOKEN=${{ secrets.REDIS_TOKEN }}" >> .env
+          echo "TURSO_AUTH_TOKEN=${{ secrets.TURSO_AUTH_TOKEN }}" >> .env
+          echo "TURSO_DATABASE_URL=${{ secrets.TURSO_DATABASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
+          echo "RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
+          echo "ARCJET_KEY=${{ secrets.ARCJET_KEY }}" >> .env
+
+      - name: 🥐 Setup Bun
         uses: oven-sh/setup-bun@v2
-      - name: Run Build And Install Dependencies
+
+      - name: 📦 Install Dependencies and Build
         run: |
           bun install
           bun run build
-      - name: Build And Deploy
+
+      - name: 🚀 Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -48,9 +54,10 @@ jobs:
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
+    name: 🛑 Close Pull Request Job
+
     steps:
-      - name: Close Pull Request
+      - name: 📦 Close Pull Request
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
