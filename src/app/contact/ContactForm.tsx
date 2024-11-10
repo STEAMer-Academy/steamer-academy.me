@@ -147,9 +147,9 @@ export default function ContactForm() {
       </form>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent>
+        <DialogContent aria-describedby="Recaptcha Modal">
           <DialogHeader>
-            <DialogTitle>Verify you&quot;re human</DialogTitle>
+            <DialogTitle>Verify you are human</DialogTitle>
             <DialogDescription>
               Please complete the reCAPTCHA below to submit your message.
             </DialogDescription>
