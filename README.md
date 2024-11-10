@@ -75,7 +75,7 @@ This is the official repository for [STEAMer Academy](https://www.steameracademy
 <p align="center">
     <a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/nextjs.png" width="10%"/></a>
     <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/reactlogo.png" width="10%"/></a>
-    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/tailwindcss.png" width="15%"/></a>
+    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/tailwind-css.svg" width="15%"/></a>
     <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/shadcn-ui.png" width="10%"/></a>
     <a href="https://ui.aceternity.com"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/aceternity.webp" width="10%"/></a>
     <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/redis-icon.png?raw=true" width="10%"/></a>
