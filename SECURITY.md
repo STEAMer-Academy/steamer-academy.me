@@ -14,7 +14,7 @@ We regularly update our project and support the following versions:
 If you discover a security vulnerability, we highly appreciate your efforts to help us maintain a safe environment. Please follow the steps below:
 
 ### 1. Contact Us
-- Email: [security@steamer-academy.me](mailto:support@steameracademy.me)
+- Email: [support@steameracademy.me](mailto:support@steameracademy.me)
 - Alternatively, you can create a private issue on our GitHub repository if available.
 
 ### 2. Provide Detailed Information
