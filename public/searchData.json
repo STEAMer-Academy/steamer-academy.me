@@ -1,0 +1,116 @@
+[
+  {
+    "id": "home",
+    "title": "Home",
+    "content": "Welcome to STEAMer Academy, where we inspire young minds through Science, Technology, Engineering, Arts, and Mathematics.",
+    "url": "/"
+  },
+  {
+    "id": "about",
+    "title": "About Us",
+    "content": "STEAMer Academy is dedicated to providing innovative education in STEAM fields for children and young adults.",
+    "url": "/about"
+  },
+  {
+    "id": "english-club",
+    "title": "English Club",
+    "content": "Join our English Club to improve your language skills through interactive sessions and fun activities.",
+    "url": "/services/english-club"
+  },
+  {
+    "id": "code-club",
+    "title": "Code Club",
+    "content": "Learn programming and develop your coding skills in our exciting Code Club sessions.",
+    "url": "/services/code-club"
+  },
+  {
+    "id": "gallery",
+    "title": "Gallery",
+    "content": "Explore our gallery to see photos and videos of our students engaging in various STEAM activities.",
+    "url": "/gallery"
+  },
+  {
+    "id": "contact",
+    "title": "Contact Us",
+    "content": "Get in touch with us to learn more about our programs and how to enroll your child in our classes.",
+    "url": "/contact"
+  },
+  {
+    "id": "blog",
+    "title": "Blogs",
+    "content": "Read our blog posts to stay updated on the latest news, events, and activities at STEAMer Academy.",
+    "url": "/blogs"
+  },
+  {
+    "id": "blogsList",
+    "title": "Dive into Engineering: A Fun Guide for Engineering 🚀 !",
+    "content": "Engineering is a fascinating field that involves designing, building, and creating innovative solutions to real-world problems. In this blog post, we'll explore the exciting world of engineering and provide a fun guide to help you learn more about this dynamic field.",
+    "url": "/blogs/Dive%20into%20Engineering%3A%20A%20Fun%20Guide%20for%20Engineering%20🚀%20!"
+  },
+  {
+    "id": "blogsList",
+    "title": "Understanding Pressure: A Comprehensive and Engaging Guide 🌟",
+    "content": "Pressure is a fundamental concept in physics that plays a crucial role in various scientific and engineering applications. In this blog post, we'll explore the concept of pressure in detail and provide an engaging guide to help you understand this important physical quantity.",
+    "url": "/blogs/Understanding%20Pressure%3A%20A%20Comprehensive%20and%20Engaging%20Guide%20🌟"
+  },
+  {
+    "id": "blogsList",
+    "title": "What is a noun? A Cornerstone of Language",
+    "content": "Nouns are an essential part of language that help us identify people, places, things, and ideas. In this blog post, we'll explore the concept of nouns and provide a comprehensive guide to help you understand this fundamental part of speech.",
+    "url": "/blogs/What%20is%20a%20noun%3F%20A%20Cornerstone%20of%20Language"
+  },
+  {
+    "id": "blogsList",
+    "title": "Verbs: The Backbone of Language",
+    "content": "Verbs are an essential part of language that help us express action, state, or occurrence. In this blog post, we'll explore the concept of verbs and provide a comprehensive guide to help you understand this fundamental part of speech.",
+    "url": "/blogs/Verbs%3A%20The%20Backbone%20of%20Language"
+  },
+  {
+    "id": "blogsList",
+    "title": "Why X Always Gets the Spotlight🤔",
+    "content": "Ever wonder why “X” is always the star of the show in algebra? I mean, what did “Y” and “Z” do to deserve the sidekick roles, right? Let’s dig into the mystery of why “X” became the go-to letter for the unknown.",
+    "url": "/blogs/Why%20X%20Always%20Gets%20the%20Spotlight🤔"
+  },
+  {
+    "id": "blogsList",
+    "title": "Welcome to a amazing world of mathematics",
+    "content": "Mathematics is a fascinating subject that plays a crucial role in various scientific and engineering applications. In this blog post, we'll explore the exciting world of mathematics and provide a fun guide to help you learn more about this dynamic field.",
+    "url": "/blogs/Welcome%20to%20a%20amazing%20world%20of%20mathematics"
+  },
+  {
+    "id": "blogsList",
+    "title": "God told me to do some good things but I did many sin theta!🤓",
+    "content": "Why did a priest refuse to learn trigonometry?Because it is full of sin**. 😆**",
+    "url": "/blogs/God%20told%20me%20to%20do%20some%20good%20things%20but%20I%20did%20many%20sin%20theta!🤓"
+  },
+  {
+    "id": "blogsList",
+    "title": "Part 1:SCIENCE ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨ـ",
+    "content": "Science is a fascinating field that involves exploring the natural world and understanding the laws that govern it. In this blog post, we'll explore the exciting world of science and provide a fun guide to help you learn more about this dynamic field.",
+    "url": "/blogs/Part%201:SCIENCE%20ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨ـ"
+  },
+  {
+    "id": "blogsList",
+    "title": "Unlocking the Mysteries of the Universe: A Casual Dive into Physics",
+    "content": "Physics is a fascinating field that involves exploring the fundamental laws of nature and understanding the behavior of matter and energy. In this blog post, we'll explore the exciting world of physics and provide a fun guide to help you learn more about this dynamic field.",
+    "url": "/blogs/Unlocking%20the%20Mysteries%20of%20the%20Universe:%20A%20Casual%20Dive%20into%20Physics"
+  },
+  {
+    "id": "blogsList",
+    "title": "What is Physics?",
+    "content": "Physics is the natural science of matter, involving the study of matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy and force.",
+    "url": "/blogs/What%20is%20Physics%3F"
+  },
+  {
+    "id": "blogsList",
+    "title": "Part 1: Computers and Programming",
+    "content": "Computers and programming are an essential part of our daily lives, from smartphones and laptops to the software that powers them. In this blog post, we'll explore the world of computers and programming and provide a fun guide to help you learn more about this dynamic field.",
+    "url": "/blogs/Computers%20and%20Programming"
+  },
+  {
+    "id": "blogsList",
+    "title": "Basic components of a computer and how computers work",
+    "content": "Computers are complex machines that perform a wide range of tasks, from browsing the web to playing video games. In this blog post, we'll explore the basic components of a computer and how computers work to help you understand the inner workings of these fascinating devices.",
+    "url": "/blogs/Basic%20components%20of%20a%20computer%20and%20how%20computers%20work"
+  }
+]

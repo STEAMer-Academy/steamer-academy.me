@@ -1,0 +1,28 @@
+name: Sync Repos
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Git
+        run: |
+          git config --global user.email "muntasir.joypurhat@gmail.com"
+          git config --global user.name "MuntasirSZN"
+
+      - name: Clone Destination Repository
+        run: |
+          git clone https://${{ secrets.PAT }}@github.com/STEAMer-Academy/steamer-academy.me.git
+          cd steamer-academy.me
+          git remote add source https://${{ secrets.PAT }}@github.com/MuntasirSZN/steamer-academy.me.git
+          git fetch source
+          git merge source/main --allow-unrelated-histories --no-edit
+          git push origin main

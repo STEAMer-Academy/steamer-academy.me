@@ -1,0 +1,130 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --background: 30 27% 94%;
+    --foreground: 24 20% 10%;
+    --card: 30 27% 94%;
+    --card-foreground: 24 20% 10%;
+    --popover: 30 27% 94%;
+    --popover-foreground: 24 20% 10%;
+    --primary: 24 20% 10%;
+    --primary-foreground: 30 27% 94%;
+    --secondary: 30 15% 80%;
+    --secondary-foreground: 24 20% 10%;
+    --muted: 30 15% 80%;
+    --muted-foreground: 24 13% 30%;
+    --accent: 30 15% 80%;
+    --accent-foreground: 24 20% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 80%;
+    --input: 30 15% 80%;
+    --ring: 24 20% 10%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 235 19% 13%;
+    --foreground: 222 14% 82%;
+    --card: 235 19% 13%;
+    --card-foreground: 222 14% 82%;
+    --popover: 235 19% 13%;
+    --popover-foreground: 222 14% 82%;
+    --primary: 222 14% 82%;
+    --primary-foreground: 235 19% 13%;
+    --secondary: 221 16% 34%;
+    --secondary-foreground: 222 14% 82%;
+    --muted: 221 16% 34%;
+    --muted-foreground: 220 12% 55%;
+    --accent: 221 16% 34%;
+    --accent-foreground: 222 14% 82%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 222 14% 82%;
+    --border: 221 16% 34%;
+    --input: 221 16% 34%;
+    --ring: 220 15% 66%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  .prose {
+    @apply text-black dark:text-gray-300;
+  }
+
+  .prose img {
+    @apply mx-auto my-8 max-w-full rounded-lg shadow-md;
+  }
+
+  .prose h1 {
+    @apply mb-8 text-center text-4xl font-extrabold leading-tight tracking-wide text-black dark:text-white;
+  }
+
+  .prose h2 {
+    @apply mb-6 text-left text-3xl font-semibold leading-snug tracking-wide text-black dark:text-white;
+  }
+
+  .prose h3 {
+    @apply mb-4 text-left text-2xl font-semibold leading-relaxed text-black dark:text-white;
+  }
+
+  .prose p {
+    @apply mb-6 text-left text-lg leading-relaxed;
+  }
+
+  .prose a {
+    @apply font-medium text-blue-400 hover:text-blue-300 hover:underline;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-6 ml-6 list-outside;
+  }
+
+  .prose ul {
+    @apply list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply mb-2 text-lg;
+  }
+
+  .prose blockquote {
+    @apply mb-6 border-l-4 border-blue-500 pl-4 italic;
+  }
+
+  .prose code {
+    @apply rounded-md bg-gray-700 px-2 py-1 text-blue-300;
+  }
+
+  .prose pre {
+    @apply mb-6 overflow-x-auto rounded-md bg-gray-800 p-4;
+  }
+
+  .prose > *:not(:first-child) {
+    @apply mt-8;
+  }
+}
