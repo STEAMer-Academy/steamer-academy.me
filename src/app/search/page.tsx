@@ -17,13 +17,6 @@ import {
 } from "@/components/wrapper";
 import Fuse from "fuse.js";
 import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-import {
   Search01Icon,
   Home07Icon,
   InformationCircleIcon,
