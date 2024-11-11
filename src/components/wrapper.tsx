@@ -68,6 +68,17 @@ export const SheetClose = dynamic(() =>
   import("@/components/ui/sheet").then((mod) => mod.SheetClose),
 );
 
+/* === Pagination Component === */
+export const Pagination = dynamic(() =>
+  import("@/components/ui/pagination").then((mod) => mod.Pagination),
+);
+
+/* === Skeleton Component === */
+export const Skeleton = dynamic(
+  () => import("@/components/ui/skeleton").then((mod) => mod.Skeleton),
+  { ssr: false },
+);
+
 /* === Dropdown Menu Component === */
 export const DropdownMenu = dynamic(() =>
   import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu),

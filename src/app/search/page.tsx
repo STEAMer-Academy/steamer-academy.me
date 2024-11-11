@@ -3,10 +3,19 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Layout } from "@/components/wrapper";
+import {
+  Layout,
+  Button,
+  Input,
+  Pagination,
+  Skeleton,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/wrapper";
 import Fuse from "fuse.js";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
@@ -14,8 +23,6 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { Pagination } from "@/components/ui/pagination";
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   Search01Icon,
   Home07Icon,
