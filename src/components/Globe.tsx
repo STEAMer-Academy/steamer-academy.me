@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
-const World = dynamic(() => import("./ui/globe").then((m) => m.World), {
+const World = dynamic(() => import("./ui/globe").then((m) => m.default), {
   ssr: false,
 });
 
@@ -405,6 +405,8 @@ export default function Globe() {
 
   return (
     <World
+      /* eslint-disable-next-line */
+      // @ts-ignore
       data={sampleArcs}
       globeConfig={globeConfig}
       className="mb-30 pb-30"

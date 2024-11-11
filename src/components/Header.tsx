@@ -102,7 +102,7 @@ export default function Header() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchValue.trim()) {
+    if (searchValue.trim) {
       router.push(`/search?q=${encodeURIComponent(searchValue.trim())}`);
       setShowDropdown(false);
     }
