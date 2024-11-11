@@ -1,4 +1,4 @@
-name: 🟢 Azure Static Web Apps CI/CD
+name: ⚒️ Build And Deploy
 
 on:
   push:

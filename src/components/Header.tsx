@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -27,6 +27,7 @@ import {
 } from "hugeicons-react";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
+import Fuse from "fuse.js";
 
 interface SearchItem {
   id: string;
@@ -35,6 +36,16 @@ interface SearchItem {
   url: string;
 }
 
+const getIconForUrl = (url: string) => {
+  if (url.includes("/blogs")) return File01Icon;
+  if (url.includes("/gallery")) return Image01Icon;
+  if (url.includes("/contact")) return CallIcon;
+  if (url.includes("/about")) return InformationCircleIcon;
+  if (url.includes("/services/code-club")) return CodeIcon;
+  if (url.includes("/services/english-club")) return LanguageSkillIcon;
+  return Home07Icon;
+};
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -42,8 +53,16 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [searchData, setSearchData] = useState<SearchItem[]>([]);
   const pathname = usePathname();
   const router = useRouter();
+
+  const fuse = useMemo(() => {
+    return new Fuse(searchData, {
+      keys: ["title", "content"],
+      threshold: 0.3,
+    });
+  }, [searchData]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,25 +77,28 @@ export default function Header() {
   }, [lastScrollY]);
 
   useEffect(() => {
-    const performSearch = async () => {
-      if (searchValue.length > 1) {
-        const response = await fetch("/searchData.json");
-        const data: SearchItem[] = await response.json();
-        const results = data.filter(
-          (item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-            item.content.toLowerCase().includes(searchValue.toLowerCase()),
-        );
-        setSearchResults(results);
-        setShowDropdown(true);
-      } else {
-        setSearchResults([]);
-        setShowDropdown(false);
-      }
+    const fetchSearchData = async () => {
+      const response = await fetch("/searchData.json");
+      const data: SearchItem[] = await response.json();
+      setSearchData(data);
     };
 
-    performSearch();
-  }, [searchValue]);
+    fetchSearchData();
+  }, []);
+
+  useEffect(() => {
+    const performSearch = () => {
+      const results = fuse.search(searchValue).map((result) => result.item);
+      setSearchResults(results.slice(0, 5)); // Limit to 5 results
+      setShowDropdown(true);
+    };
+
+    if (searchValue.length > 0) {
+      performSearch();
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchValue, fuse]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,6 +106,11 @@ export default function Header() {
       router.push(`/search?q=${encodeURIComponent(searchValue.trim())}`);
       setShowDropdown(false);
     }
+  };
+
+  const truncateContent = (content: string, maxLength: number) => {
+    if (content.length <= maxLength) return content;
+    return content.slice(0, maxLength) + "...";
   };
 
   const navItems = [
@@ -185,30 +212,41 @@ export default function Header() {
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
               <form onSubmit={handleSearch} className="relative">
-                <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+                <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                 <Input
                   type="search"
                   placeholder="Search..."
                   className="w-64 pl-10"
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
+                  onFocus={() => setShowDropdown(true)}
                 />
               </form>
-              {showDropdown && searchResults.length > 0 && (
+              {showDropdown && (
                 <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
                   <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-                    {searchResults.map((result) => (
-                      <li key={result.id}>
-                        <Link
-                          href={result.url}
-                          prefetch={true}
-                          className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground"
-                          onClick={() => setShowDropdown(false)}
-                        >
-                          {result.title}
-                        </Link>
+                    {searchResults.length > 0 ? (
+                      searchResults.map((result) => {
+                        const IconComponent = getIconForUrl(result.url);
+                        return (
+                          <li key={result.id}>
+                            <Link
+                              href={result.url}
+                              prefetch={true}
+                              className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
+                              onClick={() => setShowDropdown(false)}
+                            >
+                              <IconComponent className="mr-2 h-4 w-4" />
+                              {truncateContent(result.title, 50)}
+                            </Link>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <li className="px-4 py-2 text-muted-foreground">
+                        No results found
                       </li>
-                    ))}
+                    )}
                   </ul>
                 </div>
               )}
@@ -230,32 +268,43 @@ export default function Header() {
                 <nav className="flex flex-col space-y-4">
                   <div className="relative">
                     <form onSubmit={handleSearch} className="relative mb-4">
-                      <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+                      <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                       <Input
                         type="search"
                         placeholder="Search..."
                         className="pl-10 pr-6"
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
+                        onFocus={() => setShowDropdown(true)}
                       />
                     </form>
-                    {showDropdown && searchResults.length > 0 && (
+                    {showDropdown && (
                       <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
                         <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-                          {searchResults.map((result) => (
-                            <li key={result.id}>
-                              <SheetClose asChild>
-                                <Link
-                                  href={result.url}
-                                  prefetch={true}
-                                  className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground"
-                                  onClick={() => setShowDropdown(false)}
-                                >
-                                  {result.title}
-                                </Link>
-                              </SheetClose>
+                          {searchResults.length > 0 ? (
+                            searchResults.map((result) => {
+                              const IconComponent = getIconForUrl(result.url);
+                              return (
+                                <li key={result.id}>
+                                  <SheetClose asChild>
+                                    <Link
+                                      href={result.url}
+                                      prefetch={true}
+                                      className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
+                                      onClick={() => setShowDropdown(false)}
+                                    >
+                                      <IconComponent className="mr-2 h-4 w-4" />
+                                      {truncateContent(result.title, 50)}
+                                    </Link>
+                                  </SheetClose>
+                                </li>
+                              );
+                            })
+                          ) : (
+                            <li className="px-4 py-2 text-muted-foreground">
+                              No results found
                             </li>
-                          ))}
+                          )}
                         </ul>
                       </div>
                     )}
