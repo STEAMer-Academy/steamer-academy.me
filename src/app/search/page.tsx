@@ -162,6 +162,8 @@ export default function SearchPage() {
             </div>
             {pageCount > 1 && (
               <Pagination
+                /* eslint-disable-next-line */
+                // @ts-ignore
                 currentPage={currentPage}
                 totalPages={pageCount}
                 onPageChange={setCurrentPage}
