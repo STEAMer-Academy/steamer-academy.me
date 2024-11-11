@@ -39,6 +39,7 @@
     "dotenv": "^16.4.5",
     "eslint-plugin-prettier": "^5.2.1",
     "framer-motion": "^11.11.9",
+    "fuse.js": "^7.0.0",
     "hugeicons-react": "^0.3.0",
     "lru-cache": "^11.0.1",
     "lucide-react": "^0.456.0",
