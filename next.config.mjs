@@ -17,6 +17,9 @@ const nextConfigFunction = (phase) => {
   });
 
   const nextConfig = {
+    experimental: {
+      optimizeCss: true,
+    },
     reactStrictMode: true,
     assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
 
