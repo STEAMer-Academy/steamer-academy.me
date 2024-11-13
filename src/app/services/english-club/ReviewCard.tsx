@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { Card, CardContent } from "@/components/wrapper";
-import { useStore } from "@nanostores/react";
-import { themeStore } from "@/stores/themeStore";
+import { useQueryState } from "nuqs";
 
 interface ReviewCardProps {
   review: string;
@@ -16,13 +15,13 @@ export default function ReviewCard({
   name,
   imageSrc,
 }: ReviewCardProps) {
-  const $theme = useStore(themeStore);
+  const [theme] = useQueryState("theme", { defaultValue: "light" });
 
   return (
-    <Card className={$theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
+    <Card className={theme === "dark" ? "bg-[#1a1b26]" : "bg-white"}>
       <CardContent className="p-6">
         <p
-          className={`mb-4 ${$theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+          className={`mb-4 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
         >
           &quot;{review}&quot;
         </p>
@@ -36,7 +35,7 @@ export default function ReviewCard({
             className="mr-4 rounded-full"
           />
           <span
-            className={`font-semibold ${$theme === "dark" ? "text-white" : "text-gray-900"}`}
+            className={`font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"}`}
           >
             {name}
           </span>

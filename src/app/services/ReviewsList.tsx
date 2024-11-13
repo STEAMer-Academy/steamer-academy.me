@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useStore } from "@nanostores/react";
-import { themeStore } from "@/stores/themeStore";
+import { useQueryState } from "nuqs";
 import { Card, CardContent } from "@/components/wrapper";
 
 interface Review {
@@ -11,7 +10,7 @@ interface Review {
 }
 
 export default function ReviewsList({ reviews }: { reviews: Review[] }) {
-  const $theme = useStore(themeStore);
+  const [theme] = useQueryState("theme", { defaultValue: "light" });
 
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -24,16 +23,16 @@ export default function ReviewsList({ reviews }: { reviews: Review[] }) {
           viewport={{ once: true }}
         >
           <Card
-            className={`${$theme === "dark" ? "bg-gradient-to-br from-gray-800 to-gray-900" : "bg-gradient-to-br from-white to-gray-100"} transition-shadow duration-300 hover:shadow-lg`}
+            className={`${theme === "dark" ? "bg-gradient-to-br from-gray-800 to-gray-900" : "bg-gradient-to-br from-white to-gray-100"} transition-shadow duration-300 hover:shadow-lg`}
           >
             <CardContent className="pt-6">
               <p
-                className={`mb-2 ${$theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
+                className={`mb-2 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
               >
                 &quot;{review.content}&quot;
               </p>
               <p
-                className={`font-bold ${$theme === "dark" ? "text-white" : "text-gray-900"}`}
+                className={`font-bold ${theme === "dark" ? "text-white" : "text-gray-900"}`}
               >
                 - {review.name}
               </p>
