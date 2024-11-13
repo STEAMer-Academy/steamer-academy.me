@@ -41,6 +41,15 @@ jobs:
           bun install
           bun run build
 
+      - name: 🗄️ Cache For Faster Rebuilds
+        uses: actions/cache@v3
+        id: cache-next
+        with:
+          path: .next/cache
+          key: next-cache-${{ runner.os }}-${{ hashFiles('**/package.json', '**/bun.lockb') }}
+          restore-keys: |
+            next-cache-${{ runner.os }}-
+
       - name: 🚀 Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
