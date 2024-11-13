@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
+import React, { useRef } from "react";
 import { Loader2 } from "lucide-react";
 import { Textarea, Input, Button } from "@/components/wrapper";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -13,6 +13,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/wrapper";
+import { useQueryState } from "nuqs";
 
 interface FormData {
   firstName: string;
@@ -22,27 +23,40 @@ interface FormData {
 }
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: "",
+  const [formData, setFormData] = useQueryState<FormData>("formData", {
+    parse: (value) =>
+      JSON.parse(
+        value || '{"firstName":"","lastName":"","email":"","message":""}',
+      ),
+    serialize: (value) => JSON.stringify(value),
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isLoading, setIsLoading] = useQueryState("isLoading", {
+    parse: (value) => value === "true",
+    serialize: (value) => value.toString(),
+  });
+
+  const [isModalOpen, setIsModalOpen] = useQueryState("isModalOpen", {
+    parse: (value) => value === "true",
+    serialize: (value) => value.toString(),
+  });
+
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setFormData(
+      (prevState) =>
+        ({
+          ...prevState,
+          [name]: value,
+        }) as FormData,
+    );
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsModalOpen(true);
   };
@@ -99,7 +113,7 @@ export default function ContactForm() {
             type="text"
             name="firstName"
             placeholder="First name"
-            value={formData.firstName}
+            value={formData?.firstName || ""}
             onChange={handleChange}
             required
           />
@@ -107,7 +121,7 @@ export default function ContactForm() {
             type="text"
             name="lastName"
             placeholder="Last name"
-            value={formData.lastName}
+            value={formData?.lastName || ""}
             onChange={handleChange}
             required
           />
@@ -117,7 +131,7 @@ export default function ContactForm() {
           type="email"
           name="email"
           placeholder="Email"
-          value={formData.email}
+          value={formData?.email || ""}
           onChange={handleChange}
           required
         />
@@ -125,16 +139,20 @@ export default function ContactForm() {
         <Textarea
           name="message"
           placeholder="Message"
-          value={formData.message}
+          value={formData?.message || ""}
           onChange={handleChange}
           required
           rows={6}
         />
 
-        <Button type="submit" disabled={isLoading} className="relative p-[3px]">
+        <Button
+          type="submit"
+          disabled={isLoading === true}
+          className="relative p-[3px]"
+        >
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
-            {isLoading ? (
+            {isLoading === true ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Submitting...
@@ -146,7 +164,7 @@ export default function ContactForm() {
         </Button>
       </form>
 
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog open={isModalOpen === true} onOpenChange={setIsModalOpen}>
         <DialogContent aria-describedby="Recaptcha Modal">
           <DialogHeader>
             <DialogTitle>Verify you are human</DialogTitle>
@@ -161,8 +179,11 @@ export default function ContactForm() {
             />
           </div>
           <DialogFooter>
-            <Button onClick={handleRecaptchaSubmit} disabled={isLoading}>
-              {isLoading ? (
+            <Button
+              onClick={handleRecaptchaSubmit}
+              disabled={isLoading === true}
+            >
+              {isLoading === true ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Submitting...

@@ -6,6 +6,9 @@ import "./globals.css";
 import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/wrapper";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/wrapper";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -94,10 +97,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CookieConsent />
-        <WebVitals />
-        <Toaster />
-        {children}
+        <Suspense fallback={<Skeleton />}>
+          <NuqsAdapter>
+            <CookieConsent />
+            <WebVitals />
+            <Toaster />
+            {children}
+          </NuqsAdapter>
+        </Suspense>
       </body>
     </html>
   );
