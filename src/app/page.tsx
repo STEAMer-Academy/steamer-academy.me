@@ -3,10 +3,10 @@ import {
   Button,
   TypewriterEffectSmooth,
   Layout,
-  Globe,
   GalleryGrid,
 } from "@/components/wrapper";
 import { Metadata } from "next";
+import Globe from "@/components/Globe";
 
 const images = [
   {
