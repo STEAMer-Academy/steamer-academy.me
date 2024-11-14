@@ -75,8 +75,11 @@ export const Skeleton = dynamic(
 );
 
 /* === Dropdown Menu Component === */
-export const DropdownMenu = dynamic(() =>
-  import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu),
+export const DropdownMenu = dynamic(
+  () => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu),
+  {
+    ssr: false,
+  },
 );
 
 /* === Card Component === */
