@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CookieIcon } from "lucide-react";
+import { X } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -11,22 +11,13 @@ import {
   CardTitle,
   Button,
 } from "@/components/wrapper";
+import { CookieIcon } from "lucide-react";
 import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import { useQueryState } from "nuqs";
 
 export default function CookieConsent() {
-  const [isVisible, setIsVisible] = useQueryState("cookieConsentVisible", {
-    parse: (value) => value === "true",
-    serialize: (value) => value.toString(),
-    defaultValue: false,
-  });
-
-  const [consentGiven, setConsentGiven] = useQueryState("cookieConsentGiven", {
-    parse: (value) => value === "true",
-    serialize: (value) => value.toString(),
-    defaultValue: false,
-  });
+  const [isVisible, setIsVisible] = useState(false);
+  const [consentGiven, setConsentGiven] = useState(false);
 
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent");
@@ -35,7 +26,7 @@ export default function CookieConsent() {
     } else if (!consent) {
       setIsVisible(true);
     }
-  }, [setConsentGiven, setIsVisible]);
+  }, []);
 
   const handleAccept = () => {
     localStorage.setItem("cookieConsent", "true");
@@ -109,7 +100,7 @@ export default function CookieConsent() {
           </motion.div>
         )}
       </AnimatePresence>
-      <GoogleAnalytics consentGiven={consentGiven || false} />
+      <GoogleAnalytics consentGiven={consentGiven} />
     </>
   );
 }

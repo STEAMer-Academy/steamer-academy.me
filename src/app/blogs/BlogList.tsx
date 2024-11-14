@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Blog, BlogCategory } from "@/lib/redis";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useQueryState } from "nuqs";
 
 interface BlogListProps {
   blogs: Blog[];
@@ -23,13 +22,9 @@ interface BlogListProps {
 }
 
 export default function BlogList({ blogs }: BlogListProps) {
-  const [currentPage, setCurrentPage] = useQueryState("currentPage", {
-    parse: (value) => parseInt(value || "1", 10),
-    serialize: (value) => value.toString(),
-  });
-
+  const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 6;
-  const indexOfLastBlog = (currentPage || 1) * blogsPerPage;
+  const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
   const totalPages = Math.ceil(blogs.length / blogsPerPage);
@@ -48,7 +43,7 @@ export default function BlogList({ blogs }: BlogListProps) {
       if (
         i === 1 ||
         i === totalPages ||
-        (i >= (currentPage || 1) - 1 && i <= (currentPage || 1) + 1)
+        (i >= currentPage - 1 && i <= currentPage + 1)
       ) {
         items.push(
           <PaginationItem key={i}>
@@ -60,7 +55,7 @@ export default function BlogList({ blogs }: BlogListProps) {
             </PaginationLink>
           </PaginationItem>,
         );
-      } else if (i === (currentPage || 1) - 2 || i === (currentPage || 1) + 2) {
+      } else if (i === currentPage - 2 || i === currentPage + 2) {
         items.push(
           <PaginationItem key={i}>
             <PaginationEllipsis />
@@ -118,19 +113,21 @@ export default function BlogList({ blogs }: BlogListProps) {
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              onClick={() =>
-                setCurrentPage((prev) => Math.max((prev || 1) - 1, 1))
-              }
-              aria-disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              /* eslint-disable-next-line */
+              // @ts-ignore
+              disabled={currentPage === 1}
             />
           </PaginationItem>
           {renderPaginationItems()}
           <PaginationItem>
             <PaginationNext
               onClick={() =>
-                setCurrentPage((prev) => Math.min((prev || 1) + 1, totalPages))
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
-              aria-disabled={currentPage === totalPages}
+              /* eslint-disable-next-line */
+              // @ts-ignore
+              disabled={currentPage === totalPages}
             />
           </PaginationItem>
         </PaginationContent>

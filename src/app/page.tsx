@@ -5,8 +5,8 @@ import {
   Layout,
   GalleryGrid,
 } from "@/components/wrapper";
-import Globe from "@/components/Globe";
 import { Metadata } from "next";
+import Globe from "@/components/Globe";
 
 const images = [
   {

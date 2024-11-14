@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useRef } from "react";
+import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Button, Input } from "@/components/wrapper";
 import { Loader2 } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -13,39 +13,20 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/wrapper";
-import { useQueryState } from "nuqs";
 
 interface FormData {
   email: string;
 }
 
 export function NewsletterForm() {
-  const [formData, setFormData] = useQueryState<FormData>(
-    "newsletterFormData",
-    {
-      parse: (value) => JSON.parse(value || '{"email":""}'),
-      serialize: (value) => JSON.stringify(value),
-      defaultValue: { email: "" },
-    },
-  );
-
-  const [isLoading, setIsLoading] = useQueryState("newsletterLoading", {
-    parse: (value) => value === "true",
-    serialize: (value) => value.toString(),
-    defaultValue: false,
-  });
-
-  const [isModalOpen, setIsModalOpen] = useQueryState("newsletterModalOpen", {
-    parse: (value) => value === "true",
-    serialize: (value) => value.toString(),
-    defaultValue: false,
-  });
-
+  const [formData, setFormData] = useState<FormData>({ email: "" });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }) as FormData);
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -69,7 +50,7 @@ export function NewsletterForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: formData?.email || "",
+          email: formData.email,
           recaptchaToken: recaptchaValue,
         }),
       });
@@ -100,16 +81,12 @@ export function NewsletterForm() {
           type="email"
           name="email"
           placeholder="Enter your email"
-          value={formData?.email || ""}
+          value={formData.email}
           onChange={handleChange}
           required
         />
 
-        <Button
-          type="submit"
-          disabled={isLoading || false}
-          className="relative p-[3px]"
-        >
+        <Button type="submit" disabled={isLoading} className="relative p-[3px]">
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
             {isLoading ? (
@@ -124,7 +101,7 @@ export function NewsletterForm() {
         </Button>
       </form>
 
-      <Dialog open={isModalOpen || false} onOpenChange={setIsModalOpen}>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent aria-describedby="Recaptcha Modal">
           <DialogHeader>
             <DialogTitle>Verify you are human</DialogTitle>
@@ -140,10 +117,7 @@ export function NewsletterForm() {
             />
           </div>
           <DialogFooter>
-            <Button
-              onClick={handleRecaptchaSubmit}
-              disabled={isLoading || false}
-            >
+            <Button onClick={handleRecaptchaSubmit} disabled={isLoading}>
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
