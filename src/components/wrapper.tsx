@@ -22,6 +22,11 @@ export const Footer = dynamic(() =>
   import("@/components/Footer").then((mod) => mod.default),
 );
 
+/* === Globe In Main Page === */
+export const Globe = dynamic(() =>
+  import("@/components/Globe").then((mod) => mod.default),
+);
+
 export const NewsletterForm = dynamic(() =>
   import("@/components/NewsletterForm").then((mod) => mod.NewsletterForm),
 );

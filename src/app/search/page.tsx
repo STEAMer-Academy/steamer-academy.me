@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -26,7 +26,6 @@ import {
   LanguageSkillIcon,
   CodeIcon,
 } from "hugeicons-react";
-import { useQueryState } from "nuqs";
 
 interface SearchItem {
   id: string;
@@ -48,37 +47,15 @@ const getIconForUrl = (url: string) => {
 };
 
 export default function SearchPage() {
-  const [searchData, setSearchData] = useQueryState<SearchItem[]>(
-    "searchData",
-    {
-      parse: (value) => JSON.parse(value || "[]") as SearchItem[],
-      serialize: (value) => JSON.stringify(value),
-    },
-  );
-
-  const [searchResults, setSearchResults] = useQueryState<SearchItem[]>(
-    "searchResults",
-    {
-      parse: (value) => JSON.parse(value || "[]") as SearchItem[],
-      serialize: (value) => JSON.stringify(value),
-    },
-  );
-
-  const [isLoading, setIsLoading] = useQueryState("isLoading", {
-    parse: (value) => value === "true",
-    serialize: (value) => value.toString(),
-  });
-
-  const [currentPage, setCurrentPage] = useQueryState("currentPage", {
-    parse: (value) => parseInt(value || "1", 10),
-    serialize: (value) => value.toString(),
-  });
-
+  const [searchData, setSearchData] = useState<SearchItem[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
 
   const fuse = useMemo(() => {
-    return new Fuse(searchData || [], {
+    return new Fuse(searchData, {
       keys: ["title", "content"],
       threshold: 0.3,
     });
@@ -96,7 +73,7 @@ export default function SearchPage() {
     }
 
     fetchSearchData();
-  }, [setSearchData]);
+  }, []);
 
   useEffect(() => {
     function performSearch() {
@@ -111,17 +88,16 @@ export default function SearchPage() {
       setIsLoading(false);
     }
 
-    if (searchData && searchData.length > 0) {
+    if (searchData.length > 0) {
       performSearch();
     }
-  }, [query, searchData, fuse, setIsLoading, setSearchResults, setCurrentPage]);
+  }, [query, searchData, fuse]);
 
-  const pageCount = Math.ceil((searchResults?.length || 0) / ITEMS_PER_PAGE);
-  const paginatedResults =
-    searchResults?.slice(
-      ((currentPage || 1) - 1) * ITEMS_PER_PAGE,
-      (currentPage || 1) * ITEMS_PER_PAGE,
-    ) || [];
+  const pageCount = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
+  const paginatedResults = searchResults.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE,
+  );
 
   return (
     <Layout>
@@ -158,7 +134,7 @@ export default function SearchPage() {
               </Card>
             ))}
           </div>
-        ) : searchResults && searchResults.length > 0 ? (
+        ) : searchResults.length > 0 ? (
           <>
             <div className="mb-8 space-y-4">
               {paginatedResults.map((result) => {
@@ -188,11 +164,9 @@ export default function SearchPage() {
               <Pagination
                 /* eslint-disable-next-line */
                 // @ts-ignore
-                currentPage={currentPage || 1}
+                currentPage={currentPage}
                 totalPages={pageCount}
-                /* eslint-disable-next-line */
-                // @ts-ignore
-                onPageChange={(page) => setCurrentPage(page)}
+                onPageChange={setCurrentPage}
               />
             )}
           </>

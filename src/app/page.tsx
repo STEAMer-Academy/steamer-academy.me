@@ -3,9 +3,9 @@ import {
   Button,
   TypewriterEffectSmooth,
   Layout,
+  Globe,
   GalleryGrid,
 } from "@/components/wrapper";
-import Globe from "@/components/Globe";
 import { Metadata } from "next";
 
 const images = [

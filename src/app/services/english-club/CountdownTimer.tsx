@@ -1,54 +1,46 @@
 "use client";
 
-import { useEffect } from "react";
-import { useQueryState } from "nuqs";
-
-interface Time {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import { useState, useEffect } from "react";
 
 export default function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useQueryState<Time>("timeLeft", {
-    defaultValue: {
-      days: 3,
-      hours: 12,
-      minutes: 30,
-      seconds: 22,
-    },
-    parse: (value) => JSON.parse(value),
-    serialize: (value) => JSON.stringify(value),
+  const [timeLeft, setTimeLeft] = useState({
+    days: 3,
+    hours: 12,
+    minutes: 30,
+    seconds: 22,
   });
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prevTime: Time) => {
-        const newTime = { ...prevTime };
-        if (newTime.seconds > 0) {
-          newTime.seconds--;
-        } else if (newTime.minutes > 0) {
-          newTime.minutes--;
-          newTime.seconds = 59;
-        } else if (newTime.hours > 0) {
-          newTime.hours--;
-          newTime.minutes = 59;
-          newTime.seconds = 59;
-        } else if (newTime.days > 0) {
-          newTime.days--;
-          newTime.hours = 23;
-          newTime.minutes = 59;
-          newTime.seconds = 59;
+      setTimeLeft((prevTime) => {
+        if (prevTime.seconds > 0) {
+          return { ...prevTime, seconds: prevTime.seconds - 1 };
+        } else if (prevTime.minutes > 0) {
+          return { ...prevTime, minutes: prevTime.minutes - 1, seconds: 59 };
+        } else if (prevTime.hours > 0) {
+          return {
+            ...prevTime,
+            hours: prevTime.hours - 1,
+            minutes: 59,
+            seconds: 59,
+          };
+        } else if (prevTime.days > 0) {
+          return {
+            ...prevTime,
+            days: prevTime.days - 1,
+            hours: 23,
+            minutes: 59,
+            seconds: 59,
+          };
         } else {
           clearInterval(timer);
+          return prevTime;
         }
-        return newTime;
       });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [setTimeLeft]);
+  }, []);
 
   return (
     <div className="align-center mb-4 flex items-center justify-center gap-4 text-center">

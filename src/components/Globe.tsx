@@ -12,7 +12,7 @@ export default function Globe() {
 
   useEffect(() => {
     setMounted(true);
-  }, [setMounted]);
+  }, []);
 
   if (!mounted) return null;
 
@@ -405,6 +405,8 @@ export default function Globe() {
 
   return (
     <World
+      /* eslint-disable-next-line */
+      // @ts-ignore
       data={sampleArcs}
       globeConfig={globeConfig}
       className="mb-30 pb-30"
