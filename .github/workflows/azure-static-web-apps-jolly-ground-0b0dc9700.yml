@@ -36,12 +36,7 @@ jobs:
 
       - name: 🥐 Setup Bun
         uses: oven-sh/setup-bun@v2
-
-      - name: 📦 Install Dependencies and Build
-        run: |
-          bun install
-          bun run build
-
+        
       - name: 🗄️ Cache For Faster Rebuilds
         uses: actions/cache@v4
         id: cache-next
@@ -50,6 +45,11 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
+
+      - name: 📦 Install Dependencies and Build
+        run: |
+          bun install
+          bun run build
             
       - name: 🚀 Deploy to Azure Static Web Apps
         id: builddeploy
