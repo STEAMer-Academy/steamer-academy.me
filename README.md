@@ -93,7 +93,7 @@ This project is hosted on **Azure Static Web Apps**, ensuring a fast and reliabl
 - **Internationalization** with Google Translate API
 - **Fast Static and Dynamic Content Delivery** using G-Core Labs CDN
 - **Customizable UI** leveraging Aceternity UI, Shadcn/ui, and Tailwind CSS
-- **SEO and Analytics** with Google Analytics integration
+- **SEO and Analytics** with Google Analytics integration and Microsoft Clarity
 
 ## 🛠️ Development
 
