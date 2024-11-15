@@ -70,7 +70,7 @@ This is the official repository for [STEAMer Academy](https://www.steameracademy
 - **shadcn/ui** - Robust UI component library
 - **Aceternity UI** - Enhanced UI components for modern design aesthetics
 - **Redis** - For faster speeds, and to use as a KV store. Provided by [Upstash](https://upstash.com/)
-- **SQLite** - The SQL database tech used. Provided by [Turso](https://turso.tech)
+- **libSQL** - The SQL database tech used, a fork of [SQLite](https://www.sqlite.org), Provided by [Turso](https://turso.tech)
 - **Arcjet** - For security.
 
 <p align="center">
@@ -80,7 +80,7 @@ This is the official repository for [STEAMer Academy](https://www.steameracademy
     <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/shadcn-ui.png" width="10%"/></a>
     <a href="https://ui.aceternity.com"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/aceternity.webp" width="10%"/></a>
     <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/redis-icon.png?raw=true" width="10%"/></a>
-    <a href="https://www.sqlite.org/"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/Sqlite-square-icon.svg.png?raw=true" width="10%"/></a>
+    <a href="https://turso.tech/libsql"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/new-libsql-logo.jpg?raw=true" width="10%"/></a>
     <a href="https://arcjet.com"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/arcjet.png?raw=true" width="10%"/></a>
 </p>
 
@@ -93,7 +93,7 @@ This project is hosted on **Azure Static Web Apps**, ensuring a fast and reliabl
 - **Internationalization** with Google Translate API
 - **Fast Static and Dynamic Content Delivery** using G-Core Labs CDN
 - **Customizable UI** leveraging Aceternity UI, Shadcn/ui, and Tailwind CSS
-- **SEO and Analytics** with Google Analytics integration
+- **SEO and Analytics** with Google Analytics integration and Microsoft Clarity
 
 ## 🛠️ Development
 
