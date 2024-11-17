@@ -17,8 +17,8 @@
 
 <h3 align="center">Website Status</h3>
 
-<p align="center">
-    <h4 align="center">
+
+<h4 align="center">
       <a href="https://status.steameracademy.me/">
         <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
         <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge">
@@ -26,8 +26,7 @@
         <img src="https://status.steameracademy.me/api/badge/1/avg-response?style=for-the-badge">
         <img src="https://status.steameracademy.me/api/badge/1/cert-exp?style=for-the-badge">
       </a>
-    </h4>
-</p>
+</h4>
 
 <p align="center">
     <b>Where Creativity Meets Innovation</b><br>
