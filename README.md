@@ -18,15 +18,17 @@
 <h3 align="center">Website Status</h3>
 
 <p align="center">
+    <center>
     <h4>
-    <a href="https://status.steameracademy.me/">
-    <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/ping?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/avg-response?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/cert-exp?style=for-the-badge">
-    </a>
+      <a href="https://status.steameracademy.me/">
+        <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/ping?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/avg-response?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/cert-exp?style=for-the-badge">
+      </a>
     </h4>
+    </center>
 </p>
 
 <p align="center">
