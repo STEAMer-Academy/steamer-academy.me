@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import PrismaClient from "@prisma/client";
 import { PrismaLibSQL } from "@prisma/adapter-libsql";
 import { createClient } from "@libsql/client";
 
@@ -8,6 +8,6 @@ const libsql = createClient({
 });
 
 const adapter = new PrismaLibSQL(libsql);
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient.PrismaClient({ adapter });
 
 export default prisma;
