@@ -8,6 +8,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/wrapper";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark, shadesOfPurple } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -94,7 +95,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClerkProvider>
+        <ClerkProvider appearance={{ baseTheme: [dark, shadesOfPurple] }}>
           <CookieConsent />
           <WebVitals />
           <Toaster />

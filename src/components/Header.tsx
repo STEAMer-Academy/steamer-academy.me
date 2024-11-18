@@ -253,10 +253,14 @@ export default function Header() {
             </div>
             <ThemeToggle />
             <SignedIn>
-              <UserButton />
+              <Button>
+                <UserButton showName={true} />
+              </Button>
             </SignedIn>
             <SignedOut>
-              <SignInButton />
+              <Button>
+                <SignInButton mode="modal" />
+              </Button>
             </SignedOut>
           </div>
 
@@ -357,10 +361,14 @@ export default function Header() {
                   />
                   <ThemeToggle />
                   <SignedIn>
-                    <UserButton />
+                    <Button>
+                      <UserButton showName={true} />
+                    </Button>
                   </SignedIn>
                   <SignedOut>
-                    <SignInButton />
+                    <Button>
+                      <SignInButton mode="modal" />
+                    </Button>
                   </SignedOut>
                 </nav>
               </SheetContent>
