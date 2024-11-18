@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description:
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
     card: "summary_large_image",
-    images: "https://www.steameracademy.me/link-preview-images/home.png",
+    images: "https://www.steameracademy.me/link-preview-images/home.webp",
   },
 };
 
