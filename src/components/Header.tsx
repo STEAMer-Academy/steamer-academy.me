@@ -140,7 +140,7 @@ export default function Header() {
         isVisible ? "translate-y-0" : "-translate-y-full",
       )}
     >
-      <nav className="w-full mx-auto px-4 py-4">
+      <nav className="mx-auto w-full px-4 py-4">
         <div className="flex items-center justify-between">
           <Link
             href="/"
