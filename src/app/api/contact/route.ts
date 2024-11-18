@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/formdb";
+import client from "@/lib/formdb";
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -24,16 +24,31 @@ export async function POST(request: Request) {
       );
     }
 
-    const submission = await prisma.contactSubmission.create({
-      data: { firstName, lastName, email, message },
+    const result = await client.execute({
+      sql: "INSERT INTO ContactSubmissions (firstName, lastName, email, message) VALUES (?, ?, ?, ?)",
+      args: [firstName, lastName, email, message],
     });
+
+    const insertId = result.lastInsertRowid
+      ? result.lastInsertRowid.toString()
+      : null;
 
     return NextResponse.json({
       message: "Form submitted successfully",
-      id: submission.id,
+      id: insertId,
     });
   } catch (error) {
     console.error("Error submitting contact form:", error);
+
+    if (
+      error instanceof Error &&
+      error.message.includes("UNIQUE constraint failed")
+    ) {
+      return NextResponse.json(
+        { message: "This email has already submitted a contact form." },
+        { status: 409 },
+      );
+    }
 
     return NextResponse.json(
       { message: "Error submitting form. Please try again later." },
