@@ -54,12 +54,13 @@ export const metadata: Metadata = {
     url: "https://www.steameracademy.me/",
     type: "website",
     siteName: "STEAMer Academy",
-    images: "https://www.steameracademy.me/link-preview-images/home.png",
+    images: "https://www.steameracademy.me/link-preview-images/home.webp",
   },
   twitter: {
     site: "https://www.steameracademy.me/",
     creator: "Muntasir Mahmud",
     title: "STEAMer Academy",
+    images: "https://www.steameracademy.me/link-preview-images/home.webp",
     description:
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
   },
