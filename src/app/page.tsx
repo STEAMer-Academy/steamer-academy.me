@@ -4,9 +4,9 @@ import {
   TypewriterEffectSmooth,
   Layout,
   GalleryGrid,
+  Globe,
 } from "@/components/wrapper";
 import { Metadata } from "next";
-import Globe from "@/components/Globe";
 
 const images = [
   {
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
     url: "https://www.steameracademy.me/",
     type: "website",
-    images: "https://www.steameracademy.me/link-preview-images/home.png",
   },
   twitter: {
     site: "https://www.steameracademy.me/",

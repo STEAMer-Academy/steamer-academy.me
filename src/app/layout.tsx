@@ -7,6 +7,7 @@ import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/wrapper";
 import Script from "next/script";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   generator: "Next.js",
-  applicationName: "STEAMer Academy Next. js App",
+  applicationName: "STEAMer Academy Website",
   referrer: "origin-when-cross-origin",
   keywords: [
     "Next.js",
@@ -53,6 +54,7 @@ export const metadata: Metadata = {
     url: "https://www.steameracademy.me/",
     type: "website",
     siteName: "STEAMer Academy",
+    images: "https://www.steameracademy.me/link-preview-images/home.png",
   },
   twitter: {
     site: "https://www.steameracademy.me/",
@@ -91,19 +93,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CookieConsent />
-        <WebVitals />
-        <Toaster />
-        <Script id="clarity-script" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
-          `}
-        </Script>
-        {children}
+        <ClerkProvider>
+          <CookieConsent />
+          <WebVitals />
+          <Toaster />
+          <Script id="clarity-script" strategy="afterInteractive">
+            {`
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
+            `}
+          </Script>
+          {children}
+        </ClerkProvider>
       </body>
     </html>
   );
