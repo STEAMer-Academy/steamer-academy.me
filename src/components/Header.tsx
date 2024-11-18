@@ -190,8 +190,8 @@ export default function Header() {
               align="start"
               className="font-sans font-medium"
             />
-            <ThemeToggle />
           </div>
+          <ThemeToggle />
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
               <form onSubmit={handleSearch} className="relative">
@@ -235,12 +235,12 @@ export default function Header() {
               )}
             </div>
             <SignedIn>
-              <Button>
+              <Button variant="outline">
                 <UserButton showName={true} />
               </Button>
             </SignedIn>
             <SignedOut>
-              <Button>
+              <Button variant="outline">
                 <SignInButton mode="modal" />
               </Button>
             </SignedOut>
@@ -342,12 +342,12 @@ export default function Header() {
                     className="font-sans font-medium"
                   />
                   <SignedIn>
-                    <Button>
+                    <Button variant="outline">
                       <UserButton showName={true} />
                     </Button>
                   </SignedIn>
                   <SignedOut>
-                    <Button>
+                    <Button variant="outline">
                       <SignInButton mode="modal" />
                     </Button>
                   </SignedOut>
