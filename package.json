@@ -6,9 +6,8 @@
     "node": "20"
   },
   "scripts": {
-    "prisma": "prisma generate",
     "dev": "next dev",
-    "build": "npm run partytown && npm run prisma && next build",
+    "build": "npm run partytown && next build",
     "start": "next start",
     "lint": "next lint",
     "partytown": "partytown copylib public/~partytown",
