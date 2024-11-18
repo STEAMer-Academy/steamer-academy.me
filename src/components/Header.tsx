@@ -191,7 +191,6 @@ export default function Header() {
               className="font-sans font-medium"
             />
           </div>
-          <ThemeToggle />
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
               <form onSubmit={handleSearch} className="relative">
@@ -244,6 +243,7 @@ export default function Header() {
                 <SignInButton mode="modal" />
               </Button>
             </SignedOut>
+            <ThemeToggle />
           </div>
 
           <div className="lg:hidden">
