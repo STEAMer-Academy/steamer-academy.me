@@ -157,8 +157,8 @@ export default function Header() {
             />
             <span className="text-2xl font-bold">STEAMer Academy</span>
           </Link>
-          <div className="hidden items-center space-x-1 lg:flex">
-            {navItems.slice(0, 2).map((item) => (
+          <div className="hidden items-center space-x-4 lg:flex">
+            {navItems.map((item) => (
               <Button
                 key={item.href}
                 variant={pathname === item.href ? "secondary" : "ghost"}
@@ -190,25 +190,8 @@ export default function Header() {
               align="start"
               className="font-sans font-medium"
             />
-            {navItems.slice(2).map((item) => (
-              <Button
-                key={item.href}
-                variant={pathname === item.href ? "secondary" : "ghost"}
-                asChild
-                className="font-sans font-medium"
-              >
-                <Link
-                  href={item.href}
-                  prefetch={true}
-                  className="flex items-center"
-                >
-                  <item.icon className="mr-2 h-4 w-4" />
-                  {item.label}
-                </Link>
-              </Button>
-            ))}
+            <ThemeToggle />
           </div>
-
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
               <form onSubmit={handleSearch} className="relative">
@@ -251,7 +234,6 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <ThemeToggle />
             <SignedIn>
               <Button>
                 <UserButton showName={true} />
@@ -359,7 +341,6 @@ export default function Header() {
                     align="start"
                     className="font-sans font-medium"
                   />
-                  <ThemeToggle />
                   <SignedIn>
                     <Button>
                       <UserButton showName={true} />
@@ -370,6 +351,7 @@ export default function Header() {
                       <SignInButton mode="modal" />
                     </Button>
                   </SignedOut>
+                  <ThemeToggle />
                 </nav>
               </SheetContent>
             </Sheet>
