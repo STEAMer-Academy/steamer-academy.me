@@ -42,7 +42,7 @@
     "fuse.js": "^7.0.0",
     "hugeicons-react": "^0.3.0",
     "lru-cache": "^11.0.1",
-    "lucide-react": "^0.456.0",
+    "lucide-react": "^0.460.0",
     "nanostores": "^0.11.3",
     "next": "14.2.17",
     "next-mdx-remote": "^5.0.0",
