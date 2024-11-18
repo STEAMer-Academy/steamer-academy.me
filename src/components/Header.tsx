@@ -158,7 +158,32 @@ export default function Header() {
             <span className="text-2xl font-bold">STEAMer Academy</span>
           </Link>
           <div className="hidden items-center space-x-4 lg:flex">
-            {navItems.map((item) => (
+            <Button
+              variant={pathname === "/" ? "secondary" : "ghost"}
+              asChild
+              className="font-sans font-medium"
+            >
+              <Link href="/" prefetch={true} className="flex items-center">
+                <Home07Icon className="mr-2 h-4 w-4" />
+                Home
+              </Link>
+            </Button>
+            <DropdownMenu
+              trigger={
+                <span className="flex items-center">
+                  <BookEditIcon className="mr-2 h-4 w-4" />
+                  Services
+                </span>
+              }
+              items={services.map((service) => ({
+                label: service.label,
+                icon: <service.icon className="h-4 w-4" />,
+                onClick: () => router.push(service.href),
+              }))}
+              align="start"
+              className="font-sans font-medium"
+            />
+            {navItems.slice(1).map((item) => (
               <Button
                 key={item.href}
                 variant={pathname === item.href ? "secondary" : "ghost"}
@@ -175,21 +200,6 @@ export default function Header() {
                 </Link>
               </Button>
             ))}
-            <DropdownMenu
-              trigger={
-                <span className="flex items-center">
-                  <BookEditIcon className="mr-2 h-4 w-4" />
-                  Services
-                </span>
-              }
-              items={services.map((service) => ({
-                label: service.label,
-                icon: <service.icon className="h-4 w-4" />,
-                onClick: () => router.push(service.href),
-              }))}
-              align="start"
-              className="font-sans font-medium"
-            />
           </div>
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
@@ -301,24 +311,22 @@ export default function Header() {
                       </div>
                     )}
                   </div>
-                  {navItems.map((item) => (
-                    <SheetClose asChild key={item.href}>
-                      <Button
-                        variant={pathname === item.href ? "secondary" : "ghost"}
-                        asChild
-                        className="justify-start font-sans font-medium"
+                  <SheetClose asChild>
+                    <Button
+                      variant={pathname === "/" ? "secondary" : "ghost"}
+                      asChild
+                      className="justify-start font-sans font-medium"
+                    >
+                      <Link
+                        href="/"
+                        prefetch={true}
+                        className="flex items-center"
                       >
-                        <Link
-                          href={item.href}
-                          prefetch={true}
-                          className="flex items-center"
-                        >
-                          <item.icon className="mr-2 h-4 w-4" />
-                          {item.label}
-                        </Link>
-                      </Button>
-                    </SheetClose>
-                  ))}
+                        <Home07Icon className="mr-2 h-4 w-4" />
+                        Home
+                      </Link>
+                    </Button>
+                  </SheetClose>
                   <DropdownMenu
                     trigger={
                       <span className="flex items-center">
@@ -341,6 +349,24 @@ export default function Header() {
                     align="start"
                     className="font-sans font-medium"
                   />
+                  {navItems.slice(1).map((item) => (
+                    <SheetClose asChild key={item.href}>
+                      <Button
+                        variant={pathname === item.href ? "secondary" : "ghost"}
+                        asChild
+                        className="justify-start font-sans font-medium"
+                      >
+                        <Link
+                          href={item.href}
+                          prefetch={true}
+                          className="flex items-center"
+                        >
+                          <item.icon className="mr-2 h-4 w-4" />
+                          {item.label}
+                        </Link>
+                      </Button>
+                    </SheetClose>
+                  ))}
                   <SignedIn>
                     <Button variant="outline">
                       <UserButton showName={true} />
