@@ -140,7 +140,7 @@ export default function Header() {
         isVisible ? "translate-y-0" : "-translate-y-full",
       )}
     >
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="w-full mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link
             href="/"
@@ -253,10 +253,14 @@ export default function Header() {
             </div>
             <ThemeToggle />
             <SignedIn>
-              <UserButton />
+              <Button>
+                <UserButton showName={true} />
+              </Button>
             </SignedIn>
             <SignedOut>
-              <SignInButton />
+              <Button>
+                <SignInButton mode="modal" />
+              </Button>
             </SignedOut>
           </div>
 
@@ -357,10 +361,14 @@ export default function Header() {
                   />
                   <ThemeToggle />
                   <SignedIn>
-                    <UserButton />
+                    <Button>
+                      <UserButton showName={true} />
+                    </Button>
                   </SignedIn>
                   <SignedOut>
-                    <SignInButton />
+                    <Button>
+                      <SignInButton mode="modal" />
+                    </Button>
                   </SignedOut>
                 </nav>
               </SheetContent>
