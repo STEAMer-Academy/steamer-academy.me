@@ -42,9 +42,6 @@ jobs:
       - name: 📦 Install Dependencies
         run: bun install
 
-      - name: 🔺 Generate Prisma Client
-        run: bunx prisma generate
-
       - name: 🏗️ Build
         run: bun run build
 

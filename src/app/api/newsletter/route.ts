@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/formdb";
+import client from "@/lib/formdb";
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
       );
     }
 
+    // Verify reCAPTCHA
     const isHuman = await verifyRecaptcha(recaptchaToken);
     if (!isHuman) {
       return NextResponse.json(
@@ -29,20 +30,25 @@ export async function POST(request: Request) {
       );
     }
 
-    const subscription = await prisma.newsletterSubscription.create({
-      data: { email },
+    const result = await client.execute({
+      sql: "INSERT INTO NewsletterSubscriptions (email) VALUES (?)",
+      args: [email],
     });
+
+    const insertId = result.lastInsertRowid
+      ? result.lastInsertRowid.toString()
+      : null;
 
     return NextResponse.json({
       message: "Subscription successful",
-      id: subscription.id,
+      id: insertId,
     });
   } catch (error) {
     console.error("Error subscribing to newsletter:", error);
 
     if (
       error instanceof Error &&
-      error.message.includes("Unique constraint failed")
+      error.message.includes("UNIQUE constraint failed")
     ) {
       return NextResponse.json(
         { message: "This email is already subscribed to the newsletter." },
