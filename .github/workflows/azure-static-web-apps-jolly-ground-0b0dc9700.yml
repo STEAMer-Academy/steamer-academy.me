@@ -33,10 +33,12 @@ jobs:
           echo "RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
           echo "ARCJET_KEY=${{ secrets.ARCJET_KEY }}" >> .env
           echo "NEXT_PUBLIC_CLARITY_ID=${{ secrets.NEXT_PUBLIC_CLARITY_ID }}" >> .env
+          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
+          echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
 
       - name: 🥐 Setup Bun
         uses: oven-sh/setup-bun@v2
-        
+
       - name: 🗄️ Cache For Faster Rebuilds
         uses: actions/cache@v4
         id: cache-next
@@ -50,7 +52,7 @@ jobs:
         run: |
           bun install
           bun run build
-            
+
       - name: 🚀 Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1

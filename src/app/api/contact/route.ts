@@ -1,10 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@libsql/client";
-
-const client = createClient({
-  url: process.env.TURSO_DATABASE_URL as string,
-  authToken: process.env.TURSO_AUTH_TOKEN as string,
-});
+import client from "@/lib/formdb";
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;

@@ -28,6 +28,7 @@ import {
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import Fuse from "fuse.js";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 interface SearchItem {
   id: string;
@@ -102,12 +103,11 @@ export default function Header() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchValue.trim) {
+    if (typeof searchValue === "string" && searchValue.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchValue.trim())}`);
       setShowDropdown(false);
     }
   };
-
   const truncateContent = (content: string, maxLength: number) => {
     if (content.length <= maxLength) return content;
     return content.slice(0, maxLength) + "...";
@@ -252,6 +252,12 @@ export default function Header() {
               )}
             </div>
             <ThemeToggle />
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
           </div>
 
           <div className="lg:hidden">
@@ -350,6 +356,12 @@ export default function Header() {
                     className="font-sans font-medium"
                   />
                   <ThemeToggle />
+                  <SignedIn>
+                    <UserButton />
+                  </SignedIn>
+                  <SignedOut>
+                    <SignInButton />
+                  </SignedOut>
                 </nav>
               </SheetContent>
             </Sheet>

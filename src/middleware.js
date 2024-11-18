@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import arcjet, { detectBot, shield, tokenBucket } from "@arcjet/next";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const aj = arcjet({
   key: process.env.ARCJET_KEY,
@@ -11,7 +12,6 @@ const aj = arcjet({
       block: ["AUTOMATED"],
       allow: [
         "CATEGORY:SEARCH_ENGINE",
-        "CATEGORY:VERCEL",
         "CATEGORY:MONITOR",
         "CATEGORY:OPTIMIZER",
         "CATEGORY:PREVIEW",
@@ -28,13 +28,26 @@ const aj = arcjet({
   ],
 });
 
+const isPublicRoute = createRouteMatcher([
+  "/auth/sign-in(.*)",
+  "/auth/sign-up(.*)",
+  "/auth/user-profile(.*)",
+]);
+
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|\\.js|\\.html|\\.css|\\.ico|\\.png|\\.jpg|\\.jpeg|\\.gif|\\.pdf|\\.doc|\\.txt|\\.xml|\\.less|\\.png|\\.jpg|\\.jpeg|\\.gif|\\.pdf|\\.doc|\\.txt|\\.ico|\\.rss|\\.zip|\\.mp3|\\.rar|\\.exe|\\.wmv|\\.doc|\\.avi|\\.ppt|\\.mpg|\\.mpeg|\\.tif|\\.wav|\\.mov|\\.psd|\\.ai|\\.xls|\\.mp4|\\.m4a|\\.swf|\\.dat|\\.dmg|\\.iso|\\.flv|\\.m4v|\\.torrent|\\.woff|\\.ttf|\\.svg|\\.webmanifest).*)",
+    "/(api|trpc)(.*)",
   ],
 };
 
 export async function middleware(request) {
+  clerkMiddleware(async (auth, request) => {
+    if (!isPublicRoute(request)) {
+      await auth.protect();
+    }
+  });
+
   const decision = await aj.protect(request, { requested: 1 });
 
   if (decision.isDenied()) {
