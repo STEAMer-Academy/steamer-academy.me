@@ -9,7 +9,6 @@ import { Toaster } from "@/components/wrapper";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark, shadesOfPurple } from "@clerk/themes";
-import { Client } from "appwrite";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -88,9 +87,6 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const client = new Client();
-  client.setProject("673c5fd400094149bd29");
-
   return (
     <html lang="en">
       <head>

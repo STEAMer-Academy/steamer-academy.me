@@ -35,7 +35,6 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/three": "^0.170.0",
     "@upstash/redis": "^1.34.3",
-    "appwrite": "^16.0.2",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
