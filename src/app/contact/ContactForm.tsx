@@ -59,14 +59,17 @@ export default function ContactForm() {
     }
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          recaptchaToken: recaptchaValue,
-        }),
-      });
+      const response = await fetch(
+        "https://auth-backend.shahanazsabuj.workers.dev/contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            recaptchaToken: recaptchaValue,
+          }),
+        },
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

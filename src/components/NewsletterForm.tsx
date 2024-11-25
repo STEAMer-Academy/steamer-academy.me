@@ -46,14 +46,17 @@ export function NewsletterForm() {
     }
 
     try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          recaptchaToken: recaptchaValue,
-        }),
-      });
+      const response = await fetch(
+        "https://auth-backend.shahanazsabuj.workers.dev/newsletter",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            recaptchaToken: recaptchaValue,
+          }),
+        },
+      );
 
       const data = await response.json();
 
