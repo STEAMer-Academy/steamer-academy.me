@@ -68,6 +68,16 @@ const nextConfigFunction = (phase) => {
         },
       ];
     },
+
+    async redirects() {
+      return [
+        {
+          source: "/discord",
+          destination: "https://discord.gg/HNhjQAfq9U",
+          permanent: true,
+        },
+      ];
+    },
   };
 
   return withBundleAnalyzer(withPWAInit(withPWA)(nextConfig));

@@ -9,21 +9,24 @@
 </h5>
 
 <p align="center">
-    <img src="https://img.shields.io/github/stars/steamer-academy?colorA=363a4f&colorB=b7bdf8&style=for-the-badge">
+    <a href="https://github.com/STEAMer-Academy/steamer-academy.me/stargazers"><img src="https://img.shields.io/github/stars/steamer-academy/steamer-academy.me?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
     <a href="https://discord.gg/HNhjQAfq9U"><img src="https://img.shields.io/discord/1225805405578596352?style=for-the-badge&color=c6a0f6&labelColor=363a4f&logo=discord&logoColor=cad3f5"></a>
-    <a href="https://github.com/steamer-academy/steamer-blogs/issues"><img src="https://img.shields.io/github/issues/steamer-academy/steamer-blogs?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8">
+    <a href="https://github.com/steamer-academy/steamer-academy.me/issues"><img src="https://img.shields.io/github/issues/steamer-academy/steamer-academy.me?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+    <a href="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"></a>
 </p>
 
 <h3 align="center">Website Status</h3>
 
-<p align="center">
-    <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/ping?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/avg-response?style=for-the-badge">
-    <img src="https://status.steameracademy.me/api/badge/1/cert-exp?style=for-the-badge">
-</p>
+
+<h4 align="center">
+      <a href="https://status.steameracademy.me/">
+        <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/ping?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/avg-response?style=for-the-badge">
+        <img src="https://status.steameracademy.me/api/badge/1/cert-exp?style=for-the-badge">
+      </a>
+</h4>
 
 <p align="center">
     <b>Where Creativity Meets Innovation</b><br>
