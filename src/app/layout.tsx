@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
-import localFont from "next/font/local";
+import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
 import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
@@ -9,6 +9,18 @@ import { Toaster } from "@/components/wrapper";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark, shadesOfPurple } from "@clerk/themes";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
@@ -75,26 +87,13 @@ export const viewport: Viewport = {
   ],
 };
 
-const geistSans = localFont({
-  src: "../app/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../app/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
         <ClerkProvider appearance={{ baseTheme: [dark, shadesOfPurple] }}>
           <CookieConsent />
           <WebVitals />
