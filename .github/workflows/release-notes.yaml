@@ -1,0 +1,26 @@
+name: Release Workflow
+
+env:
+  INCREMENTAL_TYPE: patch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate Release
+        uses: ADORSYS-GIS/release_generator@v1.0.7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: STEAMer-Academy
+          REPO_NAME: steamer-academy.me
+          INCREMENTAL_TYPE: ${{ env.INCREMENTAL_TYPE }}
