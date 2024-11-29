@@ -16,28 +16,28 @@ const teamMembers = [
   {
     name: "H. Mondal",
     role: "CEO & Founder",
-    image: "/HmondalDiscordpfp.webp",
+    image: "/assets/About/HmondalDiscordpfp.webp",
     content:
       "He sets the strategic goals and ensures STEAMer stays on track with its mission. Besides he does external representation and leadership team management.",
   },
   {
     name: "Muntasir Mahmud",
     role: "Chief Technology Officer",
-    image: "/MuntasirDiscordpfp.webp",
+    image: "/assets/About/MuntasirDiscordpfp.webp",
     content:
       "Manages A-Z of technology related works of our organization and plays one of the most vital roles. He is also a great open source fighter and always helpful to all.",
   },
   {
     name: "Ayman",
     role: "Chief Education Officer",
-    image: "/AymanDiscordpfp.webp",
+    image: "/assets/About/AymanDiscordpfp.webp",
     content:
       "Assesses student learning outcomes through evaluations, feedback mechanisms, and competition results. This helps ensure the effectiveness of the STEAMer programs and allows for adjustments if needed.",
   },
   {
     name: "Saoyad",
     role: "Chief Management Officer",
-    image: "/SaoyadDiscordpfp.webp",
+    image: "/assets/About/SaoyadDiscordpfp.webp",
     content:
       "He is responsible for the overall management of the organization, including the development and implementation of policies, procedures, and programs.",
   },

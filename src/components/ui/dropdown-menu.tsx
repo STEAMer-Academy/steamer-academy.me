@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown01Icon as ChevronDown } from "hugeicons-react";
 
 export interface DropdownProps {
   trigger: React.ReactNode;

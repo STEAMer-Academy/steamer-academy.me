@@ -11,15 +11,15 @@ import StyledButton from "@/components/ui/styled-button";
 
 const images = [
   {
-    src: "/RootImage1.webp",
+    src: "/assets/Home/RootImage1.webp",
     alt: "New Arrival 1",
   },
   {
-    src: "/RootImage2.webp",
+    src: "/assets/Home/RootImage2.webp",
     alt: "New Arrival 2",
   },
   {
-    src: "/RootImage3.webp",
+    src: "/assets/Home/RootImage3.webp",
     alt: "New Arrival 3",
   },
 ];

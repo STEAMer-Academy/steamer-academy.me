@@ -17,7 +17,6 @@
 
 <h3 align="center">Website Status</h3>
 
-
 <h4 align="center">
       <a href="https://status.steameracademy.me/">
         <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
@@ -77,14 +76,14 @@ This is the official repository for [STEAMer Academy](https://www.steameracademy
 - **Arcjet** - For security.
 
 <p align="center">
-    <a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/nextjs.png" width="10%"/></a>
-    <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/reactlogo.png" width="10%"/></a>
-    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/tailwind-css.svg" width="15%"/></a>
-    <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/shadcn-ui.png" width="10%"/></a>
-    <a href="https://ui.aceternity.com"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/aceternity.webp" width="10%"/></a>
-    <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/redis-icon.png?raw=true" width="10%"/></a>
-    <a href="https://turso.tech/libsql"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/dev/public/libsql-logo.png?raw=true" width="10%"/></a>
-    <a href="https://arcjet.com"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/arcjet.png?raw=true" width="10%"/></a>
+    <a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/assets/Readme/nextjs.png" width="10%"/></a>
+    <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/assets/Readme/reactlogo.png" width="10%"/></a>
+    <a href="https://tailwindcss.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/assets/Readme/tailwind-css.svg" width="15%"/></a>
+    <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/assets/Readme/shadcn-ui.png" width="10%"/></a>
+    <a href="https://ui.aceternity.com"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/assets/Readme/aceternity.webp" width="10%"/></a>
+    <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/assets/Readme/redis-icon.png?raw=true" width="10%"/></a>
+    <a href="https://turso.tech/libsql"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/assets/Readme/libsql-logo.png?raw=true" width="10%"/></a>
+    <a href="https://arcjet.com"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/assets/Readme/arcjet.png?raw=true" width="10%"/></a>
 </p>
 
 ## 🌐 Deployment

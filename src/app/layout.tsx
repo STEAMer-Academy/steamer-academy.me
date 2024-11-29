@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
-import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/wrapper";
 import Script from "next/script";
@@ -26,8 +25,8 @@ export const metadata: Metadata = {
   title: "STEAMer Academy",
   description: "STEAMer Academy Main Home Page",
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/assets/Favicon/favicon.png",
+    apple: "/assets/Favicon/favicon.png",
   },
   manifest: "/manifest.json",
   generator: "Next.js",
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
     "Aceternity UI",
     "Bun",
   ],
-  authors: [{ name: "Muntasir", url: "https://muntasirmahmud.me" }],
+  authors: [{ name: "Muntasir", url: "https://www.muntasirmahmud.me" }],
   creator: "Muntasir Mahmud",
   publisher: "Muntasir Mahmud",
   formatDetection: {
@@ -73,7 +72,8 @@ export const metadata: Metadata = {
     site: "https://www.steameracademy.me/",
     creator: "Muntasir Mahmud",
     title: "STEAMer Academy",
-    images: "https://www.steameracademy.me/link-preview-images/home.webp",
+    images:
+      "https://www.steameracademy.me/assets/link-preview-images/home.webp",
     description:
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
   },
@@ -96,7 +96,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
         <ClerkProvider appearance={{ baseTheme: [dark, shadesOfPurple] }}>
           <CookieConsent />
-          <WebVitals />
           <Toaster />
           <Script id="clarity-script" strategy="afterInteractive">
             {`

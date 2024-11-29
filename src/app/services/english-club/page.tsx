@@ -155,7 +155,7 @@ export default function EnglishClubPage() {
               <ReviewCardEnglish
                 review="Starting my role as a STEAMer CEO has been a joy, thanks to its all members for being with me and my organization and we hope a better future for everyone."
                 name="H. Mondal"
-                imageSrc="/HmondalDiscordpfp.webp"
+                imageSrc="/assets/About/HmondalDiscordpfp.webp"
               />
             </div>
           </section>

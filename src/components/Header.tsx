@@ -147,7 +147,7 @@ export default function Header() {
           >
             <Image
               loading="eager"
-              src="/favicon.png"
+              src="/assets/Favicon/favicon.png"
               alt="STEAMer Academy Logo"
               width={40}
               height={40}

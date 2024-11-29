@@ -12,9 +12,15 @@ export const metadata: Metadata = {
 };
 
 const images = [
-  { src: "/GalleryImage1.webp", alt: "STEAM education illustration" },
-  { src: "/GalleryImage2.webp", alt: "Globe with face mask" },
-  { src: "/GalleryImage3.webp", alt: "Student silhouette in library" },
+  {
+    src: "/assets/Gallery/GalleryImage1.webp",
+    alt: "STEAM education illustration",
+  },
+  { src: "/assets/Gallery/GalleryImage2.webp", alt: "Globe with face mask" },
+  {
+    src: "/assets/Gallery/GalleryImage3.webp",
+    alt: "Student silhouette in library",
+  },
 ];
 
 export default function GalleryPage() {

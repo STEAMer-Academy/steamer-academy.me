@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
-import { Loader2 } from "lucide-react";
+import { Spinner as Loader2 } from "@nextui-org/spinner";
 import { Textarea, Input, Button } from "@/components/wrapper";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";

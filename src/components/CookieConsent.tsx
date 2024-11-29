@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { MultiplicationSignIcon as X } from "hugeicons-react";
 import {
   Card,
   CardContent,
@@ -11,8 +11,11 @@ import {
   CardTitle,
   Button,
 } from "@/components/wrapper";
-import { CookieIcon } from "lucide-react";
-import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
+import {
+  CheckmarkCircle01Icon,
+  UnavailableIcon,
+  CookieIcon,
+} from "hugeicons-react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function CookieConsent() {

@@ -2,7 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Button, Input } from "@/components/wrapper";
-import { Loader2 } from "lucide-react";
+import { Spinner as Loader2 } from "@nextui-org/spinner";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
 import {
