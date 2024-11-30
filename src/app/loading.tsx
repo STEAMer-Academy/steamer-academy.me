@@ -1,4 +1,4 @@
-import { Spinner } from "@nextui-org/spinner";
+import Spinner from "@/components/ui/loader";
 
 export default function Loading() {
   return (

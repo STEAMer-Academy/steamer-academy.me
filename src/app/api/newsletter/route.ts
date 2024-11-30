@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import client from "@/lib/formdb";
+import { NewsletterSubscriptions } from "@/lib/schema";
+import { db } from "@/lib/db";
+import { eq } from "drizzle-orm";
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -14,14 +16,15 @@ export async function POST(request: Request) {
   try {
     const { email, recaptchaToken } = await request.json();
 
-    if (!email || typeof email !== "string") {
+    // Validate the email input
+    if (!email || typeof email !== "string" || !email.includes("@")) {
       return NextResponse.json(
         { message: "Invalid email address." },
         { status: 400 },
       );
     }
 
-    // Verify reCAPTCHA
+    // Verify reCAPTCHA token
     const isHuman = await verifyRecaptcha(recaptchaToken);
     if (!isHuman) {
       return NextResponse.json(
@@ -30,14 +33,28 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await client.execute({
-      sql: "INSERT INTO NewsletterSubscriptions (email) VALUES (?)",
-      args: [email],
-    });
+    // Check if the email is already subscribed
+    const existingSubscription = await db
+      .select()
+      .from(NewsletterSubscriptions)
+      .where(eq(NewsletterSubscriptions.email, email));
 
-    const insertId = result.lastInsertRowid
-      ? result.lastInsertRowid.toString()
-      : null;
+    if (existingSubscription.length > 0) {
+      return NextResponse.json(
+        { message: "This email is already subscribed to the newsletter." },
+        { status: 409 },
+      );
+    }
+
+    // Insert the email into the NewsletterSubscriptions table
+    const result = await db
+      .insert(NewsletterSubscriptions)
+      .values({
+        email,
+      })
+      .returning({ id: NewsletterSubscriptions.id });
+
+    const insertId = result[0]?.id || null;
 
     return NextResponse.json({
       message: "Subscription successful",
@@ -45,16 +62,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Error subscribing to newsletter:", error);
-
-    if (
-      error instanceof Error &&
-      error.message.includes("UNIQUE constraint failed")
-    ) {
-      return NextResponse.json(
-        { message: "This email is already subscribed to the newsletter." },
-        { status: 409 },
-      );
-    }
 
     return NextResponse.json(
       { message: "Error subscribing to newsletter. Please try again later." },

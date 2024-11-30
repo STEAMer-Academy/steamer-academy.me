@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
-import { Spinner as Loader2 } from "@nextui-org/spinner";
+import Loader from "@/components/ui/loader";
 import { Textarea, Input, Button } from "@/components/wrapper";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
@@ -136,7 +136,7 @@ export default function ContactForm() {
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
             {isLoading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader className="mr-2 h-4 w-4 animate-spin" />
                 Submitting...
               </>
             ) : (
@@ -164,7 +164,7 @@ export default function ContactForm() {
             <Button onClick={handleRecaptchaSubmit} disabled={isLoading}>
               {isLoading ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader className="mr-2 h-4 w-4 animate-spin" />
                   Submitting...
                 </>
               ) : (

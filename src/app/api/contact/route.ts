@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import client from "@/lib/formdb";
+import { ContactSubmissions } from "@/lib/schema";
+import { db } from "@/lib/db";
+import { eq } from "drizzle-orm";
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -24,14 +26,31 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await client.execute({
-      sql: "INSERT INTO ContactSubmissions (firstName, lastName, email, message) VALUES (?, ?, ?, ?)",
-      args: [firstName, lastName, email, message],
-    });
+    // Check if email already exists
+    const existingSubmission = await db
+      .select()
+      .from(ContactSubmissions)
+      .where(eq(ContactSubmissions.email, email));
 
-    const insertId = result.lastInsertRowid
-      ? result.lastInsertRowid.toString()
-      : null;
+    if (existingSubmission.length > 0) {
+      return NextResponse.json(
+        { message: "This email has already submitted a contact form." },
+        { status: 409 },
+      );
+    }
+
+    // Insert new submission
+    const result = await db
+      .insert(ContactSubmissions)
+      .values({
+        firstName,
+        lastName,
+        email,
+        message,
+      })
+      .returning({ id: ContactSubmissions.id });
+
+    const insertId = result[0]?.id || null;
 
     return NextResponse.json({
       message: "Form submitted successfully",
@@ -39,17 +58,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Error submitting contact form:", error);
-
-    if (
-      error instanceof Error &&
-      error.message.includes("UNIQUE constraint failed")
-    ) {
-      return NextResponse.json(
-        { message: "This email has already submitted a contact form." },
-        { status: 409 },
-      );
-    }
-
     return NextResponse.json(
       { message: "Error submitting form. Please try again later." },
       { status: 500 },

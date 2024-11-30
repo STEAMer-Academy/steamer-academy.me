@@ -2,7 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Button, Input } from "@/components/wrapper";
-import { Spinner as Loader2 } from "@nextui-org/spinner";
+import Loader from "@/components/ui/loader";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
 import {
@@ -91,7 +91,7 @@ export function NewsletterForm() {
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
             {isLoading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader className="mr-2 h-4 w-4 animate-spin" />
                 Subscribing...
               </>
             ) : (
@@ -120,7 +120,7 @@ export function NewsletterForm() {
             <Button onClick={handleRecaptchaSubmit} disabled={isLoading}>
               {isLoading ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader className="mr-2 h-4 w-4 animate-spin" />
                   Subscribing...
                 </>
               ) : (

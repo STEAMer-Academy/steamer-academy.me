@@ -16,7 +16,7 @@ import {
   UnavailableIcon,
   CookieIcon,
 } from "hugeicons-react";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Analytics from "@/components/Analytics";
 
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
@@ -103,7 +103,7 @@ export default function CookieConsent() {
           </motion.div>
         )}
       </AnimatePresence>
-      <GoogleAnalytics consentGiven={consentGiven} />
+      <Analytics consentGiven={consentGiven} />
     </>
   );
 }

@@ -3,7 +3,7 @@
 import React from "react";
 import Script from "next/script";
 
-const GoogleAnalytics = ({
+const Analytics = ({
   consentGiven,
 }: {
   consentGiven: boolean;
@@ -30,4 +30,4 @@ const GoogleAnalytics = ({
   );
 };
 
-export default GoogleAnalytics;
+export default Analytics;

@@ -102,19 +102,26 @@ This project is hosted on **Azure Static Web Apps**, ensuring a fast and reliabl
 To set up the project locally:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/STEAMer-Academy/steamer-academy.me.git
    cd steamer-academy.me
    ```
+
 1. Install dependencies using Bun:
+
    ```bash
    bun install
    ```
+
 1. Start the development server:
+
    ```bash
    bun run dev
    ```
+
 1. Build the application for production:
+
    ```bash
    bun run build
    ```
@@ -124,18 +131,25 @@ To set up the project locally:
 We welcome contributions from everyone. Feel free to fork the repository and submit a pull request.
 
 1. **Fork the project**
+
 1. **Create your feature branch**:
+
    ```bash
    git checkout -b feature/your-feature
    ```
+
 1. **Commit your changes**:
+
    ```bash
    git commit -m 'Add new feature'
    ```
+
 1. **Push to the branch**:
+
    ```bash
    git push origin feature/your-feature
    ```
+
 1. **Open a pull request**
 
 ## 🔒 Security

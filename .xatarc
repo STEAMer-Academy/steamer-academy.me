@@ -1,6 +1,7 @@
 {
   "databaseURL": "https://Muntasir-Mahmud-s-workspace-chktro.us-east-1.xata.sh/db/steamer-db",
+  "branch": "main",
   "codegen": {
-    "output": "src/xata.ts"
+    "output": "src/lib/xata.ts"
   }
 }
