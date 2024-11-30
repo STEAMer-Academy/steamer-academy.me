@@ -26,7 +26,7 @@ const GoogleAnalytics = ({
           gtag('config', '${gaId}');
         `}
       </Script>
-      <Script id="datadog">
+      <script>
         {`
         {(function(h, o, u, n, d) {
           h = h[d] = h[d] || { q: [], onReady: function(c) { h.q.push(c) } }
@@ -52,7 +52,7 @@ const GoogleAnalytics = ({
           })
   })
         `}
-      </Script>
+      </script>
     </>
   );
 };
