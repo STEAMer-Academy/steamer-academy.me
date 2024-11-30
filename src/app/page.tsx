@@ -72,7 +72,9 @@ export default function Home() {
                 />
               </h2>
               <p className="mx-auto mb-8 mt-2 max-w-md text-center text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg">
-                STEAMer Academy Is Here To Guide You On Your Learning Journey
+                A vibrant community dedicated to inspiring, educating, and
+                supporting the next generation of leaders in Science,
+                Technology, Engineering, Arts, and Math.
               </p>
               <div className="text-center">
                 <Link href="https://discord.gg/Kqpbawj9KU" passHref>
@@ -106,10 +108,11 @@ export default function Home() {
             />
           </h2>
           <p className="mb-8">
-            STEAMer Academy offers comprehensive education in Science,
-            Technology, Engineering, Arts, and Mathematics. Our innovative
-            approach combines hands-on learning with cutting-edge technology to
-            prepare students for the challenges of tomorrow.
+            At STEAMer Academy, we’re building a vibrant community where
+            students can explore the limitless opportunities within Science,
+            Technology, Engineering, Arts, and Mathematics. Our mission is
+            simple: to ignite curiosity, foster creativity, and empower learners
+            to solve real-world challenges through innovation and collaboration.
           </p>
           <div className="content-center text-center">
             <Link
@@ -126,11 +129,15 @@ export default function Home() {
         <section className="container mx-auto px-4">
           <h2 className="mb-8 text-3xl font-bold">New arrivals</h2>
           <p className="mb-8">
-            STEAMER Academy goes beyond traditional language learning. We strive
-            to ignite students curiosity, fostering a love for learning,
-            critical thinking skills, and creativity. Our classes equip them
-            with the communication skills they need to thrive in an increasingly
-            interconnected world.
+            We provide a dynamic platform filled with resources, projects, and
+            opportunities to develop practical skills and theoretical knowledge.
+            From coding and robotics to art and engineering, we encourage
+            students to connect their passions with purpose and turn ideas into
+            impactful creations. Learning at STEAMer Academy goes beyond
+            textbooks. It’s about discovering your potential, exploring exciting
+            fields, and working with peers who share your passion for growth.
+            Whether you’re a budding scientist, an aspiring engineer, or a
+            curious learner eager to explore, there’s a place for you here.
           </p>
           <GalleryGrid images={images} className="mb-8 space-y-8" />
         </section>
