@@ -17,7 +17,6 @@
 
 <h3 align="center">Website Status</h3>
 
-
 <h4 align="center">
       <a href="https://status.steameracademy.me/">
         <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
