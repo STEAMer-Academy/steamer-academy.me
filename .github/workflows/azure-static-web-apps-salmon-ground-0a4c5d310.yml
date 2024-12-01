@@ -54,7 +54,7 @@ jobs:
           action: "upload"
           app_location: "/"
           skip_app_build: true
-          # deployment_environment: ${{ github.event_name == 'pull_request' && format('pull-{0}', github.event.pull_request.number) || 'release' }}
+          deployment_environment: ${{ github.event_name == 'pull_request' && format('pull-{0}', github.event.pull_request.number) || '' }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Button,
   TypewriterEffectSmooth,
   Layout,
   GalleryGrid,
@@ -71,7 +70,7 @@ export default function Home() {
                   ]}
                 />
               </h2>
-              <p className="mx-auto mb-8 mt-2 max-w-md text-center text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg">
+              <p className="mx-auto mb-8 max-w-sm space-y-4 text-center text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg">
                 A vibrant community dedicated to inspiring, educating, and
                 supporting the next generation of leaders in Science,
                 Technology, Engineering, Arts, and Math.
@@ -121,13 +120,26 @@ export default function Home() {
               prefetch={true}
               passHref
             >
-              <Button variant="outline">Learn More</Button>
+              <center>
+                <StyledButton />
+              </center>
             </Link>
           </div>
         </section>
 
         <section className="container mx-auto px-4">
-          <h2 className="mb-8 text-3xl font-bold">New arrivals</h2>
+          <h2 className="mb-8 text-center text-3xl font-bold">
+            <TypewriterEffectSmooth
+              words={[
+                {
+                  text: "New",
+                },
+                {
+                  text: "arrivals",
+                },
+              ]}
+            />
+          </h2>
           <p className="mb-8">
             We provide a dynamic platform filled with resources, projects, and
             opportunities to develop practical skills and theoretical knowledge.
