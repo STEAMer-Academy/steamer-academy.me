@@ -10,9 +10,46 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AuthLayout } from "@/components/auth-layout";
+import { authClient } from "@/lib/authClient";
+import Loader from "@/components/ui/loader";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const router = useRouter();
+  const signUp = async () => {
+    await authClient.signUp.email(
+      {
+        email,
+        password,
+        name,
+        image: undefined,
+      },
+      {
+        onRequest: () => {
+          <Loader />;
+        },
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  };
+
+  const signUpWithSocial = async (provider: "google" | "github") => {
+    await authClient.signIn.social({
+      provider: provider,
+      callbackURL: "/",
+    });
+  };
 
   return (
     <AuthLayout>
@@ -28,6 +65,7 @@ export default function SignUpPage() {
               id="name"
               placeholder="Jon Snow"
               className="border-gray-800 bg-[#0B0F17] text-white"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -40,6 +78,7 @@ export default function SignUpPage() {
               type="email"
               placeholder="your@email.com"
               className="border-gray-800 bg-[#0B0F17] text-white"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -52,6 +91,7 @@ export default function SignUpPage() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 className="border-gray-800 bg-[#0B0F17] pr-10 text-white"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
@@ -74,7 +114,7 @@ export default function SignUpPage() {
             </Label>
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" onClick={signUp}>
             Sign up
           </Button>
         </form>
@@ -99,7 +139,9 @@ export default function SignUpPage() {
           <Button
             variant="outline"
             className="relative w-full bg-white pl-12 hover:bg-gray-50"
-            onClick={() => {}}
+            onClick={() => {
+              signUpWithSocial("google");
+            }}
           >
             <GoogleIcon className="absolute left-4 h-5 w-5" />
             <span className="text-gray-600">Sign up with Google</span>
@@ -107,7 +149,9 @@ export default function SignUpPage() {
           <Button
             variant="outline"
             className="relative w-full bg-[#24292F] pl-12 text-white hover:bg-[#24292F]/90"
-            onClick={() => {}}
+            onClick={() => {
+              signUpWithSocial("github");
+            }}
           >
             <GitHubIcon className="absolute left-4 h-5 w-5" />
             <span>Sign up with GitHub</span>

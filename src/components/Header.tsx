@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -28,6 +28,9 @@ import {
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import Fuse from "fuse.js";
+import { useSession } from "@/hooks/use-session";
+import { authClient } from "@/lib/authClient";
+import Loader from "./ui/loader";
 
 interface SearchItem {
   id: string;
@@ -128,6 +131,8 @@ export default function Header() {
     },
     { href: "/services/code-club", label: "Code Club", icon: CodeIcon },
   ];
+
+  const { session } = useSession();
 
   return (
     <header
@@ -240,6 +245,22 @@ export default function Header() {
                 </div>
               )}
             </div>
+            {session ? (
+              <>
+                <Suspense fallback={<Loader />}>
+                  <Button onClick={() => router.push("/auth/signin")}>
+                    Sign In
+                  </Button>
+                  <Button onClick={() => router.push("/auth/signup")}>
+                    Sign Up
+                  </Button>
+                </Suspense>
+              </>
+            ) : (
+              <Suspense fallback={<Loader />}>
+                <Button onClick={() => authClient.signOut()}>Sign Out</Button>
+              </Suspense>
+            )}
             <ThemeToggle />
           </div>
 

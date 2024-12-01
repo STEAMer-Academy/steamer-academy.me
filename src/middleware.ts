@@ -1,15 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import arcjet, { detectBot, shield, tokenBucket } from "@arcjet/next";
-import { auth } from "@/auth";
 
 const aj = arcjet({
-  key: process.env.ARCJET_KEY,
+  key: process.env.ARCJET_KEY!,
   characteristics: ["ip.src"],
   rules: [
     shield({ mode: "LIVE" }),
     detectBot({
       mode: "LIVE",
-      block: ["AUTOMATED"],
       allow: [
         "CATEGORY:SEARCH_ENGINE",
         "CATEGORY:MONITOR",
@@ -35,26 +33,27 @@ export const config = {
   ],
 };
 
-export async function middleware(request) {
-  auth(request);
-  const decision = await aj.protect(request, { requested: 1 });
+export async function middleware(request: NextRequest) {
+  if (process.env.NODE_ENV === "production") {
+    const decision = await aj.protect(request, { requested: 1 });
 
-  if (decision.isDenied()) {
-    if (decision.reason.isRateLimit()) {
-      return NextResponse.json(
-        { error: "Rate limited. Try again later." },
-        { status: 429 },
-      );
-    } else if (decision.reason.isBot()) {
-      return NextResponse.json(
-        { error: "Bot detected. Access denied." },
-        { status: 403 },
-      );
-    } else {
-      return NextResponse.json(
-        { error: "Forbidden", reason: decision.reason },
-        { status: 403 },
-      );
+    if (decision.isDenied()) {
+      if (decision.reason.isRateLimit()) {
+        return NextResponse.json(
+          { error: "Rate limited. Try again later." },
+          { status: 429 },
+        );
+      } else if (decision.reason.isBot()) {
+        return NextResponse.json(
+          { error: "Bot detected. Access denied." },
+          { status: 403 },
+        );
+      } else {
+        return NextResponse.json(
+          { error: "Forbidden", reason: decision.reason },
+          { status: 403 },
+        );
+      }
     }
   }
 

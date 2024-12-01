@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { NewsletterSubscriptions } from "@/lib/schema";
 import { db } from "@/lib/db";
+import { NewsletterSubscriptions } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 
 async function verifyRecaptcha(token: string) {
@@ -46,7 +46,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Insert the email into the NewsletterSubscriptions table
     const result = await db
       .insert(NewsletterSubscriptions)
       .values({

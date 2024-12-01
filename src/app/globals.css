@@ -29,11 +29,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --gradient-light: linear-gradient(
-      to right,
-      hsl(230, 50%, 90%),
-      hsl(226, 11%, 49%)
-    );
+    --gradient-light: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
   }
 
   .dark {
@@ -61,11 +57,7 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --gradient-dark: linear-gradient(
-      to right,
-      hsl(230, 50%, 10%),
-      hsl(221, 45%, 31%)
-    );
+    --gradient-dark: linear-gradient(to right, #1e1e1e, #4360a8, #7e9cde);
   }
 }
 
@@ -92,18 +84,10 @@
 
   .dark body::before {
     background: var(--gradient-dark);
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
   }
 
   .prose {
-    @apply text-black dark:text-gray-300;
+    @apply text-foreground dark:text-muted-foreground;
   }
 
   .prose img {
@@ -111,15 +95,15 @@
   }
 
   .prose h1 {
-    @apply mb-8 text-center text-4xl font-extrabold leading-tight tracking-wide text-black dark:text-white;
+    @apply mb-8 text-center text-4xl font-extrabold leading-tight tracking-wide text-foreground dark:text-white;
   }
 
   .prose h2 {
-    @apply mb-6 text-left text-3xl font-semibold leading-snug tracking-wide text-black dark:text-white;
+    @apply mb-6 text-left text-3xl font-semibold leading-snug tracking-wide text-foreground dark:text-white;
   }
 
   .prose h3 {
-    @apply mb-4 text-left text-2xl font-semibold leading-relaxed text-black dark:text-white;
+    @apply mb-4 text-left text-2xl font-semibold leading-relaxed text-foreground dark:text-white;
   }
 
   .prose p {
@@ -127,7 +111,7 @@
   }
 
   .prose a {
-    @apply font-medium text-blue-400 hover:text-blue-300 hover:underline;
+    @apply font-medium text-primary hover:text-accent hover:underline;
   }
 
   .prose ul,
@@ -148,18 +132,18 @@
   }
 
   .prose blockquote {
-    @apply mb-6 border-l-4 border-blue-500 pl-4 italic;
+    @apply mb-6 border-l-4 border-primary pl-4 italic;
   }
 
   .prose code {
-    @apply rounded-md bg-gray-700 px-2 py-1 text-blue-300;
+    @apply rounded-md bg-muted px-2 py-1 text-secondary-foreground;
   }
 
   .prose pre {
-    @apply mb-6 overflow-x-auto rounded-md bg-gray-800 p-4;
+    @apply mb-6 overflow-x-auto rounded-md bg-card p-4;
   }
 
-  .prose > *:not(:first-child) {
+  .prose>*:not(:first-child) {
     @apply mt-8;
   }
 }

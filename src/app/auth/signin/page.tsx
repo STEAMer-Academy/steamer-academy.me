@@ -18,10 +18,45 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { AuthLayout } from "@/components/auth-layout";
+import { authClient } from "@/lib/authClient";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/ui/loader";
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showResetModal, setShowResetModal] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const signIn = async () => {
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onRequest: () => {
+          <Loader />;
+        },
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  };
+
+  const socialSignIn = async (provider: "google" | "github") => {
+    await authClient.signIn.social({
+      provider: provider,
+      callbackURL: "/",
+    });
+  };
 
   return (
     <AuthLayout>
@@ -38,6 +73,8 @@ export default function SignInPage() {
               type="email"
               placeholder="your@email.com"
               className="h-12 rounded-md border-gray-800 bg-[#0B0F17] text-white placeholder-gray-600"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -59,6 +96,8 @@ export default function SignInPage() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 className="h-12 rounded-md border-gray-800 bg-[#0B0F17] pr-10 text-white placeholder-gray-600"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
@@ -81,7 +120,11 @@ export default function SignInPage() {
             </Label>
           </div>
 
-          <Button type="submit" className="h-12 w-full text-base font-semibold">
+          <Button
+            type="submit"
+            className="h-12 w-full text-base font-semibold"
+            onClick={signIn}
+          >
             Sign in
           </Button>
         </form>
@@ -106,7 +149,9 @@ export default function SignInPage() {
           <Button
             variant="outline"
             className="relative h-12 w-full bg-white pl-12 text-base font-semibold text-gray-900 hover:bg-gray-50"
-            onClick={() => {}}
+            onClick={() => {
+              socialSignIn("google");
+            }}
           >
             <GoogleIcon className="absolute left-4 h-5 w-5" />
             Sign in with Google
@@ -114,7 +159,9 @@ export default function SignInPage() {
           <Button
             variant="outline"
             className="relative h-12 w-full bg-[#24292F] pl-12 text-base font-semibold text-white hover:bg-[#24292F]/90"
-            onClick={() => {}}
+            onClick={() => {
+              socialSignIn("github");
+            }}
           >
             <GitHubIcon className="absolute left-4 h-5 w-5" />
             Sign in with GitHub

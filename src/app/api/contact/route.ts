@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { ContactSubmissions } from "@/lib/schema";
 import { db } from "@/lib/db";
+import { ContactSubmissions } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 
 async function verifyRecaptcha(token: string) {
@@ -39,7 +39,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Insert new submission
     const result = await db
       .insert(ContactSubmissions)
       .values({
@@ -51,7 +50,6 @@ export async function POST(request: Request) {
       .returning({ id: ContactSubmissions.id });
 
     const insertId = result[0]?.id || null;
-
     return NextResponse.json({
       message: "Form submitted successfully",
       id: insertId,
