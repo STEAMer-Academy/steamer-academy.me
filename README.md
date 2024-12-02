@@ -15,14 +15,6 @@
     <a href="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"></a>
 </p>
 
-<h3 align="center">Website Status</h3>
-
-<h4 align="center">
-      <a href="https://status.steameracademy.me/">
-        <img src="https://status.steameracademy.me/badge?theme=dark" width="250" height="30">
-      </a>
-</h4>
-
 <p align="center">
     <b>Where Creativity Meets Innovation</b><br>
     STEAMer Academy is committed to fostering curiosity in Science, Technology, Engineering, Arts, and Math (STEAM). Our mission is to empower learners with the tools and knowledge to become creative problem solvers and explorers.
