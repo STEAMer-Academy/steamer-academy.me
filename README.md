@@ -19,7 +19,7 @@
 
 <h4 align="center">
       <a href="https://status.steameracademy.me/">
-        <iframe src="https://status.steameracademy.me/badge?theme=dark" width="250" height="30" frameborder="0" scrolling="no"></iframe>
+        <img src="https://status.steameracademy.me/badge?theme=dark" width="250" height="30">
       </a>
 </h4>
 
