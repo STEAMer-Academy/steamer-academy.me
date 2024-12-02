@@ -70,7 +70,7 @@ This is the official repository for [STEAMer Academy](https://www.steameracademy
     <a href="https://ui.shadcn.com/"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/shadcn-ui.png" width="10%"/></a>
     <a href="https://ui.aceternity.com"><img src="https://raw.githubusercontent.com/STEAMer-Academy/steamer-academy.me/refs/heads/main/public/aceternity.webp" width="10%"/></a>
     <a href="https://redis.io"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/redis-icon.png?raw=true" width="10%"/></a>
-    <a href="https://turso.tech/libsql"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/dev/public/libsql-logo.png?raw=true" width="10%"/></a>
+    <a href="https://turso.tech/libsql"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/libsql-logo.png?raw=true" width="10%"/></a>
     <a href="https://arcjet.com"><img src="https://github.com/STEAMer-Academy/steamer-academy.me/blob/main/public/arcjet.png?raw=true" width="10%"/></a>
 </p>
 
