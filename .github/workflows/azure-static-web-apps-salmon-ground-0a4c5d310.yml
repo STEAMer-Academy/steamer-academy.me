@@ -1,63 +1,52 @@
-name: ⚒️ Build And Deploy
+name: ⚒️ Build and Deploy
 
 on:
   push:
     branches:
       - main
   pull_request_target:
-    types: [opened, synchronize, reopened, closed, ready_for_review]
+    types: [opened, synchronize, reopened, closed]
     branches:
       - main
 
 jobs:
-  build_and_deploy_job:
+  build_and_deploy:
     if: github.event_name == 'push' || (github.event_name == 'pull_request_target' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: ⚙️ Build and Deploy Job
+    name: ⚙️ Build and Deploy
 
     steps:
-      # Checkout the repository
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-          # Checkout the pull request ref only when it's a pull request
-          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.ref || 'main' }}
-          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
 
-      # Setup Bun
+      - name: 🔧 Set Environment Variables
+        run: |
+          echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}" >> .env
+          echo "REDIS_URL=${{ secrets.REDIS_URL }}" >> .env
+          echo "REDIS_TOKEN=${{ secrets.REDIS_TOKEN }}" >> .env
+          echo "TURSO_AUTH_TOKEN=${{ secrets.TURSO_AUTH_TOKEN }}" >> .env
+          echo "TURSO_DATABASE_URL=${{ secrets.TURSO_DATABASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
+          echo "RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
+          echo "ARCJET_KEY=${{ secrets.ARCJET_KEY }}" >> .env
+          echo "NEXT_PUBLIC_CLARITY_ID=${{ secrets.NEXT_PUBLIC_CLARITY_ID }}" >> .env
+          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
+          echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
+
       - name: 🥐 Setup Bun
         uses: oven-sh/setup-bun@v2
 
-      # Install dependencies
       - name: 📦 Install Dependencies
         run: bun install
 
-      # Set environment variables by writing to `.env` file
-      - name: 🔧 Setting Environment Variables
-        run: |
-          cat <<EOF > .env
-          NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
-          REDIS_URL=${{ secrets.REDIS_URL }}
-          REDIS_TOKEN=${{ secrets.REDIS_TOKEN }}
-          TURSO_AUTH_TOKEN=${{ secrets.TURSO_AUTH_TOKEN }}
-          TURSO_DATABASE_URL=${{ secrets.TURSO_DATABASE_URL }}
-          NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
-          RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}
-          ARCJET_KEY=${{ secrets.ARCJET_KEY }}
-          NEXT_PUBLIC_CLARITY_ID=${{ secrets.NEXT_PUBLIC_CLARITY_ID }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-          CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}
-          EOF
-
-      # Build the application
-      - name: 🏗️ Build
+      - name: 🏗️ Build Project
         run: bun run build
 
-      # Deploy to Azure Static Web Apps
       - name: 🚀 Deploy to Azure Static Web Apps
-        id: builddeploy
+        id: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_GROUND_0A4C5D310 }}
@@ -67,15 +56,13 @@ jobs:
           skip_app_build: true
           deployment_environment: ${{ github.event_name == 'pull_request_target' && format('pull-{0}', github.event.pull_request.number) || '' }}
 
-  close_pull_request_job:
+  close_pull_request:
     if: github.event_name == 'pull_request_target' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: 🛑 Close Pull Request Job
+    name: 🛑 Close Pull Request
 
     steps:
-      # Close pull request deployment
-      - name: 📦 Close Pull Request
-        id: closepullrequest
+      - name: 📦 Close Pull Request Deployment
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_GROUND_0A4C5D310 }}
