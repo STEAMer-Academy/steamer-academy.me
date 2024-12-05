@@ -2,6 +2,7 @@
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
+import { withLogtail } from "@logtail/next";
 
 const withPWA = withPWAInit({
   dest: "public",
@@ -80,7 +81,7 @@ const nextConfigFunction = (phase) => {
     },
   };
 
-  return withBundleAnalyzer(withPWAInit(withPWA)(nextConfig));
+  return withBundleAnalyzer(withLogtail(withPWAInit(withPWA)(nextConfig)));
 };
 
 export default nextConfigFunction;

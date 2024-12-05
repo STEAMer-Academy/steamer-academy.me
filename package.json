@@ -20,6 +20,7 @@
     "@clerk/themes": "^2.1.45",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@libsql/client": "^0.14.0",
+    "@logtail/next": "^0.1.7",
     "@nanostores/react": "^0.8.0",
     "@next/bundle-analyzer": "^15.0.2",
     "@nextui-org/spinner": "^2.0.34",
@@ -80,5 +81,6 @@
   "trustedDependencies": [
     "@clerk/shared",
     "sharp"
-  ]
+  ],
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
