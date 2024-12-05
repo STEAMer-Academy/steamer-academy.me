@@ -10,8 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AuthLayout } from "@/components/auth-layout";
-import { authClient } from "@/lib/authClient";
-import Loader from "@/components/ui/loader";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
@@ -22,7 +22,8 @@ export default function SignUpPage() {
   const [name, setName] = useState("");
 
   const router = useRouter();
-  const signUp = async () => {
+
+  const handleSignUp = async () => {
     await authClient.signUp.email(
       {
         email,
@@ -31,10 +32,16 @@ export default function SignUpPage() {
         image: undefined,
       },
       {
+        /* eslint-disable-next-line */
+        // @ts-ignore
         onRequest: () => {
-          <Loader />;
+          return toast.loading("Signing up...", {
+            id: "sign-up",
+          });
         },
         onSuccess: () => {
+          toast.success("Signed up successfully.");
+          toast.dismiss("sign-up");
           router.push("/");
         },
         onError: (ctx) => {
@@ -44,11 +51,32 @@ export default function SignUpPage() {
     );
   };
 
-  const signUpWithSocial = async (provider: "google" | "github") => {
-    await authClient.signIn.social({
-      provider: provider,
-      callbackURL: "/",
-    });
+  const handleOAuthSignIn = async (provider: "github" | "google") => {
+    await authClient.signIn.social(
+      {
+        provider: provider,
+        callbackURL: "/",
+      },
+      {
+        /* eslint-disable-next-line */
+        // @ts-ignore
+        onRequest: () => {
+          return toast.loading("Signing Up...", {
+            id: "sign-up-oauth",
+          });
+        },
+        onSuccess: () => {
+          toast.success("Signed Up successfully.");
+          toast.dismiss("sign-up-oauth");
+          router.push("/");
+        },
+        onError: (ctx) => {
+          toast.error("Something went wrong. Please try again.", {
+            description: ctx.error.message,
+          });
+        },
+      },
+    );
   };
 
   return (
@@ -114,14 +142,17 @@ export default function SignUpPage() {
             </Label>
           </div>
 
-          <Button type="submit" className="w-full" onClick={signUp}>
+          <Button type="submit" className="w-full" onClick={handleSignUp}>
             Sign up
           </Button>
         </form>
 
         <div className="mt-6 text-center text-sm text-gray-400">
           Already have an account?{" "}
-          <Link href="/sign-in" className="text-blue-400 hover:text-blue-300">
+          <Link
+            href="/auth/signin"
+            className="text-blue-400 hover:text-blue-300"
+          >
             Sign in
           </Link>
         </div>
@@ -140,7 +171,7 @@ export default function SignUpPage() {
             variant="outline"
             className="relative w-full bg-white pl-12 hover:bg-gray-50"
             onClick={() => {
-              signUpWithSocial("google");
+              handleOAuthSignIn("google");
             }}
           >
             <GoogleIcon className="absolute left-4 h-5 w-5" />
@@ -150,7 +181,7 @@ export default function SignUpPage() {
             variant="outline"
             className="relative w-full bg-[#24292F] pl-12 text-white hover:bg-[#24292F]/90"
             onClick={() => {
-              signUpWithSocial("github");
+              handleOAuthSignIn("github");
             }}
           >
             <GitHubIcon className="absolute left-4 h-5 w-5" />

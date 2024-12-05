@@ -18,9 +18,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { AuthLayout } from "@/components/auth-layout";
-import { authClient } from "@/lib/authClient";
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import Loader from "@/components/ui/loader";
+import { toast } from "sonner";
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,27 +31,35 @@ export default function SignInPage() {
 
   const router = useRouter();
 
-  const signIn = async () => {
+  const handleSignIn = async () => {
     await authClient.signIn.email(
       {
         email,
         password,
       },
       {
+        /* eslint-disable-next-line */
+        // @ts-ignore
         onRequest: () => {
-          <Loader />;
+          return toast.loading("Signing in...", {
+            id: "sign-in",
+          });
         },
         onSuccess: () => {
+          toast.success("Signed in successfully.");
+          toast.dismiss("sign-in");
           router.push("/");
         },
         onError: (ctx) => {
-          alert(ctx.error.message);
+          toast.error("Something went wrong. Please try again.", {
+            description: ctx.error.message,
+          });
         },
       },
     );
   };
 
-  const socialSignIn = async (provider: "google" | "github") => {
+  const handleOAuthSignIn = async (provider: "github" | "google") => {
     await authClient.signIn.social({
       provider: provider,
       callbackURL: "/",
@@ -123,7 +131,7 @@ export default function SignInPage() {
           <Button
             type="submit"
             className="h-12 w-full text-base font-semibold"
-            onClick={signIn}
+            onClick={handleSignIn}
           >
             Sign in
           </Button>
@@ -131,7 +139,10 @@ export default function SignInPage() {
 
         <div className="mt-6 text-center text-sm text-gray-400">
           Don&apos;t have an account?{" "}
-          <Link href="/sign-up" className="text-blue-400 hover:text-blue-300">
+          <Link
+            href="/auth/signup"
+            className="text-blue-400 hover:text-blue-300"
+          >
             Sign up
           </Link>
         </div>
@@ -150,7 +161,7 @@ export default function SignInPage() {
             variant="outline"
             className="relative h-12 w-full bg-white pl-12 text-base font-semibold text-gray-900 hover:bg-gray-50"
             onClick={() => {
-              socialSignIn("google");
+              handleOAuthSignIn("google");
             }}
           >
             <GoogleIcon className="absolute left-4 h-5 w-5" />
@@ -160,7 +171,7 @@ export default function SignInPage() {
             variant="outline"
             className="relative h-12 w-full bg-[#24292F] pl-12 text-base font-semibold text-white hover:bg-[#24292F]/90"
             onClick={() => {
-              socialSignIn("github");
+              handleOAuthSignIn("github");
             }}
           >
             <GitHubIcon className="absolute left-4 h-5 w-5" />

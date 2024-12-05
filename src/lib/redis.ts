@@ -1,5 +1,7 @@
 import { Redis } from "@upstash/redis";
 import { LRUCache } from "lru-cache";
+import { db } from "@/lib/db"; // Import your database connection
+import { blogs, categories } from "@/lib/schema"; // Import Drizzle schemas
 
 export interface Blog {
   name: string;
@@ -22,51 +24,44 @@ export const redis = new Redis({
   token: process.env.REDIS_TOKEN!,
 });
 
+// LRU Cache: 30-minute expiration
 export const cache = new LRUCache<string, BlogData | string>({
   max: 100,
-  ttl: 1000 * 60 * 60 * 2, // 2 hours
+  ttl: 1000 * 60 * 30, // 30 minutes
 });
 
+// Fetch all blogs, implementing the caching strategy
 export async function fetchAllBlogs(): Promise<BlogData> {
-  const categories: BlogCategory[] = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-  const blogs: Partial<BlogData> = {};
-
   const cachedBlogs = cache.get("allBlogs");
   if (cachedBlogs && typeof cachedBlogs !== "string") {
     return cachedBlogs;
   }
 
-  for (const category of categories) {
-    const data = await redis.get<Blog[]>(category);
-    if (data) {
-      blogs[category] = data;
-    }
+  // Check Redis cache (1-hour expiration)
+  const redisBlogs = await redis.get<BlogData>("allBlogs");
+  if (redisBlogs) {
+    cache.set("allBlogs", redisBlogs);
+    return redisBlogs;
   }
 
-  const typedBlogs = blogs as BlogData;
-  cache.set("allBlogs", typedBlogs);
-  return typedBlogs;
+  // Fetch from PostgreSQL
+  const blogsFromPg = await fetchBlogsFromDB();
+
+  // Cache in Redis with 1-hour TTL
+  await redis.set("allBlogs", blogsFromPg, { ex: 60 * 60 }); // 1 hour
+
+  // Cache in LRU with 30-minute TTL
+  cache.set("allBlogs", blogsFromPg);
+
+  return blogsFromPg;
 }
 
+// Fetch blog metadata by slug
 export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
-  const categories: BlogCategory[] = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-
   const allBlogs = await fetchAllBlogs();
 
-  for (const category of categories) {
-    const blogs = allBlogs[category];
+  for (const category in allBlogs) {
+    const blogs = allBlogs[category as BlogCategory];
     if (blogs) {
       const blog = blogs.find((b) => b.name === slug);
       if (blog) {
@@ -78,15 +73,8 @@ export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
   return null;
 }
 
+// Fetch blog content by slug
 export async function fetchBlogContent(slug: string): Promise<string | null> {
-  const categories: BlogCategory[] = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-
   const cachedContent = cache.get(`blog_${slug}`);
   if (cachedContent && typeof cachedContent === "string") {
     return cachedContent;
@@ -94,8 +82,8 @@ export async function fetchBlogContent(slug: string): Promise<string | null> {
 
   const allBlogs = await fetchAllBlogs();
 
-  for (const category of categories) {
-    const blogs = allBlogs[category];
+  for (const category in allBlogs) {
+    const blogs = allBlogs[category as BlogCategory];
     if (blogs) {
       const blog = blogs.find((b) => b.name === slug);
       if (blog) {
@@ -107,4 +95,27 @@ export async function fetchBlogContent(slug: string): Promise<string | null> {
   }
 
   return null;
+}
+
+// Fetch blogs from PostgreSQL
+async function fetchBlogsFromDB(): Promise<BlogData> {
+  const categoriesFromDB = await db.select().from(categories);
+  const blogsFromDB = await db.select().from(blogs);
+
+  const categorizedBlogs: BlogData = categoriesFromDB.reduce(
+    (acc, category) => {
+      acc[category.name as BlogCategory] = blogsFromDB
+        .filter((blog) => blog.categoryId === category.id)
+        .map((blog) => ({
+          name: blog.name,
+          description: blog.description,
+          rawUrl: blog.rawUrl,
+          image: blog.image,
+        }));
+      return acc;
+    },
+    {} as BlogData,
+  );
+
+  return categorizedBlogs;
 }

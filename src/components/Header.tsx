@@ -29,7 +29,7 @@ import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import Fuse from "fuse.js";
 import { useSession } from "@/hooks/use-session";
-import { authClient } from "@/lib/authClient";
+import { authClient } from "@/lib/auth-client";
 import Loader from "./ui/loader";
 
 interface SearchItem {
@@ -246,6 +246,10 @@ export default function Header() {
               )}
             </div>
             {session ? (
+              <Suspense fallback={<Loader />}>
+                <Button onClick={() => authClient.signOut()}>Sign Out</Button>
+              </Suspense>
+            ) : (
               <>
                 <Suspense fallback={<Loader />}>
                   <Button onClick={() => router.push("/auth/signin")}>
@@ -256,10 +260,6 @@ export default function Header() {
                   </Button>
                 </Suspense>
               </>
-            ) : (
-              <Suspense fallback={<Loader />}>
-                <Button onClick={() => authClient.signOut()}>Sign Out</Button>
-              </Suspense>
             )}
             <ThemeToggle />
           </div>

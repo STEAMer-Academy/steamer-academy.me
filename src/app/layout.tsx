@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
         <CookieConsent />
-        <Toaster />
+        <Toaster richColors closeButton position="top-center" />
         <Script id="clarity-script" strategy="afterInteractive">
           {`
               (function(c,l,a,r,i,t,y){
