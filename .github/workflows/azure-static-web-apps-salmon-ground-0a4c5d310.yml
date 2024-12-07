@@ -55,6 +55,7 @@ jobs:
           action: "upload"
           app_location: "/"
           skip_app_build: true
+          api_build_command: "npm install --legacy-peer-deps && npm run build"
           deployment_environment: ${{ github.event_name == 'pull_request_target' && format('pull-{0}', github.event.pull_request.number) || '' }}
 
   close_pull_request:
