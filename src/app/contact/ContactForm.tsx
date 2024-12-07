@@ -3,7 +3,9 @@
 import React, { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Loader2 } from "lucide-react";
 import { Textarea, Input, Button } from "@/components/wrapper";
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA, {
+  ReCAPTCHAHandle,
+} from "@steamer-academy/react-google-recaptcha";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -30,7 +32,7 @@ export default function ContactForm() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaRef = useRef<ReCAPTCHAHandle>(null);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -155,6 +157,7 @@ export default function ContactForm() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center">
+            {/* @ts-ignore */}
             <ReCAPTCHA
               ref={recaptchaRef}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}

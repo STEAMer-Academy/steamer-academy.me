@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+// import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
 import { withLogtail } from "@logtail/next";
@@ -10,8 +10,8 @@ const withPWA = withPWAInit({
   register: true,
 });
 
-const nextConfigFunction = (phase) => {
-  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+const nextConfigFunction = () => {
+  // const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
   const withBundleAnalyzer = bundleAnalyzer({
     enabled: process.env.ANALYZE === "true",
@@ -22,7 +22,7 @@ const nextConfigFunction = (phase) => {
       optimizeCss: true,
     },
     reactStrictMode: true,
-    assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
+    // assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
 
     images: {
       remotePatterns: [

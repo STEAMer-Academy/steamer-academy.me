@@ -1,11 +1,10 @@
 "use client";
 
 // @ts-nocheck
-/* eslint-disable */
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
+import { useMotionTemplate, useMotionValue, motion } from "motion/react";
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}

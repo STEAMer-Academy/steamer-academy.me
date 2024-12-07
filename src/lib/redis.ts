@@ -28,45 +28,27 @@ export const cache = new LRUCache<string, BlogData | string>({
 });
 
 export async function fetchAllBlogs(): Promise<BlogData> {
-  const categories: BlogCategory[] = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-  const blogs: Partial<BlogData> = {};
-
   const cachedBlogs = cache.get("allBlogs");
   if (cachedBlogs && typeof cachedBlogs !== "string") {
     return cachedBlogs;
   }
 
-  for (const category of categories) {
-    const data = await redis.get<Blog[]>(category);
-    if (data) {
-      blogs[category] = data;
-    }
+  const redisBlogs = await redis.get<BlogData>("allBlogs");
+  if (redisBlogs) {
+    cache.set("allBlogs", redisBlogs);
+    return redisBlogs;
   }
 
-  const typedBlogs = blogs as BlogData;
-  cache.set("allBlogs", typedBlogs);
-  return typedBlogs;
+  // If not in cache or Redis, return an empty object
+  // In a real-world scenario, you might want to fetch from a database here
+  return {} as BlogData;
 }
 
 export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
-  const categories: BlogCategory[] = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-
   const allBlogs = await fetchAllBlogs();
 
-  for (const category of categories) {
-    const blogs = allBlogs[category];
+  for (const category in allBlogs) {
+    const blogs = allBlogs[category as BlogCategory];
     if (blogs) {
       const blog = blogs.find((b) => b.name === slug);
       if (blog) {
@@ -79,14 +61,6 @@ export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
 }
 
 export async function fetchBlogContent(slug: string): Promise<string | null> {
-  const categories: BlogCategory[] = [
-    "engineeringMds",
-    "englishMds",
-    "mathMds",
-    "scienceMds",
-    "technologyMds",
-  ];
-
   const cachedContent = cache.get(`blog_${slug}`);
   if (cachedContent && typeof cachedContent === "string") {
     return cachedContent;
@@ -94,8 +68,8 @@ export async function fetchBlogContent(slug: string): Promise<string | null> {
 
   const allBlogs = await fetchAllBlogs();
 
-  for (const category of categories) {
-    const blogs = allBlogs[category];
+  for (const category in allBlogs) {
+    const blogs = allBlogs[category as BlogCategory];
     if (blogs) {
       const blog = blogs.find((b) => b.name === slug);
       if (blog) {

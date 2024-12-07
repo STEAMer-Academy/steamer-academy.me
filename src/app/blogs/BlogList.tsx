@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Blog, BlogCategory } from "@/lib/redis";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   Pagination,
   PaginationContent,
@@ -114,7 +114,6 @@ export default function BlogList({ blogs }: BlogListProps) {
           <PaginationItem>
             <PaginationPrevious
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              /* eslint-disable-next-line */
               // @ts-ignore
               disabled={currentPage === 1}
             />
@@ -125,7 +124,6 @@ export default function BlogList({ blogs }: BlogListProps) {
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
-              /* eslint-disable-next-line */
               // @ts-ignore
               disabled={currentPage === totalPages}
             />
