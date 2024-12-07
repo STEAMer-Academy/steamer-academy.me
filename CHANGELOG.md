@@ -1,4 +1,32 @@
 
+<a name="v4.1.0"></a>
+
+## [v4.1.0](https://github.com/STEAMer-Academy/steamer-academy.me/compare/4.0.2...v4.1.0) (2024-12-07)
+
+### Feat
+
+- React 19 And Nextjs 15
+  - Logtail
+  - Datadog
+  
+  ### Fix
+
+- Remove check.sh
+  - Eslint
+  - Main Page
+  - Eslint Errors
+  - **deps:** bump lucide-react from 0.465.0 to 0.468.0
+  - **deps:** bump lucide-react from 0.462.0 to 0.465.0
+  - **deps:** bump three from 0.170.0 to 0.171.0
+  
+  ### Pull Requests
+
+- Merge pull request [#46](https://github.com/STEAMer-Academy/steamer-academy.me/issues/46) from STEAMer-Academy/dependabot/npm_and_yarn/lucide-react-0.468.0
+  - Merge pull request [#45](https://github.com/STEAMer-Academy/steamer-academy.me/issues/45) from STEAMer-Academy/dependabot/npm_and_yarn/lucide-react-0.465.0
+  - Merge pull request [#43](https://github.com/STEAMer-Academy/steamer-academy.me/issues/43) from STEAMer-Academy/dependabot/npm_and_yarn/three-0.171.0
+  - Merge pull request [#41](https://github.com/STEAMer-Academy/steamer-academy.me/issues/41) from STEAMer-Academy/hrimondal-patch-1
+  
+  
 <a name="4.0.2"></a>
 
 ## [4.0.2](https://github.com/STEAMer-Academy/steamer-academy.me/compare/v4.0.1...4.0.2) (2024-11-28)
