@@ -15,12 +15,13 @@
     "node": "20"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "npm run partytown && next build",
     "start": "next start",
     "lint": "next lint",
     "partytown": "partytown copylib public/~partytown",
-    "fmt": "prettier --check --write ."
+    "fmt": "prettier --check --write .",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@arcjet/next": "^1.0.0-alpha.34",
@@ -34,19 +35,21 @@
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
+    "@radix-ui/react-visually-hidden": "^1.1.0",
     "@react-three/drei": "^9.120.3",
     "@react-three/fiber": "^9.0.0-rc.1",
     "@sentry/nextjs": "^8.42.0",
     "@steamer-academy/react-google-recaptcha": "^4.1.2",
+    "@types/pg": "^8.11.10",
     "@upstash/redis": "^1.34.3",
     "autoprefixer": "^10.4.20",
     "better-auth": "^1.0.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "npm:beasties",
-    "cssnano": "^7.0.6",
     "dotenv": "^16.4.7",
     "drizzle-kit": "^0.29.1",
     "drizzle-orm": "^0.37.0",
@@ -58,6 +61,7 @@
     "next": "^15.0.4",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.4",
+    "pg": "^8.13.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^10.1.1",
     "react": "^19.0.0",
@@ -67,7 +71,8 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.171.0",
-    "three-globe": "^2.35.3"
+    "three-globe": "^2.35.3",
+    "turbo": "^2.3.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
@@ -86,5 +91,9 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.16"
-  }
+  },
+  "packageManager": "bun@1.1.38",
+  "trustedDependencies": [
+    "@sentry/cli"
+  ]
 }
