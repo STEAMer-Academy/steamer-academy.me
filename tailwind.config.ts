@@ -1,8 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
-import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
-
-// @ts-nocheck
+import flattenColorPalette from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
