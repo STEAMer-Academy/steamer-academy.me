@@ -106,7 +106,7 @@ export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
                   )}
                 >
                   {item.icon && (
-                    <span className="mr-2 h-4 w-4">{item.icon}</span>
+                    <span className="mr-2 size-4">{item.icon}</span>
                   )}
                   {item.label}
                 </button>

@@ -50,7 +50,7 @@ export default function Home() {
     <Layout>
       <div className="space-y-6">
         <section className="relative flex h-screen w-full flex-row items-center justify-center py-20 md:h-auto">
-          <div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
+          <div className="relative mx-auto size-full max-w-7xl px-4 md:h-[40rem]">
             <div>
               <h2 className="text-center text-xl font-bold text-black dark:text-white md:text-4xl">
                 <TypewriterEffectSmooth

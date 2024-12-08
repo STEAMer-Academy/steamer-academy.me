@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo, Suspense } from "react";
+import { useState, useEffect, useMemo, useTransition, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Form from "next/form";
 import {
   Sheet,
   SheetContent,
@@ -57,6 +58,7 @@ export default function Header() {
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchData, setSearchData] = useState<SearchItem[]>([]);
+  const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -91,9 +93,11 @@ export default function Header() {
 
   useEffect(() => {
     const performSearch = () => {
-      const results = fuse.search(searchValue).map((result) => result.item);
-      setSearchResults(results.slice(0, 5)); // Limit to 5 results
-      setShowDropdown(true);
+      startTransition(() => {
+        const results = fuse.search(searchValue).map((result) => result.item);
+        setSearchResults(results.slice(0, 5)); // Limit to 5 results
+        setShowDropdown(true);
+      });
     };
 
     if (searchValue.length > 0) {
@@ -103,13 +107,6 @@ export default function Header() {
     }
   }, [searchValue, fuse]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (typeof searchValue === "string" && searchValue.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchValue.trim())}`);
-      setShowDropdown(false);
-    }
-  };
   const truncateContent = (content: string, maxLength: number) => {
     if (content.length <= maxLength) return content;
     return content.slice(0, maxLength) + "...";
@@ -142,7 +139,7 @@ export default function Header() {
         isVisible ? "translate-y-0" : "-translate-y-full",
       )}
     >
-      <nav className="mx-auto w-full px-4 py-4">
+      <nav className="mx-auto w-full p-4">
         <div className="flex items-center justify-between">
           <Link
             href="/"
@@ -150,7 +147,6 @@ export default function Header() {
             prefetch={true}
           >
             <Image
-              loading="eager"
               src="/assets/Favicon/favicon.png"
               alt="STEAMer Academy Logo"
               width={40}
@@ -166,20 +162,20 @@ export default function Header() {
               className="font-sans font-medium"
             >
               <Link href="/" prefetch={true} className="flex items-center">
-                <Home07Icon className="mr-2 h-4 w-4" />
+                <Home07Icon className="mr-2 size-4" />
                 Home
               </Link>
             </Button>
             <DropdownMenu
               trigger={
                 <span className="flex items-center">
-                  <BookEditIcon className="mr-2 h-4 w-4" />
+                  <BookEditIcon className="mr-2 size-4" />
                   Services
                 </span>
               }
               items={services.map((service) => ({
                 label: service.label,
-                icon: <service.icon className="h-4 w-4" />,
+                icon: <service.icon className="size-4" />,
                 onClick: () => router.push(service.href),
               }))}
               align="start"
@@ -197,7 +193,7 @@ export default function Header() {
                   prefetch={true}
                   className="flex items-center"
                 >
-                  <item.icon className="mr-2 h-4 w-4" />
+                  <item.icon className="mr-2 size-4" />
                   {item.label}
                 </Link>
               </Button>
@@ -205,21 +201,26 @@ export default function Header() {
           </div>
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
-              <form onSubmit={handleSearch} className="relative">
-                <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+              <Form action="/search" className="relative">
+                <Search01Icon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   type="search"
+                  name="q"
                   placeholder="Search..."
                   className="w-64 pl-10"
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   onFocus={() => setShowDropdown(true)}
                 />
-              </form>
+              </Form>
               {showDropdown && (
                 <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
                   <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-                    {searchResults.length > 0 ? (
+                    {isPending ? (
+                      <li className="px-4 py-2 text-muted-foreground">
+                        Loading...
+                      </li>
+                    ) : searchResults.length > 0 ? (
                       searchResults.map((result) => {
                         const IconComponent = getIconForUrl(result.url);
                         return (
@@ -230,7 +231,7 @@ export default function Header() {
                               className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
                               onClick={() => setShowDropdown(false)}
                             >
-                              <IconComponent className="mr-2 h-4 w-4" />
+                              <IconComponent className="mr-2 size-4" />
                               {truncateContent(result.title, 50)}
                             </Link>
                           </li>
@@ -269,7 +270,7 @@ export default function Header() {
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
                   <Menu01Icon
-                    className="h-6 w-6"
+                    className="size-6"
                     aria-label="Menu Icon For Smaller Devices"
                   />
                 </Button>
@@ -277,21 +278,26 @@ export default function Header() {
               <SheetContent side="right" aria-describedby="Search Box">
                 <nav className="flex flex-col space-y-4">
                   <div className="relative">
-                    <form onSubmit={handleSearch} className="relative mb-4">
-                      <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+                    <Form action="/search" className="relative mb-4">
+                      <Search01Icon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                       <Input
                         type="search"
+                        name="q"
                         placeholder="Search..."
                         className="pl-10 pr-6"
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                         onFocus={() => setShowDropdown(true)}
                       />
-                    </form>
+                    </Form>
                     {showDropdown && (
                       <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
                         <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-                          {searchResults.length > 0 ? (
+                          {isPending ? (
+                            <li className="px-4 py-2 text-muted-foreground">
+                              Loading...
+                            </li>
+                          ) : searchResults.length > 0 ? (
                             searchResults.map((result) => {
                               const IconComponent = getIconForUrl(result.url);
                               return (
@@ -303,7 +309,7 @@ export default function Header() {
                                       className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
                                       onClick={() => setShowDropdown(false)}
                                     >
-                                      <IconComponent className="mr-2 h-4 w-4" />
+                                      <IconComponent className="mr-2 size-4" />
                                       {truncateContent(result.title, 50)}
                                     </Link>
                                   </SheetClose>
@@ -330,7 +336,7 @@ export default function Header() {
                         prefetch={true}
                         className="flex items-center"
                       >
-                        <Home07Icon className="mr-2 h-4 w-4" />
+                        <Home07Icon className="mr-2 size-4" />
                         Home
                       </Link>
                     </Button>
@@ -338,13 +344,13 @@ export default function Header() {
                   <DropdownMenu
                     trigger={
                       <span className="flex items-center">
-                        <BookEditIcon className="mr-2 h-4 w-4" />
+                        <BookEditIcon className="mr-2 size-4" />
                         Services
                       </span>
                     }
                     items={services.map((service) => ({
                       label: service.label,
-                      icon: <service.icon className="h-4 w-4" />,
+                      icon: <service.icon className="size-4" />,
                       onClick: () => {
                         router.push(service.href);
                         (
@@ -369,7 +375,7 @@ export default function Header() {
                           prefetch={true}
                           className="flex items-center"
                         >
-                          <item.icon className="mr-2 h-4 w-4" />
+                          <item.icon className="mr-2 size-4" />
                           {item.label}
                         </Link>
                       </Button>

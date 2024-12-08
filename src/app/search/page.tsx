@@ -107,8 +107,8 @@ export default function SearchPage() {
         </h1>
         <div className="mb-8">
           <form className="flex gap-2" action="/search">
-            <div className="relative flex-grow">
-              <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+            <div className="relative grow">
+              <Search01Icon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="search"
                 name="q"
@@ -148,7 +148,7 @@ export default function SearchPage() {
                           prefetch={true}
                           className="flex items-center gap-2 hover:underline"
                         >
-                          <IconComponent className="h-5 w-5" />
+                          <IconComponent className="size-5" />
                           {result.title}
                         </Link>
                       </CardTitle>

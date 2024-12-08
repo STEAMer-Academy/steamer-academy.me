@@ -3,7 +3,6 @@ import tailwindcssAnimate from "tailwindcss-animate";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 // @ts-nocheck
-/* eslint-disable */
 
 const config = {
   darkMode: ["class"],
@@ -85,15 +84,15 @@ const config = {
           },
         },
         rotate: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s linear infinite",
-        spin: 'rotate 1s linear infinite',
+        spin: "rotate 1s linear infinite",
       },
     },
   },

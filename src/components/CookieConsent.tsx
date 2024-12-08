@@ -53,13 +53,13 @@ export default function CookieConsent() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-96"
+            className="fixed inset-x-4 bottom-4 z-50 md:left-auto md:right-4 md:w-96"
           >
             <Card className="shadow-lg">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle className="whitespace-nowrap text-lg font-semibold">
-                    <CookieIcon size={24} className="h-5 w-5" />
+                    <CookieIcon size={24} className="size-5" />
                     <span>We Use Cookies</span>
                   </CardTitle>
                   <Button

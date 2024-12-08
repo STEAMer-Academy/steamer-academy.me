@@ -33,7 +33,7 @@ export default function TeamMembers({ members }: { members: TeamMember[] }) {
           viewport={{ once: true }}
         >
           <Card
-            className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} transform rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}
+            className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}
           >
             <CardHeader>
               <Image

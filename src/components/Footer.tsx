@@ -16,7 +16,7 @@ import { NewsletterForm } from "@/components/wrapper";
 
 export default function Footer() {
   return (
-    <footer className="content-left border-t text-left">
+    <footer className="border-t text-left">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Company Info */}
@@ -32,7 +32,7 @@ export default function Footer() {
                 className="text-gray-400 hover:text-blue-500"
                 aria-label="Facebook Page Link"
               >
-                <Facebook01Icon className="h-6 w-6" />
+                <Facebook01Icon className="size-6" />
               </Link>
               {/* <Link href="#" className="text-gray-400 hover:text-gray-700"> */}
               {/*   <NewTwitterIcon className="h-6 w-6" /> */}
@@ -42,21 +42,21 @@ export default function Footer() {
                 className="text-gray-400 hover:text-blue-600"
                 aria-label="Discord Server Link"
               >
-                <DiscordIcon className="h-6 w-6" />
+                <DiscordIcon className="size-6" />
               </Link>
               <Link
                 href="https://whatsapp.com/channel/0029VaM5E3V1NCrcgLXjKN43"
                 className="text-gray-400 hover:text-green-500"
                 aria-label="WhatsApp Channel Link"
               >
-                <WhatsappIcon className="h-6 w-6" />
+                <WhatsappIcon className="size-6" />
               </Link>
               <Link
                 href="https://github.com/STEAMer-Academy"
                 className="text-gray-400 hover:text-gray-800"
                 aria-label="GitHub Repository Link"
               >
-                <Github01Icon className="h-6 w-6" />
+                <Github01Icon className="size-6" />
               </Link>
             </div>
           </div>
@@ -127,19 +127,19 @@ export default function Footer() {
             <h3 className="mb-4 text-lg font-bold">Contact Us</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
-                <Location01Icon className="h-5 w-5 text-gray-400" />
+                <Location01Icon className="size-5 text-gray-400" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Dhaka, Bangladesh
                 </span>
               </li>
               <li className="flex items-center space-x-2">
-                <Mail01Icon className="h-5 w-5 text-gray-400" />
+                <Mail01Icon className="size-5 text-gray-400" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   support@steameracademy.me
                 </span>
               </li>
               <li className="flex items-center space-x-2">
-                <Clock01Icon className="h-5 w-5 text-gray-400" />
+                <Clock01Icon className="size-5 text-gray-400" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Friday - Saturday, 8am - 8pm
                 </span>
@@ -159,7 +159,7 @@ export default function Footer() {
         {/* Footer Copyright */}
         <div className="mt-8 border-t border-gray-200 pt-8 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            <CopyrightIcon className="mr-2 inline-block h-4 w-4" />
+            <CopyrightIcon className="mr-2 inline-block size-4" />
             <span>2024 STEAMer Academy. All rights reserved.</span>
           </p>
         </div>

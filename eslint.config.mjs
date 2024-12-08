@@ -1,8 +1,10 @@
 import pluginNext from "@next/eslint-plugin-next";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import parser from "@typescript-eslint/parser";
+import tailwind from "eslint-plugin-tailwindcss";
 
 export default [
+  ...tailwind.configs["flat/recommended"],
   {
     name: "ESLint Config - nextjs",
     languageOptions: {

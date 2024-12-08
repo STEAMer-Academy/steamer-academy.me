@@ -38,7 +38,7 @@ export default function ServicesList({ services }: { services: Service[] }) {
           viewport={{ once: true }}
         >
           <Card
-            className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} transform rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}
+            className={`${$theme === "dark" ? "bg-[#1a1b26] hover:bg-gray-700" : "bg-white hover:bg-gray-100"} rounded-lg p-7 shadow-lg transition-transform hover:scale-105 hover:shadow-2xl`}
           >
             <CardHeader
               className={`text-xl font-semibold ${$theme === "dark" ? "text-white" : "text-gray-900"} mb-2 p-1`}

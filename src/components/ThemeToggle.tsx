@@ -29,9 +29,9 @@ export default function ThemeToggle() {
       aria-label="Switch themes"
     >
       {$theme === "dark" ? (
-        <Moon02Icon className="h-[1.2rem] w-[1.2rem]" />
+        <Moon02Icon className="size-[1.2rem]" />
       ) : (
-        <Sun className="h-[1.2rem] w-[1.2rem]" />
+        <Sun className="size-[1.2rem]" />
       )}
     </Button>
   );

@@ -93,7 +93,7 @@ export function NewsletterForm() {
           <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent">
             {isLoading ? (
               <>
-                <Loader className="mr-2 h-4 w-4 animate-spin" />
+                <Loader className="mr-2 size-4 animate-spin" />
                 Subscribing...
               </>
             ) : (
@@ -123,7 +123,7 @@ export function NewsletterForm() {
             <Button onClick={handleRecaptchaSubmit} disabled={isLoading}>
               {isLoading ? (
                 <>
-                  <Loader className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader className="mr-2 size-4 animate-spin" />
                   Subscribing...
                 </>
               ) : (

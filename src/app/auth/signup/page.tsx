@@ -125,9 +125,9 @@ export default function SignUpPage() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
               >
                 {showPassword ? (
-                  <EyeOff className="h-4 w-4" />
+                  <EyeOff className="size-4" />
                 ) : (
-                  <Eye className="h-4 w-4" />
+                  <Eye className="size-4" />
                 )}
               </button>
             </div>
@@ -172,7 +172,7 @@ export default function SignUpPage() {
               handleOAuthSignIn("google");
             }}
           >
-            <GoogleIcon className="absolute left-4 h-5 w-5" />
+            <GoogleIcon className="absolute left-4 size-5" />
             <span className="text-gray-600">Sign up with Google</span>
           </Button>
           <Button
@@ -182,7 +182,7 @@ export default function SignUpPage() {
               handleOAuthSignIn("github");
             }}
           >
-            <GitHubIcon className="absolute left-4 h-5 w-5" />
+            <GitHubIcon className="absolute left-4 size-5" />
             <span>Sign up with GitHub</span>
           </Button>
         </div>

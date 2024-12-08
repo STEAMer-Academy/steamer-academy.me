@@ -43,7 +43,7 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <div className="align-center mb-4 flex items-center justify-center gap-4 text-center">
+    <div className="mb-4 flex items-center justify-center gap-4 text-center">
       <span className="font-bold">{timeLeft.days} Days</span>
       <span className="font-bold">{timeLeft.hours} Hours</span>
       <span className="font-bold">{timeLeft.minutes} Minutes</span>

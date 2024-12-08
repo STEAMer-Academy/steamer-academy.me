@@ -79,7 +79,7 @@ export default function SignInPage() {
               id="email"
               type="email"
               placeholder="your@email.com"
-              className="h-12 rounded-md border-gray-800 bg-[#0B0F17] text-white placeholder-gray-600"
+              className="h-12 rounded-md border-gray-800 bg-[#0B0F17] text-white placeholder:text-gray-600"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -102,7 +102,7 @@ export default function SignInPage() {
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
-                className="h-12 rounded-md border-gray-800 bg-[#0B0F17] pr-10 text-white placeholder-gray-600"
+                className="h-12 rounded-md border-gray-800 bg-[#0B0F17] pr-10 text-white placeholder:text-gray-600"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -112,9 +112,9 @@ export default function SignInPage() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
               >
                 {showPassword ? (
-                  <EyeOff className="h-5 w-5" />
+                  <EyeOff className="size-5" />
                 ) : (
-                  <Eye className="h-5 w-5" />
+                  <Eye className="size-5" />
                 )}
               </button>
             </div>
@@ -163,7 +163,7 @@ export default function SignInPage() {
               handleOAuthSignIn("google");
             }}
           >
-            <GoogleIcon className="absolute left-4 h-5 w-5" />
+            <GoogleIcon className="absolute left-4 size-5" />
             Sign in with Google
           </Button>
           <Button
@@ -173,7 +173,7 @@ export default function SignInPage() {
               handleOAuthSignIn("github");
             }}
           >
-            <GitHubIcon className="absolute left-4 h-5 w-5" />
+            <GitHubIcon className="absolute left-4 size-5" />
             Sign in with GitHub
           </Button>
         </div>

@@ -29,10 +29,12 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --gradient-light: radial-gradient(ellipse at top left,
-        #27272a,
-        #52525b,
-        #a1a1aa);
+    --gradient-light: radial-gradient(
+      ellipse at top left,
+      #27272a,
+      #52525b,
+      #a1a1aa
+    );
   }
 
   .dark {
@@ -146,7 +148,7 @@
     @apply mb-6 overflow-x-auto rounded-md bg-card p-4;
   }
 
-  .prose>*:not(:first-child) {
+  .prose > *:not(:first-child) {
     @apply mt-8;
   }
 }

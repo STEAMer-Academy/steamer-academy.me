@@ -123,7 +123,7 @@ export default function EnglishClubPage() {
               the pursuit of knowledge.
             </p>
             <CountdownTimer />
-            <div className="align-center flex content-center justify-center gap-2">
+            <div className="flex content-center justify-center gap-2">
               <Link href="https://chat.whatsapp.com/L5v0bIwXSmLFby2nld79qU">
                 <Button variant="default">Join On Whatsapp</Button>
               </Link>
@@ -139,7 +139,7 @@ export default function EnglishClubPage() {
               You can also join us indirectly through Duolingo for School. This
               button will allow you to join our Duolingo Classroom.
             </p>
-            <div className="align-center flex content-center justify-center gap-2">
+            <div className="flex content-center justify-center gap-2">
               <Link href="http://www.google.com/url?q=http%3A%2F%2Fwww.duolingo.com%2Fclassroom%2Fpcjnkq&sa=D&sntz=1&usg=AOvVaw35f-JqwCiYS9LBNEEMdu5W">
                 <Button variant="default">Join Duolingo Classroom</Button>
               </Link>
