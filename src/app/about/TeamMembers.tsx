@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 import {

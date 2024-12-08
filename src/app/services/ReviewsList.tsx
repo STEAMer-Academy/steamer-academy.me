@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 import { Card, CardContent } from "@/components/wrapper";

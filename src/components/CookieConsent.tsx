@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { MultiplicationSignIcon as X } from "hugeicons-react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Card,
   CardContent,

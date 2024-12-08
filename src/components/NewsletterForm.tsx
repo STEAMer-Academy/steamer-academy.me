@@ -3,7 +3,9 @@
 import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { Button, Input } from "@/components/wrapper";
 import Loader from "@/components/ui/loader";
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA, {
+  ReCAPTCHAHandle,
+} from "@steamer-academy/react-google-recaptcha";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -22,7 +24,7 @@ export function NewsletterForm() {
   const [formData, setFormData] = useState<FormData>({ email: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaRef = useRef<ReCAPTCHAHandle>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -111,6 +113,7 @@ export function NewsletterForm() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center">
+            {/* @ts-ignore */}
             <ReCAPTCHA
               ref={recaptchaRef}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}

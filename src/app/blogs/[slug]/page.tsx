@@ -7,15 +7,14 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 export const revalidate = 7200;
 
 interface BlogPostProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: BlogPostProps): Promise<Metadata> {
-  const metadata = await fetchBlogMetadata(decodeURIComponent(params.slug));
+  const { slug } = await params;
+  const metadata = await fetchBlogMetadata(decodeURIComponent(slug));
 
   if (!metadata) {
     return {};
@@ -40,7 +39,8 @@ export async function generateMetadata({
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  const content = await fetchBlogContent(decodeURIComponent(params.slug));
+  const { slug } = await params;
+  const content = await fetchBlogContent(decodeURIComponent(slug));
 
   if (!content) {
     return <div>Blog post not found</div>;

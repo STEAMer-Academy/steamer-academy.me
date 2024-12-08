@@ -35,6 +35,8 @@ jobs:
           echo "NEXT_PUBLIC_CLARITY_ID=${{ secrets.NEXT_PUBLIC_CLARITY_ID }}" >> .env
           echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
           echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
+          echo "LOGTAIL_SOURCE_TOKEN=${{ secrets.LOGTAIL_SOURCE_TOKEN }}" >> .env
+          echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .env
 
       - name: 🥐 Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -54,6 +56,7 @@ jobs:
           action: "upload"
           app_location: "/"
           skip_app_build: true
+          api_build_command: "npm install --legacy-peer-deps && npm run build"
           deployment_environment: ${{ github.event_name == 'pull_request_target' && format('pull-{0}', github.event.pull_request.number) || '' }}
 
   close_pull_request:

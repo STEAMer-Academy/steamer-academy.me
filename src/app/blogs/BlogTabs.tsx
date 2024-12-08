@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { BlogData, BlogCategory } from "@/lib/redis";
 import { BlogList } from "@/components/wrapper";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
