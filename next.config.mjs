@@ -23,6 +23,7 @@ const nextConfigFunction = (phase) => {
     },
     reactStrictMode: true,
     assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
+    productionBrowserSourceMaps: true,
 
     images: {
       remotePatterns: [
