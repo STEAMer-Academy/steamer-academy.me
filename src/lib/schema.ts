@@ -89,13 +89,13 @@ export const ContactSubmissions = pgTable("ContactSubmissions", {
   lastName: text("lastName"),
   email: text("email").notNull(),
   message: text("message"),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: timestamp("createdAt").defaultNow(),
 });
 
 export const NewsletterSubscriptions = pgTable("NewsletterSubscriptions", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: timestamp("createdAt").defaultNow(),
 });
 
 export const categories = pgTable("categories", {

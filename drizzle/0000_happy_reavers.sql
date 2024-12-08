@@ -4,13 +4,13 @@ CREATE TABLE IF NOT EXISTS "ContactSubmissions" (
 	"lastName" text,
 	"email" text NOT NULL,
 	"message" text,
-	"created_at" timestamp DEFAULT now()
+	"createdAt" timestamp DEFAULT now()
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "NewsletterSubscriptions" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"email" text NOT NULL,
-	"created_at" timestamp DEFAULT now(),
+	"createdAt" timestamp DEFAULT now(),
 	CONSTRAINT "NewsletterSubscriptions_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint

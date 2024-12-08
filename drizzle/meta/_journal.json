@@ -15,6 +15,13 @@
       "when": 1733319454661,
       "tag": "0001_short_hammerhead",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1733489992951,
+      "tag": "0002_gray_xavin",
+      "breakpoints": true
     }
   ]
 }
