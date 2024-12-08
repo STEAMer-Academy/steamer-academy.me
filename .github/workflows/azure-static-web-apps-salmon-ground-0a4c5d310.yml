@@ -44,8 +44,11 @@ jobs:
       - name: 📦 Install Dependencies
         run: bun install
 
+      - name: ⚡ Cache Build
+        uses: rharkor/caching-for-turbo@v1.5
+
       - name: 🏗️ Build Project
-        run: bun run build
+        run: bunx turbo build
 
       - name: 🚀 Deploy to Azure Static Web Apps
         id: deploy
