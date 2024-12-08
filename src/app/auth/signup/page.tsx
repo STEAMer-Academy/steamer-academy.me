@@ -32,7 +32,6 @@ export default function SignUpPage() {
         image: undefined,
       },
       {
-        /* eslint-disable-next-line */
         // @ts-ignore
         onRequest: () => {
           return toast.loading("Signing up...", {
@@ -58,7 +57,6 @@ export default function SignUpPage() {
         callbackURL: "/",
       },
       {
-        /* eslint-disable-next-line */
         // @ts-ignore
         onRequest: () => {
           return toast.loading("Signing Up...", {

@@ -38,7 +38,6 @@ export default function SignInPage() {
         password,
       },
       {
-        /* eslint-disable-next-line */
         // @ts-ignore
         onRequest: () => {
           return toast.loading("Signing in...", {

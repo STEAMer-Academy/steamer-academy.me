@@ -4,6 +4,7 @@ import {
   ThumbsUpIcon as ThumbsUp,
   ZapIcon as Zap,
   SparklesIcon as Sparkles,
+  HugeiconsProps,
 } from "hugeicons-react";
 
 interface AuthLayoutProps {
@@ -60,14 +61,14 @@ function Feature({
   title,
   description,
 }: {
-  icon: React.ElementType;
+  icon: React.ComponentType<HugeiconsProps>;
   title: string;
   description: string;
 }) {
   return (
     <div className="flex gap-4">
       <div className="mt-1">
-        <Icon className="h-6 w-6 text-blue-400" />
+        <Icon size={24} color="#60A5FA" />
       </div>
       <div>
         <h3 className="mb-2 text-lg font-medium text-white">{title}</h3>
