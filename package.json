@@ -1,7 +1,16 @@
 {
-  "name": "next-app-steamer",
+  "name": "STEAMer Academy Next.js Website",
   "version": "4.1.1",
-  "private": true,
+  "author": "Muntasir Mahmud <muntasir.joypurhat@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/STEAMer-Academy/steamer-academy.me.git"
+  },
+  "bugs": {
+    "url": "https://github.com/STEAMer-Academy/steamer-academy.me/issues"
+  },
+  "homepage": "https://github.com/STEAMer-Academy/steamer-academy.me",
   "engines": {
     "node": "20"
   },

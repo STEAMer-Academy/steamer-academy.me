@@ -5,6 +5,7 @@ import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/wrapper";
+import { ErrorBoundary } from "@sentry/nextjs";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -90,11 +91,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
       </head>
-      <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
-        <CookieConsent />
-        <Toaster richColors closeButton position="top-center" />
-        {children}
-      </body>
+      <ErrorBoundary>
+        <body
+          className={`${poppins.variable} ${firaCode.variable} antialiased`}
+        >
+          <CookieConsent />
+          <Toaster richColors closeButton position="top-center" />
+          {children}
+        </body>
+      </ErrorBoundary>
     </html>
   );
 }
