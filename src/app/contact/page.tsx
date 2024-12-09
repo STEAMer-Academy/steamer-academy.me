@@ -1,10 +1,7 @@
 import { Metadata } from "next";
-import {
-  TypewriterEffectSmooth,
-  Layout,
-  ContactInfo,
-  ContactForm,
-} from "@/components/wrapper";
+import { ContactInfo, ContactForm } from "@/components/wrappers/pages/Contact";
+import { TypewriterEffectSmooth } from "@/components/wrappers/ui";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | Contact",

@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "@/components/wrapper";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 
 const PrivacyPolicyPage: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Session } from "better-auth/types";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 
 export function useSession() {
   const [session, setSession] = useState<Session | undefined>(undefined);

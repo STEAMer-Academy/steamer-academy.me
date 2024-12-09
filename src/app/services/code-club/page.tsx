@@ -1,12 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  TypewriterEffectSmooth,
-  Layout,
-  ReviewCardCode,
-  Button,
-} from "@/components/wrapper";
+import { ReviewCardCode } from "@/components/wrappers/pages/CodeClub";
+import { Button } from "@/components/wrappers/ui";
+import { TypewriterEffectSmooth } from "@/components/wrappers/ui";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",

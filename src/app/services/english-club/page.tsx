@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 import {
-  TypewriterEffectSmooth,
-  Layout,
   CountdownTimer,
-  Button,
   ReviewCardEnglish,
-} from "@/components/wrapper";
+} from "@/components/wrappers/pages/EnglishClub";
 import Link from "next/link";
+import { Button } from "@/components/wrappers/ui";
+import { TypewriterEffectSmooth } from "@/components/wrappers/ui";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | English Club",

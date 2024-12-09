@@ -1,12 +1,9 @@
 import Link from "next/link";
-import {
-  TypewriterEffectSmooth,
-  Layout,
-  GalleryGrid,
-  Globe,
-} from "@/components/wrapper";
+import { Globe } from "@/components/wrappers/pages/Home";
 import { Metadata } from "next";
-import StyledButton from "@/components/ui/styled-button";
+import { StyledButton, TypewriterEffectSmooth } from "@/components/wrappers/ui";
+import { Layout } from "@/components/wrappers/headerAndFooter";
+import { GalleryGrid } from "@/components/wrappers/pages/Gallery";
 
 const images = [
   {

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { ContactSubmissions } from "@/lib/schema";
+import { ContactSubmissions } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
 async function verifyRecaptcha(token: string) {

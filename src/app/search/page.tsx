@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
-  Layout,
   Button,
   Input,
   Pagination,
@@ -14,7 +13,8 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-} from "@/components/wrapper";
+} from "@/components/wrappers/ui";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 import Fuse from "fuse.js";
 import {
   Search01Icon,

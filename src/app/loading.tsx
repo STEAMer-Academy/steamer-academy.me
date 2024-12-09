@@ -1,6 +1,7 @@
 import Spinner from "@/components/ui/loader";
 
-export default function Loading() {
+export default async function Loading() {
+  await new Promise((resolve) => setTimeout(resolve, 400));
   return (
     <div className="fixed inset-0 z-50 flex content-center items-center justify-center bg-background">
       <div className="text-center">

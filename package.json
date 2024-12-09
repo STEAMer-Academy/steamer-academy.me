@@ -50,6 +50,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "npm:beasties",
+    "cssnano": "^7.0.6",
     "dotenv": "^16.4.7",
     "drizzle-kit": "^0.29.1",
     "drizzle-orm": "^0.37.0",
@@ -94,6 +95,8 @@
   },
   "packageManager": "bun@1.1.38",
   "trustedDependencies": [
-    "@sentry/cli"
+    "@sentry/cli",
+    "esbuild",
+    "sharp"
   ]
 }

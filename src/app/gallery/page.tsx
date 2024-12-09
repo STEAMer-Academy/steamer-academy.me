@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import {
-  TypewriterEffectSmooth,
-  Layout,
-  GalleryGrid,
-} from "@/components/wrapper";
+import { GalleryGrid } from "@/components/wrappers/pages/Gallery";
+import { Layout } from "@/components/wrappers/headerAndFooter";
+import { TypewriterEffectSmooth } from "@/components/wrappers/ui";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | Gallery",

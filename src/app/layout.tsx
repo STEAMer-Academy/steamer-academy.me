@@ -3,9 +3,8 @@ import type { Metadata, Viewport } from "next";
 import { Partytown } from "@builder.io/partytown/react";
 import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
-import CookieConsent from "@/components/CookieConsent";
-import { Toaster } from "@/components/wrapper";
-import { ErrorBoundary } from "@sentry/nextjs";
+import { CookieConsent } from "@/components/wrappers/analytics";
+import { Toaster } from "@/components/wrappers/ui";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -91,15 +90,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Partytown debug={true} forward={["dataLayer.push"]} />
       </head>
-      <ErrorBoundary>
-        <body
-          className={`${poppins.variable} ${firaCode.variable} antialiased`}
-        >
-          <CookieConsent />
-          <Toaster richColors closeButton position="top-center" />
-          {children}
-        </body>
-      </ErrorBoundary>
+      <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
+        <CookieConsent />
+        <Toaster richColors closeButton position="top-center" />
+        {children}
+      </body>
     </html>
   );
 }

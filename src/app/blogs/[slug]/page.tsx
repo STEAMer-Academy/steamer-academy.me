@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { fetchBlogContent, fetchBlogMetadata } from "@/lib/redis";
-import { Layout } from "@/components/wrapper";
+import { fetchBlogContent, fetchBlogMetadata } from "@/lib/blogs-query";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 import { Metadata } from "next";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 
@@ -48,7 +48,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <Layout>
-      <div className="container mx-auto mt-8 px-4 py-8">
+      <div className="mt-8 px-4 py-8">
         <TracingBeam>
           <article className="prose prose-invert lg:prose-xl mt-8 max-w-none">
             <MDXRemote source={content} />

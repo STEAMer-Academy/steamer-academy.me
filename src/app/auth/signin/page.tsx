@@ -3,12 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ViewIcon as Eye, ViewOffIcon as EyeOff } from "hugeicons-react";
-import { GoogleIcon, GitHubIcon } from "@/components/icons";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -16,9 +10,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { AuthLayout } from "@/components/auth-layout";
-import { authClient } from "@/lib/auth-client";
+  Label,
+  Input,
+  Button,
+  Checkbox,
+  GoogleIcon,
+  GitHubIcon,
+} from "@/components/wrappers/ui";
+import AuthLayout from "@/components/wrappers/auth";
+import { authClient } from "@/lib/auth/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 

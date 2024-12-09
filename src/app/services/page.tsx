@@ -1,5 +1,9 @@
 import { Metadata } from "next";
-import { ServicesList, ReviewsList, Layout } from "@/components/wrapper";
+import {
+  ServicesList,
+  ReviewsList,
+} from "@/components/wrappers/pages/Services";
+import { Layout } from "@/components/wrappers/headerAndFooter";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy | Services",
