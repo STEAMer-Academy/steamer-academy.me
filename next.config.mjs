@@ -3,6 +3,8 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
 import { withLogtail } from "@logtail/next";
+import fs from "fs";
+import path from "path";
 
 const withPWA = withPWAInit({
   dest: "public",
@@ -17,9 +19,14 @@ const nextConfigFunction = (phase) => {
     enabled: process.env.ANALYZE === "true",
   });
 
+  const version = fs.readFileSync(path.resolve("./version.txt"), "utf8").trim();
+
   const nextConfig = {
     experimental: {
       optimizeCss: true,
+    },
+    env: {
+      NEXT_PUBLIC_APP_VERSION: version,
     },
     reactStrictMode: true,
     assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
