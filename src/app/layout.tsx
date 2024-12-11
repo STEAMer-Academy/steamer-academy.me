@@ -107,7 +107,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
             `}
           </Script>
-          <Script id="datadog-rum" strategy="lazyOnload">
+          <Script id="datadog-rum" strategy="afterInteractive">
             {`
         {(function(h, o, u, n, d) {
           h = h[d] = h[d] || { q: [], onReady: function(c) { h.q.push(c) } }
