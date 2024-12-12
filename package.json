@@ -41,7 +41,6 @@
     "@radix-ui/react-visually-hidden": "^1.1.0",
     "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^9.0.0-rc.1",
-    "@sentry/nextjs": "^8.42.0",
     "@steamer-academy/react-google-recaptcha": "^4.1.2",
     "@types/pg": "^8.11.10",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
@@ -94,11 +93,11 @@
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "tailwindcss": "^3.4.16"
+    "tailwindcss": "^3.4.16",
+    "turbo": "^2.3.3"
   },
   "packageManager": "bun@1.1.38",
   "trustedDependencies": [
-    "@sentry/cli",
     "esbuild",
     "sharp"
   ]
