@@ -2,12 +2,16 @@
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
 import { withLogtail } from "@logtail/next";
+import type { NextConfig } from "next";
+import type { PluginOptions } from "@ducanh2912/next-pwa";
+import fs from "fs";
+import path from "path";
 
 const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
   register: true,
-});
+} satisfies PluginOptions);
 
 const nextConfigFunction = () => {
   // const isDev = phase === PHASE_DEVELOPMENT_SERVER;
@@ -16,12 +20,17 @@ const nextConfigFunction = () => {
     enabled: process.env.ANALYZE === "true",
   });
 
-  const nextConfig = {
+  const version = fs.readFileSync(path.resolve("./version.txt"), "utf8").trim();
+
+  const nextConfig: NextConfig = {
     experimental: {
       optimizeCss: true,
     },
+    env: {
+      NEXT_PUBLIC_APP_VERSION: version,
+    },
     reactStrictMode: true,
-    assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
+    // assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
 
     images: {
       remotePatterns: [
@@ -80,7 +89,7 @@ const nextConfigFunction = () => {
     },
   };
 
-  return withBundleAnalyzer(withLogtail(withPWAInit(withPWA)(nextConfig)));
+  return withBundleAnalyzer(withLogtail(withPWA(nextConfig)));
 };
 
 export default nextConfigFunction;
