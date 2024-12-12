@@ -2,6 +2,8 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
 import { withLogtail } from "@logtail/next";
+import type { NextConfig } from "next";
+import type { PluginOptions } from "@ducanh2912/next-pwa";
 import fs from "fs";
 import path from "path";
 
@@ -9,9 +11,9 @@ const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
   register: true,
-});
+} satisfies PluginOptions);
 
-const nextConfigFunction = (phase) => {
+const nextConfigFunction = (phase: string) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
   const withBundleAnalyzer = bundleAnalyzer({
@@ -20,7 +22,7 @@ const nextConfigFunction = (phase) => {
 
   const version = fs.readFileSync(path.resolve("./version.txt"), "utf8").trim();
 
-  const nextConfig = {
+  const nextConfig: NextConfig = {
     experimental: {
       optimizeCss: true,
     },
@@ -87,7 +89,7 @@ const nextConfigFunction = (phase) => {
     },
   };
 
-  return withBundleAnalyzer(withLogtail(withPWAInit(withPWA)(nextConfig)));
+  return withBundleAnalyzer(withLogtail(withPWA(nextConfig)));
 };
 
 export default nextConfigFunction;
