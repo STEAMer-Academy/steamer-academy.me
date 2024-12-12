@@ -1,22 +1,5 @@
 {
   "platform": {
     "apiRuntime": "node:20"
-  },
-
-  "auth": {
-    "identityProviders": {
-      "azureActiveDirectory": {
-        "registration": {
-          "clientIdSettingName": "AAD_CLIENT_ID",
-          "clientSecretSettingName": "AAD_CLIENT_SECRET",
-          "allowedIssuers": [
-            "https://jolly-ground-0b0dc9700-8.5.azurestaticapps.net/.auth",
-            "https://jolly-ground-0b0dc9700-8.eastasia.5.azurestaticapps.net/.auth",
-            "https://*.5.azurestaticapps.net/.auth",
-            "https://*.eastasia.5.azurestaticapps.net/.auth"
-          ]
-        }
-      }
-    }
   }
 }

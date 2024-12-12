@@ -6,9 +6,10 @@ import {
   SparklesIcon as Sparkles,
   HugeiconsProps,
 } from "hugeicons-react";
+import { ReactNode, ComponentType } from "react";
 
 interface AuthLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function AuthLayout({ children }: AuthLayoutProps) {
@@ -61,7 +62,7 @@ function Feature({
   title,
   description,
 }: {
-  icon: React.ComponentType<HugeiconsProps>;
+  icon: ComponentType<HugeiconsProps>;
   title: string;
   description: string;
 }) {

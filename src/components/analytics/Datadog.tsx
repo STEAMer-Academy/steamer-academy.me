@@ -1,10 +1,8 @@
-"use client";
-
 import Script from "next/script";
 
 export default function Datadog() {
   return (
-    <Script id="datadog">
+    <Script id="datadog-rum">
       {`
         {(function(h, o, u, n, d) {
           h = h[d] = h[d] || { q: [], onReady: function(c) { h.q.push(c) } }
@@ -21,6 +19,11 @@ export default function Datadog() {
             env: 'production',
             // Specify a version number to identify the deployed version of your application in Datadog
             // version: '1.0.0',
+	          allowedTracingUrls: [
+               "https://www.steameracademy.me",
+               /https:\\/\\/.*\\.steameracademy\\.me/,
+               (url) => url.startsWith("https://www.steameracademy.me"),
+            ],
             sessionSampleRate: 100,
             sessionReplaySampleRate: 20,
             trackUserInteractions: true,
