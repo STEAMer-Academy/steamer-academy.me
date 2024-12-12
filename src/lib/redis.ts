@@ -29,21 +29,25 @@ export const cache = new LRUCache<string, BlogData | string>({
 
 export async function fetchAllBlogs(): Promise<BlogData> {
   const cachedBlogs = cache.get("allBlogs");
-  if (cachedBlogs && typeof cachedBlogs !== "string") {
+  if (cachedBlogs && typeof cachedBlogs === "object") {
     return cachedBlogs;
   }
 
   const redisBlogs = await redis.get<BlogData>("allBlogs");
-  if (redisBlogs) {
+  if (redisBlogs && typeof redisBlogs === "object") {
     cache.set("allBlogs", redisBlogs);
     return redisBlogs;
   }
 
-  // If not in cache or Redis, return an empty object
-  // In a real-world scenario, you might want to fetch from a database here
-  return {} as BlogData;
+  // Provide a default object with all categories as empty arrays
+  return {
+    engineeringMds: [],
+    englishMds: [],
+    mathMds: [],
+    scienceMds: [],
+    technologyMds: [],
+  };
 }
-
 export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
   const allBlogs = await fetchAllBlogs();
 

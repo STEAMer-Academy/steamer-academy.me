@@ -1,5 +1,10 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { fetchBlogContent, fetchBlogMetadata } from "@/lib/redis";
+import {
+  fetchBlogContent,
+  fetchBlogMetadata,
+  BlogCategory,
+  fetchAllBlogs,
+} from "@/lib/redis";
 import { Layout } from "@/components/wrapper";
 import { Metadata } from "next";
 import { TracingBeam } from "@/components/ui/tracing-beam";
@@ -38,6 +43,23 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const blogData = await fetchAllBlogs();
+
+  const params = [];
+  for (const category in blogData) {
+    const blogs = blogData[category as BlogCategory];
+    if (Array.isArray(blogs)) {
+      params.push(
+        ...blogs.map((blog) => ({
+          slug: encodeURIComponent(blog.name),
+        })),
+      );
+    }
+  }
+
+  return params;
+}
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug } = await params;
   const content = await fetchBlogContent(decodeURIComponent(slug));

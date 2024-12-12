@@ -21,7 +21,7 @@ interface BlogListProps {
   category: BlogCategory;
 }
 
-export default function BlogList({ blogs }: BlogListProps) {
+export default function BlogList({ blogs = [] }: BlogListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 6;
   const indexOfLastBlog = currentPage * blogsPerPage;

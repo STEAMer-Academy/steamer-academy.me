@@ -82,7 +82,10 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <BlogList blogs={blogs[selectedCategory]} category={selectedCategory} />
+        <BlogList
+          blogs={blogs[selectedCategory] || []}
+          category={selectedCategory}
+        />
       </motion.div>
     </div>
   );
