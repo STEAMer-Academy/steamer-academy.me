@@ -9,10 +9,12 @@
     "format": "prettier --write --check ."
   },
   "dependencies": {
+    "@upstash/redis": "^1.34.3",
     "better-auth": "^1.0.21",
     "drizzle-kit": "^0.30.1",
     "drizzle-orm": "^0.38.2",
     "hono": "^4.6.14",
+    "lru-cache": "^11.0.2",
     "pg": "^8.13.1"
   },
   "devDependencies": {

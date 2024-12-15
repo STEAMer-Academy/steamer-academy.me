@@ -9,11 +9,13 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { twoFactor } from "better-auth/plugins/two-factor";
 import { passkey } from "better-auth/plugins/passkey";
 import { cors } from "hono/cors";
+import blogsRoute from "./routes/blogs";
 
 const app = new Hono();
 
 app.post("/newsletter", newsletter);
 app.post("/contact", contact);
+app.get("/blogs", blogsRoute);
 
 app.use("/auth/**", async (c) => {
   const pool = new Pool({
