@@ -9,8 +9,18 @@ interface RecaptchaResponse {
   success: boolean;
 }
 
-const newsletter = async(c: Context) => {
-    const pool = new Pool({
+const newsletter = async (c: Context) => {
+  c.header("Access-Control-Allow-Origin", "https://your-frontend-domain.com");
+  c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
+  c.header("Access-Control-Allow-Headers", "Content-Type");
+  c.header("Access-Control-Allow-Credentials", "true");
+
+  // Handle preflight request
+  if (c.req.method === "OPTIONS") {
+    return c.text("", 204);
+  }
+
+  const pool = new Pool({
     connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
     ssl: { rejectUnauthorized: false },
     max: 3,
@@ -18,8 +28,9 @@ const newsletter = async(c: Context) => {
 
   const db = drizzle(pool);
   async function verifyRecaptcha(token: string) {
-    const RECAPTCHA_SECRET_KEY = env<{ RECAPTCHA_SECRET_KEY: string }>(c);
-    const secretKey = RECAPTCHA_SECRET_KEY;
+    const secretKey = env<{ RECAPTCHA_SECRET_KEY: string }>(
+      c,
+    ).RECAPTCHA_SECRET_KEY;
     const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
 
     const response = await fetch(verificationUrl, { method: "POST" });
@@ -32,10 +43,7 @@ const newsletter = async(c: Context) => {
 
     // Validate the email input
     if (!email || typeof email !== "string" || !email.includes("@")) {
-      return c.json(
-        { message: "Invalid email address." },
-        { status: 400 },
-      );
+      return c.json({ message: "Invalid email address." }, { status: 400 });
     }
 
     // Verify reCAPTCHA token
@@ -76,8 +84,12 @@ const newsletter = async(c: Context) => {
   } catch (error) {
     console.error("Error subscribing to newsletter:", error);
 
+    if (error instanceof Error) {
+      return c.json({ message: `Error: ${error.message}` }, { status: 500 });
+    }
+
     return c.json(
-      { message: "Error subscribing to newsletter. Please try again later." },
+      { message: "An unexpected error occurred. Please try again later." },
       { status: 500 },
     );
   }

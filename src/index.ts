@@ -15,8 +15,8 @@ const app = new Hono();
 app.post("/newsletter", newsletter);
 app.post("/contact", contact);
 
-app.on(["POST", "GET"], "/auth/**", (c) => {
-    const pool = new Pool({
+app.use("/auth/**", async (c, next) => {
+  const pool = new Pool({
     connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
     ssl: { rejectUnauthorized: false },
     max: 3,
@@ -60,19 +60,24 @@ app.on(["POST", "GET"], "/auth/**", (c) => {
       }),
     ],
   });
-  return auth.handler(c.req.raw);
+
+  try {
+    return await auth.handler(c.req.raw);
+  } finally {
+    await pool.end();
+  }
 });
 
 app.use(
-	"*",
+  "*",
   cors({
-		origin: ["https://www.steameracademy.me", "http://localhost:3000"],
-		allowHeaders: ["Content-Type", "Authorization"],
-		allowMethods: ["POST", "GET", "OPTIONS"],
-		exposeHeaders: ["Content-Length"],
-		maxAge: 600,
-		credentials: true,
-	}),
+    origin: ["https://www.steameracademy.me", "http://localhost:3000"],
+    allowHeaders: ["Content-Type", "Authorization"],
+    allowMethods: ["POST", "GET", "OPTIONS"],
+    exposeHeaders: ["Content-Length"],
+    maxAge: 600,
+    credentials: true,
+  }),
 );
 
 export default app;

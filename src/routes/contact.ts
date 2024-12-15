@@ -9,7 +9,17 @@ interface RecaptchaResponse {
   success: boolean;
 }
 
-const contact = async(c: Context) => {
+const contact = async (c: Context) => {
+  c.header("Access-Control-Allow-Origin", "https://www.steameracademy.me");
+  c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
+  c.header("Access-Control-Allow-Headers", "Content-Type");
+  c.header("Access-Control-Allow-Credentials", "true");
+
+  // Handle preflight request
+  if (c.req.method === "OPTIONS") {
+    return c.text("", 204);
+  }
+
   const pool = new Pool({
     connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
     ssl: { rejectUnauthorized: false },
@@ -18,8 +28,9 @@ const contact = async(c: Context) => {
 
   const db = drizzle(pool);
   async function verifyRecaptcha(token: string) {
-    const RECAPTCHA_SECRET_KEY = env<{ RECAPTCHA_SECRET_KEY: string }>(c);
-    const secretKey = RECAPTCHA_SECRET_KEY;
+    const secretKey = env<{ RECAPTCHA_SECRET_KEY: string }>(
+      c,
+    ).RECAPTCHA_SECRET_KEY;
     const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
 
     const response = await fetch(verificationUrl, { method: "POST" });
@@ -30,6 +41,11 @@ const contact = async(c: Context) => {
   try {
     const { firstName, lastName, email, message, recaptchaToken } =
       await c.req.json();
+
+    // Input validation
+    if (!firstName || !lastName || !email || !message || !recaptchaToken) {
+      return c.json({ message: "All fields are required." }, { status: 400 });
+    }
 
     // Verify reCAPTCHA
     const isHuman = await verifyRecaptcha(recaptchaToken);
@@ -74,6 +90,8 @@ const contact = async(c: Context) => {
       { message: "Error submitting form. Please try again later." },
       { status: 500 },
     );
+  } finally {
+    await pool.end();
   }
 };
 
