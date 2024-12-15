@@ -3,7 +3,7 @@ import { env } from "hono/adapter";
 import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { blogs, categories } from "../db/schema";
-import { Redis } from "@upstash/redis";
+import { Redis } from "@upstash/redis/cloudflare";
 import { LRUCache } from "lru-cache";
 
 interface Blog {
