@@ -2,7 +2,7 @@
   "name": "backend",
   "scripts": {
     "dev": "wrangler dev src/index.ts --compatibility-flag nodejs_compat --compatibility-date 2024-09-23",
-    "deploy": "wrangler deploy --minify"
+    "deploy": "wrangler deploy --minify --compatibility-flag nodejs_compat --compatibility-date 2024-09-23 src/index.ts"
   },
   "dependencies": {
     "better-auth": "^1.0.21",
