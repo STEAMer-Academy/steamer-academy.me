@@ -2,7 +2,11 @@
   "name": "backend",
   "scripts": {
     "dev": "wrangler dev src/index.ts --compatibility-flag nodejs_compat --compatibility-date 2024-09-23",
-    "deploy": "wrangler deploy --minify --compatibility-flag nodejs_compat --compatibility-date 2024-09-23 src/index.ts"
+    "deploy": "wrangler deploy --minify --compatibility-flag nodejs_compat --compatibility-date 2024-09-23 src/index.ts",
+    "build": "npx wrangler deploy --minify --compatibility-flag nodejs_compat --compatibility-date 2024-09-23 src/index.ts --dry-run --name api --outdir=dist",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --write --check ."
   },
   "dependencies": {
     "better-auth": "^1.0.21",
@@ -18,6 +22,7 @@
     "dotenv": "^16.4.7",
     "eslint": "^9.17.0",
     "globals": "^15.13.0",
+    "prettier": "^3.4.2",
     "typescript-eslint": "^8.18.0",
     "wrangler": "^3.88.0"
   }

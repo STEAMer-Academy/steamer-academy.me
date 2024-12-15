@@ -15,7 +15,7 @@ const app = new Hono();
 app.post("/newsletter", newsletter);
 app.post("/contact", contact);
 
-app.use("/auth/**", async (c, next) => {
+app.use("/auth/**", async (c) => {
   const pool = new Pool({
     connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
     ssl: { rejectUnauthorized: false },
