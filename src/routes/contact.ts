@@ -10,7 +10,17 @@ interface RecaptchaResponse {
 }
 
 const contact = async (c: Context) => {
-  c.header("Access-Control-Allow-Origin", "https://www.steameracademy.me, http://localhost:3000");
+  const allowedOrigins = new Set([
+    "https://www.steameracademy.me",
+    "http://localhost:3000",
+  ]);
+
+  const origin = c.req.header("Origin");
+
+  if (origin && allowedOrigins.has(origin)) {
+    c.header("Access-Control-Allow-Origin", origin);
+  }
+
   c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
   c.header("Access-Control-Allow-Headers", "Content-Type");
   c.header("Access-Control-Allow-Credentials", "true");
