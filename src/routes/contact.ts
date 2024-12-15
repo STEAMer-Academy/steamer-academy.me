@@ -10,7 +10,7 @@ interface RecaptchaResponse {
 }
 
 const contact = async (c: Context) => {
-  c.header("Access-Control-Allow-Origin", "https://www.steameracademy.me");
+  c.header("Access-Control-Allow-Origin", "https://www.steameracademy.me, http://localhost:3000");
   c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
   c.header("Access-Control-Allow-Headers", "Content-Type");
   c.header("Access-Control-Allow-Credentials", "true");
