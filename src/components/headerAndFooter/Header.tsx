@@ -262,7 +262,7 @@ export default function Header() {
             <div className="ml-auto flex items-center gap-2">
               <Button
                 variant="outline"
-                className="gap-2 border-primary px-2 text-sm hover:bg-primary hover:text-primary-foreground"
+                className="gap-2 px-2 text-sm hover:bg-primary hover:text-primary-foreground"
                 onClick={() => setOpen(true)}
               >
                 <Search className="size-4" />
