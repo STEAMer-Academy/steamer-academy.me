@@ -1,6 +1,8 @@
+"use client";
+
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { MultiplicationSignIcon as X } from "hugeicons-react";
+import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 

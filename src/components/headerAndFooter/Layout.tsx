@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/wrappers/headerAndFooter";
 import { ThemeProvider } from "@/components/themeToggle/ThemeProvider";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "STEAMer Academy",
   description: "Learn STEAM subjects with STEAMer Academy",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <div>
       <ThemeProvider>

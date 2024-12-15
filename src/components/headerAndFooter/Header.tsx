@@ -1,37 +1,47 @@
 "use client";
 
-import { useState, useEffect, useMemo, useTransition, Suspense } from "react";
+import { useState, useEffect, useRef, MouseEvent, ComponentType } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import Form from "next/form";
+import Image from "next/image";
+import { motion, AnimatePresence, TargetAndTransition } from "framer-motion";
+import { useMediaQuery } from "@react-hook/media-query";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetClose,
-  Input,
   Button,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
   DropdownMenu,
 } from "@/components/wrappers/ui";
 import { cn } from "@/lib/utils";
 import {
-  Search01Icon,
-  Menu01Icon,
-  Home07Icon,
-  BookEditIcon,
-  InformationCircleIcon,
-  Image01Icon,
-  File01Icon,
-  CallIcon,
-  LanguageSkillIcon,
+  Search01Icon as Search,
+  Menu01Icon as Menu,
+  Home07Icon as Home,
+  InformationCircleIcon as Info,
+  Image01Icon as ImageIcon,
+  File01Icon as FileText,
+  SmartPhone01Icon as Phone,
   CodeIcon,
+  LanguageSkillIcon,
+  BookEditIcon,
+  HugeiconsProps,
 } from "hugeicons-react";
-import Image from "next/image";
 import ThemeToggle from "@/components/themeToggle/ThemeToggle";
-import Fuse from "fuse.js";
 import { useSession } from "@/hooks/use-session";
 import { authClient } from "@/lib/auth/auth-client";
-import Loader from "@/components/ui/loader";
+
+interface NavigationItem {
+  href: string;
+  label: string;
+  icon: ComponentType<HugeiconsProps>;
+}
 
 interface SearchItem {
   id: string;
@@ -40,40 +50,58 @@ interface SearchItem {
   url: string;
 }
 
-const getIconForUrl = (url: string) => {
-  if (url.includes("/blogs")) return File01Icon;
-  if (url.includes("/gallery")) return Image01Icon;
-  if (url.includes("/contact")) return CallIcon;
-  if (url.includes("/about")) return InformationCircleIcon;
-  if (url.includes("/services/code-club")) return CodeIcon;
-  if (url.includes("/services/english-club")) return LanguageSkillIcon;
-  return Home07Icon;
-};
+interface NavState {
+  opacity: number;
+  left: number;
+  width: number;
+}
+
+const navigation: NavigationItem[] = [
+  { href: "/about", label: "About", icon: Info },
+  { href: "/gallery", label: "Gallery", icon: ImageIcon },
+  { href: "/blogs", label: "Blogs", icon: FileText },
+  { href: "/contact", label: "Contact", icon: Phone },
+];
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [searchData, setSearchData] = useState<SearchItem[]>([]);
-  const [isPending, startTransition] = useTransition();
+  const [navState, setNavState] = useState<NavState>({
+    opacity: 0,
+    left: 0,
+    width: 0,
+  });
+
+  const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
+  const { session } = useSession();
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const fuse = useMemo(() => {
-    return new Fuse(searchData, {
-      keys: ["title", "content"],
-      threshold: 0.3,
-    });
-  }, [searchData]);
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 0);
-      setIsVisible(currentScrollY < lastScrollY || currentScrollY < 10);
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
       setLastScrollY(currentScrollY);
     };
 
@@ -91,34 +119,32 @@ export default function Header() {
     fetchSearchData();
   }, []);
 
-  useEffect(() => {
-    const performSearch = () => {
-      startTransition(() => {
-        const results = fuse.search(searchValue).map((result) => result.item);
-        setSearchResults(results.slice(0, 5)); // Limit to 5 results
-        setShowDropdown(true);
-      });
-    };
-
-    if (searchValue.length > 0) {
-      performSearch();
-    } else {
-      setSearchResults([]);
-    }
-  }, [searchValue, fuse]);
-
-  const truncateContent = (content: string, maxLength: number) => {
-    if (content.length <= maxLength) return content;
-    return content.slice(0, maxLength) + "...";
+  const handleSearch = (query: string) => {
+    const filtered = searchData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item.content.toLowerCase().includes(query.toLowerCase()),
+    );
+    setSearchResults(filtered);
   };
 
-  const navItems = [
-    { href: "/", label: "Home", icon: Home07Icon },
-    { href: "/about", label: "About", icon: InformationCircleIcon },
-    { href: "/gallery", label: "Gallery", icon: Image01Icon },
-    { href: "/blogs", label: "Blogs", icon: File01Icon },
-    { href: "/contact", label: "Contact", icon: CallIcon },
-  ];
+  const handleMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
+    const { width, left } = event.currentTarget.getBoundingClientRect();
+    const parentLeft = navRef.current?.getBoundingClientRect().left || 0;
+
+    setNavState({
+      width,
+      opacity: 1,
+      left: left - parentLeft,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setNavState((prev) => ({
+      ...prev,
+      opacity: 0,
+    }));
+  };
 
   const services = [
     {
@@ -129,218 +155,62 @@ export default function Header() {
     { href: "/services/code-club", label: "Code Club", icon: CodeIcon },
   ];
 
-  const { session } = useSession();
-
   return (
-    <header
-      className={cn(
-        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-opacity-60 shadow-xl backdrop-blur-xl" : "",
-        isVisible ? "translate-y-0" : "-translate-y-full",
-      )}
-    >
-      <nav className="mx-auto w-full p-4">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center space-x-2"
-            prefetch={true}
-          >
-            <Image
-              src="/assets/Favicon/favicon.png"
-              alt="STEAMer Academy Logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <span className="text-2xl font-bold">STEAMer Academy</span>
-          </Link>
-          <div className="hidden items-center space-x-4 lg:flex">
-            <Button
-              variant={pathname === "/" ? "secondary" : "ghost"}
-              asChild
-              className="font-sans font-medium"
+    <AnimatePresence>
+      {isVisible && (
+        <motion.header
+          className={cn(
+            "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+            lastScrollY > 0 ? "bg-opacity-80 backdrop-blur-lg" : "",
+          )}
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          exit={{ y: -100 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        >
+          <nav className="mx-auto flex h-16 max-w-screen-2xl items-center px-4">
+            <Link
+              href="/"
+              className="flex shrink-0 items-center"
+              prefetch={true}
             >
-              <Link href="/" prefetch={true} className="flex items-center">
-                <Home07Icon className="mr-2 size-4" />
-                Home
-              </Link>
-            </Button>
-            <DropdownMenu
-              trigger={
-                <span className="flex items-center">
-                  <BookEditIcon className="mr-2 size-4" />
-                  Services
-                </span>
-              }
-              items={services.map((service) => ({
-                label: service.label,
-                icon: <service.icon className="size-4" />,
-                onClick: () => router.push(service.href),
-              }))}
-              align="start"
-              className="font-sans font-medium"
-            />
-            {navItems.slice(1).map((item) => (
-              <Button
-                key={item.href}
-                variant={pathname === item.href ? "secondary" : "ghost"}
-                asChild
-                className="font-sans font-medium"
-              >
-                <Link
-                  href={item.href}
-                  prefetch={true}
-                  className="flex items-center"
-                >
-                  <item.icon className="mr-2 size-4" />
-                  {item.label}
-                </Link>
-              </Button>
-            ))}
-          </div>
-          <div className="hidden items-center space-x-4 lg:flex">
-            <div className="relative">
-              <Form action="/search" className="relative">
-                <Search01Icon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  type="search"
-                  name="q"
-                  placeholder="Search..."
-                  className="w-64 pl-10"
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  onFocus={() => setShowDropdown(true)}
-                />
-              </Form>
-              {showDropdown && (
-                <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
-                  <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-                    {isPending ? (
-                      <li className="px-4 py-2 text-muted-foreground">
-                        Loading...
-                      </li>
-                    ) : searchResults.length > 0 ? (
-                      searchResults.map((result) => {
-                        const IconComponent = getIconForUrl(result.url);
-                        return (
-                          <li key={result.id}>
-                            <Link
-                              href={result.url}
-                              prefetch={true}
-                              className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
-                              onClick={() => setShowDropdown(false)}
-                            >
-                              <IconComponent className="mr-2 size-4" />
-                              {truncateContent(result.title, 50)}
-                            </Link>
-                          </li>
-                        );
-                      })
-                    ) : (
-                      <li className="px-4 py-2 text-muted-foreground">
-                        No results found
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              )}
-            </div>
-            {session ? (
-              <Suspense fallback={<Loader />}>
-                <Button onClick={() => authClient.signOut()}>Sign Out</Button>
-              </Suspense>
-            ) : (
-              <>
-                <Suspense fallback={<Loader />}>
-                  <Button onClick={() => router.push("/auth/signin")}>
-                    Sign In
-                  </Button>
-                  <Button onClick={() => router.push("/auth/signup")}>
-                    Sign Up
-                  </Button>
-                </Suspense>
-              </>
-            )}
-            <ThemeToggle />
-          </div>
+              <Image
+                src="/assets/Favicon/favicon.png"
+                alt="Logo"
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
+            </Link>
 
-          <div className="lg:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu01Icon
-                    className="size-6"
-                    aria-label="Menu Icon For Smaller Devices"
-                  />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" aria-describedby="Search Box">
-                <nav className="flex flex-col space-y-4">
-                  <div className="relative">
-                    <Form action="/search" className="relative mb-4">
-                      <Search01Icon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                      <Input
-                        type="search"
-                        name="q"
-                        placeholder="Search..."
-                        className="pl-10 pr-6"
-                        value={searchValue}
-                        onChange={(e) => setSearchValue(e.target.value)}
-                        onFocus={() => setShowDropdown(true)}
-                      />
-                    </Form>
-                    {showDropdown && (
-                      <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
-                        <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-                          {isPending ? (
-                            <li className="px-4 py-2 text-muted-foreground">
-                              Loading...
-                            </li>
-                          ) : searchResults.length > 0 ? (
-                            searchResults.map((result) => {
-                              const IconComponent = getIconForUrl(result.url);
-                              return (
-                                <li key={result.id}>
-                                  <SheetClose asChild>
-                                    <Link
-                                      href={result.url}
-                                      prefetch={true}
-                                      className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
-                                      onClick={() => setShowDropdown(false)}
-                                    >
-                                      <IconComponent className="mr-2 size-4" />
-                                      {truncateContent(result.title, 50)}
-                                    </Link>
-                                  </SheetClose>
-                                </li>
-                              );
-                            })
-                          ) : (
-                            <li className="px-4 py-2 text-muted-foreground">
-                              No results found
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                  <SheetClose asChild>
-                    <Button
-                      variant={pathname === "/" ? "secondary" : "ghost"}
-                      asChild
-                      className="justify-start font-sans font-medium"
+            <div className="hidden flex-1 justify-center md:flex">
+              <div
+                ref={navRef}
+                className="relative flex items-center gap-1 p-1"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                >
+                  <Button
+                    variant={pathname === "/" ? "secondary" : "ghost"}
+                    asChild
+                    className="font-sans font-medium"
+                  >
+                    <Link
+                      href="/"
+                      prefetch={true}
+                      className="flex items-center"
                     >
-                      <Link
-                        href="/"
-                        prefetch={true}
-                        className="flex items-center"
-                      >
-                        <Home07Icon className="mr-2 size-4" />
-                        Home
-                      </Link>
-                    </Button>
-                  </SheetClose>
+                      <Home className="mr-2 size-4" />
+                      Home
+                    </Link>
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                >
                   <DropdownMenu
                     trigger={
                       <span className="flex items-center">
@@ -351,43 +221,141 @@ export default function Header() {
                     items={services.map((service) => ({
                       label: service.label,
                       icon: <service.icon className="size-4" />,
-                      onClick: () => {
-                        router.push(service.href);
-                        (
-                          document.querySelector(
-                            "[data-radix-collection-item]",
-                          ) as HTMLElement
-                        )?.click();
-                      },
+                      onClick: () => router.push(service.href),
                     }))}
                     align="start"
                     className="font-sans font-medium"
                   />
-                  {navItems.slice(1).map((item) => (
-                    <SheetClose asChild key={item.href}>
+                </motion.div>
+                {navigation.map((item) => (
+                  <div
+                    key={item.href}
+                    className="relative z-10 px-4 py-2"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "relative text-sm font-medium transition-colors",
+                        pathname === item.href
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-primary",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
+                ))}
+                <motion.div
+                  className="absolute left-0 top-0 z-0 h-full rounded-md bg-background"
+                  animate={navState as TargetAndTransition}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30,
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="ml-auto flex items-center gap-2">
+              <Button
+                variant="outline"
+                className="gap-2 border-primary px-2 text-sm hover:bg-primary hover:text-primary-foreground"
+                onClick={() => setOpen(true)}
+              >
+                <Search className="size-4" />
+                <span className="hidden md:inline-flex">Search...</span>
+                <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 md:flex">
+                  <span className="text-xs">⌘</span>K
+                </kbd>
+              </Button>
+
+              {!isMobile && <ThemeToggle />}
+
+              {session ? (
+                <Button size="sm" onClick={() => authClient.signOut()}>
+                  Sign Out
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => router.push("/auth/signin")}
+                  >
+                    Sign In
+                  </Button>
+                  <Button
+                    size="sm"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    onClick={() => router.push("/auth/signup")}
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
+
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="md:hidden">
+                    <Menu className="size-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="top" className="h-screen pt-20">
+                  <nav className="flex flex-col space-y-4">
+                    {navigation.map((item) => (
                       <Button
+                        key={item.href}
                         variant={pathname === item.href ? "secondary" : "ghost"}
+                        className="justify-start"
                         asChild
-                        className="justify-start font-sans font-medium"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
-                        <Link
-                          href={item.href}
-                          prefetch={true}
-                          className="flex items-center"
-                        >
+                        <Link href={item.href}>
                           <item.icon className="mr-2 size-4" />
                           {item.label}
                         </Link>
                       </Button>
-                    </SheetClose>
-                  ))}
-                  <ThemeToggle />
-                </nav>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-      </nav>
-    </header>
+                    ))}
+                    <ThemeToggle />
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </nav>
+
+          <CommandDialog open={open} onOpenChange={setOpen}>
+            <CommandInput
+              placeholder="Type a command or search..."
+              onValueChange={handleSearch}
+            />
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandGroup heading="Search Results">
+                {searchResults.map((item) => {
+                  const Icon =
+                    navigation.find((nav) => nav.href === item.url)?.icon ||
+                    FileText;
+                  return (
+                    <CommandItem
+                      key={item.id}
+                      onSelect={() => {
+                        router.push(item.url);
+                        setOpen(false);
+                      }}
+                    >
+                      <Icon className="mr-2 size-4" />
+                      <span>{item.title}</span>
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+            </CommandList>
+          </CommandDialog>
+        </motion.header>
+      )}
+    </AnimatePresence>
   );
 }

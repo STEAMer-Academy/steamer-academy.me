@@ -197,3 +197,33 @@ export const TabsList = dynamic(() =>
 export const TabsTrigger = dynamic(() =>
   import("@/components/ui/tabs").then((mod) => mod.TabsTrigger),
 );
+
+/* === Command Component === */
+
+export const Command = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.Command),
+);
+
+export const CommandDialog = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.CommandDialog),
+);
+
+export const CommandEmpty = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.CommandEmpty),
+);
+
+export const CommandItem = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.CommandItem),
+);
+
+export const CommandList = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.CommandList),
+);
+
+export const CommandGroup = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.CommandGroup),
+);
+
+export const CommandInput = dynamic(() =>
+  import("@/components/ui/command").then((mod) => mod.CommandInput),
+);

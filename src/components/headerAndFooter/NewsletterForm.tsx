@@ -114,6 +114,7 @@ export function NewsletterForm() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center">
+            {/* eslint-disable-next-line */}
             {/* @ts-ignore */}
             <ReCAPTCHA
               ref={recaptchaRef}

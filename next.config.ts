@@ -20,7 +20,7 @@ const nextConfigFunction = () => {
     enabled: process.env.ANALYZE === "true",
   });
 
-  const version = fs.readFileSync(path.resolve("./version.txt"), "utf8").trim();
+  const version = fs.readFileSync(path.resolve("./VERSION"), "utf8").trim();
 
   const nextConfig: NextConfig = {
     experimental: {

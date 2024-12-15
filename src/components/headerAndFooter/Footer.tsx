@@ -1,166 +1,172 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Location01Icon,
-  Mail01Icon,
-  Clock01Icon,
-  CopyrightIcon,
-  Facebook01Icon,
-  // NewTwitterIcon,
-  DiscordIcon,
-  WhatsappIcon,
-  Github01Icon,
+  Facebook01Icon as Facebook,
+  // NewTwitterIcon as Twitter,
+  DiscordIcon as Discord,
+  WhatsappIcon as Whatsapp,
+  GithubIcon as Github,
+  Mail01Icon as Mail,
+  Location01Icon as MapPin,
+  Clock01Icon as Clock,
 } from "hugeicons-react";
-import { NewsletterForm } from "@/components/wrappers/headerAndFooter";
+import { NewsletterForm } from "../wrappers/headerAndFooter";
 
 export default function Footer() {
   return (
-    <footer className="border-t text-left">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
-          {/* Company Info */}
-          <div className="col-span-1 lg:col-span-2">
-            <h3 className="mb-4 text-lg font-bold">Our Socials</h3>
-            <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-              Follow us on social media for the latest updates and offers. We
-              are active on Facebook, Discord, WhatsApp, and GitHub.
+    <footer>
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Link href="/" className="flex items-center space-x-2">
+              <Image
+                src="/assets/Favicon/favicon.png"
+                alt="STEAMer Academy Logo"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <span className="text-xl font-bold">STEAMer Academy</span>
+            </Link>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Empowering the next generation through innovative STEAM education.
             </p>
-            <div className="flex space-x-4">
+            <div className="mt-4 flex space-x-4">
               <Link
                 href="https://www.facebook.com/profile.php?id=61567677111933"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500"
-                aria-label="Facebook Page Link"
+                aria-label="Facebook"
               >
-                <Facebook01Icon className="size-6" />
+                <Facebook size={20} />
               </Link>
-              {/* <Link href="#" className="text-gray-400 hover:text-gray-700"> */}
-              {/*   <NewTwitterIcon className="h-6 w-6" /> */}
+              {/* <Link */}
+              {/*   href="https://twitter.com" */}
+              {/*   target="_blank" */}
+              {/*   rel="noopener noreferrer" */}
+              {/*   className="text-muted-foreground hover:text-primary" */}
+              {/* > */}
+              {/*   <Twitter size={20} /> */}
               {/* </Link> */}
               <Link
                 href="https://discord.gg/Kqpbawj9KU"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-600"
-                aria-label="Discord Server Link"
+                aria-label="Discord"
               >
-                <DiscordIcon className="size-6" />
+                <Discord size={20} />
               </Link>
               <Link
                 href="https://whatsapp.com/channel/0029VaM5E3V1NCrcgLXjKN43"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-green-500"
-                aria-label="WhatsApp Channel Link"
+                aria-label="WhatsApp"
               >
-                <WhatsappIcon className="size-6" />
+                <Whatsapp size={20} />
               </Link>
               <Link
                 href="https://github.com/STEAMer-Academy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-gray-800"
-                aria-label="GitHub Repository Link"
+                aria-label="GitHub"
               >
-                <Github01Icon className="size-6" />
+                <Github size={20} />
               </Link>
             </div>
+            <div className="mt-4">
+              <iframe
+                src="https://status.steameracademy.me/badge?theme=dark"
+                width="250"
+                height="30"
+                title="STEAMer Academy Status"
+              ></iframe>
+            </div>
           </div>
-
-          {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-lg font-bold">Quick Links</h3>
+            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/about"
-                  prefetch={true}
-                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                  className="text-muted-foreground hover:text-primary"
                 >
                   About Us
                 </Link>
               </li>
               <li>
                 <Link
-                  prefetch={true}
                   href="/services"
-                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                  className="text-muted-foreground hover:text-primary"
                 >
                   Our Services
                 </Link>
               </li>
               <li>
                 <Link
-                  prefetch={true}
                   href="/contact"
-                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                  className="text-muted-foreground hover:text-primary"
                 >
                   Contact Us
                 </Link>
               </li>
               <li>
                 <Link
-                  prefetch={true}
                   href="/gallery"
-                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                  className="text-muted-foreground hover:text-primary"
                 >
                   Gallery
                 </Link>
               </li>
               <li>
                 <Link
-                  prefetch={true}
-                  href="https://status.steameracademy.me"
-                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
-                >
-                  Status
-                </Link>
-              </li>
-              <li>
-                <Link
-                  prefetch={true}
                   href="/privacy-policy"
-                  className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
+                  className="text-muted-foreground hover:text-primary"
                 >
                   Privacy Policy
                 </Link>
               </li>
             </ul>
           </div>
-
-          {/* Contact Info */}
           <div>
-            <h3 className="mb-4 text-lg font-bold">Contact Us</h3>
+            <h3 className="mb-4 text-lg font-semibold">Contact Info</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
-                <Location01Icon className="size-5 text-gray-400" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <MapPin size={16} className="text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
                   Dhaka, Bangladesh
                 </span>
               </li>
               <li className="flex items-center space-x-2">
-                <Mail01Icon className="size-5 text-gray-400" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <Mail size={16} className="text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
                   support@steameracademy.me
                 </span>
               </li>
               <li className="flex items-center space-x-2">
-                <Clock01Icon className="size-5 text-gray-400" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <Clock size={16} className="text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
                   Friday - Saturday, 8am - 8pm
                 </span>
               </li>
             </ul>
           </div>
-
-          {/* Newsletter */}
           <div>
-            <h3 className="mb-4 text-lg font-bold">
-              Subscribe to Our Newsletter
-            </h3>
+            <h3 className="mb-4 text-lg font-semibold">Newsletter</h3>
+            <p className="mb-4 text-sm text-muted-foreground">
+              Subscribe to our newsletter for updates and offers.
+            </p>
             <NewsletterForm />
           </div>
         </div>
-
-        {/* Footer Copyright */}
-        <div className="mt-8 border-t border-gray-200 pt-8 text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            <CopyrightIcon className="mr-2 inline-block size-4" />
-            <span>2024 STEAMer Academy. All rights reserved.</span>
+        <div className="mt-8 border-t border-border pt-8 text-center">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} STEAMer Academy. All rights reserved.
           </p>
         </div>
       </div>

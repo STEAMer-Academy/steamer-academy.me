@@ -2,9 +2,9 @@ name: 🚀 CodeQL Analysis
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "dev"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "dev"]
   schedule:
     - cron: "19 4 * * 2"
 
