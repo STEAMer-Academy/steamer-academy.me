@@ -1,12 +1,4 @@
 
-<a name="v0.1.0"></a>
-## [v0.1.0](https://github.com/STEAMer-Academy/steamer-academy.me/compare/v4.1.0...v0.1.0) (2024-12-15)
-
-### Fix
-
-* Drizzle
-
-
 <a name="v4.1.0"></a>
 ## [v4.1.0](https://github.com/STEAMer-Academy/steamer-academy.me/compare/v4.0.1...v4.1.0) (2024-12-07)
 
