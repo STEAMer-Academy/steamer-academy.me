@@ -49,20 +49,24 @@ export function NewsletterForm() {
     }
 
     try {
-      const response = await fetch("/api/newsletter", {
+      const response = await fetch("https://api.steameracademy.me/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include", // This is important for CORS
         body: JSON.stringify({
           email: formData.email,
           recaptchaToken: recaptchaValue,
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "An error occurred while subscribing");
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || `HTTP error! status: ${response.status}`,
+        );
       }
+
+      const data = await response.json();
 
       toast.success(data.message || "Thanks for subscribing!");
       setFormData({ email: "" });
@@ -70,7 +74,9 @@ export function NewsletterForm() {
     } catch (error) {
       console.error("Subscription error:", error);
       toast.error(
-        error instanceof Error ? error.message : "An unexpected error occurred",
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred. Please try again.",
       );
     } finally {
       setIsLoading(false);

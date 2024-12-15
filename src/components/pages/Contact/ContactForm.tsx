@@ -63,9 +63,12 @@ export default function ContactForm() {
     }
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.steameracademy.me/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
         body: JSON.stringify({
           ...formData,
           recaptchaToken: recaptchaValue,
@@ -87,9 +90,12 @@ export default function ContactForm() {
       });
       recaptchaRef.current?.reset();
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      toast.error(`Form submission error: ${errorMessage}`);
+      console.error("Form submission error:", error);
+      if (error instanceof Error) {
+        toast.error(`Error: ${error.message}`);
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -106,6 +112,7 @@ export default function ContactForm() {
             value={formData.firstName}
             onChange={handleChange}
             required
+            aria-label="First name"
           />
           <Input
             type="text"
@@ -114,6 +121,7 @@ export default function ContactForm() {
             value={formData.lastName}
             onChange={handleChange}
             required
+            aria-label="Last name"
           />
         </div>
 
@@ -124,6 +132,7 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
+          aria-label="Email"
         />
 
         <Textarea
@@ -133,6 +142,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={6}
+          aria-label="Message"
         />
 
         <Button type="submit" disabled={isLoading} className="relative p-[3px]">
@@ -159,9 +169,6 @@ export default function ContactForm() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center">
-            {}
-            {/* eslint-disable-next-line */}
-            {/* @ts-ignore */}
             <ReCAPTCHA
               ref={recaptchaRef}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
