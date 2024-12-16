@@ -77,7 +77,7 @@ app.use(
   "*",
   cors({
     origin: ["https://www.steameracademy.me", "http://localhost:3000"],
-    allowHeaders: ["Content-Type", "Authorization"],
+    allowHeaders: ["Content-Type", "Authorization","x-datadog-origin"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
