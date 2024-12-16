@@ -30,7 +30,7 @@ app.use("/api/auth/**", async (c) => {
   }
 
   c.header("Access-Control-Allow-Credentials", "true");
-  c.header("Access-Control-Allow-Headers", "Content-Type, Authorization, x-datadog-origin");
+  c.header("Access-Control-Allow-Headers", "Content-Type, Authorization, x-datadog-origin, x-datadog-parent-id");
 
   // Handle preflight request
   if (c.req.method === "OPTIONS") {
