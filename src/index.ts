@@ -63,6 +63,7 @@ app.use("/api/auth/**", async (c) => {
 
   const auth = betterAuth({
     appName: "Steamer Academy",
+    baseURL: "https://api.steameracademy.me",
     advanced: {
       cookiePrefix: "steamer-academy",
       crossSubDomainCookies: {
