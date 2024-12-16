@@ -30,6 +30,9 @@ app.use("/auth/**", async (c) => {
     appName: "Steamer Academy",
     advanced: {
       cookiePrefix: "steamer-academy",
+      crossSubDomainCookies: {
+        enabled: true,
+      },
     },
     session: {
       cookieCache: {
