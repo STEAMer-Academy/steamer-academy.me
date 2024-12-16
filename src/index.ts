@@ -30,7 +30,7 @@ app.use("/api/auth/**", async (c) => {
   }
 
   c.header("Access-Control-Allow-Credentials", "true");
-  c.header("Access-Control-Allow-Headers", "Content-Type, Authorization, x-datadog-origin");
+  c.header("Access-Control-Allow-Headers", "*");
 
   // Handle preflight request
   if (c.req.method === "OPTIONS") {
@@ -96,7 +96,7 @@ app.use(
   "*",
   cors({
     origin: ["https://www.steameracademy.me", "http://localhost:3000"],
-    allowHeaders: ["Content-Type", "Authorization", "x-datadog-origin"],
+    allowHeaders: ["*"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
