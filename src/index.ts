@@ -11,12 +11,15 @@ import { passkey } from "better-auth/plugins/passkey";
 import { cors } from "hono/cors";
 import blogsRoute from "./routes/blogs";
 import { schema } from "./db/schema";
+import search from "./routes/search";
 
 const app = new Hono();
 
 app.post("/newsletter", newsletter);
 app.post("/contact", contact);
 app.get("/blogs", blogsRoute);
+
+app.get("/search", search);
 
 app.use("/api/auth/**", async (c) => {
   const allowedOrigins = new Set([
