@@ -4,7 +4,6 @@ import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { blogs, categories } from "../db/schema";
 import { Redis } from "@upstash/redis/cloudflare";
-import { LRUCache } from "lru-cache";
 
 interface Blog {
   name: string;
@@ -56,27 +55,16 @@ const blogsRoute = async (c: Context) => {
     token: env<{ REDIS_TOKEN: string }>(c).REDIS_TOKEN,
   });
 
-  const cache = new LRUCache<string, BlogData | string>({
-    max: 100,
-    ttl: 1000 * 60 * 30, // 30 minutes
-  });
-
   async function fetchAllBlogs(): Promise<BlogData> {
-    const cachedBlogs = cache.get("allBlogs");
-    if (cachedBlogs && typeof cachedBlogs !== "string") {
-      return cachedBlogs;
-    }
 
     const redisBlogs = await redis.get<BlogData>("allBlogs");
     if (redisBlogs) {
-      cache.set("allBlogs", redisBlogs);
       return redisBlogs;
     }
 
     const blogsFromPg = await fetchBlogsFromDB();
 
     await redis.set("allBlogs", blogsFromPg, { ex: 60 * 60 }); // 1 hour
-    cache.set("allBlogs", blogsFromPg);
 
     return blogsFromPg;
   }

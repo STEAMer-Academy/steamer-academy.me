@@ -14,7 +14,6 @@
     "drizzle-kit": "^0.30.1",
     "drizzle-orm": "^0.38.2",
     "hono": "^4.6.14",
-    "lru-cache": "^11.0.2",
     "pg": "^8.13.1"
   },
   "devDependencies": {
