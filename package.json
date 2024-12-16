@@ -73,7 +73,7 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "@types/react-google-recaptcha": "^2.1.9",
-    "@types/three": "^0.170.0",
+    "@types/three": "^0.171.0",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.49",
