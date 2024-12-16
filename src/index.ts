@@ -18,6 +18,22 @@ app.post("/contact", contact);
 app.get("/blogs", blogsRoute);
 
 app.use("/api/auth/**", async (c) => {
+  const allowedOrigins = new Set([
+    "https://www.steameracademy.me",
+    "http://localhost:3000",
+  ]);
+
+  const origin = c.req.header("Origin");
+
+  if (origin && allowedOrigins.has(origin)) {
+    c.header("Access-Control-Allow-Origin", origin);
+  }
+
+  // Handle preflight request
+  if (c.req.method === "OPTIONS") {
+    return c.text("", 204);
+  }
+
   const pool = new Pool({
     connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
     ssl: { rejectUnauthorized: false },
@@ -77,7 +93,7 @@ app.use(
   "*",
   cors({
     origin: ["https://www.steameracademy.me", "http://localhost:3000"],
-    allowHeaders: ["Content-Type", "Authorization","x-datadog-origin"],
+    allowHeaders: ["Content-Type", "Authorization", "x-datadog-origin"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
