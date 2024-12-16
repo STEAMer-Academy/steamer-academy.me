@@ -103,7 +103,10 @@ app.use("/api/auth/**", async (c) => {
   });
 
   try {
-    return await auth.handler(c.req.raw);
+    const response = await auth.handler(c.req.raw);
+    response.headers.set("Access-Control-Allow-Origin", origin || "");
+    response.headers.set("Access-Control-Allow-Credentials", "true");
+    return response;
   } finally {
     await pool.end();
   }
