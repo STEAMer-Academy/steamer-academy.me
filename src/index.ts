@@ -23,6 +23,17 @@ app.use("/api/auth/**", async (c) => {
     "http://localhost:3000",
   ]);
 
+  const requestHeaders = c.req.header("Access-Control-Request-Headers") || "";
+  const datadogHeaders = requestHeaders
+    .split(",")
+    .map((h) => h.trim())
+    .filter((h) => h.startsWith("x-datadog-"))
+    .join(", ");
+
+  const allowedHeaders = ["Content-Type", "Authorization", datadogHeaders]
+    .filter((h) => h) // Remove empty values
+    .join(", ");
+
   const origin = c.req.header("Origin");
 
   if (origin && allowedOrigins.has(origin)) {
@@ -30,7 +41,7 @@ app.use("/api/auth/**", async (c) => {
   }
 
   c.header("Access-Control-Allow-Credentials", "true");
-  c.header("Access-Control-Allow-Headers", "*");
+  c.header("Access-Control-Allow-Headers", allowedHeaders);
 
   // Handle preflight request
   if (c.req.method === "OPTIONS") {
