@@ -17,16 +17,6 @@
 
 <h3 align="center">Website Status</h3>
 
-<h4 align="center">
-      <a href="https://status.steameracademy.me/">
-        <img src="https://status.steameracademy.me/api/badge/1/status?style=for-the-badge">
-        <img src="https://status.steameracademy.me/api/badge/1/uptime?style=for-the-badge">
-        <img src="https://status.steameracademy.me/api/badge/1/ping?style=for-the-badge">
-        <img src="https://status.steameracademy.me/api/badge/1/avg-response?style=for-the-badge">
-        <img src="https://status.steameracademy.me/api/badge/1/cert-exp?style=for-the-badge">
-      </a>
-</h4>
-
 <p align="center">
     <b>Where Creativity Meets Innovation</b><br>
     STEAMer Academy is committed to fostering curiosity in Science, Technology, Engineering, Arts, and Math (STEAM). Our mission is to empower learners with the tools and knowledge to become creative problem solvers and explorers.
