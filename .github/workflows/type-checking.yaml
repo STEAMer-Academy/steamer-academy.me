@@ -1,0 +1,25 @@
+name: 💻 Type Check
+
+on:
+  push:
+    branches: ["main", "frontend", "backend", "frontend-dev", "backend-dev"]
+  pull_request:
+
+jobs:
+  type-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🍔 Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 🔨 Install dependencies
+        run: bun install
+
+      - name: 🛠 Run TypeScript Type Checking
+        run: bun tsc --noEmit
