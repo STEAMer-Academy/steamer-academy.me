@@ -200,7 +200,12 @@ export default function Header() {
                     <Link
                       href="/"
                       prefetch={true}
-                      className="flex items-center"
+                      className={
+                        (cn("flex items-center"),
+                        pathname === "/"
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-primary")
+                      }
                     >
                       <Home className="mr-2 size-4" />
                       Home
@@ -213,7 +218,14 @@ export default function Header() {
                 >
                   <DropdownMenu
                     trigger={
-                      <span className="flex items-center">
+                      <span
+                        className={cn(
+                          "flex items-center",
+                          pathname === "/services"
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-primary",
+                        )}
+                      >
                         <BookEditIcon className="mr-2 size-4" />
                         Services
                       </span>

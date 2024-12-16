@@ -12,17 +12,20 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 export const revalidate = 7200;
 
 interface BlogPostProps {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 export async function generateMetadata({
   params,
 }: BlogPostProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug } = params;
   const metadata = await fetchBlogMetadata(decodeURIComponent(slug));
 
   if (!metadata) {
-    return {};
+    return {
+      title: "Blog Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
   }
 
   return {
@@ -44,28 +47,42 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const blogData = await fetchAllBlogs();
-
-  const params = [];
-  for (const category in blogData) {
-    const blogs = blogData[category as BlogCategory];
-    if (Array.isArray(blogs)) {
-      params.push(
-        ...blogs.map((blog) => ({
-          slug: encodeURIComponent(blog.name),
-        })),
-      );
+  try {
+    const blogData = await fetchAllBlogs();
+    const params = [];
+    for (const category in blogData) {
+      const blogs = blogData[category as BlogCategory];
+      if (Array.isArray(blogs)) {
+        params.push(
+          ...blogs.map((blog) => ({
+            slug: encodeURIComponent(blog.name),
+          })),
+        );
+      }
     }
+    return params;
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return []; // Return an empty array if there's an error
   }
-
-  return params;
 }
+
 export default async function BlogPost({ params }: BlogPostProps) {
-  const { slug } = await params;
+  const { slug } = params;
   const content = await fetchBlogContent(decodeURIComponent(slug));
 
   if (!content) {
-    return <div>Blog post not found</div>;
+    return (
+      <Layout>
+        <div className="container mx-auto mt-8 px-4 py-8">
+          <h1 className="text-2xl font-bold">Blog Post Not Found</h1>
+          <p>
+            The requested blog post could not be found or there was an error
+            fetching the content.
+          </p>
+        </div>
+      </Layout>
+    );
   }
 
   return (

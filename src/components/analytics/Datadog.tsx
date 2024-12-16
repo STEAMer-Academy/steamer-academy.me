@@ -19,14 +19,15 @@ export default function Datadog() {
       trackLongTasks: true,
       defaultPrivacyLevel: "mask-user-input",
       allowedTracingUrls: [
-        {
-          match: "https://www.steameracademy.me/api/",
-          propagatorTypes: ["tracecontext"],
-        },
+        "https://api.steameracademy.me",
+        /https:\/\/.*\.steameracademy\.me/,
+        (url) => url.startsWith("https://api.steameracademy.me"),
       ],
     });
 
     datadogRum.startSessionReplayRecording();
+    datadogRum.startDurationVital("dropdownRendering");
+    datadogRum.stopDurationVital("dropdownRendering");
   }, []);
 
   return null;
