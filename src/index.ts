@@ -17,7 +17,7 @@ app.post("/newsletter", newsletter);
 app.post("/contact", contact);
 app.get("/blogs", blogsRoute);
 
-app.use("/auth/**", async (c) => {
+app.use("/api/auth/**", async (c) => {
   const pool = new Pool({
     connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
     ssl: { rejectUnauthorized: false },
@@ -30,6 +30,9 @@ app.use("/auth/**", async (c) => {
     appName: "Steamer Academy",
     advanced: {
       cookiePrefix: "steamer-academy",
+      crossSubDomainCookies: {
+        enabled: true,
+      },
     },
     session: {
       cookieCache: {
