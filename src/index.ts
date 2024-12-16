@@ -29,6 +29,8 @@ app.use("/api/auth/**", async (c) => {
     c.header("Access-Control-Allow-Origin", origin);
   }
 
+  c.header("Access-Control-Allow-Credentials", "true");
+
   // Handle preflight request
   if (c.req.method === "OPTIONS") {
     return c.text("", 204);
