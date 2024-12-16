@@ -30,7 +30,12 @@ app.use("/api/auth/**", async (c) => {
     .filter((h) => h.startsWith("x-datadog-"))
     .join(", ");
 
-  const allowedHeaders = ["Content-Type", "Authorization", datadogHeaders]
+  const allowedHeaders = [
+    "Content-Type",
+    "Authorization",
+    "Traceparent",
+    datadogHeaders,
+  ]
     .filter((h) => h) // Remove empty values
     .join(", ");
 

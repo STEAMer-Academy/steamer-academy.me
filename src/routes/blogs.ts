@@ -56,7 +56,6 @@ const blogsRoute = async (c: Context) => {
   });
 
   async function fetchAllBlogs(): Promise<BlogData> {
-
     const redisBlogs = await redis.get<BlogData>("allBlogs");
     if (redisBlogs) {
       return redisBlogs;
