@@ -111,3 +111,16 @@ export const blogs = pgTable("blogs", {
   rawUrl: text("raw_url").notNull(),
   image: text("image").notNull(),
 });
+
+export const schema = {
+  user,
+  session,
+  account,
+  verification,
+  twoFactor,
+  passkey,
+  ContactSubmissions,
+  NewsletterSubscriptions,
+  categories,
+  blogs,
+};

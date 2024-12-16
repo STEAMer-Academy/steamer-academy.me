@@ -10,6 +10,7 @@ import { twoFactor } from "better-auth/plugins/two-factor";
 import { passkey } from "better-auth/plugins/passkey";
 import { cors } from "hono/cors";
 import blogsRoute from "./routes/blogs";
+import { schema } from "./db/schema";
 
 const app = new Hono();
 
@@ -79,6 +80,9 @@ app.use("/api/auth/**", async (c) => {
     },
     database: drizzleAdapter(db, {
       provider: "pg",
+      schema: {
+        ...schema,
+      },
     }),
     emailAndPassword: {
       enabled: true,
