@@ -2,41 +2,14 @@ import { Context } from "hono";
 import { env } from "hono/adapter";
 import { NewsletterSubscriptions } from "../db/schema";
 import { eq } from "drizzle-orm";
-import { Pool } from "pg";
-import { drizzle } from "drizzle-orm/node-postgres";
+import { getDb } from "../db/db";
 
 interface RecaptchaResponse {
   success: boolean;
 }
 
 const newsletter = async (c: Context) => {
-  const allowedOrigins = new Set([
-    "https://www.steameracademy.me",
-    "http://localhost:3000",
-  ]);
-
-  const origin = c.req.header("Origin");
-
-  if (origin && allowedOrigins.has(origin)) {
-    c.header("Access-Control-Allow-Origin", origin);
-  }
-
-  c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
-  c.header("Access-Control-Allow-Headers", "Content-Type");
-  c.header("Access-Control-Allow-Credentials", "true");
-
-  // Handle preflight request
-  if (c.req.method === "OPTIONS") {
-    return c.text("", 204);
-  }
-
-  const pool = new Pool({
-    connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
-    max: 3,
-  });
-
-  const db = drizzle(pool);
+  const db = getDb(c);
   async function verifyRecaptcha(token: string) {
     const secretKey = env<{ RECAPTCHA_SECRET_KEY: string }>(
       c,

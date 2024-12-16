@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "ContactSubmissions" (
+CREATE TABLE "ContactSubmissions" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"firstName" text,
 	"lastName" text,
@@ -7,15 +7,15 @@ CREATE TABLE IF NOT EXISTS "ContactSubmissions" (
 	"createdAt" timestamp DEFAULT now()
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "NewsletterSubscriptions" (
+CREATE TABLE "NewsletterSubscriptions" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"email" text NOT NULL,
 	"createdAt" timestamp DEFAULT now(),
 	CONSTRAINT "NewsletterSubscriptions_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "account" (
-	"id" varchar(36) PRIMARY KEY NOT NULL,
+CREATE TABLE "account" (
+	"id" text PRIMARY KEY NOT NULL,
 	"accountId" text NOT NULL,
 	"providerId" text NOT NULL,
 	"userId" text NOT NULL,
@@ -30,8 +30,22 @@ CREATE TABLE IF NOT EXISTS "account" (
 	"updatedAt" timestamp NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "passkey" (
-	"id" varchar(36) PRIMARY KEY NOT NULL,
+CREATE TABLE "blogs" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"category_id" integer,
+	"name" text NOT NULL,
+	"description" text NOT NULL,
+	"raw_url" text NOT NULL,
+	"image" text NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "categories" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" varchar(50) NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "passkey" (
+	"id" text PRIMARY KEY NOT NULL,
 	"name" text,
 	"publicKey" text NOT NULL,
 	"userId" text NOT NULL,
@@ -43,8 +57,8 @@ CREATE TABLE IF NOT EXISTS "passkey" (
 	"createdAt" timestamp
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "session" (
-	"id" varchar(36) PRIMARY KEY NOT NULL,
+CREATE TABLE "session" (
+	"id" text PRIMARY KEY NOT NULL,
 	"expiresAt" timestamp NOT NULL,
 	"token" text NOT NULL,
 	"createdAt" timestamp NOT NULL,
@@ -55,15 +69,15 @@ CREATE TABLE IF NOT EXISTS "session" (
 	CONSTRAINT "session_token_unique" UNIQUE("token")
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "twoFactor" (
-	"id" varchar(36) PRIMARY KEY NOT NULL,
+CREATE TABLE "twoFactor" (
+	"id" text PRIMARY KEY NOT NULL,
 	"secret" text NOT NULL,
 	"backupCodes" text NOT NULL,
 	"userId" text NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "user" (
-	"id" varchar(36) PRIMARY KEY NOT NULL,
+CREATE TABLE "user" (
+	"id" text PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"emailVerified" boolean NOT NULL,
@@ -74,8 +88,8 @@ CREATE TABLE IF NOT EXISTS "user" (
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "verification" (
-	"id" varchar(36) PRIMARY KEY NOT NULL,
+CREATE TABLE "verification" (
+	"id" text PRIMARY KEY NOT NULL,
 	"identifier" text NOT NULL,
 	"value" text NOT NULL,
 	"expiresAt" timestamp NOT NULL,
@@ -83,26 +97,8 @@ CREATE TABLE IF NOT EXISTS "verification" (
 	"updatedAt" timestamp
 );
 --> statement-breakpoint
-DO $$ BEGIN
- ALTER TABLE "account" ADD CONSTRAINT "account_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- ALTER TABLE "passkey" ADD CONSTRAINT "passkey_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- ALTER TABLE "session" ADD CONSTRAINT "session_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- ALTER TABLE "twoFactor" ADD CONSTRAINT "twoFactor_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
+ALTER TABLE "account" ADD CONSTRAINT "account_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "blogs" ADD CONSTRAINT "blogs_category_id_categories_id_fk" FOREIGN KEY ("category_id") REFERENCES "public"."categories"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "passkey" ADD CONSTRAINT "passkey_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "session" ADD CONSTRAINT "session_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "twoFactor" ADD CONSTRAINT "twoFactor_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;

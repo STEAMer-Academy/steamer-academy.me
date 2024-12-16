@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("emailVerified").notNull(),
@@ -20,7 +20,7 @@ export const user = pgTable("user", {
 });
 
 export const session = pgTable("session", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   expiresAt: timestamp("expiresAt").notNull(),
   token: text("token").notNull().unique(),
   createdAt: timestamp("createdAt").notNull(),
@@ -33,7 +33,7 @@ export const session = pgTable("session", {
 });
 
 export const account = pgTable("account", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   accountId: text("accountId").notNull(),
   providerId: text("providerId").notNull(),
   userId: text("userId")
@@ -51,7 +51,7 @@ export const account = pgTable("account", {
 });
 
 export const verification = pgTable("verification", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
   expiresAt: timestamp("expiresAt").notNull(),
@@ -60,7 +60,7 @@ export const verification = pgTable("verification", {
 });
 
 export const twoFactor = pgTable("twoFactor", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   secret: text("secret").notNull(),
   backupCodes: text("backupCodes").notNull(),
   userId: text("userId")
@@ -69,7 +69,7 @@ export const twoFactor = pgTable("twoFactor", {
 });
 
 export const passkey = pgTable("passkey", {
-  id: varchar("id", { length: 36 }).primaryKey(),
+  id: text("id").primaryKey(),
   name: text("name"),
   publicKey: text("publicKey").notNull(),
   userId: text("userId")

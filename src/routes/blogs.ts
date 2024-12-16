@@ -1,9 +1,8 @@
 import { Context } from "hono";
 import { env } from "hono/adapter";
-import { Pool } from "pg";
-import { drizzle } from "drizzle-orm/node-postgres";
 import { blogs, categories } from "../db/schema";
 import { Redis } from "@upstash/redis/cloudflare";
+import { getDb } from "../db/db"; 
 
 interface Blog {
   name: string;
@@ -22,34 +21,7 @@ type BlogCategory =
 type BlogData = Record<BlogCategory, Blog[]>;
 
 const blogsRoute = async (c: Context) => {
-  const allowedOrigins = new Set([
-    "https://www.steameracademy.me",
-    "http://localhost:3000",
-  ]);
-
-  const origin = c.req.header("Origin");
-
-  if (origin && allowedOrigins.has(origin)) {
-    c.header("Access-Control-Allow-Origin", origin);
-  }
-
-  c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
-  c.header("Access-Control-Allow-Headers", "Content-Type");
-  c.header("Access-Control-Allow-Credentials", "true");
-
-  // Handle preflight request
-  if (c.req.method === "OPTIONS") {
-    return c.text("", 204);
-  }
-
-  const pool = new Pool({
-    connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
-    max: 3,
-  });
-
-  const db = drizzle(pool);
-
+  const db = getDb(c);
   const redis = new Redis({
     url: env<{ REDIS_URL: string }>(c).REDIS_URL,
     token: env<{ REDIS_TOKEN: string }>(c).REDIS_TOKEN,

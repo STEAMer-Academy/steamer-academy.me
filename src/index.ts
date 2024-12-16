@@ -1,125 +1,18 @@
 import { Hono } from "hono";
 import newsletter from "./routes/newsletter";
 import contact from "./routes/contact";
-import { Pool } from "pg";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { env } from "hono/adapter";
-import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { twoFactor } from "better-auth/plugins/two-factor";
-import { passkey } from "better-auth/plugins/passkey";
 import { cors } from "hono/cors";
 import blogsRoute from "./routes/blogs";
-import { schema } from "./db/schema";
-import search from "./routes/search";
+import { getAuth } from "./routes/auth";
 
-const app = new Hono();
+const app = new Hono<{
+  Variables: {
+    user: ReturnType<typeof getAuth>["$Infer"]["Session"]["user"] | null;
+    session: ReturnType<typeof getAuth>["$Infer"]["Session"]["session"] | null;
+  };
+}>();
 
-app.post("/newsletter", newsletter);
-app.post("/contact", contact);
-app.get("/blogs", blogsRoute);
-
-app.get("/search", search);
-
-app.use("/api/auth/**", async (c) => {
-  const allowedOrigins = new Set([
-    "https://www.steameracademy.me",
-    "http://localhost:3000",
-  ]);
-
-  const requestHeaders = c.req.header("Access-Control-Request-Headers") || "";
-  const datadogHeaders = requestHeaders
-    .split(",")
-    .map((h) => h.trim())
-    .filter((h) => h.startsWith("x-datadog-"))
-    .join(", ");
-
-  const allowedHeaders = [
-    "Content-Type",
-    "Authorization",
-    "Traceparent",
-    datadogHeaders,
-  ]
-    .filter((h) => h) // Remove empty values
-    .join(", ");
-
-  const origin = c.req.header("Origin");
-
-  if (origin && allowedOrigins.has(origin)) {
-    c.header("Access-Control-Allow-Origin", origin);
-  }
-
-  c.header("Access-Control-Allow-Credentials", "true");
-  c.header("Access-Control-Allow-Headers", allowedHeaders);
-
-  // Handle preflight request
-  if (c.req.method === "OPTIONS") {
-    return c.text("", 204);
-  }
-
-  const pool = new Pool({
-    connectionString: env<{ DATABASE_URL: string }>(c).DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
-    max: 3,
-  });
-
-  const db = drizzle(pool);
-
-  const auth = betterAuth({
-    appName: "Steamer Academy",
-    baseURL: "https://api.steameracademy.me",
-    trustedOrigins: ["https://www.steameracademy.me", "http://localhost:3000"],
-    advanced: {
-      cookiePrefix: "steamer-academy",
-      crossSubDomainCookies: {
-        enabled: true,
-      },
-    },
-    session: {
-      cookieCache: {
-        enabled: true,
-        maxAge: 15 * 60,
-      },
-    },
-    database: drizzleAdapter(db, {
-      provider: "pg",
-      schema: {
-        ...schema,
-      },
-    }),
-    emailAndPassword: {
-      enabled: true,
-    },
-    socialProviders: {
-      github: {
-        clientId: env<{ GITHUB_ID: string }>(c).GITHUB_ID,
-        clientSecret: env<{ GITHUB_SECRET: string }>(c).GITHUB_SECRET,
-      },
-      google: {
-        clientId: env<{ GOOGLE_ID: string }>(c).GOOGLE_ID,
-        clientSecret: env<{ GOOGLE_SECRET: string }>(c).GOOGLE_SECRET,
-      },
-    },
-    plugins: [
-      twoFactor(),
-      passkey({
-        rpName: "Steamer Academy",
-        rpID: "www.steameracademy.me",
-        origin: "https://www.steameracademy.me",
-      }),
-    ],
-  });
-
-  try {
-    const response = await auth.handler(c.req.raw);
-    response.headers.set("Access-Control-Allow-Origin", origin || "");
-    response.headers.set("Access-Control-Allow-Credentials", "true");
-    return response;
-  } finally {
-    await pool.end();
-  }
-});
-
+// CORS middleware
 app.use(
   "*",
   cors({
@@ -131,5 +24,65 @@ app.use(
     credentials: true,
   }),
 );
+
+// Middleware to set `user` and `session`
+app.use("*", async (c, next) => {
+  const auth = getAuth(c);
+  const session = await auth.api.getSession({ headers: c.req.raw.headers });
+
+  if (!session) {
+    c.set("user", null);
+    c.set("session", null);
+    return next();
+  }
+
+  c.set("user", session.user);
+  c.set("session", session.session);
+  return next();
+});
+
+// Route Definitions
+app.post("/newsletter", newsletter);
+app.post("/contact", contact);
+app.get("/blogs", blogsRoute);
+
+// Auth-specific routes
+app.on(["POST", "GET"], "/api/auth/**", (c) => {
+  const auth = getAuth(c);
+  return auth.handler(c.req.raw);
+});
+
+// Session check route
+app.get("/session", async (c) => {
+  const allowedOrigins = new Set([
+    "https://www.steameracademy.me",
+    "http://localhost:3000",
+  ]);
+
+  const origin = c.req.header("Origin");
+
+  if (origin && allowedOrigins.has(origin)) {
+    c.header("Access-Control-Allow-Origin", origin);
+  }
+
+  c.header("Access-Control-Allow-Methods", "POST, OPTIONS");
+  c.header("Access-Control-Allow-Headers", "Content-Type");
+  c.header("Access-Control-Allow-Credentials", "true");
+
+  // Handle preflight request
+  if (c.req.method === "OPTIONS") {
+    return c.text("", 204);
+  }
+
+  const session = c.get("session");
+  const user = c.get("user");
+
+  if (!user) return c.body(null, 401);
+
+  return c.json({
+    session,
+    user,
+  });
+});
 
 export default app;
