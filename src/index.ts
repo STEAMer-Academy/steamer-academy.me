@@ -20,7 +20,15 @@ app.use(
   "*",
   cors({
     origin: ["https://www.steameracademy.me", "http://localhost:3000"],
-    allowHeaders: ["*"],
+    allowHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Datadog-Origin",
+      "X-Datadog-Trace-Id",
+      "X-Datadog-Parent-Id",
+      "X-Datadog-Sampling-Priority",
+      "Traceparent",
+    ],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
@@ -29,14 +37,14 @@ app.use(
 );
 
 // Middleware To Restrict Access
-app.use('*', async (c: Context, next) => {
-  const ACCESS_KEY = env<{ ACCESS_KEY: string }>(c).ACCESS_KEY
-  const authHeader = c.req.header('Authorization')
+app.use("*", async (c: Context, next) => {
+  const ACCESS_KEY = env<{ ACCESS_KEY: string }>(c).ACCESS_KEY;
+  const authHeader = c.req.header("Authorization");
   if (authHeader !== `Bearer ${ACCESS_KEY}`) {
-    return c.json({ error: 'Unauthorized' }, 401)
+    return c.json({ error: "Unauthorized" }, 401);
   }
-  await next()
-})
+  await next();
+});
 
 // Middleware to set `user` and `session`
 app.use("*", async (c, next) => {
