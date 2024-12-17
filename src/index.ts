@@ -38,11 +38,25 @@ app.use(
 
 // Middleware To Restrict Access
 app.use("*", async (c: Context, next) => {
+  // Define unrestricted routes
+  const unrestrictedPaths = ["/api/auth", "/session"];
+
+  // Check if the request path matches any unrestricted route
+  const isUnrestricted = unrestrictedPaths.some((path) =>
+    c.req.path.startsWith(path),
+  );
+
+  if (isUnrestricted) {
+    return await next(); // Skip the restriction for these routes
+  }
+
+  // Authorization logic for restricted routes
   const ACCESS_KEY = env<{ ACCESS_KEY: string }>(c).ACCESS_KEY;
   const authHeader = c.req.header("Authorization");
   if (authHeader !== `Bearer ${ACCESS_KEY}`) {
     return c.json({ error: "Unauthorized" }, 401);
   }
+
   await next();
 });
 
