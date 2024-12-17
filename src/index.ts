@@ -4,6 +4,9 @@ import contact from "./routes/contact";
 import { cors } from "hono/cors";
 import blogsRoute from "./routes/blogs";
 import { getAuth } from "./routes/auth";
+import teammembers from "./routes/discord-team-members";
+import { env } from "hono/adapter";
+import { Context } from "hono";
 
 const app = new Hono<{
   Variables: {
@@ -25,6 +28,16 @@ app.use(
   }),
 );
 
+// Middleware To Restrict Access
+app.use('*', async (c: Context, next) => {
+  const ACCESS_KEY = env<{ ACCESS_KEY: string }>(c).ACCESS_KEY
+  const authHeader = c.req.header('Authorization')
+  if (authHeader !== `Bearer ${ACCESS_KEY}`) {
+    return c.json({ error: 'Unauthorized' }, 401)
+  }
+  await next()
+})
+
 // Middleware to set `user` and `session`
 app.use("*", async (c, next) => {
   const auth = getAuth(c);
@@ -45,6 +58,7 @@ app.use("*", async (c, next) => {
 app.post("/newsletter", newsletter);
 app.post("/contact", contact);
 app.get("/blogs", blogsRoute);
+app.get("/team-members", teammembers);
 
 // Auth-specific routes
 app.on(["POST", "GET"], "/api/auth/**", (c) => {
