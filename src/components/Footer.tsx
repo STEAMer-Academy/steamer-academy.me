@@ -160,7 +160,7 @@ export default function Footer() {
         <div className="mt-8 border-t border-gray-200 pt-8 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             <CopyrightIcon className="mr-2 inline-block h-4 w-4" />
-            <span>2024 STEAMer Academy. All rights reserved.</span>
+            <span>2025 STEAMer Academy. All rights reserved.</span>
           </p>
         </div>
       </div>
