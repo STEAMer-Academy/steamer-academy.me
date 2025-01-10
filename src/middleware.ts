@@ -1,15 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import arcjet, { detectBot, shield, tokenBucket } from "@arcjet/next";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const aj = arcjet({
-  key: process.env.ARCJET_KEY,
+  key: process.env.ARCJET_KEY as string,
   characteristics: ["ip.src"],
   rules: [
     shield({ mode: "LIVE" }),
     detectBot({
       mode: "LIVE",
-      block: ["AUTOMATED"],
       allow: [
         "CATEGORY:SEARCH_ENGINE",
         "CATEGORY:MONITOR",
@@ -17,6 +16,8 @@ const aj = arcjet({
         "CATEGORY:PREVIEW",
         "CATEGORY:GOOGLE",
         "CATEGORY:TOOL",
+        "CATEGORY:SOCIAL",
+        "CATEGORY:ARCHIVE",
       ],
     }),
     tokenBucket({
@@ -41,7 +42,7 @@ export const config = {
   ],
 };
 
-export async function middleware(request) {
+export async function middleware(request: NextRequest) {
   clerkMiddleware(async (auth, request) => {
     if (!isPublicRoute(request)) {
       await auth.protect();
