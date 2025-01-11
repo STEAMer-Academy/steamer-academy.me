@@ -6,6 +6,7 @@ import type { NextConfig } from "next";
 import type { PluginOptions } from "@ducanh2912/next-pwa";
 import fs from "fs";
 import path from "path";
+import MillionLint from "@million/lint";
 
 const withPWA = withPWAInit({
   dest: "public",
@@ -89,7 +90,7 @@ const nextConfigFunction = (phase: string) => {
     },
   };
 
-  return withBundleAnalyzer(withLogtail(withPWA(nextConfig)));
+  return MillionLint.next({ rsc: true })(withBundleAnalyzer(withLogtail(withPWA(nextConfig))));
 };
 
 export default nextConfigFunction;
