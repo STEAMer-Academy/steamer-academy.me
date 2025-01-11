@@ -22,7 +22,6 @@
     "@ducanh2912/next-pwa": "^10.2.9",
     "@libsql/client": "^0.14.0",
     "@logtail/next": "^0.1.7",
-    "@million/lint": "^1.0.14",
     "@nanostores/react": "^0.8.2",
     "@next/bundle-analyzer": "^15.1.0",
     "@next/eslint-plugin-next": "^15.1.0",
