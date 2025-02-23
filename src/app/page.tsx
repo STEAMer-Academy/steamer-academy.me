@@ -52,7 +52,7 @@ export default function Home() {
         <section className="relative flex h-screen w-full flex-row items-center justify-center py-20 md:h-auto">
           <div className="relative mx-auto h-full w-full max-w-7xl px-4 md:h-[40rem]">
             <div>
-              <h2 className="text-center text-xl font-bold text-black dark:text-white md:text-4xl">
+              <h2 className="text-center text-xl font-bold text-black md:text-4xl dark:text-white">
                 <TypewriterEffectSmooth
                   words={[
                     {
@@ -70,7 +70,7 @@ export default function Home() {
                   ]}
                 />
               </h2>
-              <p className="mx-auto mb-8 max-w-sm space-y-4 text-center text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg">
+              <p className="mx-auto mb-8 max-w-sm space-y-4 text-center text-base font-normal text-neutral-700 md:text-lg dark:text-neutral-200">
                 A vibrant community dedicated to inspiring, educating, and
                 supporting the next generation of leaders in Science,
                 Technology, Engineering, Arts, and Math.
@@ -83,7 +83,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none from-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full from-transparent select-none" />
             <div className="-bottom-20 z-10 h-[30vh] w-full md:h-full">
               <Globe />
             </div>

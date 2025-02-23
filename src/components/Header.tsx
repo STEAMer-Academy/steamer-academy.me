@@ -133,7 +133,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+        "fixed top-0 right-0 left-0 z-50 transition-all duration-300",
         isScrolled ? "bg-opacity-60 shadow-xl backdrop-blur-xl" : "",
         isVisible ? "translate-y-0" : "-translate-y-full",
       )}
@@ -202,7 +202,7 @@ export default function Header() {
           <div className="hidden items-center space-x-4 lg:flex">
             <div className="relative">
               <form onSubmit={handleSearch} className="relative">
-                <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+                <Search01Icon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                 <Input
                   type="search"
                   placeholder="Search..."
@@ -213,7 +213,7 @@ export default function Header() {
                 />
               </form>
               {showDropdown && (
-                <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
+                <div className="bg-popover absolute z-10 mt-1 w-full rounded-md shadow-lg">
                   <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
                     {searchResults.length > 0 ? (
                       searchResults.map((result) => {
@@ -223,7 +223,7 @@ export default function Header() {
                             <Link
                               href={result.url}
                               prefetch={true}
-                              className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
+                              className="hover:bg-accent hover:text-accent-foreground flex items-center px-4 py-2"
                               onClick={() => setShowDropdown(false)}
                             >
                               <IconComponent className="mr-2 h-4 w-4" />
@@ -233,7 +233,7 @@ export default function Header() {
                         );
                       })
                     ) : (
-                      <li className="px-4 py-2 text-muted-foreground">
+                      <li className="text-muted-foreground px-4 py-2">
                         No results found
                       </li>
                     )}
@@ -268,18 +268,18 @@ export default function Header() {
                 <nav className="flex flex-col space-y-4">
                   <div className="relative">
                     <form onSubmit={handleSearch} className="relative mb-4">
-                      <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+                      <Search01Icon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                       <Input
                         type="search"
                         placeholder="Search..."
-                        className="pl-10 pr-6"
+                        className="pr-6 pl-10"
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                         onFocus={() => setShowDropdown(true)}
                       />
                     </form>
                     {showDropdown && (
-                      <div className="absolute z-10 mt-1 w-full rounded-md bg-popover shadow-lg">
+                      <div className="bg-popover absolute z-10 mt-1 w-full rounded-md shadow-lg">
                         <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
                           {searchResults.length > 0 ? (
                             searchResults.map((result) => {
@@ -290,7 +290,7 @@ export default function Header() {
                                     <Link
                                       href={result.url}
                                       prefetch={true}
-                                      className="flex items-center px-4 py-2 hover:bg-accent hover:text-accent-foreground"
+                                      className="hover:bg-accent hover:text-accent-foreground flex items-center px-4 py-2"
                                       onClick={() => setShowDropdown(false)}
                                     >
                                       <IconComponent className="mr-2 h-4 w-4" />
@@ -301,7 +301,7 @@ export default function Header() {
                               );
                             })
                           ) : (
-                            <li className="px-4 py-2 text-muted-foreground">
+                            <li className="text-muted-foreground px-4 py-2">
                               No results found
                             </li>
                           )}

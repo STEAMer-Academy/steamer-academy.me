@@ -107,8 +107,8 @@ export default function SearchPage() {
         </h1>
         <div className="mb-8">
           <form className="flex gap-2" action="/search">
-            <div className="relative flex-grow">
-              <Search01Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
+            <div className="relative grow">
+              <Search01Icon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
               <Input
                 type="search"
                 name="q"

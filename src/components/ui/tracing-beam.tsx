@@ -45,7 +45,7 @@ export const TracingBeam = ({
       ref={ref}
       className={cn("relative h-full w-full", className)} // Removed max-width and margin auto
     >
-      <div className="absolute -left-4 top-3 md:-left-20">
+      <div className="absolute top-3 -left-4 md:-left-20">
         <motion.div
           transition={{
             duration: 0.2,
@@ -57,7 +57,7 @@ export const TracingBeam = ({
                 ? "none"
                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="border-netural-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
+          className="border-netural-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-xs"
         >
           <motion.div
             transition={{

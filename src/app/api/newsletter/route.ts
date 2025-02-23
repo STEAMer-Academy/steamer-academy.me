@@ -1,31 +1,37 @@
 import { NextResponse } from "next/server";
 import client from "@/lib/formdb";
+import arcjet, { tokenBucket } from "@arcjet/next";
 
-async function verifyRecaptcha(token: string) {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
-
-  const response = await fetch(verificationUrl, { method: "POST" });
-  const data = await response.json();
-  return data.success;
-}
+const aj = arcjet({
+  key: process.env.ARCJET_KEY!,
+  characteristics: ["ip.src"], // track requests by IP address
+  rules: [
+    tokenBucket({
+      mode: "LIVE", // will block requests. Use "DRY_RUN" to log only
+      refillRate: 10, // refill 10 tokens per interval
+      interval: 60, // 60 second interval
+      capacity: 100, // bucket maximum capacity of 100 tokens
+    }),
+  ],
+});
 
 export async function POST(request: Request) {
   try {
-    const { email, recaptchaToken } = await request.json();
+    const decision = await aj.protect(request, { requested: 1 });
+
+    if (decision.isDenied()) {
+      return NextResponse.json(
+        { error: "Too Many Requests", reason: decision.reason },
+
+        { status: 429 },
+      );
+    }
+
+    const { email } = await request.json();
 
     if (!email || typeof email !== "string") {
       return NextResponse.json(
         { message: "Invalid email address." },
-        { status: 400 },
-      );
-    }
-
-    // Verify reCAPTCHA
-    const isHuman = await verifyRecaptcha(recaptchaToken);
-    if (!isHuman) {
-      return NextResponse.json(
-        { message: "reCAPTCHA verification failed. Please try again." },
         { status: 400 },
       );
     }

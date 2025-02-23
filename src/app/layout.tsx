@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
+// @ts-ignore
 import { Partytown } from "@builder.io/partytown/react";
 import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
 import WebVitals from "@/components/web-vitals";
 import CookieConsent from "@/components/CookieConsent";
-import { Toaster } from "@/components/wrapper";
+import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark, shadesOfPurple } from "@clerk/themes";
@@ -95,10 +96,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Partytown debug={true} forward={["dataLayer.push"]} />
       </head>
       <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
+        <Toaster richColors closeButton position="top-center" />
         <ClerkProvider appearance={{ baseTheme: [dark, shadesOfPurple] }}>
           <CookieConsent />
           <WebVitals />
-          <Toaster />
           <Script id="clarity-script" strategy="afterInteractive">
             {`
               (function(c,l,a,r,i,t,y){

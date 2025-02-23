@@ -166,12 +166,6 @@ export const TeamMembers = dynamic(() =>
   import("../app/about/TeamMembers").then((mod) => mod.default),
 );
 
-/* === Sonner Component === */
-export const Toaster = dynamic(
-  () => import("@/components/ui/sonner").then((mod) => mod.Toaster),
-  { ssr: false },
-);
-
 /* === Shadcn Dialog Component === */
 export const Dialog = dynamic(() =>
   import("@/components/ui/dialog").then((mod) => mod.Dialog),

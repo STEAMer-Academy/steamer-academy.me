@@ -3,8 +3,7 @@ const config = {
   plugins: {
     "postcss-flexbugs-fixes": {},
     "postcss-preset-env": {},
-    tailwindcss: {},
-    autoprefixer: {},
+    "@tailwindcss/postcss": {},
     cssnano: { preset: "default" },
   },
 };

@@ -101,7 +101,7 @@ export default function BlogList({ blogs = [] }: BlogListProps) {
                   {blog.description}
                 </p>
                 <Button className="relative rounded-full border border-slate-600 bg-slate-700 px-8 py-2 text-sm text-white transition duration-200 hover:shadow-2xl hover:shadow-white/[0.1]">
-                  <div className="absolute inset-x-0 -top-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-teal-500 to-transparent shadow-2xl" />
+                  <div className="absolute inset-x-0 -top-px mx-auto h-px w-1/2 bg-linear-to-r from-transparent via-teal-500 to-transparent shadow-2xl" />
                   <span className="relative z-20">Read More</span>
                 </Button>
               </div>
