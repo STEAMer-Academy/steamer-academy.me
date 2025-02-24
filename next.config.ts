@@ -30,7 +30,7 @@ const nextConfigFunction = (phase: string) => {
       NEXT_PUBLIC_APP_VERSION: version,
     },
     reactStrictMode: true,
-    // assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
+    assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
 
     images: {
       remotePatterns: [
