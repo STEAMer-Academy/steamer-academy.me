@@ -2,12 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-/* === Globe === */
-export const Globe = dynamic(
-  () => import("@/components/Globe").then((mod) => mod.default),
-  { ssr: false },
-);
-
 /* === TypewriterEffect === */
 export const TypewriterEffectSmooth = dynamic(() =>
   import("@/components/ui/typewriter-effect").then(
