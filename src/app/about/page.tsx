@@ -28,13 +28,6 @@ const teamMembers = [
       "Manages A-Z of technology related works of our organization and plays one of the most vital roles. He is also a great open source fighter and always helpful to all.",
   },
   {
-    name: "Ayman",
-    role: "Chief Education Officer",
-    image: "/AymanDiscordpfp.webp",
-    content:
-      "Assesses student learning outcomes through evaluations, feedback mechanisms, and competition results. This helps ensure the effectiveness of the STEAMer programs and allows for adjustments if needed.",
-  },
-  {
     name: "Saoyad",
     role: "Chief Management Officer",
     image: "/SaoyadDiscordpfp.webp",
