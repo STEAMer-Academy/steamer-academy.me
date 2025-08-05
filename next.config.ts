@@ -4,6 +4,7 @@ import withPWAInit from "@ducanh2912/next-pwa";
 import type { PluginOptions } from "@ducanh2912/next-pwa";
 import fs from "fs";
 import path from "path";
+import type { NextConfig } from "next";
 
 const withPWA = withPWAInit({
   dest: "public",
