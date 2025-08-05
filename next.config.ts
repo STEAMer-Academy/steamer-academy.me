@@ -1,8 +1,6 @@
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
-import { withBetterStack } from "@logtail/next";
-import type { NextConfig } from "next";
 import type { PluginOptions } from "@ducanh2912/next-pwa";
 import fs from "fs";
 import path from "path";
@@ -89,7 +87,7 @@ const nextConfigFunction = (phase: string) => {
     },
   };
 
-  return withBundleAnalyzer(withBetterStack(withPWA(nextConfig)));
+  return withBundleAnalyzer(withPWA(nextConfig));
 };
 
 export default nextConfigFunction;

@@ -21,7 +21,6 @@
     "@datadog/browser-rum": "^6.17.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@libsql/client": "^0.15.10",
-    "@logtail/next": "^0.2.1",
     "@nanostores/react": "^1.0.0",
     "@next/bundle-analyzer": "^15.4.5",
     "@next/eslint-plugin-next": "^15.4.5",
