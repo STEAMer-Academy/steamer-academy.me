@@ -24,7 +24,7 @@
     "@logtail/next": "^0.2.0",
     "@nanostores/react": "^1.0.0",
     "@next/bundle-analyzer": "^15.3.1",
-    "@next/eslint-plugin-next": "^15.3.1",
+    "@next/eslint-plugin-next": "^15.4.5",
     "@nextui-org/spinner": "^2.2.6",
     "@nextui-org/theme": "^2.4.5",
     "@radix-ui/react-avatar": "^1.1.7",
