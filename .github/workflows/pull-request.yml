@@ -1,6 +1,6 @@
 name: 🔨 Pull Request CI
 on:
-  pull_request:
+  pull_request_target:
     branches: main
 jobs:
   build_and_deploy:
