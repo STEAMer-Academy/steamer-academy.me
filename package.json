@@ -76,7 +76,7 @@
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.1.11",
-    "turbo": "^2.5.5"
+    "turbo": "^2.5.6"
   },
   "trustedDependencies": [
     "@clerk/shared",
