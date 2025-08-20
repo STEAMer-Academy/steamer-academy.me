@@ -10,7 +10,7 @@
         "@clerk/themes": "^2.4.5",
         "@datadog/browser-rum": "^6.18.0",
         "@ducanh2912/next-pwa": "^10.2.9",
-        "@libsql/client": "^0.15.10",
+        "@libsql/client": "^0.15.12",
         "@nanostores/react": "^1.0.0",
         "@next/bundle-analyzer": "^15.4.6",
         "@next/eslint-plugin-next": "^15.4.6",
@@ -510,9 +510,9 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.25", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, ""],
 
-    "@libsql/client": ["@libsql/client@0.15.10", "", { "dependencies": { "@libsql/core": "^0.15.10", "@libsql/hrana-client": "^0.7.0", "js-base64": "^3.7.5", "libsql": "^0.5.15", "promise-limit": "^2.7.0" } }, "sha512-J9cJQwrgH92JlPBYjUGxPIH5G9z3j/V/aPnQvcmmCgjatdVb/f7bzK3yNq15Phc+gVuKMwox3toXL+58qUMylg=="],
+    "@libsql/client": ["@libsql/client@0.15.12", "", { "dependencies": { "@libsql/core": "^0.15.12", "@libsql/hrana-client": "^0.7.0", "js-base64": "^3.7.5", "libsql": "^0.5.15", "promise-limit": "^2.7.0" } }, "sha512-JIqB0XsNrqYqBQZuhcgZdTcQoNOoQ5AMF+1yxc7vcZrLtm42QJwRazmTuBfyDwtWASEmVgjxeaLF4NT1iyVX8g=="],
 
-    "@libsql/core": ["@libsql/core@0.15.10", "", { "dependencies": { "js-base64": "^3.7.5" } }, "sha512-fAMD+GnGQNdZ9zxeNC8AiExpKnou/97GJWkiDDZbTRHj3c9dvF1y4jsRQ0WE72m/CqTdbMGyU98yL0SJ9hQVeg=="],
+    "@libsql/core": ["@libsql/core@0.15.12", "", { "dependencies": { "js-base64": "^3.7.5" } }, "sha512-S3tF6885ZizVjfym7f8SevL2VId/+DzxiKmP5zFbrhA8oMLh2XH8bYXChmhab7o9qUSHx+XjK4jCFpUwR5g+Ig=="],
 
     "@libsql/darwin-arm64": ["@libsql/darwin-arm64@0.5.17", "", { "os": "darwin", "cpu": "arm64" }, "sha512-WTYG2skZsUnZmfZ2v7WFj7s3/5s2PfrYBZOWBKOnxHA8g4XCDc/4bFDaqob9Q2e88+GC7cWeJ8VNkVBFpD2Xxg=="],
 
