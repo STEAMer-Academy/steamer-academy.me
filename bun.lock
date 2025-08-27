@@ -12,7 +12,7 @@
         "@ducanh2912/next-pwa": "^10.2.9",
         "@libsql/client": "^0.15.10",
         "@nanostores/react": "^1.0.0",
-        "@next/bundle-analyzer": "^15.4.6",
+        "@next/bundle-analyzer": "^15.5.2",
         "@next/eslint-plugin-next": "^15.4.6",
         "@nextui-org/spinner": "^2.2.6",
         "@nextui-org/theme": "^2.4.5",
@@ -546,7 +546,7 @@
 
     "@neon-rs/load": ["@neon-rs/load@0.0.4", "", {}, ""],
 
-    "@next/bundle-analyzer": ["@next/bundle-analyzer@15.4.6", "", { "dependencies": { "webpack-bundle-analyzer": "4.10.1" } }, "sha512-LZWqTQgIpfhblT77VVc1r4qtHJY1pfZOAIx8zNtliU7L3pMjpNrG4rYWikJ7AyAI/RgYyt2sCVWqkeOZmFp7Zg=="],
+    "@next/bundle-analyzer": ["@next/bundle-analyzer@15.5.2", "", { "dependencies": { "webpack-bundle-analyzer": "4.10.1" } }, "sha512-UWOFpy/NK5iSeIP0mgdq4VqGB4/z37uq5v5dEtvzmY/BlaPO6m4EtFUaH6RVI0w2wG5sh0TG86i/cA5wcaJtgg=="],
 
     "@next/env": ["@next/env@15.4.5", "", {}, "sha512-ruM+q2SCOVCepUiERoxOmZY9ZVoecR3gcXNwCYZRvQQWRjhOiPJGmQ2fAiLR6YKWXcSAh7G79KEFxN3rwhs4LQ=="],
 
