@@ -1,4 +1,3 @@
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import withPWAInit from "@ducanh2912/next-pwa";
 import type { PluginOptions } from "@ducanh2912/next-pwa";
@@ -13,8 +12,6 @@ const withPWA = withPWAInit({
 } satisfies PluginOptions);
 
 const nextConfigFunction = (phase: string) => {
-  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
-
   const withBundleAnalyzer = bundleAnalyzer({
     enabled: process.env.ANALYZE === "true",
   });
@@ -29,7 +26,6 @@ const nextConfigFunction = (phase: string) => {
       NEXT_PUBLIC_APP_VERSION: version,
     },
     reactStrictMode: true,
-    assetPrefix: isDev ? undefined : "https://cdn.steameracademy.me",
 
     images: {
       remotePatterns: [
