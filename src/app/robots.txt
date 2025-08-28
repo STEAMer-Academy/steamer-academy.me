@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: http://www.steameracademy.me/sitemap.xml
+Sitemap: http://steamer-academy.vercel.app/sitemap.xml

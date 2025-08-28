@@ -104,7 +104,7 @@ export default function Footer() {
               <li>
                 <Link
                   prefetch={true}
-                  href="https://status.steameracademy.me"
+                  href="https://steamer-academy.betteruptime.com"
                   className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                 >
                   Status

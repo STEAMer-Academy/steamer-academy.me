@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: true,
   },
-  metadataBase: new URL("https://www.steameracademy.me"),
+  metadataBase: new URL("https://steamer-academy.vercel.app"),
   robots: {
     index: true,
     follow: true,
@@ -66,16 +66,16 @@ export const metadata: Metadata = {
     title: "STEAMer Academy",
     description:
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
-    url: "https://www.steameracademy.me/",
+    url: "https://steamer-academy.vercel.app/",
     type: "website",
     siteName: "STEAMer Academy",
-    images: "https://www.steameracademy.me/link-preview-images/home.webp",
+    images: "https://steamer-academy.vercel.app/link-preview-images/home.webp",
   },
   twitter: {
-    site: "https://www.steameracademy.me/",
+    site: "https://steamer-academy.vercel.app/",
     creator: "Muntasir Mahmud",
     title: "STEAMer Academy",
-    images: "https://www.steameracademy.me/link-preview-images/home.webp",
+    images: "https://steamer-academy.vercel.app/link-preview-images/home.webp",
     description:
       "STEAMer Academy offers comprehensive education in Science, Technology, Engineering, Arts, and Mathematics.",
   },

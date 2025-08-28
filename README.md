@@ -36,7 +36,7 @@
             <img src="https://api.iconify.design/fa6-brands/whatsapp.svg?color=%23cad3f5" alt="WhatsApp Logo" width="32" height="32">
         </span>
     </a>
-    <!--     <a href="https://twitter.com/intent/tweet?text=Check%20out%20STEAMer%20Academy!&url=https://www.steameracademy.me">
+    <!--     <a href="https://twitter.com/intent/tweet?text=Check%20out%20STEAMer%20Academy!&url=https://steamer-academy.vercel.app">
         <span style="background-color: #363a4f; padding: 10px; border-radius: 50%; display: inline-block;">
             <img src="https://api.iconify.design/fa6-brands/twitter.svg?color=%23cad3f5" alt="Twitter Logo" width="32" height="32">
         </span>
@@ -50,7 +50,7 @@
 
 ## 🚀 About the Project
 
-This is the official repository for [STEAMer Academy](https://www.steameracademy.me), built with modern technologies to deliver a seamless and dynamic user experience.
+This is the official repository for [STEAMer Academy](https://steamer-academy.vercel.app), built with modern technologies to deliver a seamless and dynamic user experience.
 
 ### Tech Stack
 

@@ -20,7 +20,7 @@ export default function DatadogInit() {
       defaultPrivacyLevel: "mask-user-input",
       allowedTracingUrls: [
         {
-          match: "https://www.steameracademy.me/api/",
+          match: "https://steamer-academy.vercel.app/api/",
           propagatorTypes: ["tracecontext"],
         },
       ],
