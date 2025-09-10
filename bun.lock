@@ -7,7 +7,7 @@
         "@arcjet/next": "^1.0.0-beta.10",
         "@builder.io/partytown": "^0.10.3",
         "@clerk/nextjs": "^6.31.10",
-        "@clerk/themes": "^2.4.17",
+        "@clerk/themes": "^2.4.18",
         "@datadog/browser-rum": "^6.19.0",
         "@ducanh2912/next-pwa": "^10.2.9",
         "@libsql/client": "^0.15.14",
@@ -304,7 +304,7 @@
 
     "@clerk/shared": ["@clerk/shared@3.24.2", "", { "dependencies": { "@clerk/types": "^4.85.0", "dequal": "2.0.3", "glob-to-regexp": "0.4.1", "js-cookie": "3.0.5", "std-env": "^3.9.0", "swr": "2.3.4" }, "peerDependencies": { "react": "^18.0.0 || ^19.0.0 || ^19.0.0-0", "react-dom": "^18.0.0 || ^19.0.0 || ^19.0.0-0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-gGnB08PWdM6gHVhlyrQ32xwWt/bIyg8nQhrxUCnNSf/xlPC2mFUtx24JYLsFRjbIGg/uA3z2qVnllBMkxejIDA=="],
 
-    "@clerk/themes": ["@clerk/themes@2.4.17", "", { "dependencies": { "@clerk/types": "^4.84.1", "tslib": "2.8.1" } }, "sha512-vTI2DYk9Dn20boDxXL35MpsmgXRQY8xSNlg1JxrXNMqzmRHhdqDNeeqlA5En+K6a/AY4rEO39ilxMgPG8knD/A=="],
+    "@clerk/themes": ["@clerk/themes@2.4.18", "", { "dependencies": { "@clerk/types": "^4.85.0", "tslib": "2.8.1" } }, "sha512-Hrfm5/Nr1ZL+Jg3oRL9FEaFIt+AYO82znd78CBeeKdlYxNKHbihA2xydLmaoj08SX6cmfbf7snnJN6DW3UCqEQ=="],
 
     "@clerk/types": ["@clerk/types@4.85.0", "", { "dependencies": { "csstype": "3.1.3" } }, "sha512-0s7KZbWpX4e9/CHl29sYGGBUBbZa7qlXp74OaaXfm1WTzYGiOOTyyE54j2WTz91+TZxIZZu5UA5rfn9qc79hYA=="],
 
@@ -2055,8 +2055,6 @@
     "@babel/preset-env/semver": ["semver@6.3.1", "", { "bin": "bin/semver.js" }, ""],
 
     "@babel/traverse/globals": ["globals@11.12.0", "", {}, ""],
-
-    "@clerk/themes/@clerk/types": ["@clerk/types@4.84.1", "", { "dependencies": { "csstype": "3.1.3" } }, "sha512-0lLz3u8u0Ot5ZUObU+8JJLOeiHHnruShJMeLAHNryp1d5zANPQquOyagamxbkoV1K2lAf8ld3liobs3EBzll6Q=="],
 
     "@csstools/postcss-scope-pseudo-class/postcss-selector-parser": ["postcss-selector-parser@7.0.0", "", { "dependencies": { "cssesc": "^3.0.0", "util-deprecate": "^1.0.2" } }, ""],
 
