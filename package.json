@@ -57,7 +57,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-element-to-jsx-string": "^17.0.1",
-    "sharp": "^0.34.3",
+    "sharp": "^0.34.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
