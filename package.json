@@ -37,7 +37,7 @@
     "clsx": "^2.1.1",
     "critters": "^0.0.25",
     "cssnano": "^7.1.1",
-    "dotenv": "^17.2.2",
+    "dotenv": "^17.2.3",
     "dotted-map": "^2.2.3",
     "eslint-config-next": "^15.5.4",
     "eslint-define-config": "^2.1.0",
