@@ -7,7 +7,7 @@
         "@arcjet/next": "^1.0.0-beta.12",
         "@builder.io/partytown": "^0.10.3",
         "@clerk/nextjs": "^6.33.0",
-        "@clerk/themes": "^2.4.18",
+        "@clerk/themes": "^2.4.23",
         "@datadog/browser-rum": "^6.21.2",
         "@ducanh2912/next-pwa": "^10.2.9",
         "@libsql/client": "^0.15.14",
@@ -304,7 +304,7 @@
 
     "@clerk/shared": ["@clerk/shared@3.27.0", "", { "dependencies": { "@clerk/types": "^4.89.0", "dequal": "2.0.3", "glob-to-regexp": "0.4.1", "js-cookie": "3.0.5", "std-env": "^3.9.0", "swr": "2.3.4" }, "peerDependencies": { "react": "^18.0.0 || ^19.0.0 || ^19.0.0-0", "react-dom": "^18.0.0 || ^19.0.0 || ^19.0.0-0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-dVtmZ3+g/QrofBfnAa/SRDS+8tC58nmDT2+4+0OsTedq6F2u6rETTYZIn9P63U3BaRII7ItMFW4c8WgZXOnSIw=="],
 
-    "@clerk/themes": ["@clerk/themes@2.4.18", "", { "dependencies": { "@clerk/types": "^4.85.0", "tslib": "2.8.1" } }, "sha512-Hrfm5/Nr1ZL+Jg3oRL9FEaFIt+AYO82znd78CBeeKdlYxNKHbihA2xydLmaoj08SX6cmfbf7snnJN6DW3UCqEQ=="],
+    "@clerk/themes": ["@clerk/themes@2.4.23", "", { "dependencies": { "@clerk/types": "^4.90.0", "tslib": "2.8.1" } }, "sha512-4QmD5OcedsYujL228DGbVsDJYTbo+VKEVE/vwucnnz1XvthpG/iXnnXnGXKSZcyj6Uci34UZol6Ss2nYAdkhXA=="],
 
     "@clerk/types": ["@clerk/types@4.89.0", "", { "dependencies": { "csstype": "3.1.3" } }, "sha512-4pT8s/f05C3w1ggRvF12Vr+Ms8GisVBNoWG56znGuofoQ4pzLhJJTU6daVCxTjkPf30IlYtQfoAUaKjXDwH/rw=="],
 
@@ -2062,7 +2062,7 @@
 
     "@babel/traverse/globals": ["globals@11.12.0", "", {}, ""],
 
-    "@clerk/themes/@clerk/types": ["@clerk/types@4.85.0", "", { "dependencies": { "csstype": "3.1.3" } }, "sha512-0s7KZbWpX4e9/CHl29sYGGBUBbZa7qlXp74OaaXfm1WTzYGiOOTyyE54j2WTz91+TZxIZZu5UA5rfn9qc79hYA=="],
+    "@clerk/themes/@clerk/types": ["@clerk/types@4.90.0", "", { "dependencies": { "csstype": "3.1.3" } }, "sha512-AnXeCkyFdM+3icdeKElajVKV73IvlQ6eeWTaLG700CzL+Zw9iD2YV4t8qAhNhwo0FFtkcI9EKDblw6G9Rn1Onw=="],
 
     "@csstools/postcss-scope-pseudo-class/postcss-selector-parser": ["postcss-selector-parser@7.0.0", "", { "dependencies": { "cssesc": "^3.0.0", "util-deprecate": "^1.0.2" } }, ""],
 
