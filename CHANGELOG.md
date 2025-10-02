@@ -5,14 +5,12 @@
 ### Feat
 
 - React 19 And Nextjs 15
-
   - Logtail
   - Datadog
 
   ### Fix
 
 - Remove check.sh
-
   - Eslint
   - Main Page
   - Eslint Errors
@@ -42,13 +40,11 @@
   ### Deps
 
 - fix peer dependency
-
   - fix peer dependency
 
   ### Feat
 
 - Changelog.md
-
   - Idk
   - Idk
   - Remove libsql
@@ -59,7 +55,6 @@
   ### Fix
 
 - More Standard
-
   - Remove Changelog Last Line
   - **chore-deps:** remove posthog
   - **chore-deps:** remove posthog
@@ -106,13 +101,11 @@
 ### Deps
 
 - add next-themes
-
   - Remove [@next](https://github.com/next)/third-parties
 
   ### Feat
 
 - Authentication!
-
   - Featuring LibSQL
   - Add Clarity
   - Tracing Beam In Blogs
@@ -120,7 +113,6 @@
   ### Fix
 
 - Clarity And Remove Prerender
-
   - Remove Globe Import From wrapper
   - Remove Yarn (Again)
   - remove yarn in package.json
