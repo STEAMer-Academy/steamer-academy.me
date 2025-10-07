@@ -27,13 +27,6 @@ const teamMembers = [
     content:
       "Manages A-Z of technology related works of our organization and plays one of the most vital roles. He is also a great open source fighter and always helpful to all.",
   },
-  {
-    name: "Saoyad",
-    role: "Chief Management Officer",
-    image: "/SaoyadDiscordpfp.webp",
-    content:
-      "He is responsible for the overall management of the organization, including the development and implementation of policies, procedures, and programs.",
-  },
 ];
 
 export default function AboutPage() {
