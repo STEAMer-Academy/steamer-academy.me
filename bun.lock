@@ -8,7 +8,7 @@
         "@builder.io/partytown": "^0.10.3",
         "@clerk/nextjs": "^6.33.3",
         "@clerk/themes": "^2.4.25",
-        "@datadog/browser-rum": "^6.21.2",
+        "@datadog/browser-rum": "^6.22.0",
         "@ducanh2912/next-pwa": "^10.2.9",
         "@libsql/client": "^0.15.14",
         "@nanostores/react": "^1.0.0",
@@ -406,11 +406,11 @@
 
     "@csstools/utilities": ["@csstools/utilities@2.0.0", "", { "peerDependencies": { "postcss": "^8.4" } }, ""],
 
-    "@datadog/browser-core": ["@datadog/browser-core@6.21.2", "", {}, "sha512-8DVBh1vVChNQqKPQqay1K2hlDRfae4MfUg1wO3tlTJXfH3AUP//bgbUPp3DIJ/Epgp43mRLJhm0+6/zWzsB/2Q=="],
+    "@datadog/browser-core": ["@datadog/browser-core@6.22.0", "", {}, "sha512-f4c5y3HYR879+vZgwos3hPxTX8XvNCNmujSpSmA8zdIVA1JgP3Ern8Up2x4LEPGVxgSojUy8pVVtf3rjKXRjZg=="],
 
-    "@datadog/browser-rum": ["@datadog/browser-rum@6.21.2", "", { "dependencies": { "@datadog/browser-core": "6.21.2", "@datadog/browser-rum-core": "6.21.2" }, "peerDependencies": { "@datadog/browser-logs": "6.21.2" }, "optionalPeers": ["@datadog/browser-logs"] }, "sha512-xfILmp2NvAH8ndjBolpmBeWNJosUgXcl+dxE7TndBnmO1RyIrJA4ET+Bb/X+LgJNjWF58XShCF+Fl2dHMClu7g=="],
+    "@datadog/browser-rum": ["@datadog/browser-rum@6.22.0", "", { "dependencies": { "@datadog/browser-core": "6.22.0", "@datadog/browser-rum-core": "6.22.0" }, "peerDependencies": { "@datadog/browser-logs": "6.22.0" }, "optionalPeers": ["@datadog/browser-logs"] }, "sha512-6AQUuu3tWwCp0fgRBDE1Qscm/DTLtaK3e8L9tJa1YRw1wvg41CGRm2jgF3yRz6WXvsz/gTqmq+QBjDzSl8UbWg=="],
 
-    "@datadog/browser-rum-core": ["@datadog/browser-rum-core@6.21.2", "", { "dependencies": { "@datadog/browser-core": "6.21.2" } }, "sha512-GJJcFUXqy06XxPH+kZgzY6e/Welccizya2RN4mWcsyYzjN0vC106bxlaLYsqVG9YQumRt6I06PEUl7wmgad7Jw=="],
+    "@datadog/browser-rum-core": ["@datadog/browser-rum-core@6.22.0", "", { "dependencies": { "@datadog/browser-core": "6.22.0" } }, "sha512-Du6poAHIHNFk5Cz3YBxNTnaCGrRJVTzCrOIpcfwPajbUYYGw1VT0KKyq5OBUIaxNFpPTv+UuIoI5689a0Tyb2g=="],
 
     "@dimforge/rapier3d-compat": ["@dimforge/rapier3d-compat@0.12.0", "", {}, "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow=="],
 
