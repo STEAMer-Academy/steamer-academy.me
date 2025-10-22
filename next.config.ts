@@ -27,6 +27,7 @@ const nextConfigFunction = () => {
     },
     reactStrictMode: true,
     reactCompiler: true,
+    turbopack: {},
 
     images: {
       remotePatterns: [
