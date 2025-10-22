@@ -114,7 +114,7 @@ export default function BlogList({ blogs = [] }: BlogListProps) {
           <PaginationItem>
             <PaginationPrevious
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              // @ts-ignore
+              // @ts-expect-error - Component prop type mismatch
               disabled={currentPage === 1}
             />
           </PaginationItem>
@@ -124,7 +124,7 @@ export default function BlogList({ blogs = [] }: BlogListProps) {
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
-              // @ts-ignore
+              // @ts-expect-error - Component prop type mismatch
               disabled={currentPage === totalPages}
             />
           </PaginationItem>

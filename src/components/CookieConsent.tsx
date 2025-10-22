@@ -22,6 +22,7 @@ export default function CookieConsent() {
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent");
     if (consent === "true") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setConsentGiven(true);
     } else if (!consent) {
       setIsVisible(true);
