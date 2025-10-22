@@ -1,8 +1,12 @@
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 import pluginNext from "@next/eslint-plugin-next";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import parser from "@typescript-eslint/parser";
 
-export default [
+const config = [
+  ...nextCoreWebVitals,
+  ...nextTypescript,
   {
     name: "ESLint Config - nextjs",
     languageOptions: {
@@ -16,7 +20,6 @@ export default [
       },
     },
     plugins: {
-      "@next/next": pluginNext,
       prettier: eslintPluginPrettier,
     },
     files: [
@@ -29,4 +32,18 @@ export default [
       "prettier/prettier": "error",
     },
   },
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      "public/**",
+      "**/*.md",
+      "**/*.json",
+    ],
+  },
 ];
+
+export default config;

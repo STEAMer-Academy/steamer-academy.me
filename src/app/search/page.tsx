@@ -162,7 +162,7 @@ export default function SearchPage() {
             </div>
             {pageCount > 1 && (
               <Pagination
-                // @ts-ignore
+                // @ts-expect-error - Component prop type mismatch
                 currentPage={currentPage}
                 totalPages={pageCount}
                 onPageChange={setCurrentPage}

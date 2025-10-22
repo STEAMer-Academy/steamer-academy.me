@@ -94,11 +94,7 @@ export default function Header() {
       setShowDropdown(true);
     };
 
-    if (searchValue.length > 0) {
-      performSearch();
-    } else {
-      setSearchResults([]);
-    }
+    performSearch();
   }, [searchValue, fuse]);
 
   const handleSearch = (e: React.FormEvent) => {

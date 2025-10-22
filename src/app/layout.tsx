@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
-// @ts-ignore
+// @ts-expect-error - Partytown types not available
 import { Partytown } from "@builder.io/partytown/react";
 import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
