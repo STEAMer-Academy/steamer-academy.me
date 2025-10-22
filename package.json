@@ -23,7 +23,7 @@
     "@libsql/client": "^0.15.14",
     "@nanostores/react": "^1.0.0",
     "@next/bundle-analyzer": "^15.5.6",
-    "@next/eslint-plugin-next": "^15.5.6",
+    "@next/eslint-plugin-next": "^16.0.0",
     "@nextui-org/spinner": "^2.2.6",
     "@nextui-org/theme": "^2.4.5",
     "@radix-ui/react-avatar": "^1.1.10",
