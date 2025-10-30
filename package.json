@@ -37,7 +37,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.25",
-    "cssnano": "^7.1.1",
+    "cssnano": "^7.1.2",
     "dotenv": "^17.2.3",
     "dotted-map": "^2.2.3",
     "eslint-config-next": "^16.0.1",
