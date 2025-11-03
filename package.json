@@ -70,7 +70,7 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/react-google-recaptcha": "^2.1.9",
-    "@types/three": "^0.180.0",
+    "@types/three": "^0.181.0",
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "postcss": "^8.5.6",
