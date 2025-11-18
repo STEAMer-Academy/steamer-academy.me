@@ -16,8 +16,8 @@
   "dependencies": {
     "@arcjet/next": "^1.0.0-beta.15",
     "@builder.io/partytown": "^0.10.3",
-    "@clerk/nextjs": "^6.35.1",
-    "@clerk/themes": "^2.4.36",
+    "@clerk/nextjs": "^6.35.2",
+    "@clerk/themes": "^2.4.37",
     "@datadog/browser-rum": "^6.24.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@libsql/client": "^0.15.15",
@@ -47,7 +47,7 @@
     "fuse.js": "^7.1.0",
     "hugeicons-react": "^0.3.0",
     "lru-cache": "^11.2.2",
-    "lucide-react": "^0.553.0",
+    "lucide-react": "^0.554.0",
     "motion": "12.23.24",
     "nanostores": "^1.0.1",
     "next": "^16.0.3",
@@ -67,7 +67,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.4",
+    "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/three": "^0.181.0",
