@@ -8,7 +8,7 @@
         "@builder.io/partytown": "^0.10.3",
         "@clerk/nextjs": "^6.35.2",
         "@clerk/themes": "^2.4.37",
-        "@datadog/browser-rum": "^6.24.0",
+        "@datadog/browser-rum": "^6.24.1",
         "@ducanh2912/next-pwa": "^10.2.9",
         "@libsql/client": "^0.15.15",
         "@nanostores/react": "^1.0.0",
@@ -39,7 +39,7 @@
         "lru-cache": "^11.2.2",
         "lucide-react": "^0.554.0",
         "motion": "12.23.24",
-        "nanostores": "^1.0.1",
+        "nanostores": "^1.1.0",
         "next": "^16.0.3",
         "next-mdx-remote": "^5.0.0",
         "next-themes": "^0.4.6",
@@ -407,11 +407,11 @@
 
     "@csstools/utilities": ["@csstools/utilities@2.0.0", "", { "peerDependencies": { "postcss": "^8.4" } }, ""],
 
-    "@datadog/browser-core": ["@datadog/browser-core@6.24.0", "", {}, "sha512-mTv01ckd+QDiNbhqYhvj6UxwMhoM5LWrPODEWpWSHRc2T9xnWqUBdaJmCudfz72qlhCYqp44uBwv5cZ7bdHxUA=="],
+    "@datadog/browser-core": ["@datadog/browser-core@6.24.1", "", {}, "sha512-ViLqvvCrZtKRCrSCcrZmSbc4Th7Y0rUQ7PruP1KGNgmE2fY4rrRP/n77zXuF8y/bmBce0na8kCdoCUkKzl/xuQ=="],
 
-    "@datadog/browser-rum": ["@datadog/browser-rum@6.24.0", "", { "dependencies": { "@datadog/browser-core": "6.24.0", "@datadog/browser-rum-core": "6.24.0" }, "peerDependencies": { "@datadog/browser-logs": "6.24.0" }, "optionalPeers": ["@datadog/browser-logs"] }, "sha512-phZXs11nsJ0LwUPJlOvE4wNth0RQ4K2h35Dk4m+mYByCzEAH50uwv4x3fxpGUN9fqydQZoqo+uelIggmjyBXxA=="],
+    "@datadog/browser-rum": ["@datadog/browser-rum@6.24.1", "", { "dependencies": { "@datadog/browser-core": "6.24.1", "@datadog/browser-rum-core": "6.24.1" }, "peerDependencies": { "@datadog/browser-logs": "6.24.1" }, "optionalPeers": ["@datadog/browser-logs"] }, "sha512-PKLCcyOtRROVGp5nagkxBNotP+VmMmBDYHR/C1uNM5ibU3R6AR5EFc6XAAKuWI/6lfcxJx0MeXUM0pdNNs2yMg=="],
 
-    "@datadog/browser-rum-core": ["@datadog/browser-rum-core@6.24.0", "", { "dependencies": { "@datadog/browser-core": "6.24.0" } }, "sha512-rtnYr3xP2aYz0Bw9SPHB6WOTOBnuS7UiGV72e5ry8NgoUiMPtGRtfg5NAPvgM6+TnPQ26J0kLXCSGvCVLGNMVw=="],
+    "@datadog/browser-rum-core": ["@datadog/browser-rum-core@6.24.1", "", { "dependencies": { "@datadog/browser-core": "6.24.1" } }, "sha512-wBc67Zseh/KvFVhDjM54w6Zm6fkTYnsfhMeVZIDlCYZ0s9T73CVIQtEF2GTp+PogRkQtFGffWGZDaW/xppUV8A=="],
 
     "@dimforge/rapier3d-compat": ["@dimforge/rapier3d-compat@0.12.0", "", {}, "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow=="],
 
@@ -1509,7 +1509,7 @@
 
     "nanoid": ["nanoid@3.3.11", "", { "bin": { "nanoid": "bin/nanoid.cjs" } }, "sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w=="],
 
-    "nanostores": ["nanostores@1.0.1", "", {}, "sha512-kNZ9xnoJYKg/AfxjrVL4SS0fKX++4awQReGqWnwTRHxeHGZ1FJFVgTqr/eMrNQdp0Tz7M7tG/TDaX8QfHDwVCw=="],
+    "nanostores": ["nanostores@1.1.0", "", {}, "sha512-yJBmDJr18xy47dbNVlHcgdPrulSn1nhSE6Ns9vTG+Nx9VPT6iV1MD6aQFp/t52zpf82FhLLTXAXr30NuCnxvwA=="],
 
     "natural-compare": ["natural-compare@1.4.0", "", {}, ""],
 
