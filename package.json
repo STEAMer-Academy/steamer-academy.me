@@ -14,7 +14,7 @@
     "fmt": "prettier --check --write ."
   },
   "dependencies": {
-    "@arcjet/next": "^1.0.0-beta.16",
+    "@arcjet/next": "^1.0.0-beta.17",
     "@builder.io/partytown": "^0.10.3",
     "@clerk/nextjs": "^6.36.7",
     "@clerk/themes": "^2.4.47",
