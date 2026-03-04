@@ -361,16 +361,16 @@ export default function Header() {
                       </Button>
                     </SheetClose>
                   ))}
-                  <SignedIn>
+                  <SignIn>
                     <Button variant="outline">
                       <UserButton showName={true} />
                     </Button>
-                  </SignedIn>
-                  <SignedOut>
+                  </SignIn>
+                  <SignOut>
                     <Button variant="outline">
                       <SignInButton mode="modal" />
                     </Button>
-                  </SignedOut>
+                  </SignOut>
                   <ThemeToggle />
                 </nav>
               </SheetContent>
