@@ -39,7 +39,7 @@
     "critters": "^0.0.25",
     "cssnano": "^7.1.2",
     "dotenv": "^17.3.1",
-    "dotted-map": "^2.2.3",
+    "dotted-map": "^3.1.0",
     "eslint-config-next": "^16.1.6",
     "eslint-define-config": "^2.1.0",
     "eslint-plugin-prettier": "^5.5.5",
