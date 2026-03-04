@@ -28,7 +28,7 @@ import {
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import Fuse from "fuse.js";
-import { SignIn, SignOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Show, SignInButton, UserButton } from "@clerk/nextjs";
 
 interface SearchItem {
   id: string;
@@ -237,16 +237,16 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <SignIn>
+            <Show when="signed-in">
               <Button variant="outline">
                 <UserButton showName={true} />
               </Button>
-            </SignIn>
-            <SignOut>
+            </Show>
+            <Show when="signed-out">
               <Button variant="outline">
                 <SignInButton mode="modal" />
               </Button>
-            </SignOut>
+            </Show>
             <ThemeToggle />
           </div>
 
@@ -361,16 +361,16 @@ export default function Header() {
                       </Button>
                     </SheetClose>
                   ))}
-                  <SignIn>
+                  <Show when="signed-in">
                     <Button variant="outline">
                       <UserButton showName={true} />
                     </Button>
-                  </SignIn>
-                  <SignOut>
+                  </Show>
+                  <Show when="signed-out">
                     <Button variant="outline">
                       <SignInButton mode="modal" />
                     </Button>
-                  </SignOut>
+                  </Show>
                   <ThemeToggle />
                 </nav>
               </SheetContent>
