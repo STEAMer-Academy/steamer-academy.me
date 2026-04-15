@@ -12,6 +12,7 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - run: npm i -g vercel@latest
       - name: 📦 Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
