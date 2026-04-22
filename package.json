@@ -37,7 +37,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.25",
-    "cssnano": "^7.1.5",
+    "cssnano": "^7.1.7",
     "dotenv": "^17.4.2",
     "dotted-map": "^3.1.0",
     "eslint-config-next": "^16.2.4",
@@ -65,7 +65,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.3",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -76,7 +76,7 @@
     "postcss": "^8.5.10",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.2.3",
     "turbo": "^2.9.6"
   },
   "trustedDependencies": [
