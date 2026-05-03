@@ -19,6 +19,11 @@ const config = [
         },
       },
     },
+    settings: {
+      react: {
+        version: "19",
+      },
+    },
     plugins: {
       prettier: eslintPluginPrettier,
     },

@@ -16,9 +16,9 @@
   "dependencies": {
     "@arcjet/next": "^1.4.0",
     "@builder.io/partytown": "^0.10.3",
-    "@clerk/nextjs": "^7.2.9",
+    "@clerk/nextjs": "^7.3.0",
     "@clerk/themes": "^2.4.57",
-    "@datadog/browser-rum": "^6.33.0",
+    "@datadog/browser-rum": "^7.0.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@libsql/client": "^0.17.3",
     "@nanostores/react": "^1.1.0",
@@ -37,7 +37,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.25",
-    "cssnano": "^7.1.7",
+    "cssnano": "^7.1.8",
     "dotenv": "^17.4.2",
     "dotted-map": "^3.1.0",
     "eslint-config-next": "^16.2.4",
@@ -71,13 +71,25 @@
     "@types/react-dom": "^19.2.3",
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/three": "^0.184.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "postcss": "^8.5.13",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.2.4",
-    "turbo": "^2.9.7"
+    "turbo": "^2.9.8",
+    "typescript-eslint": "^8.59.1"
+  },
+  "overrides": {
+    "typescript-eslint": "^8.59.1",
+    "@typescript-eslint/utils": "^8.59.1",
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
+    "@typescript-eslint/type-utils": "^8.59.1",
+    "@typescript-eslint/scope-manager": "^8.59.1",
+    "@typescript-eslint/types": "^8.59.1",
+    "@typescript-eslint/typescript-estree": "^8.59.1",
+    "@typescript-eslint/visitor-keys": "^8.59.1"
   },
   "trustedDependencies": [
     "@clerk/shared",
