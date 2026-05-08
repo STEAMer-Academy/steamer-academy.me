@@ -81,7 +81,7 @@
     "typescript-eslint": "^8.59.2"
   },
   "overrides": {
-    "typescript-eslint": "^8.59.1",
+    "typescript-eslint": "^8.59.2",
     "@typescript-eslint/utils": "^8.59.1",
     "@typescript-eslint/eslint-plugin": "^8.59.1",
     "@typescript-eslint/parser": "^8.59.1",
