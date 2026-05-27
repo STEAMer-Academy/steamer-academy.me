@@ -77,8 +77,8 @@
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.3.0",
-    "turbo": "^2.9.14",
-    "typescript-eslint": "^8.59.4"
+    "turbo": "^2.9.15",
+    "typescript-eslint": "^8.60.0"
   },
   "trustedDependencies": [
     "@clerk/shared",
