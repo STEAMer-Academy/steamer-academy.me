@@ -97,7 +97,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
         <Toaster richColors closeButton position="top-center" />
-        <ClerkProvider appearance={{ baseTheme: [dark, shadesOfPurple] }}>
+        <ClerkProvider appearance={{ theme: [dark, shadesOfPurple] }}>
           <CookieConsent />
           <WebVitals />
           <Script id="clarity-script" strategy="afterInteractive">
