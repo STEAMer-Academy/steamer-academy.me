@@ -11,7 +11,8 @@
     "start": "next start",
     "lint": "eslint .",
     "partytown": "partytown copylib public/~partytown",
-    "fmt": "prettier --check --write ."
+    "fmt": "prettier --check --write .",
+    "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
     "@arcjet/next": "^1.5.0",

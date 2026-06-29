@@ -9,11 +9,7 @@ export interface Blog {
 }
 
 export type BlogCategory =
-  | "engineeringMds"
-  | "englishMds"
-  | "mathMds"
-  | "scienceMds"
-  | "technologyMds";
+  "engineeringMds" | "englishMds" | "mathMds" | "scienceMds" | "technologyMds";
 
 export type BlogData = Record<BlogCategory, Blog[]>;
 
