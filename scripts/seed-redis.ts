@@ -217,41 +217,56 @@ async function discoverBlogs(): Promise<BlogData> {
 }
 
 async function seed() {
-  const filePath = process.argv[2] || "data/blogs.json";
+  const args = process.argv.slice(2);
+  const refresh = args.includes("--refresh");
+  const filePath = args.find((a) => !a.startsWith("--")) || "data/blogs.json";
 
-  if (existsSync(filePath)) {
-    const blogData: BlogData = JSON.parse(readFileSync(filePath, "utf-8"));
+  if (refresh || !existsSync(filePath)) {
+    console.log(
+      refresh
+        ? `Refreshing ${filePath} from GitHub...`
+        : `${filePath} not found. Discovering from GitHub...`,
+    );
+    const blogData = await discoverBlogs();
 
-    // Auto-populate slug from name if missing
-    for (const category of Object.values(blogData)) {
-      for (const blog of category) {
-        if (!blog.slug) {
-          blog.slug = slugify(blog.name);
-        }
-      }
-    }
+    mkdirSync(dirname(filePath), { recursive: true });
+    writeFileSync(filePath, JSON.stringify(blogData, null, 2));
+    console.log(`\n✅ Saved to ${filePath}`);
 
-    const total = Object.values(blogData).reduce((s, blogs) => s + blogs.length, 0);
+    const total = Object.values(blogData).reduce(
+      (s, blogs) => s + blogs.length,
+      0,
+    );
     console.log(`Writing ${total} blogs to Redis...`);
     await redis.set("allBlogs", blogData);
-
-    const verify = await redis.get<BlogData>("allBlogs");
-    const verified = verify
-      ? Object.values(verify).reduce((s, blogs) => s + blogs.length, 0)
-      : 0;
-    console.log(`✅ Done. ${verified} blogs seeded.`);
+    console.log(`✅ Done. ${total} blogs seeded directly from GitHub.`);
     return;
   }
 
-  // First run — discover from GitHub
-  console.log("Discovering blogs from GitHub...");
-  const blogData = await discoverBlogs();
+  // Normal mode — read existing JSON, write to Redis
+  const blogData: BlogData = JSON.parse(readFileSync(filePath, "utf-8"));
 
-  mkdirSync(dirname(filePath), { recursive: true });
-  writeFileSync(filePath, JSON.stringify(blogData, null, 2));
-  console.log(`\n✅ Saved to ${filePath}`);
-  console.log("Review and edit names/descriptions/images, then run again:");
-  console.log(`  bun seed`);
+  // Auto-populate slug from name if missing
+  for (const category of Object.values(blogData)) {
+    for (const blog of category) {
+      if (!blog.slug) {
+        blog.slug = slugify(blog.name);
+      }
+    }
+  }
+
+  const total = Object.values(blogData).reduce(
+    (s, blogs) => s + blogs.length,
+    0,
+  );
+  console.log(`Writing ${total} blogs to Redis...`);
+  await redis.set("allBlogs", blogData);
+
+  const verify = await redis.get<BlogData>("allBlogs");
+  const verified = verify
+    ? Object.values(verify).reduce((s, blogs) => s + blogs.length, 0)
+    : 0;
+  console.log(`✅ Done. ${verified} blogs seeded.`);
 }
 
 seed().catch((err) => {

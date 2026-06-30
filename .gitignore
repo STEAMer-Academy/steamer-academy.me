@@ -33,4 +33,5 @@ yarn-error.log*
 next-env.d.ts
 
 # build artifacts
+public/search*.json
 public/\~partytown
