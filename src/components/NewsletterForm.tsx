@@ -3,7 +3,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react";
+import { Loader2, Mail } from "lucide-react";
 import { toast } from "sonner";
 
 interface FormData {
@@ -54,14 +54,18 @@ export function NewsletterForm() {
 
   return (
     <form className="space-y-2" onSubmit={handleSubmit}>
-      <Input
-        type="email"
-        name="email"
-        placeholder="Enter your email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
+      <div className="relative">
+        <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+          className="pl-10"
+          required
+        />
+      </div>
 
       <Button type="submit" disabled={isLoading} className="relative p-[3px]">
         <div className="absolute inset-0 rounded-lg bg-linear-to-r from-indigo-500 to-purple-500" />

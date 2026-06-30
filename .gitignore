@@ -33,4 +33,4 @@ yarn-error.log*
 next-env.d.ts
 
 # build artifacts
-public/searchIndex.json
+public/\~partytown

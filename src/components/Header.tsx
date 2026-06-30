@@ -25,6 +25,7 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
 import {
   Search01Icon,
   Menu01Icon,
@@ -134,9 +135,13 @@ function NavLinks({ pathname, onServiceClick }: NavLinksProps) {
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="font-sans font-medium">
+          <Button
+            variant="ghost"
+            className="font-sans font-medium data-[state=open]:bg-accent"
+          >
             <BookEditIcon className="mr-2 h-4 w-4" />
             Services
+            <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
@@ -203,9 +208,10 @@ function MobileMenu({
           </SheetClose>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="justify-start font-sans font-medium">
+              <Button variant="ghost" className="data-[state=open]:bg-accent justify-start font-sans font-medium">
                 <BookEditIcon className="mr-2 h-4 w-4" />
                 Services
+                <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">

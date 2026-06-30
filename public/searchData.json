@@ -42,75 +42,75 @@
     "url": "/contact"
   },
   {
-    "id": "blogsList",
+    "id": "blog-0",
     "title": "Dive into Engineering: A Fun Guide for Engineering 🚀 !",
-    "content": "Engineering is a fascinating field that involves designing, building, and creating innovative solutions to real-world problems. In this blog post, we'll explore the exciting world of engineering and provide a fun guide to help you learn more about this dynamic field.",
+    "content": "Engineering is the art of solving problems and making awesome things work. Engineers use science and math to turn ideas into real-life creations. Whether it's designing a new robot or building a bridg",
     "url": "/blogs/dive-into-engineering-a-fun-guide-for-engineering"
   },
   {
-    "id": "blogsList",
+    "id": "blog-1",
     "title": "Understanding Pressure: A Comprehensive and Engaging Guide 🌟",
-    "content": "Pressure is a fundamental concept in physics that plays a crucial role in various scientific and engineering applications. In this blog post, we'll explore the concept of pressure in detail and provide an engaging guide to help you understand this important physical quantity.",
+    "content": "Welcome to our deep dive into pressure—a fundamental concept that influences many aspects of our daily lives and engineering marvels! Whether you’re curious about how your tires work or why certain to",
     "url": "/blogs/understanding-pressure-a-comprehensive-and-engaging-guide"
   },
   {
-    "id": "blogsList",
-    "title": "What is a noun — A Cornerstone of Language",
-    "content": "Nouns are the fundamental words in any language, serving as the names for people, places, things, and ideas. They are the essential components that form the backbone of sentences.",
+    "id": "blog-2",
+    "title": "What is a noun? A Cornerstone of Language",
+    "content": "Aug. 1, 2024",
     "url": "/blogs/what-is-a-noun-a-cornerstone-of-language"
   },
   {
-    "id": "blogsList",
+    "id": "blog-3",
     "title": "Verbs: The Backbone of Language",
-    "content": "Verbs are the words that show action. They are an essential part of language that help us express action, state, or occurrence.",
+    "content": "Verbs are the words that show action.",
     "url": "/blogs/verbs-the-backbone-of-language"
   },
   {
-    "id": "blogsList",
+    "id": "blog-4",
     "title": "Why X Always Gets the Spotlight🤔",
-    "content": "Ever wonder why X is always the star of the show in algebra? Let's dig into the mystery of why X became the go-to letter for the unknown.",
+    "content": "Hey there, math friends!🫣",
     "url": "/blogs/why-x-always-gets-the-spotlight"
   },
   {
-    "id": "blogsList",
-    "title": "Introduction to Geometry",
-    "content": "Geometry, the branch of mathematics concerned with the shape of individual objects, spatial relationships among various objects, and the properties of surrounding space.",
-    "url": "/blogs/introduction-to-geometry"
+    "id": "blog-5",
+    "title": "Welcome to a amazing world of mathematics",
+    "content": "DO YOU KNOW WHAT IS GEOMETRY",
+    "url": "/blogs/welcome-to-a-amazing-world-of-mathematics"
   },
   {
-    "id": "blogsList",
-    "title": "Understanding Trigonometry",
-    "content": "Trigonometry is a branch of mathematics concerned with relationships between angles and side lengths of triangles. Learn about sin, cos, tan and their values for important angles.",
-    "url": "/blogs/understanding-trigonometry"
+    "id": "blog-6",
+    "title": "Solved Examples",
+    "content": "God told me to do some good things but I did many sin theta!🤓",
+    "url": "/blogs/solved-examples"
   },
   {
-    "id": "blogsList",
-    "title": "Introduction to Biology",
-    "content": "The word biology is derived from the Greek words meaning life and study, and is defined as the science of life and living organisms.",
-    "url": "/blogs/introduction-to-biology"
+    "id": "blog-7",
+    "title": "Part 1:SCIENCE ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨ـ",
+    "content": "Just hearing the name creates a different feeling.The word “science” probably brings to mind many different pictures: a fat textbook, white lab coats and microscopes, an astronomer peering through a t",
+    "url": "/blogs/part-1-science"
   },
   {
-    "id": "blogsList",
+    "id": "blog-8",
     "title": "Unlocking the Mysteries of the Universe: A Casual Dive into Physics",
-    "content": "Physics is a fascinating field that involves exploring the fundamental laws of nature and understanding the behavior of matter and energy. In this blog post, we'll explore the exciting world of physics.",
+    "content": "Hey there, curious minds! 🌌",
     "url": "/blogs/unlocking-the-mysteries-of-the-universe-a-casual-dive-into-physics"
   },
   {
-    "id": "blogsList",
-    "title": "What are Newton's Laws of Motion",
-    "content": "Physics is the natural science of matter, involving the study of matter, its fundamental constituents, its motion and behavior through space and time.",
+    "id": "blog-9",
+    "title": "What are Newton’s Laws of Motion?",
+    "content": "Physics is the natural science of matter, involving the study of matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy and force.",
     "url": "/blogs/what-are-newton-s-laws-of-motion"
   },
   {
-    "id": "blogsList",
+    "id": "blog-10",
     "title": "Part 1: Computers and Programming",
-    "content": "Computers and programming are an essential part of our daily lives, from smartphones and laptops to the software that powers them. In this blog post, we'll explore the world of computers and programming.",
+    "content": "A computer is a machine that can be programmed to carry out sequences of arithmetic or logical operations automatically. Modern computers can perform generic sets of operations known as programs. Thes",
     "url": "/blogs/part-1-computers-and-programming"
   },
   {
-    "id": "blogsList",
-    "title": "Basic Components of a Computer and How They Work",
-    "content": "Computers are complex machines that perform a wide range of tasks, from browsing the web to playing video games. Learn about hardware, software, CPU, RAM, and storage.",
-    "url": "/blogs/basic-components-of-a-computer-and-how-they-work"
+    "id": "blog-11",
+    "title": "Part 2 : Basic components of a computer and how computers work",
+    "content": "A computer is a machine that can be programmed to carry out sequences of arithmetic or logical operations automatically. Modern computers can perform generic sets of operations known as programs. Thes",
+    "url": "/blogs/part-2-basic-components-of-a-computer-and-how-computers-work"
   }
 ]

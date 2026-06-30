@@ -1,8 +1,9 @@
 /**
- * Builds a pre-computed search index for client-side full-text search.
+ * Builds search index from blog data + static pages.
+ * No manual searchData.json maintenance needed.
  *
- * Reads public/searchData.json, creates a MiniSearch index,
- * and writes the serialized index to public/searchIndex.json.
+ * Reads data/blogs.json for blog entries, defines static pages inline,
+ * creates MiniSearch index, and writes both searchData.json and searchIndex.json.
  *
  * Usage:
  *   bun run scripts/build-search-index.ts
@@ -10,7 +11,7 @@
  * Called before next build via the "build" script in package.json.
  */
 
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, existsSync } from "fs";
 import MiniSearch from "minisearch";
 
 interface SearchItem {
@@ -20,9 +21,94 @@ interface SearchItem {
   url: string;
 }
 
-const data: SearchItem[] = JSON.parse(
-  readFileSync("public/searchData.json", "utf-8"),
-);
+// ── Static page entries ────────────────────────────────────────
+
+const staticPages: SearchItem[] = [
+  {
+    id: "home",
+    title: "Home",
+    content:
+      "Welcome to STEAMer Academy, where we inspire young minds through Science, Technology, Engineering, Arts, and Mathematics.",
+    url: "/",
+  },
+  {
+    id: "about",
+    title: "About Us",
+    content:
+      "STEAMer Academy is dedicated to providing innovative education in STEAM fields for children and young adults.",
+    url: "/about",
+  },
+  {
+    id: "english-club",
+    title: "English Club",
+    content:
+      "Join our English Club to improve your language skills through interactive sessions and fun activities.",
+    url: "/services/english-club",
+  },
+  {
+    id: "code-club",
+    title: "Code Club",
+    content:
+      "Join our Code Club to learn programming and computer science through hands-on projects and fun activities.",
+    url: "/services/code-club",
+  },
+  {
+    id: "blogs",
+    title: "Blogs",
+    content:
+      "Read our blog posts to stay updated on the latest news, events, and activities at STEAMer Academy.",
+    url: "/blogs",
+  },
+  {
+    id: "gallery",
+    title: "Gallery",
+    content:
+      "Explore our gallery to see photos and videos of our students engaging in various STEAM activities.",
+    url: "/gallery",
+  },
+  {
+    id: "contact",
+    title: "Contact Us",
+    content:
+      "Get in touch with us to learn more about our programs and how to enroll your child in our classes.",
+    url: "/contact",
+  },
+];
+
+// ── Blog entries from data/blogs.json ──────────────────────────
+
+function loadBlogEntries(): SearchItem[] {
+  const path = "data/blogs.json";
+  if (!existsSync(path)) {
+    console.warn("⚠ data/blogs.json not found — skipping blog entries");
+    return [];
+  }
+
+  const raw = readFileSync(path, "utf-8");
+  const blogData: Record<string, Array<{ name: string; description: string; slug: string }>> =
+    JSON.parse(raw);
+
+  const entries: SearchItem[] = [];
+  let index = 0;
+
+  for (const category of Object.values(blogData)) {
+    if (!Array.isArray(category)) continue;
+    for (const blog of category) {
+      entries.push({
+        id: `blog-${index++}`,
+        title: blog.name,
+        content: blog.description,
+        url: `/blogs/${blog.slug}`,
+      });
+    }
+  }
+
+  return entries;
+}
+
+// ── Build & write indexes ──────────────────────────────────────
+
+const searchData: SearchItem[] = [...staticPages, ...loadBlogEntries()];
 
 const miniSearch = new MiniSearch({
   fields: ["title", "content"],
@@ -35,11 +121,12 @@ const miniSearch = new MiniSearch({
   },
 });
 
-miniSearch.addAll(data);
+miniSearch.addAll(searchData);
 
-const serialized = JSON.stringify(miniSearch);
-writeFileSync("public/searchIndex.json", serialized);
+writeFileSync("public/searchData.json", JSON.stringify(searchData, null, 2));
+writeFileSync("public/searchIndex.json", JSON.stringify(miniSearch));
 
-const count = Object.keys(data).length;
-const sizeKb = (serialized.length / 1024).toFixed(1);
-console.log(`✅ Search index built: ${count} items, ${sizeKb}KB`);
+const blogCount = searchData.length - staticPages.length;
+console.log(
+  `✅ Search index built: ${searchData.length} items (${staticPages.length} static + ${blogCount} blogs), ${(JSON.stringify(miniSearch).length / 1024).toFixed(1)}KB`,
+);
