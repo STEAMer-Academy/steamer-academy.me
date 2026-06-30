@@ -6,7 +6,7 @@ const PrivacyPolicyPage: React.FC = () => {
     <Layout>
       <div className="mx-auto max-w-3xl space-y-6 p-8">
         <h1 className="text-3xl font-bold">Privacy Policy</h1>
-        <p>
+        <p suppressHydrationWarning>
           <strong>Effective Date:</strong> {new Date().toLocaleDateString()}
         </p>
 

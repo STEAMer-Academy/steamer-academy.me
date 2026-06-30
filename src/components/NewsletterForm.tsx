@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Button, Input } from "@/components/wrapper";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -34,17 +35,19 @@ export function NewsletterForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "An error occurred while subscribing");
+        toast.error(data.message || "An error occurred while subscribing");
+        setIsLoading(false);
+        return;
       }
 
       toast.success(data.message || "Thanks for subscribing!");
       setFormData({ email: "" });
+      setIsLoading(false);
     } catch (error) {
       console.error("Subscription error:", error);
       toast.error(
         error instanceof Error ? error.message : "An unexpected error occurred",
       );
-    } finally {
       setIsLoading(false);
     }
   };

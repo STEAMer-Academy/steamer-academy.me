@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import {
   Card,
@@ -15,19 +15,29 @@ import { CookieIcon } from "lucide-react";
 import { CheckmarkCircle01Icon, UnavailableIcon } from "hugeicons-react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-export default function CookieConsent() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [consentGiven, setConsentGiven] = useState(false);
+let cachedConsent: { isVisible: boolean; consentGiven: boolean } | null = null;
 
-  useEffect(() => {
-    const consent = localStorage.getItem("cookieConsent");
-    if (consent === "true") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setConsentGiven(true);
-    } else if (!consent) {
-      setIsVisible(true);
-    }
-  }, []);
+function getInitialConsent() {
+  if (cachedConsent) return cachedConsent;
+  if (typeof window === "undefined") {
+    cachedConsent = { isVisible: false, consentGiven: false };
+    return cachedConsent;
+  }
+  const consent = localStorage.getItem("cookieConsent");
+  cachedConsent = {
+    isVisible: consent === null,
+    consentGiven: consent === "true",
+  };
+  return cachedConsent;
+}
+
+export default function CookieConsent() {
+  const [isVisible, setIsVisible] = useState(
+    () => getInitialConsent().isVisible,
+  );
+  const [consentGiven, setConsentGiven] = useState(
+    () => getInitialConsent().consentGiven,
+  );
 
   const handleAccept = () => {
     localStorage.setItem("cookieConsent", "true");
@@ -43,10 +53,10 @@ export default function CookieConsent() {
   };
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <AnimatePresence>
         {isVisible && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
@@ -98,10 +108,10 @@ export default function CookieConsent() {
                 </Button>
               </CardFooter>
             </Card>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
       <GoogleAnalytics consentGiven={consentGiven} />
-    </>
+    </LazyMotion>
   );
 }

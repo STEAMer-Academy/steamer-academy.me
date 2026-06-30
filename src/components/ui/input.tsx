@@ -5,38 +5,48 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useMotionTemplate, useMotionValue, motion } from "motion/react";
+import {
+  LazyMotion,
+  domAnimation,
+  m,
+  useMotionTemplate,
+  useMotionValue,
+} from "framer-motion";
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  ref?: React.Ref<HTMLInputElement>;
+};
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    const radius = 100; // change this to increase the rdaius of the hover effect
-    const [visible, setVisible] = React.useState(false);
+const Input = ({ className, type, ref, ...props }: InputProps) => {
+  const radius = 100; // change this to increase the rdaius of the hover effect
+  const [visible, setVisible] = React.useState(false);
 
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-    function handleMouseMove({
-      currentTarget,
-      clientX,
-      clientY,
-    }: React.MouseEvent<HTMLDivElement>) {
-      const { left, top } = currentTarget.getBoundingClientRect();
+  function handleMouseMove({
+    currentTarget,
+    clientX,
+    clientY,
+  }: React.MouseEvent<HTMLDivElement>) {
+    const { left, top } = currentTarget.getBoundingClientRect();
 
-      mouseX.set(clientX - left);
-      mouseY.set(clientY - top);
-    }
-    return (
-      <motion.div
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+  const backgroundStyle = useMotionTemplate`
+    radial-gradient(
+      ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
+      var(--blue-500),
+      transparent 80%
+    )
+  `;
+
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
         style={{
-          background: useMotionTemplate`
-        radial-gradient(
-          ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-          var(--blue-500),
-          transparent 80%
-        )
-      `,
+          background: backgroundStyle,
         }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
@@ -52,10 +62,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-      </motion.div>
-    );
-  },
-);
+      </m.div>
+    </LazyMotion>
+  );
+};
 Input.displayName = "Input";
 
 export { Input };

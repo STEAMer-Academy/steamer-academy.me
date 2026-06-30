@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Card, CardContent } from "@/components/wrapper";
+import { Card, CardContent } from "@/components/ui/card";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@/stores/themeStore";
 

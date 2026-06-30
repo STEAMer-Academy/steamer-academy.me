@@ -12,7 +12,7 @@ import {
   WhatsappIcon,
   Github01Icon,
 } from "hugeicons-react";
-import { NewsletterForm } from "@/components/wrapper";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 export default function Footer() {
   return (

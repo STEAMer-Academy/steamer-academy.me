@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { themeStore, setTheme } from "../stores/themeStore";
-import { Button } from "@/components/wrapper";
+import { Button } from "@/components/ui/button";
 import { Moon02Icon } from "hugeicons-react";
 import { Sun } from "lucide-react";
 

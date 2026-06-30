@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { BlogData, BlogCategory } from "@/lib/redis";
-import { BlogList } from "@/components/wrapper";
-import { motion } from "motion/react";
+import BlogList from "@/app/blogs/BlogList";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
@@ -28,65 +28,71 @@ export default function BlogTabs({ blogs }: { blogs: BlogData }) {
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory>(
     categories[0],
   );
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <div className="space-y-8">
-      <div className="relative">
-        {isMobile ? (
-          <Select
-            value={selectedCategory}
-            onValueChange={(value) =>
-              setSelectedCategory(value as BlogCategory)
-            }
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a category" />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map((category) => (
-                <SelectItem key={category} value={category}>
-                  {capitalizeFirstLetter(category.replace("Mds", ""))}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        ) : (
-          <Tabs
-            value={selectedCategory}
-            onValueChange={(value) =>
-              setSelectedCategory(value as BlogCategory)
-            }
-          >
-            <TabsList className="grid w-full grid-cols-5">
-              {categories.map((category) => (
-                <TabsTrigger key={category} value={category}>
-                  {capitalizeFirstLetter(category.replace("Mds", ""))}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-        )}
-      </div>
+    <LazyMotion features={domAnimation}>
+      <div className="space-y-8">
+        <div className="relative">
+          {isMobile ? (
+            <Select
+              value={selectedCategory}
+              onValueChange={(value) =>
+                setSelectedCategory(value as BlogCategory)
+              }
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {capitalizeFirstLetter(category.replace("Mds", ""))}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ) : (
+            <Tabs
+              value={selectedCategory}
+              onValueChange={(value) =>
+                setSelectedCategory(value as BlogCategory)
+              }
+            >
+              <TabsList className="grid w-full grid-cols-5">
+                {categories.map((category) => (
+                  <TabsTrigger key={category} value={category}>
+                    {capitalizeFirstLetter(category.replace("Mds", ""))}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          )}
+        </div>
 
-      <motion.div
-        key={selectedCategory}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <BlogList
-          blogs={blogs[selectedCategory] || []}
-          category={selectedCategory}
-        />
-      </motion.div>
-    </div>
+        <m.div
+          key={selectedCategory}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <BlogList
+            blogs={blogs[selectedCategory] || []}
+            category={selectedCategory}
+          />
+        </m.div>
+      </div>
+    </LazyMotion>
   );
 }

@@ -20,103 +20,99 @@ export interface DropdownProps {
   itemClassName?: string;
 }
 
-export const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownProps>(
-  ({
-    trigger,
-    items,
-    align = "start",
-    className,
-    triggerClassName,
-    menuClassName,
-    itemClassName,
-  }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
-    const dropdownRef = React.useRef<HTMLDivElement>(null);
+export const DropdownMenu = ({
+  trigger,
+  items,
+  align = "start",
+  className,
+  triggerClassName,
+  menuClassName,
+  itemClassName,
+}: DropdownProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
 
-    React.useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target as Node)
-        ) {
-          setIsOpen(false);
-        }
-      };
-
-      document.addEventListener("mousedown", handleClickOutside);
-      return () =>
-        document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-    const menuPosition = {
-      start: "left-0",
-      end: "right-0",
-      center: "left-1/2 -translate-x-1/2",
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
     };
 
-    return (
-      <div ref={dropdownRef} className={cn("relative inline-block", className)}>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const menuPosition = {
+    start: "left-0",
+    end: "right-0",
+    center: "left-1/2 -translate-x-1/2",
+  };
+
+  return (
+    <div ref={dropdownRef} className={cn("relative inline-block", className)}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={cn(
+          "inline-flex items-center justify-between gap-2 px-4 py-2 text-sm font-medium transition-colors",
+          "rounded-md hover:bg-gray-600",
+          "focus:ring-primary focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
+          triggerClassName,
+        )}
+      >
+        {trigger}
+        <ChevronDown
           className={cn(
-            "inline-flex items-center justify-between gap-2 px-4 py-2 text-sm font-medium transition-colors",
-            "rounded-md hover:bg-gray-600",
-            "focus:ring-primary focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
-            triggerClassName,
+            "h-4 w-4 transition-transform duration-200",
+            isOpen && "rotate-180",
+          )}
+        />
+      </button>
+
+      {isOpen && (
+        <div
+          className={cn(
+            "absolute z-50 mt-2 min-w-[12rem] overflow-hidden",
+            "dark:bg-background rounded-md bg-[#f4f0ec] hover:bg-gray-600",
+            "shadow-lg",
+            "animate-in fade-in-0 zoom-in-95",
+            menuPosition[align],
+            menuClassName,
           )}
         >
-          {trigger}
-          <ChevronDown
-            className={cn(
-              "h-4 w-4 transition-transform duration-200",
-              isOpen && "rotate-180",
-            )}
-          />
-        </button>
-
-        {isOpen && (
-          <div
-            className={cn(
-              "absolute z-50 mt-2 min-w-[12rem] overflow-hidden",
-              "dark:bg-background rounded-md bg-[#f4f0ec] hover:bg-gray-600",
-              "shadow-lg",
-              "animate-in fade-in-0 zoom-in-95",
-              menuPosition[align],
-              menuClassName,
-            )}
-          >
-            <div className="py-1">
-              {items.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    item.onClick?.();
-                    setIsOpen(false);
-                  }}
-                  disabled={item.disabled}
-                  className={cn(
-                    "flex w-full items-center px-4 py-2 text-sm",
-                    "transition-colors duration-150",
-                    item.disabled && "cursor-not-allowed opacity-50",
-                    !item.disabled &&
-                      "hover:bg-gray-100 dark:hover:bg-gray-700",
-                    item.variant === "destructive" &&
-                      "text-red-600 dark:text-red-400",
-                    itemClassName,
-                  )}
-                >
-                  {item.icon && (
-                    <span className="mr-2 h-4 w-4">{item.icon}</span>
-                  )}
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          <div className="py-1">
+            {items.map((item) => (
+              <button
+                type="button"
+                key={item.label}
+                onClick={() => {
+                  item.onClick?.();
+                  setIsOpen(false);
+                }}
+                disabled={item.disabled}
+                className={cn(
+                  "flex w-full items-center px-4 py-2 text-sm",
+                  "transition-colors duration-150",
+                  item.disabled && "cursor-not-allowed opacity-50",
+                  !item.disabled && "hover:bg-gray-100 dark:hover:bg-gray-700",
+                  item.variant === "destructive" &&
+                    "text-red-600 dark:text-red-400",
+                  itemClassName,
+                )}
+              >
+                {item.icon && <span className="mr-2 h-4 w-4">{item.icon}</span>}
+                {item.label}
+              </button>
+            ))}
           </div>
-        )}
-      </div>
-    );
-  },
-);
+        </div>
+      )}
+    </div>
+  );
+};
 
 DropdownMenu.displayName = "DropdownMenu";

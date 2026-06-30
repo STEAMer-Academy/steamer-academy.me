@@ -13,12 +13,12 @@ export type BlogCategory =
 
 export type BlogData = Record<BlogCategory, Blog[]>;
 
-export const redis = new Redis({
+const redis = new Redis({
   url: process.env.REDIS_URL!,
   token: process.env.REDIS_TOKEN!,
 });
 
-export const cache = new LRUCache<string, BlogData | string>({
+const cache = new LRUCache<string, BlogData | string>({
   max: 100,
   ttl: 1000 * 60 * 60 * 2, // 2 hours
 });
@@ -47,17 +47,15 @@ export async function fetchAllBlogs(): Promise<BlogData> {
 export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
   const allBlogs = await fetchAllBlogs();
 
-  for (const category in allBlogs) {
-    const blogs = allBlogs[category as BlogCategory];
-    if (blogs) {
-      const blog = blogs.find((b) => b.name === slug);
-      if (blog) {
-        return blog;
-      }
+  // Build a flat map for O(1) lookup
+  const blogMap = new Map<string, Blog>();
+  for (const category of Object.values(allBlogs)) {
+    for (const blog of category) {
+      blogMap.set(blog.name, blog);
     }
   }
 
-  return null;
+  return blogMap.get(slug) ?? null;
 }
 
 export async function fetchBlogContent(slug: string): Promise<string | null> {
@@ -68,17 +66,20 @@ export async function fetchBlogContent(slug: string): Promise<string | null> {
 
   const allBlogs = await fetchAllBlogs();
 
-  for (const category in allBlogs) {
-    const blogs = allBlogs[category as BlogCategory];
-    if (blogs) {
-      const blog = blogs.find((b) => b.name === slug);
-      if (blog) {
-        const content = await fetch(blog.rawUrl).then((res) => res.text());
-        cache.set(`blog_${slug}`, content);
-        return content;
-      }
+  // Build a flat map for O(1) lookup
+  const blogMap = new Map<string, Blog>();
+  for (const category of Object.values(allBlogs)) {
+    for (const blog of category) {
+      blogMap.set(blog.name, blog);
     }
   }
 
-  return null;
+  const blog = blogMap.get(slug);
+  if (!blog) {
+    return null;
+  }
+
+  const content = await fetch(blog.rawUrl).then((res) => res.text());
+  cache.set(`blog_${slug}`, content);
+  return content;
 }

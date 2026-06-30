@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -46,52 +46,48 @@ const getIconForUrl = (url: string) => {
   return Home07Icon;
 };
 
-export default function SearchPage() {
+function SearchContent() {
   const [searchData, setSearchData] = useState<SearchItem[]>([]);
-  const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
 
-  const fuse = useMemo(() => {
-    return new Fuse(searchData, {
-      keys: ["title", "content"],
-      threshold: 0.3,
-    });
-  }, [searchData]);
+  const isLoading = searchData.length === 0;
+
+  // Compute search results during render instead of storing in state
+  const searchResults =
+    query.length > 0 && searchData.length > 0
+      ? new Fuse(searchData, {
+          keys: ["title", "content"],
+          threshold: 0.3,
+        })
+          .search(query)
+          .map((r) => r.item)
+      : [];
 
   useEffect(() => {
+    let cancelled = false;
+
     async function fetchSearchData() {
       try {
         const response = await fetch("/searchData.json");
         const data: SearchItem[] = await response.json();
-        setSearchData(data);
+        if (!cancelled) {
+          setSearchData(data);
+          setCurrentPage(1);
+        }
       } catch (error) {
-        console.error("Error fetching search data:", error);
+        if (!cancelled) {
+          console.error("Error fetching search data:", error);
+        }
       }
     }
 
     fetchSearchData();
-  }, []);
-
-  useEffect(() => {
-    function performSearch() {
-      setIsLoading(true);
-      if (query.length > 0) {
-        const results = fuse.search(query).map((result) => result.item);
-        setSearchResults(results);
-      } else {
-        setSearchResults([]);
-      }
-      setCurrentPage(1);
-      setIsLoading(false);
-    }
-
-    if (searchData.length > 0) {
-      performSearch();
-    }
-  }, [query, searchData, fuse]);
+    return () => {
+      cancelled = true;
+    };
+  }, [query]);
 
   const pageCount = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
   const paginatedResults = searchResults.slice(
@@ -174,5 +170,13 @@ export default function SearchPage() {
         )}
       </div>
     </Layout>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }

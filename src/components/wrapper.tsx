@@ -14,18 +14,6 @@ export const Layout = dynamic(() =>
   import("@/components/Layout").then((mod) => mod.default),
 );
 
-export const Header = dynamic(() =>
-  import("@/components/Header").then((mod) => mod.default),
-);
-
-export const Footer = dynamic(() =>
-  import("@/components/Footer").then((mod) => mod.default),
-);
-
-export const NewsletterForm = dynamic(() =>
-  import("@/components/NewsletterForm").then((mod) => mod.NewsletterForm),
-);
-
 /* === Opinion Component === */
 export const GalleryGrid = dynamic(() =>
   import("../app/gallery/GalleryGrid").then((mod) => mod.default),
@@ -41,28 +29,6 @@ export const Input = dynamic(() =>
   import("@/components/ui/input").then((mod) => mod.Input),
 );
 
-/* === Textarea Component === */
-export const Textarea = dynamic(() =>
-  import("@/components/ui/textarea").then((mod) => mod.Textarea),
-);
-
-/* === Sheet Component === */
-export const Sheet = dynamic(() =>
-  import("@/components/ui/sheet").then((mod) => mod.Sheet),
-);
-
-export const SheetContent = dynamic(() =>
-  import("@/components/ui/sheet").then((mod) => mod.SheetContent),
-);
-
-export const SheetTrigger = dynamic(() =>
-  import("@/components/ui/sheet").then((mod) => mod.SheetTrigger),
-);
-
-export const SheetClose = dynamic(() =>
-  import("@/components/ui/sheet").then((mod) => mod.SheetClose),
-);
-
 /* === Pagination Component === */
 export const Pagination = dynamic(() =>
   import("@/components/ui/pagination").then((mod) => mod.Pagination),
@@ -72,14 +38,6 @@ export const Pagination = dynamic(() =>
 export const Skeleton = dynamic(
   () => import("@/components/ui/skeleton").then((mod) => mod.Skeleton),
   { ssr: false },
-);
-
-/* === Dropdown Menu Component === */
-export const DropdownMenu = dynamic(
-  () => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu),
-  {
-    ssr: false,
-  },
 );
 
 /* === Card Component === */
@@ -147,40 +105,11 @@ export const BlogTabs = dynamic(() =>
   import("../app/blogs/BlogTabs").then((mod) => mod.default),
 );
 
-export const BlogList = dynamic(() =>
-  import("../app/blogs/BlogList").then((mod) => mod.default),
-);
-
-/* === Blogs Page Components === */
+/* === About Page Components === */
 export const AboutContent = dynamic(() =>
   import("../app/about/AboutContent").then((mod) => mod.default),
 );
 
 export const TeamMembers = dynamic(() =>
   import("../app/about/TeamMembers").then((mod) => mod.default),
-);
-
-/* === Shadcn Dialog Component === */
-export const Dialog = dynamic(() =>
-  import("@/components/ui/dialog").then((mod) => mod.Dialog),
-);
-
-export const DialogContent = dynamic(() =>
-  import("@/components/ui/dialog").then((mod) => mod.DialogContent),
-);
-
-export const DialogHeader = dynamic(() =>
-  import("@/components/ui/dialog").then((mod) => mod.DialogHeader),
-);
-
-export const DialogTitle = dynamic(() =>
-  import("@/components/ui/dialog").then((mod) => mod.DialogTitle),
-);
-
-export const DialogDescription = dynamic(() =>
-  import("@/components/ui/dialog").then((mod) => mod.DialogDescription),
-);
-
-export const DialogFooter = dynamic(() =>
-  import("@/components/ui/dialog").then((mod) => mod.DialogFooter),
 );

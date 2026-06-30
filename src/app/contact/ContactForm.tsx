@@ -2,7 +2,9 @@
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Loader2 } from "lucide-react";
-import { Textarea, Input, Button } from "@/components/wrapper";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface FormData {
@@ -44,7 +46,9 @@ export default function ContactForm() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Form submission failed");
+        toast.error(errorData.message || "Form submission failed");
+        setIsLoading(false);
+        return;
       }
 
       const data = await response.json();
@@ -55,11 +59,11 @@ export default function ContactForm() {
         email: "",
         message: "",
       });
+      setIsLoading(false);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
       toast.error(`Form submission error: ${errorMessage}`);
-    } finally {
       setIsLoading(false);
     }
   };
