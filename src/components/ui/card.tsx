@@ -38,6 +38,7 @@ CardHeader.displayName = "CardHeader";
 const CardTitle = ({
   className,
   ref,
+  children,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement> & {
   ref?: React.Ref<HTMLParagraphElement>;
@@ -48,9 +49,10 @@ const CardTitle = ({
       "text-2xl leading-none font-semibold tracking-tight",
       className,
     )}
-    aria-label="Card title"
     {...props}
-  />
+  >
+    {children}
+  </h3>
 );
 CardTitle.displayName = "CardTitle";
 

@@ -1,15 +1,13 @@
 "use client";
 
-// @ts-nocheck
-
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import {
   LazyMotion,
   domAnimation,
   m,
-  useMotionTemplate,
   useMotionValue,
+  useTransform,
 } from "framer-motion";
 
 type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -18,10 +16,15 @@ type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 
 const Textarea = ({ className, ref, ...props }: TextareaProps) => {
   const radius = 100; // change this to increase the radius of the hover effect
-  const [visible, setVisible] = React.useState(false);
-
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const sizeMV = useMotionValue(0);
+
+  const backgroundStyle = useTransform(
+    [mouseX, mouseY, sizeMV],
+    ([x, y, size]) =>
+      `radial-gradient(${size}px circle at ${x}px ${y}px, var(--blue-500), transparent 80%)`,
+  );
 
   function handleMouseMove({
     currentTarget,
@@ -34,14 +37,6 @@ const Textarea = ({ className, ref, ...props }: TextareaProps) => {
     mouseY.set(clientY - top);
   }
 
-  const backgroundStyle = useMotionTemplate`
-    radial-gradient(
-      ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-      var(--blue-500),
-      transparent 80%
-    )
-  `;
-
   return (
     <LazyMotion features={domAnimation}>
       <m.div
@@ -49,8 +44,8 @@ const Textarea = ({ className, ref, ...props }: TextareaProps) => {
           background: backgroundStyle,
         }}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setVisible(false)}
+        onMouseEnter={() => sizeMV.set(radius)}
+        onMouseLeave={() => sizeMV.set(0)}
         className="group/input rounded-lg p-[2px] transition duration-300"
       >
         <textarea

@@ -9,7 +9,16 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
-import type { Heading, Paragraph, Image, Root, Text } from "mdast";
+import type {
+  Heading,
+  Paragraph,
+  Image,
+  Root,
+  Text,
+  Strong,
+  HTML,
+  Nodes,
+} from "mdast";
 import type { BlogCategory, BlogData } from "../src/lib/redis";
 
 const GITHUB_OWNER = "STEAMer-Academy";
@@ -30,7 +39,10 @@ interface GitTreeItem {
 }
 
 function encodeRepoPath(path: string): string {
-  return path.split("/").map((seg) => encodeURIComponent(seg)).join("/");
+  return path
+    .split("/")
+    .map((seg) => encodeURIComponent(seg))
+    .join("/");
 }
 
 function slugify(text: string): string {
@@ -40,9 +52,10 @@ function slugify(text: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-function textContent(node: any): string {
+function textContent(node: Nodes): string {
   if (node.type === "text") return (node as Text).value;
-  if (node.children) return node.children.map(textContent).join("");
+  if ("children" in node)
+    return (node.children as Nodes[]).map(textContent).join("");
   return "";
 }
 
@@ -121,8 +134,7 @@ function parseMarkdown(content: string, filePath: string): ParsedDoc {
   const description =
     DESCRIPTION_OVERRIDES[filePath] ?? extractDescription(tree);
 
-  const firstImage =
-    IMAGE_OVERRIDES[filePath] ?? extractFirstImage(tree);
+  const firstImage = IMAGE_OVERRIDES[filePath] ?? extractFirstImage(tree);
 
   return { title, description, firstImage };
 }
@@ -157,11 +169,10 @@ function extractTitleFromAST(tree: Root): string | null {
     if (title !== null) return;
 
     const hasOnlyBold =
-      node.children.length === 1 &&
-      node.children[0].type === "strong";
+      node.children.length === 1 && node.children[0].type === "strong";
     if (!hasOnlyBold) return;
 
-    const strong = node.children[0] as any;
+    const strong = node.children[0] as Strong;
     const text = strong.children.map(textContent).join("").trim();
     if (text.length > 5 && text.length < 120) title = text;
   });
@@ -196,8 +207,7 @@ function extractFirstImage(tree: Root): string | null {
 
   // Also check HTML img tags (remark doesn't parse raw HTML)
   if (!imageUrl) {
-    const html = tree as any;
-    visit(html, "html", (node: any) => {
+    visit(tree, "html", (node: HTML) => {
       if (imageUrl !== null) return;
       const match = node.value?.match(/<img\s+[^>]*src="([^"]+)"[^>]*\/?>/i);
       if (match) imageUrl = match[1];
@@ -228,8 +238,7 @@ async function listBlogFiles(): Promise<BlogFile[]> {
     { headers },
   );
 
-  if (!res.ok)
-    throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
+  if (!res.ok) throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
 
   const data: { tree: GitTreeItem[] } = await res.json();
   return data.tree

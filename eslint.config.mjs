@@ -2,6 +2,7 @@ import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 import nextTypescript from "eslint-config-next/typescript";
 import pluginNext from "@next/eslint-plugin-next";
 import eslintPluginPrettier from "eslint-plugin-prettier";
+import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import parser from "@typescript-eslint/parser";
 
 const config = [
@@ -26,6 +27,7 @@ const config = [
     },
     plugins: {
       prettier: eslintPluginPrettier,
+      "react-compiler": reactCompilerPlugin,
     },
     files: [
       "**/*.{js,mjs,cjs,ts,tsx,jsx,json,md,mdx}", // Matches files in subdirectories
@@ -35,6 +37,7 @@ const config = [
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
       "prettier/prettier": "error",
+      "react-compiler/react-compiler": "error",
     },
   },
   {

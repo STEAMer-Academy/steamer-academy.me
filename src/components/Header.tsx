@@ -137,7 +137,7 @@ function NavLinks({ pathname, onServiceClick }: NavLinksProps) {
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="font-sans font-medium data-[state=open]:bg-accent"
+            className="data-[state=open]:bg-accent font-sans font-medium"
           >
             <BookEditIcon className="mr-2 h-4 w-4" />
             Services
@@ -178,10 +178,7 @@ interface MobileMenuProps {
   onServiceClick: (href: string) => void;
 }
 
-function MobileMenu({
-  pathname,
-  onServiceClick,
-}: MobileMenuProps) {
+function MobileMenu({ pathname, onServiceClick }: MobileMenuProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -208,7 +205,10 @@ function MobileMenu({
           </SheetClose>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="data-[state=open]:bg-accent justify-start font-sans font-medium">
+              <Button
+                variant="ghost"
+                className="data-[state=open]:bg-accent justify-start font-sans font-medium"
+              >
                 <BookEditIcon className="mr-2 h-4 w-4" />
                 Services
                 <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" />
@@ -263,14 +263,16 @@ function MobileMenu({
 
 // ── Root component ─────────────────────────────────────────────
 
-export default function Header() {
+export default function Header({ searchData }: { searchData?: string | null }) {
   const [scrollState, dispatchScroll] = useReducer(scrollReducer, {
     isScrolled: false,
     isVisible: true,
   });
   const lastScrollY = useRef(0);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchItems, setSearchItems] = useState<SearchItem[]>([]);
+  const [searchItems, setSearchItems] = useState<SearchItem[]>(
+    searchData ? (JSON.parse(searchData) as SearchItem[]) : [],
+  );
   const pathname = usePathname();
   const router = useRouter();
 
@@ -289,14 +291,16 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Load search data for the command palette
   useEffect(() => {
+    if (searchData) return; // Already provided by server component
     const fetchSearchData = async () => {
       const response = await fetch("/searchData.json");
       const data: SearchItem[] = await response.json();
       setSearchItems(data);
     };
     fetchSearchData();
-  }, []);
+  }, [searchData]);
 
   // Cmd+K / Ctrl+K to open search
   useEffect(() => {
