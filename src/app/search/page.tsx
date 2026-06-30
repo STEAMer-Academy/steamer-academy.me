@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import MiniSearch from "minisearch";
 import {
   Layout,
   Button,
@@ -15,7 +16,6 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/wrapper";
-import Fuse from "fuse.js";
 import {
   Search01Icon,
   Home07Icon,
@@ -26,6 +26,7 @@ import {
   LanguageSkillIcon,
   CodeIcon,
 } from "hugeicons-react";
+import type { ElementType } from "react";
 
 interface SearchItem {
   id: string;
@@ -34,9 +35,16 @@ interface SearchItem {
   url: string;
 }
 
+interface SearchResult {
+  id: string;
+  title: string;
+  content: string;
+  url: string;
+}
+
 const ITEMS_PER_PAGE = 10;
 
-const getIconForUrl = (url: string) => {
+const getIconForUrl = (url: string): ElementType => {
   if (url.includes("/blogs")) return File01Icon;
   if (url.includes("/gallery")) return Image01Icon;
   if (url.includes("/contact")) return CallIcon;
@@ -47,47 +55,62 @@ const getIconForUrl = (url: string) => {
 };
 
 function SearchContent() {
-  const [searchData, setSearchData] = useState<SearchItem[]>([]);
+  const [searchIndex, setSearchIndex] = useState<MiniSearch | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
 
-  const isLoading = searchData.length === 0;
+  const isLoading = searchIndex === null;
 
-  // Compute search results during render instead of storing in state
-  const searchResults =
-    query.length > 0 && searchData.length > 0
-      ? new Fuse(searchData, {
-          keys: ["title", "content"],
-          threshold: 0.3,
-        })
-          .search(query)
-          .map((r) => r.item)
-      : [];
-
+  // Load pre-built search index
   useEffect(() => {
     let cancelled = false;
 
-    async function fetchSearchData() {
+    async function loadIndex() {
       try {
+        const response = await fetch("/searchIndex.json");
+        const json = await response.json();
+        if (!cancelled) {
+          const miniSearch = MiniSearch.loadJSON(json, {
+            fields: ["title", "content"],
+            storeFields: ["id", "title", "content", "url"],
+          });
+          setSearchIndex(miniSearch);
+          setCurrentPage(1);
+        }
+      } catch {
+        // Fallback: load raw data and build index on client
         const response = await fetch("/searchData.json");
         const data: SearchItem[] = await response.json();
         if (!cancelled) {
-          setSearchData(data);
+          const miniSearch = new MiniSearch({
+            fields: ["title", "content"],
+            storeFields: ["id", "title", "content", "url"],
+            idField: "url",
+            searchOptions: { boost: { title: 2 }, fuzzy: 0.2, prefix: true },
+          });
+          miniSearch.addAll(data);
+          setSearchIndex(miniSearch);
           setCurrentPage(1);
-        }
-      } catch (error) {
-        if (!cancelled) {
-          console.error("Error fetching search data:", error);
         }
       }
     }
 
-    fetchSearchData();
+    loadIndex();
     return () => {
       cancelled = true;
     };
-  }, [query]);
+  }, []);
+
+  const searchResults: SearchResult[] =
+    query.length > 0 && searchIndex
+      ? searchIndex.search(query, { prefix: true, fuzzy: 0.2 }).map((r) => ({
+          id: r.id,
+          title: (r as any).title || "",
+          content: (r as any).content || "",
+          url: (r as any).url || "",
+        }))
+      : [];
 
   const pageCount = Math.ceil(searchResults.length / ITEMS_PER_PAGE);
   const paginatedResults = searchResults.slice(

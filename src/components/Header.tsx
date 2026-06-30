@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useReducer, type FormEvent } from "react";
+import { useEffect, useRef, useReducer, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -9,9 +9,21 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import {
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+} from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 import {
   Search01Icon,
@@ -28,7 +40,6 @@ import {
 import type { ElementType } from "react";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
-import Fuse from "fuse.js";
 import { Show, SignInButton, UserButton } from "@clerk/nextjs";
 
 interface SearchItem {
@@ -77,119 +88,7 @@ function scrollReducer(state: ScrollState, action: ScrollAction): ScrollState {
   }
 }
 
-interface SearchState {
-  searchValue: string;
-  searchResults: SearchItem[];
-  showDropdown: boolean;
-  searchData: SearchItem[];
-}
-
-type SearchAction =
-  | { type: "SET_DATA"; data: SearchItem[] }
-  | { type: "SET_VALUE"; value: string }
-  | { type: "SET_RESULTS"; results: SearchItem[] }
-  | { type: "SET_DROPDOWN"; show: boolean };
-
-function searchReducer(state: SearchState, action: SearchAction): SearchState {
-  switch (action.type) {
-    case "SET_DATA":
-      return { ...state, searchData: action.data };
-    case "SET_VALUE":
-      return { ...state, searchValue: action.value };
-    case "SET_RESULTS":
-      return { ...state, searchResults: action.results };
-    case "SET_DROPDOWN":
-      return { ...state, showDropdown: action.show };
-    default:
-      return state;
-  }
-}
-
 // ── Sub-components ─────────────────────────────────────────────
-
-interface SearchBarProps {
-  searchValue: string;
-  searchResults: SearchItem[];
-  showDropdown: boolean;
-  onValueChange: (value: string) => void;
-  onFocus: () => void;
-  onSubmit: (e: FormEvent) => void;
-  onSelect: () => void;
-  variant?: "desktop" | "mobile";
-  linkWrapper?: (children: React.ReactNode) => React.ReactNode;
-}
-
-function SearchBar({
-  searchValue,
-  searchResults,
-  showDropdown,
-  onValueChange,
-  onFocus,
-  onSubmit,
-  onSelect,
-  variant = "desktop",
-  linkWrapper,
-}: SearchBarProps) {
-  const inputClassName = variant === "mobile" ? "pr-6 pl-10" : "w-64 pl-10";
-
-  return (
-    <div className="relative">
-      <form onSubmit={onSubmit} className="relative">
-        <Search01Icon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
-        <Input
-          type="search"
-          placeholder="Search..."
-          className={inputClassName}
-          value={searchValue}
-          onChange={(e) => onValueChange(e.target.value)}
-          onFocus={onFocus}
-        />
-      </form>
-      {showDropdown && (
-        <div className="bg-popover absolute z-10 mt-1 w-full rounded-md shadow-lg">
-          <ul className="max-h-60 overflow-auto rounded-md py-1 text-base">
-            {searchResults.length > 0 ? (
-              searchResults.map((result) => {
-                const IconComponent = getIconForUrl(result.url);
-                return (
-                  <li key={result.id}>
-                    {linkWrapper ? (
-                      linkWrapper(
-                        <Link
-                          href={result.url}
-                          prefetch={true}
-                          className="hover:bg-accent hover:text-accent-foreground flex items-center px-4 py-2"
-                          onClick={onSelect}
-                        >
-                          <IconComponent className="mr-2 h-4 w-4" />
-                          {truncateContent(result.title, 50)}
-                        </Link>,
-                      )
-                    ) : (
-                      <Link
-                        href={result.url}
-                        prefetch={true}
-                        className="hover:bg-accent hover:text-accent-foreground flex items-center px-4 py-2"
-                        onClick={onSelect}
-                      >
-                        <IconComponent className="mr-2 h-4 w-4" />
-                        {truncateContent(result.title, 50)}
-                      </Link>
-                    )}
-                  </li>
-                );
-              })
-            ) : (
-              <li className="text-muted-foreground px-4 py-2">
-                No results found
-              </li>
-            )}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
 
 interface NavItem {
   href: string;
@@ -233,21 +132,25 @@ function NavLinks({ pathname, onServiceClick }: NavLinksProps) {
           Home
         </Link>
       </Button>
-      <DropdownMenu
-        trigger={
-          <span className="flex items-center">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="font-sans font-medium">
             <BookEditIcon className="mr-2 h-4 w-4" />
             Services
-          </span>
-        }
-        items={services.map((service) => ({
-          label: service.label,
-          icon: <service.icon className="h-4 w-4" />,
-          onClick: () => onServiceClick(service.href),
-        }))}
-        align="start"
-        className="font-sans font-medium"
-      />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          {services.map((service) => (
+            <DropdownMenuItem
+              key={service.href}
+              onClick={() => onServiceClick(service.href)}
+            >
+              <service.icon className="h-4 w-4" />
+              {service.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
       {navItems.slice(1).map((item) => (
         <Button
           key={item.href}
@@ -267,25 +170,11 @@ function NavLinks({ pathname, onServiceClick }: NavLinksProps) {
 
 interface MobileMenuProps {
   pathname: string;
-  searchValue: string;
-  searchResults: SearchItem[];
-  showDropdown: boolean;
-  onSearchChange: (value: string) => void;
-  onSearchFocus: () => void;
-  onSearchSubmit: (e: FormEvent) => void;
-  onSearchSelect: () => void;
   onServiceClick: (href: string) => void;
 }
 
 function MobileMenu({
   pathname,
-  searchValue,
-  searchResults,
-  showDropdown,
-  onSearchChange,
-  onSearchFocus,
-  onSearchSubmit,
-  onSearchSelect,
   onServiceClick,
 }: MobileMenuProps) {
   return (
@@ -300,19 +189,6 @@ function MobileMenu({
       </SheetTrigger>
       <SheetContent side="right" aria-describedby="Search Box">
         <nav className="flex flex-col space-y-4">
-          <SearchBar
-            searchValue={searchValue}
-            searchResults={searchResults}
-            showDropdown={showDropdown}
-            onValueChange={onSearchChange}
-            onFocus={onSearchFocus}
-            onSubmit={onSearchSubmit}
-            onSelect={onSearchSelect}
-            variant="mobile"
-            linkWrapper={(children) => (
-              <SheetClose asChild>{children}</SheetClose>
-            )}
-          />
           <SheetClose asChild>
             <Button
               variant={pathname === "/" ? "secondary" : "ghost"}
@@ -325,28 +201,25 @@ function MobileMenu({
               </Link>
             </Button>
           </SheetClose>
-          <DropdownMenu
-            trigger={
-              <span className="flex items-center">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="justify-start font-sans font-medium">
                 <BookEditIcon className="mr-2 h-4 w-4" />
                 Services
-              </span>
-            }
-            items={services.map((service) => ({
-              label: service.label,
-              icon: <service.icon className="h-4 w-4" />,
-              onClick: () => {
-                onServiceClick(service.href);
-                (
-                  document.querySelector(
-                    "[data-radix-collection-item]",
-                  ) as HTMLElement
-                )?.click();
-              },
-            }))}
-            align="start"
-            className="font-sans font-medium"
-          />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {services.map((service) => (
+                <DropdownMenuItem
+                  key={service.href}
+                  onClick={() => onServiceClick(service.href)}
+                >
+                  <service.icon className="h-4 w-4" />
+                  {service.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           {navItems.slice(1).map((item) => (
             <SheetClose asChild key={item.href}>
               <Button
@@ -390,12 +263,8 @@ export default function Header() {
     isVisible: true,
   });
   const lastScrollY = useRef(0);
-  const [searchState, dispatchSearch] = useReducer(searchReducer, {
-    searchValue: "",
-    searchResults: [],
-    showDropdown: false,
-    searchData: [],
-  });
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchItems, setSearchItems] = useState<SearchItem[]>([]);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -414,39 +283,26 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Static JSON file fetch — acceptable pattern since it loads a pre-built search index
   useEffect(() => {
     const fetchSearchData = async () => {
       const response = await fetch("/searchData.json");
       const data: SearchItem[] = await response.json();
-      dispatchSearch({ type: "SET_DATA", data });
+      setSearchItems(data);
     };
     fetchSearchData();
   }, []);
 
+  // Cmd+K / Ctrl+K to open search
   useEffect(() => {
-    const fuse = new Fuse(searchState.searchData, {
-      keys: ["title", "content"],
-      threshold: 0.3,
-    });
-    const results = fuse
-      .search(searchState.searchValue)
-      .map((result) => result.item);
-    dispatchSearch({
-      type: "SET_RESULTS",
-      results: results.slice(0, 5),
-    });
-    dispatchSearch({ type: "SET_DROPDOWN", show: true });
-  }, [searchState.searchValue, searchState.searchData]);
-
-  const handleSearch = (e: FormEvent) => {
-    e.preventDefault();
-    const value = searchState.searchValue;
-    if (value.trim()) {
-      router.push(`/search?q=${encodeURIComponent(value.trim())}`);
-      dispatchSearch({ type: "SET_DROPDOWN", show: false });
-    }
-  };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((open) => !open);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <header
@@ -482,21 +338,14 @@ export default function Header() {
             />
           </div>
           <div className="hidden items-center space-x-4 lg:flex">
-            <SearchBar
-              searchValue={searchState.searchValue}
-              searchResults={searchState.searchResults}
-              showDropdown={searchState.showDropdown}
-              onValueChange={(value) =>
-                dispatchSearch({ type: "SET_VALUE", value })
-              }
-              onFocus={() =>
-                dispatchSearch({ type: "SET_DROPDOWN", show: true })
-              }
-              onSubmit={handleSearch}
-              onSelect={() =>
-                dispatchSearch({ type: "SET_DROPDOWN", show: false })
-              }
-            />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+            >
+              <Search01Icon className="h-5 w-5" />
+            </Button>
             <Show when="signed-in">
               <Button variant="outline">
                 <UserButton showName={true} />
@@ -513,24 +362,38 @@ export default function Header() {
           <div className="lg:hidden">
             <MobileMenu
               pathname={pathname}
-              searchValue={searchState.searchValue}
-              searchResults={searchState.searchResults}
-              showDropdown={searchState.showDropdown}
-              onSearchChange={(value) =>
-                dispatchSearch({ type: "SET_VALUE", value })
-              }
-              onSearchFocus={() =>
-                dispatchSearch({ type: "SET_DROPDOWN", show: true })
-              }
-              onSearchSubmit={handleSearch}
-              onSearchSelect={() =>
-                dispatchSearch({ type: "SET_DROPDOWN", show: false })
-              }
               onServiceClick={(href) => router.push(href)}
             />
           </div>
         </div>
       </nav>
+
+      <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
+        <CommandInput placeholder="Search pages and blogs..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {searchItems.length > 0 && (
+            <CommandGroup heading="Results">
+              {searchItems.map((item) => {
+                const IconComponent = getIconForUrl(item.url);
+                return (
+                  <CommandItem
+                    key={item.id}
+                    value={item.title}
+                    onSelect={() => {
+                      router.push(item.url);
+                      setSearchOpen(false);
+                    }}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span>{truncateContent(item.title, 50)}</span>
+                  </CommandItem>
+                );
+              })}
+            </CommandGroup>
+          )}
+        </CommandList>
+      </CommandDialog>
     </header>
   );
 }

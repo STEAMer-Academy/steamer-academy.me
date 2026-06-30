@@ -6,7 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-
+import {
+  UserIcon,
+  Mail01Icon,
+  MessageEdit02Icon,
+} from "hugeicons-react";
 interface FormData {
   firstName: string;
   lastName: string;
@@ -71,41 +75,57 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="relative">
+          <UserIcon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+          <Input
+            type="text"
+            name="firstName"
+            placeholder="First name"
+            value={formData.firstName}
+            onChange={handleChange}
+            className="pl-10"
+            required
+          />
+        </div>
+        <div className="relative">
+          <UserIcon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+          <Input
+            type="text"
+            name="lastName"
+            placeholder="Last name"
+            value={formData.lastName}
+            onChange={handleChange}
+            className="pl-10"
+            required
+          />
+        </div>
+      </div>
+
+      <div className="relative">
+        <Mail01Icon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
         <Input
-          type="text"
-          name="firstName"
-          placeholder="First name"
-          value={formData.firstName}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
           onChange={handleChange}
-          required
-        />
-        <Input
-          type="text"
-          name="lastName"
-          placeholder="Last name"
-          value={formData.lastName}
-          onChange={handleChange}
+          className="pl-10"
           required
         />
       </div>
 
-      <Input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-
-      <Textarea
-        name="message"
-        placeholder="Message"
-        value={formData.message}
-        onChange={handleChange}
-        required
-        rows={6}
-      />
+      <div className="relative">
+        <MessageEdit02Icon className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+        <Textarea
+          name="message"
+          placeholder="Message"
+          value={formData.message}
+          onChange={handleChange}
+          className="pl-10"
+          required
+          rows={6}
+        />
+      </div>
 
       <Button type="submit" disabled={isLoading} className="relative p-[3px]">
         <div className="absolute inset-0 rounded-lg bg-linear-to-r from-indigo-500 to-purple-500" />
