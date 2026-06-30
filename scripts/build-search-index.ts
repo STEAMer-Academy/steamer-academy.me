@@ -1,18 +1,18 @@
 /**
- * Builds search index from blog data + static pages.
- * No manual searchData.json maintenance needed.
+ * Builds search index from static pages + live GitHub blog discovery.
  *
- * Reads data/blogs.json for blog entries, defines static pages inline,
- * creates MiniSearch index, and writes both searchData.json and searchIndex.json.
+ * No local data file needed — reads blog metadata directly from the
+ * STEAMer-Academy/Steamer-Blogs GitHub repo at build time.
+ *
+ * Called before next build via the "build" script in package.json.
  *
  * Usage:
  *   bun run scripts/build-search-index.ts
- *
- * Called before next build via the "build" script in package.json.
  */
 
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { writeFileSync } from "fs";
 import MiniSearch from "minisearch";
+import { discoverBlogs } from "./discover";
 
 interface SearchItem {
   id: string;
@@ -75,19 +75,10 @@ const staticPages: SearchItem[] = [
   },
 ];
 
-// ── Blog entries from data/blogs.json ──────────────────────────
+// ── Blog entries from live GitHub discovery ────────────────────
 
-function loadBlogEntries(): SearchItem[] {
-  const path = "data/blogs.json";
-  if (!existsSync(path)) {
-    console.warn("⚠ data/blogs.json not found — skipping blog entries");
-    return [];
-  }
-
-  const raw = readFileSync(path, "utf-8");
-  const blogData: Record<string, Array<{ name: string; description: string; slug: string }>> =
-    JSON.parse(raw);
-
+async function loadBlogEntries(): Promise<SearchItem[]> {
+  const blogData = await discoverBlogs();
   const entries: SearchItem[] = [];
   let index = 0;
 
@@ -108,25 +99,33 @@ function loadBlogEntries(): SearchItem[] {
 
 // ── Build & write indexes ──────────────────────────────────────
 
-const searchData: SearchItem[] = [...staticPages, ...loadBlogEntries()];
+async function main() {
+  const blogEntries = await loadBlogEntries();
+  const searchData: SearchItem[] = [...staticPages, ...blogEntries];
 
-const miniSearch = new MiniSearch({
-  fields: ["title", "content"],
-  storeFields: ["id", "title", "content", "url"],
-  idField: "url",
-  searchOptions: {
-    boost: { title: 2 },
-    fuzzy: 0.2,
-    prefix: true,
-  },
+  const miniSearch = new MiniSearch({
+    fields: ["title", "content"],
+    storeFields: ["id", "title", "content", "url"],
+    idField: "url",
+    searchOptions: {
+      boost: { title: 2 },
+      fuzzy: 0.2,
+      prefix: true,
+    },
+  });
+
+  miniSearch.addAll(searchData);
+
+  writeFileSync("public/searchData.json", JSON.stringify(searchData, null, 2));
+  writeFileSync("public/searchIndex.json", JSON.stringify(miniSearch));
+
+  const blogCount = searchData.length - staticPages.length;
+  console.log(
+    `✅ Search index built: ${searchData.length} items (${staticPages.length} static + ${blogCount} blogs), ${(JSON.stringify(miniSearch).length / 1024).toFixed(1)}KB`,
+  );
+}
+
+main().catch((err) => {
+  console.error("Build search index failed:", err);
+  process.exit(1);
 });
-
-miniSearch.addAll(searchData);
-
-writeFileSync("public/searchData.json", JSON.stringify(searchData, null, 2));
-writeFileSync("public/searchIndex.json", JSON.stringify(miniSearch));
-
-const blogCount = searchData.length - staticPages.length;
-console.log(
-  `✅ Search index built: ${searchData.length} items (${staticPages.length} static + ${blogCount} blogs), ${(JSON.stringify(miniSearch).length / 1024).toFixed(1)}KB`,
-);

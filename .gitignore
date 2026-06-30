@@ -35,3 +35,5 @@ next-env.d.ts
 # build artifacts
 public/search*.json
 public/\~partytown
+public/search*.json
+data/blogs.json
