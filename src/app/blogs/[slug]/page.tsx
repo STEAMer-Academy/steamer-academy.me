@@ -52,7 +52,7 @@ export async function generateStaticParams() {
     if (Array.isArray(blogs)) {
       params.push(
         ...blogs.map((blog) => ({
-          slug: encodeURIComponent(blog.name),
+          slug: blog.name,
         })),
       );
     }
@@ -62,7 +62,7 @@ export async function generateStaticParams() {
 }
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug } = await params;
-  const content = await fetchBlogContent(decodeURIComponent(slug));
+  const content = await fetchBlogContent(slug);
 
   if (!content) {
     return <div>Blog post not found</div>;
