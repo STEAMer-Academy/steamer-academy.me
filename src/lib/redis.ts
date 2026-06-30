@@ -3,6 +3,7 @@ import { LRUCache } from "lru-cache";
 
 export interface Blog {
   name: string;
+  slug: string;
   description: string;
   rawUrl: string;
   image: string;
@@ -47,11 +48,11 @@ export async function fetchAllBlogs(): Promise<BlogData> {
 export async function fetchBlogMetadata(slug: string): Promise<Blog | null> {
   const allBlogs = await fetchAllBlogs();
 
-  // Build a flat map for O(1) lookup
+  // Build a flat map by slug for O(1) lookup
   const blogMap = new Map<string, Blog>();
   for (const category of Object.values(allBlogs)) {
     for (const blog of category) {
-      blogMap.set(blog.name, blog);
+      blogMap.set(blog.slug, blog);
     }
   }
 
@@ -66,11 +67,11 @@ export async function fetchBlogContent(slug: string): Promise<string | null> {
 
   const allBlogs = await fetchAllBlogs();
 
-  // Build a flat map for O(1) lookup
+  // Build a flat map by slug for O(1) lookup
   const blogMap = new Map<string, Blog>();
   for (const category of Object.values(allBlogs)) {
     for (const blog of category) {
-      blogMap.set(blog.name, blog);
+      blogMap.set(blog.slug, blog);
     }
   }
 

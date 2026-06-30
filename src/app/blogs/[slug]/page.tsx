@@ -19,7 +19,7 @@ export async function generateMetadata({
   params,
 }: BlogPostProps): Promise<Metadata> {
   const { slug } = await params;
-  const metadata = await fetchBlogMetadata(decodeURIComponent(slug));
+  const metadata = await fetchBlogMetadata(slug);
 
   if (!metadata) {
     return {};
@@ -52,7 +52,7 @@ export async function generateStaticParams() {
     if (Array.isArray(blogs)) {
       params.push(
         ...blogs.map((blog) => ({
-          slug: blog.name,
+          slug: blog.slug,
         })),
       );
     }

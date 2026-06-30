@@ -93,7 +93,7 @@ export default function BlogList({ blogs = EMPTY_BLOGS }: BlogListProps) {
               className="overflow-hidden rounded-lg bg-gray-800 shadow-lg transition-all duration-300 hover:shadow-2xl"
             >
               <Link
-                href={`/blogs/${blog.name}`}
+                href={`/blogs/${blog.slug}`}
                 className="block"
                 prefetch={true}
               >

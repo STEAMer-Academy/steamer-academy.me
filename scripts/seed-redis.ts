@@ -45,6 +45,25 @@ function encodeRepoPath(path: string): string {
   return path.split("/").map((seg) => encodeURIComponent(seg)).join("/");
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function extractFirstImage(markdown: string): string | null {
+  // Look for <img src="...">
+  const imgMatch = markdown.match(/<img\s+[^>]*src="([^"]+)"[^>]*\/?>/i);
+  if (imgMatch) return imgMatch[1];
+
+  // Look for markdown image syntax ![alt](url)
+  const mdMatch = markdown.match(/!\[.*?\]\(([^)]+)\)/);
+  if (mdMatch) return mdMatch[1];
+
+  return null;
+}
+
 async function listBlogFiles(): Promise<{ filePath: string; rawUrl: string }[]> {
   const headers: Record<string, string> = {};
   if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
@@ -164,12 +183,31 @@ async function discoverBlogs(): Promise<BlogData> {
     const content = await res.text();
     const title = extractTitle(content) || file.filePath.split("/").pop()!.replace(/\.md$/, "");
     const description = extractDescription(content) || `${categoryName} blog post`;
+    const name = title.replace(/\*\*/g, "").replace(/\\$/, "").trim();
+    const image = extractFirstImage(content);
+
+    // Resolve relative image URLs to absolute GitHub raw URLs
+    let resolvedImage = "";
+    if (image) {
+      if (image.startsWith("http")) {
+        resolvedImage = image;
+      } else {
+        // Relative path — resolve against file directory
+        const parts = file.filePath.split("/");
+        parts.pop(); // remove filename
+        const dir = parts.join("/");
+        // Clean relative prefixes
+        const clean = image.replace(/^\.\//, "");
+        resolvedImage = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${encodeRepoPath(dir + "/" + clean)}`;
+      }
+    }
 
     blogData[category].push({
-      name: title.replace(/\*\*/g, "").replace(/\\$/, "").trim(),
+      name,
+      slug: slugify(name),
       description: description.replace(/\*\*/g, "").replace(/\\$/, "").trim(),
       rawUrl: file.rawUrl,
-      image: `https://steamer-academy.vercel.app/link-preview-images/${categoryName.toLowerCase()}.webp`,
+      image: resolvedImage,
     });
 
     console.log(`  [${i}/${files.length}] ${title}`);
@@ -183,6 +221,16 @@ async function seed() {
 
   if (existsSync(filePath)) {
     const blogData: BlogData = JSON.parse(readFileSync(filePath, "utf-8"));
+
+    // Auto-populate slug from name if missing
+    for (const category of Object.values(blogData)) {
+      for (const blog of category) {
+        if (!blog.slug) {
+          blog.slug = slugify(blog.name);
+        }
+      }
+    }
+
     const total = Object.values(blogData).reduce((s, blogs) => s + blogs.length, 0);
     console.log(`Writing ${total} blogs to Redis...`);
     await redis.set("allBlogs", blogData);
