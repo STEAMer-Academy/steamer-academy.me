@@ -1,0 +1,84 @@
+{
+  "engineeringMds": [
+    {
+      "name": "Dive into Engineering: A Fun Guide for Engineering 🚀 !",
+      "description": "Engineering is the art of solving problems and making awesome things work. Engineers use science and math to turn ideas into real-life creations. Whether it's designing a new robot or building a bridge, engineers make the impossible possible!",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Engineering/Part%201/Engineering%20Blog%20Part.%201.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/engineering.webp"
+    },
+    {
+      "name": "Understanding Pressure: A Comprehensive and Engaging Guide 🌟",
+      "description": "Welcome to our deep dive into pressure—a fundamental concept that influences many aspects of our daily lives and engineering marvels! Whether you're curious about how your tires work or why certain tools are shaped the way they are, this guide covers it all.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Engineering/Part%202/Engineering%20Blog%20Part%202.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/engineering.webp"
+    }
+  ],
+  "englishMds": [
+    {
+      "name": "What is a noun? A Cornerstone of Language",
+      "description": "Nouns are the fundamental words in any language, serving as the names for people, places, things, and ideas. They are the essential components that form the backbone of sentences.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/English/Part%201/Noun-1.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/english.webp"
+    },
+    {
+      "name": "Verbs: The Backbone of Language",
+      "description": "Verbs are the words that show action. They are an essential part of language that help us express action, state, or occurrence.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/English/Part%202/Overview%20of%20Verb.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/english.webp"
+    }
+  ],
+  "mathMds": [
+    {
+      "name": "Why X Always Gets the Spotlight🤔",
+      "description": "Ever wonder why X is always the star of the show in algebra? Let's dig into the mystery of why X became the go-to letter for the unknown.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Math/Algebra/Why%20X%20Always%20Gets%20the%20Spotlight%F0%9F%A4%94.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/math.webp"
+    },
+    {
+      "name": "Introduction to Geometry",
+      "description": "Geometry, the branch of mathematics concerned with the shape of individual objects, spatial relationships among various objects, and the properties of surrounding space.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Math/Geometry/Part%201/GEOMETRY.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/math.webp"
+    },
+    {
+      "name": "Understanding Trigonometry",
+      "description": "Trigonometry is a branch of mathematics concerned with relationships between angles and side lengths of triangles. Learn about sin, cos, tan and their values for important angles.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Math/Geometry/Part%202/trigonometry%20%20(1).md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/math.webp"
+    }
+  ],
+  "scienceMds": [
+    {
+      "name": "Introduction to Biology",
+      "description": "The word biology is derived from the Greek words meaning life and study, and is defined as the science of life and living organisms. An organism is a living entity consisting of one cell or several cells.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Science/Biology/Part%201/BIOLOGY.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/science.webp"
+    },
+    {
+      "name": "Unlocking the Mysteries of the Universe: A Casual Dive into Physics",
+      "description": "Hey there, curious minds! Welcome to the weird and wonderful world of physics—a place where we try to make sense of the universe, from the tiniest particles to the farthest galaxies.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Science/Physics/Part%201/besic%20of%20physics.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/science.webp"
+    },
+    {
+      "name": "What are Newton's Laws of Motion?",
+      "description": "Physics is the natural science of matter, involving the study of matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy and force.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Science/Physics/Part%202/Physics%20(1).md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/science.webp"
+    }
+  ],
+  "technologyMds": [
+    {
+      "name": "Part 1: Computers and Programming",
+      "description": "A computer is a machine that can be programmed to carry out sequences of arithmetic or logical operations automatically. Learn about types of computers, programming languages, and more.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Technology/Part%201/Part%201.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/technology.webp"
+    },
+    {
+      "name": "Basic Components of a Computer and How They Work",
+      "description": "A computer is a machine that can be programmed to carry out sequences of arithmetic or logical operations automatically. Learn about hardware, software, CPU, RAM, and storage.",
+      "rawUrl": "https://raw.githubusercontent.com/STEAMer-Academy/Steamer-Blogs/main/Technology/Part%202/Basic%20Components%20Of%20A%20Computer%20And%20How%20They%20Work.md",
+      "image": "https://steamer-academy.vercel.app/link-preview-images/technology.webp"
+    }
+  ]
+}

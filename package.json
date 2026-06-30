@@ -13,6 +13,7 @@
     "partytown": "partytown copylib public/~partytown",
     "fmt": "prettier --check --write .",
     "typecheck": "tsc --noEmit",
+    "seed": "bun run scripts/seed-redis.ts",
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
