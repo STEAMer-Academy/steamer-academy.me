@@ -9,16 +9,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
-import type {
-  Heading,
-  Paragraph,
-  Image,
-  Root,
-  Text,
-  Strong,
-  HTML,
-  Nodes,
-} from "mdast";
+import type { Heading, Paragraph, Image, Root, HTML, Nodes } from "mdast";
 import type { BlogCategory, BlogData } from "../src/lib/redis";
 
 const GITHUB_OWNER = "STEAMer-Academy";
@@ -53,9 +44,8 @@ function slugify(text: string): string {
 }
 
 function textContent(node: Nodes): string {
-  if (node.type === "text") return (node as Text).value;
-  if ("children" in node)
-    return (node.children as Nodes[]).map(textContent).join("");
+  if (node.type === "text") return node.value;
+  if ("children" in node) return node.children.map(textContent).join("");
   return "";
 }
 
@@ -168,13 +158,13 @@ function extractTitleFromAST(tree: Root): string | null {
   visit(tree, "paragraph", (node: Paragraph) => {
     if (title !== null) return;
 
-    const hasOnlyBold =
-      node.children.length === 1 && node.children[0].type === "strong";
-    if (!hasOnlyBold) return;
-
-    const strong = node.children[0] as Strong;
-    const text = strong.children.map(textContent).join("").trim();
-    if (text.length > 5 && text.length < 120) title = text;
+    if (node.children.length === 1) {
+      const child = node.children[0];
+      if (child.type === "strong") {
+        const text = child.children.map(textContent).join("").trim();
+        if (text.length > 5 && text.length < 120) title = text;
+      }
+    }
   });
 
   return title;

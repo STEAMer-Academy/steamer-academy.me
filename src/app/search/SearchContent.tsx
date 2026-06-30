@@ -126,16 +126,17 @@ export default function SearchContent({
   const searchResults: SearchResult[] =
     query.length > 0 && searchIndex
       ? searchIndex.search(query, { prefix: true, fuzzy: 0.2 }).map((r) => {
-          const stored = r as unknown as {
-            title?: string;
-            content?: string;
-            url?: string;
-          };
+          // MiniSearch attaches stored fields to the result object,
+          // but the TypeScript type doesn't include them.
+          const fields: Record<string, unknown> = r as unknown as Record<
+            string,
+            unknown
+          >;
           return {
             id: r.id,
-            title: stored.title ?? "",
-            content: stored.content ?? "",
-            url: stored.url ?? "",
+            title: typeof fields.title === "string" ? fields.title : "",
+            content: typeof fields.content === "string" ? fields.content : "",
+            url: typeof fields.url === "string" ? fields.url : "",
           };
         })
       : [];

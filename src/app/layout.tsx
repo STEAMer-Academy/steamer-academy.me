@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 // @ts-expect-error - Partytown types not available
 import { Partytown } from "@builder.io/partytown/react";
+import fs from "fs";
+import path from "path";
 import { Poppins, Fira_Code } from "next/font/google";
 import "./globals.css";
 import WebVitals from "@/components/web-vitals";
@@ -90,6 +92,17 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  // Pre-load search data for the command palette — avoids client-side fetch waterfall
+  let searchData = "[]";
+  try {
+    searchData = fs.readFileSync(
+      path.join(process.cwd(), "public", "searchData.json"),
+      "utf-8",
+    );
+  } catch {
+    // File not available (first build), Header will fetch client-side
+  }
+
   return (
     <html lang="en">
       <head>
@@ -110,6 +123,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             `}
           </Script>
           <DatadogInit />
+          <Script
+            id="search-data"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `window.__SEARCH_DATA__ = ${searchData};`,
+            }}
+          />
           {children}
         </ClerkProvider>
       </body>

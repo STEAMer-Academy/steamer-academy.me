@@ -263,15 +263,30 @@ function MobileMenu({ pathname, onServiceClick }: MobileMenuProps) {
 
 // ── Root component ─────────────────────────────────────────────
 
-export default function Header({ searchData }: { searchData?: string | null }) {
+function parseSearchData(data: unknown): SearchItem[] {
+  if (!Array.isArray(data)) return [];
+  return data.filter(
+    (item): item is SearchItem =>
+      typeof item === "object" &&
+      item !== null &&
+      "id" in item &&
+      "title" in item &&
+      "content" in item &&
+      "url" in item,
+  );
+}
+
+export default function Header() {
   const [scrollState, dispatchScroll] = useReducer(scrollReducer, {
     isScrolled: false,
     isVisible: true,
   });
   const lastScrollY = useRef(0);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchItems, setSearchItems] = useState<SearchItem[]>(
-    searchData ? (JSON.parse(searchData) as SearchItem[]) : [],
+  const [searchItems, setSearchItems] = useState<SearchItem[]>(() =>
+    parseSearchData(
+      typeof window !== "undefined" ? window.__SEARCH_DATA__ : undefined,
+    ),
   );
   const pathname = usePathname();
   const router = useRouter();
@@ -291,16 +306,17 @@ export default function Header({ searchData }: { searchData?: string | null }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Load search data for the command palette
+  // Load search data for the command palette (fallback if server preload unavailable)
   useEffect(() => {
-    if (searchData) return; // Already provided by server component
+    if (searchItems.length > 0) return;
     const fetchSearchData = async () => {
       const response = await fetch("/searchData.json");
-      const data: SearchItem[] = await response.json();
-      setSearchItems(data);
+      const data: unknown = await response.json();
+      const items = parseSearchData(data);
+      if (items.length > 0) setSearchItems(items);
     };
     fetchSearchData();
-  }, [searchData]);
+  }, [searchItems.length]);
 
   // Cmd+K / Ctrl+K to open search
   useEffect(() => {
