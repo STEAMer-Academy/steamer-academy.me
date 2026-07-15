@@ -7,7 +7,7 @@
       "dependencies": {
         "@arcjet/next": "^1.8.0",
         "@builder.io/partytown": "^0.10.3",
-        "@clerk/nextjs": "^7.5.17",
+        "@clerk/nextjs": "^7.5.18",
         "@clerk/themes": "^2.4.57",
         "@datadog/browser-rum": "^7.5.0",
         "@ducanh2912/next-pwa": "^10.2.9",
@@ -304,13 +304,13 @@
 
     "@builder.io/partytown": ["@builder.io/partytown@0.10.3", "", { "bin": { "partytown": "bin/partytown.cjs" } }, "sha512-N2SWA3c5vEad3rgdAFM3zMb6uc7aXqibkgAz4ijvYzycgQXJ4dE5oH6fGFMXSQWj6ayVlLT1/CmpflYUJHfmQg=="],
 
-    "@clerk/backend": ["@clerk/backend@3.11.4", "", { "dependencies": { "@clerk/shared": "^4.25.2", "standardwebhooks": "^1.0.0", "tslib": "2.8.1" } }, "sha512-w4SaKIMuXYJY9bU70ZHxNZtam0GYWlT0IIN7QHsZ1p9LC+v6P/JyHqVK9PNiXjcjVTZymMxkm5d9N6//9MBDzg=="],
+    "@clerk/backend": ["@clerk/backend@3.11.5", "", { "dependencies": { "@clerk/shared": "^4.25.3", "standardwebhooks": "^1.0.0", "tslib": "2.8.1" } }, "sha512-HEpf9XlEna1uK+JhFSvIseyvviO1C4rdjv8qe3CSu/qSNMCZD69BSA12IkwBrXuopbrmngNFv/unsNV9jcUepw=="],
 
-    "@clerk/nextjs": ["@clerk/nextjs@7.5.17", "", { "dependencies": { "@clerk/backend": "^3.11.4", "@clerk/react": "^6.12.2", "@clerk/shared": "^4.25.2", "server-only": "0.0.1", "tslib": "2.8.1" }, "peerDependencies": { "next": "^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0", "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" } }, "sha512-6RtpFRQ9VhQzMe9vjhVgcVHM6oeSEn+ZP8TYTbnluJG18F+tcIM8FHn4QMGn0tZvPfDxmODKeyZR4gz8FJ620g=="],
+    "@clerk/nextjs": ["@clerk/nextjs@7.5.18", "", { "dependencies": { "@clerk/backend": "^3.11.5", "@clerk/react": "^6.12.3", "@clerk/shared": "^4.25.3", "server-only": "0.0.1", "tslib": "2.8.1" }, "peerDependencies": { "next": "^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0", "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" } }, "sha512-V4tbhMfsiwEgrsCqBdD/w7FKNwQuHwDk3B7jMIirOB1x1ROE7OKLY4bXPfw01fgsZ9OxNZqjdkmerdyc5RQK+w=="],
 
-    "@clerk/react": ["@clerk/react@6.12.2", "", { "dependencies": { "@clerk/shared": "^4.25.2", "tslib": "2.8.1" }, "peerDependencies": { "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" } }, "sha512-Y+OGZlYfRW+3b+fjdbvSYyYB/IraGitrlLJKYaHxeZYNIwvoUNH0zlreSxUSmxYZ0E2yETSEvkCXszvuZUMa3A=="],
+    "@clerk/react": ["@clerk/react@6.12.3", "", { "dependencies": { "@clerk/shared": "^4.25.3", "tslib": "2.8.1" }, "peerDependencies": { "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" } }, "sha512-mNTo+m8Y46wd5UmXRfTurHig0MnGx2h4YCNQrFWs2oiB0SgxjUfrrQW85fRE5OVBjnHUih9NvdMNHuj6T7wBng=="],
 
-    "@clerk/shared": ["@clerk/shared@4.25.2", "", { "dependencies": { "@tanstack/query-core": "^5.100.6", "dequal": "2.0.3", "glob-to-regexp": "0.4.1", "js-cookie": "3.0.7" }, "peerDependencies": { "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-v7zgDh0eVLl3KzRHbKYTsPQ+4Xcx8A2oiU5iZ9WhME024WudwkjjPJRK12RycY0VA1Sj8i4Pi5zEpecqB/gp1Q=="],
+    "@clerk/shared": ["@clerk/shared@4.25.3", "", { "dependencies": { "@tanstack/query-core": "^5.100.6", "dequal": "2.0.3", "glob-to-regexp": "0.4.1", "js-cookie": "3.0.7" }, "peerDependencies": { "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0", "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-WJOD9vjmCG2k5ynlpYesEXRtBgrJOvON5UV2T6NuCsVTu0dGjHSrnEo5LhUNAAYiKiwd4Mww1EXDRL9ULFkxZw=="],
 
     "@clerk/themes": ["@clerk/themes@2.4.57", "", { "dependencies": { "@clerk/shared": "^3.47.2", "tslib": "2.8.1" } }, "sha512-Nb3bO79rMTU/MPVTC/dde6LG27/IgOMKIYi5KSvAmO4ZUHlj0OWufu6CMvz5OYVZ0YdyMnTBU2aPGRUiRzO+2w=="],
 
