@@ -18,9 +18,9 @@
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
-    "@arcjet/next": "^1.8.0",
+    "@arcjet/next": "^1.9.1",
     "@builder.io/partytown": "^0.10.3",
-    "@clerk/nextjs": "^7.5.18",
+    "@clerk/nextjs": "^7.5.19",
     "@clerk/themes": "^2.4.57",
     "@datadog/browser-rum": "^7.5.0",
     "@ducanh2912/next-pwa": "^10.2.9",
@@ -81,7 +81,7 @@
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
     "postcss": "^8.5.19",
     "prettier": "^3.9.5",
-    "prettier-plugin-tailwindcss": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.2",
     "turbo": "^2.10.5",
     "typescript-eslint": "^8.64.0"
