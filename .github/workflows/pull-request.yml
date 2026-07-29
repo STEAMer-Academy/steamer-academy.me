@@ -1,7 +1,8 @@
 name: 🔨 Pull Request CI
 on:
   pull_request_target:
-    branches: main
+    branches:
+      - main
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -11,13 +12,17 @@ jobs:
       repository-projects: write
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           read: github.event.pull_request.head.sha
           submodules: true
           lfs: false
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: latest
       - name: 📦 Deploy to Vercel
-        uses: amondnet/vercel-action@v42
+        uses: amondnet/vercel-action@de09aeac2ace6599ec9b11ef87558759a496bac4 # v42.3.0
         id: vercel-deploy
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
