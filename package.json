@@ -70,6 +70,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/parser": "^8.65.0",
+    "esbuild": "^0.28.1",
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
@@ -97,7 +98,9 @@
   "trustedDependencies": [
     "@clerk/shared",
     "@heroui/shared-utils",
+    "@swc/core",
     "@tailwindcss/oxide",
+    "esbuild",
     "sharp",
     "unrs-resolver"
   ]
