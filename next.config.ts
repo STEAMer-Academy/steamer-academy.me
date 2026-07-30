@@ -1,15 +1,8 @@
 import bundleAnalyzer from "@next/bundle-analyzer";
-import withPWAInit from "@ducanh2912/next-pwa";
-import type { PluginOptions } from "@ducanh2912/next-pwa";
+import { withSerwist } from "@serwist/turbopack";
 import fs from "fs";
 import path from "path";
 import type { NextConfig } from "next";
-
-const withPWA = withPWAInit({
-  dest: "public",
-  disable: process.env.NODE_ENV === "development",
-  register: true,
-} satisfies PluginOptions);
 
 const nextConfigFunction = () => {
   const withBundleAnalyzer = bundleAnalyzer({
@@ -19,9 +12,6 @@ const nextConfigFunction = () => {
   const version = fs.readFileSync(path.resolve("./version.txt"), "utf8").trim();
 
   const nextConfig: NextConfig = {
-    experimental: {
-      optimizeCss: true,
-    },
     env: {
       NEXT_PUBLIC_APP_VERSION: version,
     },
@@ -82,7 +72,7 @@ const nextConfigFunction = () => {
     },
   };
 
-  return withBundleAnalyzer(withPWA(nextConfig));
+  return withBundleAnalyzer(withSerwist(nextConfig));
 };
 
 export default nextConfigFunction;

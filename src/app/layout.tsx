@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
-// @ts-expect-error - Partytown types not available
-import { Partytown } from "@builder.io/partytown/react";
+import { Partytown } from "@qwik.dev/partytown/react";
 import fs from "fs";
 import path from "path";
 import { Poppins, Fira_Code } from "next/font/google";
@@ -13,6 +12,7 @@ import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark, shadesOfPurple } from "@clerk/themes";
 import DatadogInit from "@/components/Datadog";
+import { SerwistProvider } from "@serwist/turbopack/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -111,25 +111,27 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${poppins.variable} ${firaCode.variable} antialiased`}>
         <Toaster richColors closeButton position="top-center" />
         <ClerkProvider appearance={{ theme: [dark, shadesOfPurple] }}>
-          <CookieConsent />
-          <WebVitals />
-          <Script id="clarity-script" strategy="afterInteractive">
-            {`
+          <SerwistProvider swUrl="/serwist/sw.js">
+            <CookieConsent />
+            <WebVitals />
+            <Script id="clarity-script" strategy="afterInteractive">
+              {`
               (function(c,l,a,r,i,t,y){
                   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                   t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
             `}
-          </Script>
-          <DatadogInit />
-          <Script
-            id="search-data"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `window.__SEARCH_DATA__ = ${searchData};`,
-            }}
-          />
+            </Script>
+            <DatadogInit />
+            <Script
+              id="search-data"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `window.__SEARCH_DATA__ = ${searchData};`,
+              }}
+            />
+          </SerwistProvider>
           {children}
         </ClerkProvider>
       </body>
