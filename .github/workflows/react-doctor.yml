@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: millionco/react-doctor@86add142688fa951a456d86c006f3f8c7c36c070 # react-doctor@0.9.2
+      - uses: millionco/react-doctor@d81eedac8e006dec65db8c610ae966c2c5136be9 # react-doctor@0.9.2
         # Advisory by default: React Doctor reports findings on every PR — a
         # sticky summary comment, inline review comments, and a commit status
         # with the health score — but never fails the check, so it won't red-X
