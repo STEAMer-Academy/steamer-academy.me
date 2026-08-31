@@ -79,29 +79,17 @@
     "serwist": "^9.5.12",
     "tailwindcss": "^4.3.3",
     "turbo": "^2.10.12",
-    "typescript": "6",
+    "typescript": "npm:typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2",
     "typescript-eslint": "^8.68.0"
   },
   "overrides": {
-    "@babel/core": "8.0.1",
-    "brace-expansion": "5.0.8",
-    "fast-uri": "4.1.1",
-    "js-cookie": "3.0.8",
-    "postcss": "8.5.24",
-    "serialize-javascript": "7.0.7",
-    "sharp": "0.35",
-    "svgo": "4.0.2",
-    "ws": "8.21.1",
-    "zod-validation-error": "^5.0.0"
+    "typescript": "$typescript"
   },
   "packageManager": "bun@1.3.13",
   "trustedDependencies": [
     "@clerk/shared",
     "@heroui/shared-utils",
     "@swc/core",
-    "@tailwindcss/oxide",
-    "esbuild",
-    "sharp",
     "unrs-resolver"
   ]
 }
