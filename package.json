@@ -37,7 +37,7 @@
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
     "cnfast": "^0.1.0",
-    "cssnano": "^8.0.8",
+    "cssnano": "^9.0.0",
     "dotenv": "^17.4.2",
     "dotted-map": "^3.1.0",
     "eslint-config-next": "^16.3.3",
