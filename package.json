@@ -3,6 +3,8 @@
   "version": "4.1.1",
   "private": true,
   "scripts": {
+    "prebuild": "cn build --content \"src/{app,components,lib}/**/*.{ts,tsx}\" -o src/lib/cn-tables.ts",
+    "predev": "cn build --content \"src/{app,components,lib}/**/*.{ts,tsx}\" -o src/lib/cn-tables.ts",
     "dev": "next dev",
     "build": "bun run partytown && bun run build-index && next build",
     "build-index": "bun run scripts/build-search-index.ts",
@@ -36,7 +38,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
-    "cnfast": "^0.1.0",
+    "cn": "^0.2.4",
     "cssnano": "^9.0.0",
     "dotenv": "^17.4.2",
     "dotted-map": "^3.1.0",

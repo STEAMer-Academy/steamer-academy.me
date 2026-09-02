@@ -50,6 +50,7 @@ const config = [
       "public/**",
       "**/*.md",
       "**/*.json",
+      "src/lib/cn-tables.ts",
     ],
   },
 ];
