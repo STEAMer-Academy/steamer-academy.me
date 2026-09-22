@@ -28,7 +28,7 @@
         "cmdk": "^1.1.1",
         "cn": "^0.3.0",
         "cssnano": "^9.0.5",
-        "dotenv": "^17.4.2",
+        "dotenv": "^18.0.1",
         "dotted-map": "^3.1.0",
         "eslint-config-next": "^16.3.5",
         "eslint-plugin-prettier": "^5.5.6",
@@ -1092,7 +1092,7 @@
 
     "domutils": ["domutils@3.2.2", "", { "dependencies": { "dom-serializer": "^2.0.0", "domelementtype": "^2.3.0", "domhandler": "^5.0.3" } }, "sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw=="],
 
-    "dotenv": ["dotenv@17.4.2", "", {}, "sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw=="],
+    "dotenv": ["dotenv@18.0.1", "", { "bin": { "dotenv": "dist/index.cjs" } }, "sha512-0eR4m4D/jH5eaI3evo2ZqqMii5mrTCR12v12VChdie6O1gPHs7XAjzTep0CWc1Bd+oNx3vVfbi734dK4zghigw=="],
 
     "dotted-map": ["dotted-map@3.1.0", "", { "dependencies": { "@turf/boolean-point-in-polygon": "^7.3.4", "proj4": "^2.20.2" } }, "sha512-E0z9o5IaTf44FnWHvbyg4QQcBwXgzZJr82HJASWb1dKUCULHfnlWKRpfe5EFHTk/yaoS1sQSLMyMrL6o74/sIw=="],
 
