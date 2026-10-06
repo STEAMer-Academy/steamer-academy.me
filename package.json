@@ -44,7 +44,7 @@
     "dotted-map": "^3.1.0",
     "eslint-config-next": "^16.3.8",
     "eslint-plugin-prettier": "^5.5.6",
-    "framer-motion": "^13.5.0",
+    "framer-motion": "^14.0.0",
     "hugeicons-react": "^0.4.0",
     "lru-cache": "^11.5.3",
     "lucide-react": "^1.49.0",
