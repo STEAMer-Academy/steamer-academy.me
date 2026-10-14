@@ -27,7 +27,7 @@
     "@next/bundle-analyzer": "^16.4.0",
     "@next/eslint-plugin-next": "^16.4.0",
     "@nextui-org/theme": "^2.4.5",
-    "@qwik.dev/partytown": "^0.14.5",
+    "@qwik.dev/partytown": "^1.0.0",
     "@radix-ui/react-dialog": "^1.2.0",
     "@radix-ui/react-dropdown-menu": "^2.1.25",
     "@radix-ui/react-select": "^2.3.8",
