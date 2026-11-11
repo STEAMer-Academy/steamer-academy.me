@@ -15,7 +15,7 @@
         "@next/bundle-analyzer": "^16.4.5",
         "@next/eslint-plugin-next": "^16.4.5",
         "@nextui-org/theme": "^2.4.5",
-        "@qwik.dev/partytown": "^1.0.4",
+        "@qwik.dev/partytown": "^1.0.5",
         "@radix-ui/react-dialog": "^1.3.1",
         "@radix-ui/react-dropdown-menu": "^2.2.1",
         "@radix-ui/react-select": "^2.4.1",
@@ -598,7 +598,7 @@
 
     "@polka/url": ["@polka/url@1.0.0-next.29", "", {}, "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="],
 
-    "@qwik.dev/partytown": ["@qwik.dev/partytown@1.0.4", "", { "bin": { "partytown": "bin/partytown.cjs" } }, "sha512-9PhhzA5e2nLjPpTShx6ssV2wbO+vXkwgYRUdieXTvwwne2o+sgU9HlqWxOW130e1pG2x++duDgJaiN09R4UqeA=="],
+    "@qwik.dev/partytown": ["@qwik.dev/partytown@1.0.5", "", { "bin": { "partytown": "bin/partytown.cjs" } }, "sha512-E912WTT6XibcM9d4WJpMg6fjiYCYQS8j039oqYznnHis2uSjZ5622QTRaxykaveznGcwB4VhGXUEju4YCC2GOA=="],
 
     "@radix-ui/number": ["@radix-ui/number@1.1.3", "", {}, "sha512-Road2bidD0uu/1BGDOWNdPI06g0lIRy6IF9GZcIrDK2KGItfor8IQwQa+yM2ERgHM1MmHxaxpTzk0/Jp42lNfA=="],
 
